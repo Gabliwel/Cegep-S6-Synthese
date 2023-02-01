@@ -90,7 +90,7 @@ public class Weapon : MonoBehaviour
         while (Time.time < stopTime)
         {
             yield return new WaitForEndOfFrame();
-            axis.z -= (recoilDistance + windUpDistance) / duration * Time.deltaTime; // changement :D
+            axis.z -= (recoilDistance + windUpDistance) / duration * Time.deltaTime;
             rotationPoint.rotation = Quaternion.Euler(axis);
             yield return null;
         }
