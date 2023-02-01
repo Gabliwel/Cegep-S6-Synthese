@@ -3037,7 +3037,6 @@ GameObject:
   - component: {fileID: 619212289}
   - component: {fileID: 619212292}
   - component: {fileID: 619212291}
-  - component: {fileID: 619212290}
   - component: {fileID: 619212293}
   m_Layer: 0
   m_Name: TilemapFront
@@ -3061,39 +3060,6 @@ Transform:
   m_Father: {fileID: 553058313}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &619212290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619212288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0d540938d3e1a24a8c8ff3d4f47509d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coffre: {fileID: 11400000, guid: ceec00c618f42e941ac50e0ff7ec5575, type: 2}
-  chestCollider: {fileID: 7644832379053787431, guid: 90296369b6e65134d8f765b38299cbd1, type: 3}
-  posibleSpawn:
-  - {x: -11, y: 4, z: 0}
-  - {x: -11, y: -5, z: 0}
-  - {x: 10, y: 4, z: 0}
-  - {x: 10, y: -5, z: 0}
-  - {x: -11, y: 3, z: 0}
-  - {x: -11, y: 2, z: 0}
-  - {x: -11, y: 1, z: 0}
-  - {x: -11, y: 0, z: 0}
-  - {x: -11, y: -1, z: 0}
-  - {x: -11, y: -2, z: 0}
-  - {x: -11, y: -3, z: 0}
-  - {x: -11, y: -4, z: 0}
-  - {x: 10, y: -4, z: 0}
-  - {x: 10, y: -3, z: 0}
-  - {x: 10, y: -2, z: 0}
-  - {x: 10, y: -1, z: 0}
-  - {x: 10, y: 0, z: 0}
-  mapMinChest: 2
 --- !u!483693784 &619212291
 TilemapRenderer:
   m_ObjectHideFlags: 0
