@@ -50,8 +50,8 @@ public class RanomTileChange : MonoBehaviour
                 Debug.Log("Stopped random");
             }
         }
-        NavMeshSurface nav = GameObject.FindGameObjectWithTag("Navmesh").GetComponent<NavMeshSurface>();
-        nav.BuildNavMesh();
+        //NavMeshSurface nav = GameObject.FindGameObjectWithTag("Navmesh").GetComponent<NavMeshSurface>();
+        //nav.BuildNavMesh();
     }
 
     private void RandomSpawn()
