@@ -85,12 +85,12 @@ public class Weapon : MonoBehaviour
         axis.z += windUpDistance;
         rotationPoint.rotation = Quaternion.Euler(axis);
         yield return new WaitForSeconds(startup);
-        float stopTime = Time.realtimeSinceStartup + duration;
+        float stopTime = Time.time + duration;
         ActivateSensor();
-        while (Time.realtimeSinceStartup < stopTime)
+        while (Time.time < stopTime)
         {
             yield return new WaitForEndOfFrame();
-            axis.z -= (recoilDistance + windUpDistance) / duration * Time.deltaTime;
+            axis.z -= (recoilDistance + windUpDistance) / duration * Time.deltaTime; // changement :D
             rotationPoint.rotation = Quaternion.Euler(axis);
             yield return null;
         }
