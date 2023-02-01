@@ -10,7 +10,7 @@ public class Boss1 : MonoBehaviour
     {
         growingZoneAttack = gameObject.transform.GetChild(0).gameObject.GetComponent<GrowingAttackZone>();
     }
-
+    // allo
     void Update()
     {
         if(Input.GetKey(KeyCode.O))
