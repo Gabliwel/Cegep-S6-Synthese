@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.AI;
+using NavMeshPlus.Components;
 
 public class RanomTileChange : MonoBehaviour
 {
@@ -11,19 +13,14 @@ public class RanomTileChange : MonoBehaviour
     [SerializeField] int mapMinChest;
     private int chanceOfBonus = 90;
     private bool stopSpawn = false;
+    private Tilemap tilemap;
     void Start()
     {
-        Tilemap tilemap = GetComponent<Tilemap>();
+        tilemap = GetComponent<Tilemap>();
 
         for(int i = 0; i < mapMinChest; i++)
         {
-            int chosen = Random.Range(0, posibleSpawn.Count - 1);
-            Vector3Int spawnChosen = posibleSpawn[chosen];
-            tilemap.SetTile(new Vector3Int(spawnChosen.x, spawnChosen.y, 0), coffre);
-            GameObject currentChestHitbox = Instantiate(chestCollider);
-            Vector3 worldPos = tilemap.CellToWorld(new Vector3Int(spawnChosen.x, spawnChosen.y, 0));
-            currentChestHitbox.transform.position = new Vector3(worldPos.x + 0.5f, worldPos.y + 0.5f, 0);
-            posibleSpawn.Remove(spawnChosen);
+            RandomSpawn();
         }
 
         while (!stopSpawn)
@@ -34,13 +31,7 @@ public class RanomTileChange : MonoBehaviour
 
                 if (spawnRolledNumber < chanceOfBonus)
                 {
-                    int chosen = Random.Range(0, posibleSpawn.Count - 1);
-                    Vector3Int spawnChosen = posibleSpawn[chosen];
-                    tilemap.SetTile(new Vector3Int(spawnChosen.x, spawnChosen.y, 0), coffre);
-                    GameObject currentChestHitbox = Instantiate(chestCollider);
-                    Vector3 worldPos = tilemap.CellToWorld(new Vector3Int(spawnChosen.x, spawnChosen.y, 0));
-                    currentChestHitbox.transform.position = new Vector3(worldPos.x + 0.5f, worldPos.y + 0.5f, 0);
-                    posibleSpawn.Remove(spawnChosen);
+                    RandomSpawn();
                     chanceOfBonus -= 15;
                     if(chanceOfBonus < 15)
                     {
@@ -59,13 +50,23 @@ public class RanomTileChange : MonoBehaviour
                 Debug.Log("Stopped random");
             }
         }
+        NavMeshSurface nav = GameObject.FindGameObjectWithTag("Navmesh").GetComponent<NavMeshSurface>();
+        nav.BuildNavMesh();
     }
 
-    // Update is called once per frame
+    private void RandomSpawn()
+    {
+        int chosen = Random.Range(0, posibleSpawn.Count - 1);
+        Vector3Int spawnChosen = posibleSpawn[chosen];
+        tilemap.SetTile(new Vector3Int(spawnChosen.x, spawnChosen.y, 0), coffre);
+        GameObject currentChestHitbox = Instantiate(chestCollider);
+        Vector3 worldPos = tilemap.CellToWorld(new Vector3Int(spawnChosen.x, spawnChosen.y, 0));
+        currentChestHitbox.transform.position = new Vector3(worldPos.x + 0.5f, worldPos.y + 0.5f, 0);
+        posibleSpawn.Remove(spawnChosen);
+    }
+
     void Update()
     {
        
     }
-
-
 }
