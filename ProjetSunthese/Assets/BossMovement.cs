@@ -49,6 +49,7 @@ public class BossMovement : MonoBehaviour
 
     private void ExecuteCurrentAttack()
     {
+        //Bonjour
         switch (currentAttack)
         {
             case "CHARGE":
