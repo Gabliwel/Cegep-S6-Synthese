@@ -3,7 +3,7 @@ guid: 8f73a8448f690984bb1a41dbe4d4e798
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -31030,8 +31033,8 @@ TextureImporter:
       u_fd_winter_village_1183: -936800097
       u_fd_winter_village_756: 392750499
       u_fd_winter_village_1084: -797749568
-      u_fd_winter_village_1144: 714493132
       u_fd_winter_village_1220: 1378246430
+      u_fd_winter_village_1144: 714493132
       u_fd_winter_village_173: 72185059
       u_fd_winter_village_94: 1647060484
       u_fd_winter_village_1208: 1976928413
@@ -31082,8 +31085,8 @@ TextureImporter:
       u_fd_winter_village_305: 1109315510
       u_fd_winter_village_637: 1198035033
       u_fd_winter_village_195: -1523014988
-      u_fd_winter_village_938: 765052478
       u_fd_winter_village_1177: -1342655975
+      u_fd_winter_village_938: 765052478
       u_fd_winter_village_527: 910287793
       u_fd_winter_village_109: -2034166670
       u_fd_winter_village_986: 1120519083
@@ -31212,22 +31215,22 @@ TextureImporter:
       u_fd_winter_village_260: -419282673
       u_fd_winter_village_310: 2085999289
       u_fd_winter_village_207: -460866672
-      u_fd_winter_village_715: 1776017539
       u_fd_winter_village_744: 1841401133
-      u_fd_winter_village_1070: -1871792964
+      u_fd_winter_village_715: 1776017539
       u_fd_winter_village_20: 737165674
+      u_fd_winter_village_1070: -1871792964
       u_fd_winter_village_721: -274087773
-      u_fd_winter_village_905: -527126507
       u_fd_winter_village_1341: -2123024618
+      u_fd_winter_village_905: -527126507
       u_fd_winter_village_1203: -1555440804
       u_fd_winter_village_1464: -185531916
       u_fd_winter_village_1035: 479565413
       u_fd_winter_village_1337: -2086969536
       u_fd_winter_village_265: 237072804
       u_fd_winter_village_425: 714859738
+      u_fd_winter_village_270: 1527293174
       u_fd_winter_village_228: 1773524594
       u_fd_winter_village_454: -824165728
-      u_fd_winter_village_270: 1527293174
       u_fd_winter_village_444: 377236531
       u_fd_winter_village_1136: -1532628846
       u_fd_winter_village_1215: 1357234253
@@ -31303,8 +31306,8 @@ TextureImporter:
       u_fd_winter_village_1279: 1712988763
       u_fd_winter_village_1065: -1916865146
       u_fd_winter_village_226: -966185524
-      u_fd_winter_village_1011: -985261710
       u_fd_winter_village_1164: 791655586
+      u_fd_winter_village_1011: -985261710
       u_fd_winter_village_6: 1341623558
       u_fd_winter_village_848: 1987198261
       u_fd_winter_village_585: 368567294
@@ -31403,8 +31406,8 @@ TextureImporter:
       u_fd_winter_village_55: 1688858050
       u_fd_winter_village_1289: 1694188286
       u_fd_winter_village_770: 1006032673
-      u_fd_winter_village_634: 994100828
       u_fd_winter_village_781: -1577267740
+      u_fd_winter_village_634: 994100828
       u_fd_winter_village_587: 1959711183
       u_fd_winter_village_980: -937203500
       u_fd_winter_village_1428: 304705248
@@ -31481,9 +31484,9 @@ TextureImporter:
       u_fd_winter_village_552: -2096242448
       u_fd_winter_village_351: 1891623762
       u_fd_winter_village_1295: -500034148
-      u_fd_winter_village_772: -1744638155
-      u_fd_winter_village_617: -1587332066
       u_fd_winter_village_1141: 228887245
+      u_fd_winter_village_617: -1587332066
+      u_fd_winter_village_772: -1744638155
       u_fd_winter_village_50: 955542510
       u_fd_winter_village_121: -1906999264
       u_fd_winter_village_991: 1508958659
@@ -31758,11 +31761,11 @@ TextureImporter:
       u_fd_winter_village_546: -1631054622
       u_fd_winter_village_125: 1812879751
       u_fd_winter_village_738: 457129540
-      u_fd_winter_village_1140: -1903202466
+      u_fd_winter_village_1390: -575007294
       u_fd_winter_village_77: -673765814
       u_fd_winter_village_1280: -1382543968
       u_fd_winter_village_943: 1532915366
-      u_fd_winter_village_1390: -575007294
+      u_fd_winter_village_1140: -1903202466
       u_fd_winter_village_1132: 307867608
       u_fd_winter_village_1214: -1723137298
       u_fd_winter_village_924: 1438344392
@@ -31806,9 +31809,9 @@ TextureImporter:
       u_fd_winter_village_1125: 345648206
       u_fd_winter_village_390: 1900309227
       u_fd_winter_village_215: 777302840
-      u_fd_winter_village_355: 30879394
       u_fd_winter_village_636: 600845823
       u_fd_winter_village_1173: 158359532
+      u_fd_winter_village_355: 30879394
       u_fd_winter_village_150: -1296610837
       u_fd_winter_village_1126: 2003439998
       u_fd_winter_village_677: -1984692370
@@ -31826,13 +31829,13 @@ TextureImporter:
       u_fd_winter_village_1123: 74677581
       u_fd_winter_village_380: 204639181
       u_fd_winter_village_412: -108691732
-      u_fd_winter_village_520: 574411074
       u_fd_winter_village_616: -1000366436
       u_fd_winter_village_1380: 878979337
+      u_fd_winter_village_520: 574411074
       u_fd_winter_village_199: -2081470031
-      u_fd_winter_village_1426: -1509466412
       u_fd_winter_village_714: 2077402942
       u_fd_winter_village_1421: 1019499800
+      u_fd_winter_village_1426: -1509466412
       u_fd_winter_village_23: 1325292145
       u_fd_winter_village_929: -1911839151
       u_fd_winter_village_603: 615529826
@@ -32005,15 +32008,15 @@ TextureImporter:
       u_fd_winter_village_549: 687376332
       u_fd_winter_village_562: 1875021284
       u_fd_winter_village_807: -978726950
-      u_fd_winter_village_963: -281159957
-      u_fd_winter_village_662: 351209985
       u_fd_winter_village_1460: -707286261
+      u_fd_winter_village_662: 351209985
+      u_fd_winter_village_963: -281159957
       u_fd_winter_village_1240: 587385994
       u_fd_winter_village_65: -1877626061
       u_fd_winter_village_315: -16428490
       u_fd_winter_village_451: 1530599372
-      u_fd_winter_village_640: -594273791
       u_fd_winter_village_1321: 1146821338
+      u_fd_winter_village_640: -594273791
       u_fd_winter_village_550: -402389991
       u_fd_winter_village_920: 2009708834
       u_fd_winter_village_229: -1731861050
@@ -32087,8 +32090,8 @@ TextureImporter:
       u_fd_winter_village_1062: -745095225
       u_fd_winter_village_1056: 1300514966
       u_fd_winter_village_1263: -940776480
-      u_fd_winter_village_1185: -804993297
       u_fd_winter_village_1373: -2133043774
+      u_fd_winter_village_1185: -804993297
       u_fd_winter_village_1410: -1810556609
       u_fd_winter_village_465: -1957738970
       u_fd_winter_village_519: 1279336276
@@ -32126,10 +32129,10 @@ TextureImporter:
       u_fd_winter_village_1111: 1383754272
       u_fd_winter_village_330: 1915264565
       u_fd_winter_village_611: -2049506106
-      u_fd_winter_village_801: -1754717569
       u_fd_winter_village_1066: 1269495803
       u_fd_winter_village_1060: 584196982
       u_fd_winter_village_1445: -725960867
+      u_fd_winter_village_801: -1754717569
       u_fd_winter_village_707: 1540178990
       u_fd_winter_village_882: -686149569
       u_fd_winter_village_1090: 864100272
@@ -32152,8 +32155,8 @@ TextureImporter:
       u_fd_winter_village_1014: -623264283
       u_fd_winter_village_900: -1786274307
       u_fd_winter_village_393: 695277107
-      u_fd_winter_village_676: 569662283
       u_fd_winter_village_708: 1416156551
+      u_fd_winter_village_676: 569662283
       u_fd_winter_village_817: 1083849963
       u_fd_winter_village_1212: 652140306
       u_fd_winter_village_1385: 510369955
@@ -32210,17 +32213,17 @@ TextureImporter:
       u_fd_winter_village_159: -1435564431
       u_fd_winter_village_331: 915027722
       u_fd_winter_village_243: 906356177
-      u_fd_winter_village_854: 1792553169
       u_fd_winter_village_1020: -952681401
+      u_fd_winter_village_854: 1792553169
       u_fd_winter_village_1377: -254148928
       u_fd_winter_village_878: -1634553028
       u_fd_winter_village_682: -1738118784
       u_fd_winter_village_544: -878238031
       u_fd_winter_village_201: -1987497013
       u_fd_winter_village_268: 510410374
+      u_fd_winter_village_795: -1224245399
       u_fd_winter_village_940: 1984561868
       u_fd_winter_village_405: -28297039
-      u_fd_winter_village_795: -1224245399
       u_fd_winter_village_2: -1281620509
       u_fd_winter_village_445: -870553676
       u_fd_winter_village_658: 346101598
@@ -32261,11 +32264,11 @@ TextureImporter:
       u_fd_winter_village_1095: -754324486
       u_fd_winter_village_506: -348658281
       u_fd_winter_village_288: -474975367
-      u_fd_winter_village_511: -2060315435
       u_fd_winter_village_1310: -1782860568
       u_fd_winter_village_731: 1490329786
       u_fd_winter_village_813: 1577268093
       u_fd_winter_village_872: 550149795
+      u_fd_winter_village_511: -2060315435
       u_fd_winter_village_1323: 799584344
       u_fd_winter_village_57: 1939746674
       u_fd_winter_village_902: 471802715
@@ -32444,9 +32447,8 @@ TextureImporter:
       u_fd_winter_village_609: 1923062258
       u_fd_winter_village_1231: 72019442
       u_fd_winter_village_1440: -1565149581
-  spritePackingTag: 
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
