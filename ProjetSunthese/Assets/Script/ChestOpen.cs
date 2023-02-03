@@ -8,12 +8,16 @@ public class ChestOpen : MonoBehaviour
     [SerializeField] Tile coffreOuvert;
     private Tilemap tilemap;
     private bool chestClosed = true;
+    private ChestDropManager chestDropManager;
+
+    private AchivementManager achivement;
     void Start()
     {
+        chestDropManager = GameObject.FindGameObjectWithTag("Chest").GetComponent<ChestDropManager>();
         tilemap = GameObject.FindGameObjectWithTag("Chest").GetComponent<Tilemap>();
+        achivement = GameObject.FindGameObjectWithTag("Achivement").GetComponent<AchivementManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -25,6 +29,10 @@ public class ChestOpen : MonoBehaviour
             tilemap.SetTile(tilemap.WorldToCell(transform.position), coffreOuvert);
             chestClosed = false;
             Debug.Log("Give item");
+            GameObject drop = chestDropManager.SendRandomItem();
+            drop.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, 0);
+            drop.SetActive(true);
+            achivement.OpenedChest();
         }
     }
 }

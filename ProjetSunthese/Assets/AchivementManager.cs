@@ -4,26 +4,57 @@ using UnityEngine;
 
 public class AchivementManager : MonoBehaviour
 {
-    AchivementClass achivementData;
-    private bool openedTwentyFiveChests = false;
-    private int currentOpened = 0;
+    private AchivementClass achivementData;
+    private JSONSave save;
+
+    [SerializeField] bool dead;
+    private bool gotRageQuit;
+    private float timeSinceDead = 3f;
     void Start()
     {
-        
+        save = GetComponent<JSONSave>();
+        achivementData = save.LoadData();
+        if(achivementData == null)
+        {
+            achivementData = new AchivementClass();
+        }
+        gotRageQuit = achivementData.rageQuit;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!gotRageQuit)
+        {
+            if (dead)
+            {
+                achivementData.rageQuit = true;
+                timeSinceDead -= Time.deltaTime;
+
+                if (timeSinceDead <= 0)
+                {
+                    achivementData.rageQuit = false;
+                }
+            }
+            else
+            {
+                timeSinceDead = 3f;
+            }
+        }
     }
 
     public void OpenedChest()
     {
-        currentOpened++;
-        if(currentOpened == 25)
+        achivementData.nbChestOpened++;
+        if (achivementData.nbChestOpened == 2)
         {
-            openedTwentyFiveChests = true;
+            achivementData.lotsChestOpened = true;
+            save.SaveData(achivementData);
         }
+    }
+
+    public AchivementClass getAchivementData()
+    {
+        return this.achivementData;
     }
 }

@@ -11,6 +11,7 @@ public class RanomTileChange : MonoBehaviour
     [SerializeField] GameObject chestCollider;
     [SerializeField] List<Vector3Int> posibleSpawn;
     [SerializeField] int mapMinChest;
+    [SerializeField] bool redoNavMesh;
     private int chanceOfBonus = 90;
     private bool stopSpawn = false;
     private Tilemap tilemap;
@@ -50,8 +51,11 @@ public class RanomTileChange : MonoBehaviour
                 Debug.Log("Stopped random");
             }
         }
-        //NavMeshSurface nav = GameObject.FindGameObjectWithTag("Navmesh").GetComponent<NavMeshSurface>();
-        //nav.BuildNavMesh();
+        if (redoNavMesh)
+        {
+            NavMeshSurface nav = GameObject.FindGameObjectWithTag("Navmesh").GetComponent<NavMeshSurface>();
+            nav.BuildNavMesh();
+        }
     }
 
     private void RandomSpawn()

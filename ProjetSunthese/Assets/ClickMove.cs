@@ -8,12 +8,20 @@ public class ClickMove : MonoBehaviour
 
     void Start()
     {
-        target = new Vector3(-11, 0, 0);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target, 1f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Item")
+        {
+            Debug.Log("Collect item");
+            collision.gameObject.SetActive(false);
+        }
     }
 }
