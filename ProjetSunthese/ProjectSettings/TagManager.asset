@@ -27,7 +27,7 @@ TagManager:
   - 
   - Layer 1
   - Layer 2
-  - Layer 3
+  - IgnoreGlobalLight
   - 
   - 
   - 
@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Layer 0
+    uniqueID: 2159055839
+    locked: 0
   - name: Layer 1
     uniqueID: 2632094169
     locked: 0
@@ -49,4 +52,19 @@ TagManager:
     locked: 0
   - name: Layer 3
     uniqueID: 3285640479
+    locked: 0
+  - name: Layer 4
+    uniqueID: 3492678625
+    locked: 0
+  - name: Layer 5
+    uniqueID: 1546321165
+    locked: 0
+  - name: Objects
+    uniqueID: 456374505
+    locked: 0
+  - name: IgnoreGlobalLight
+    uniqueID: 640342343
+    locked: 0
+  - name: Actors
+    uniqueID: 4111023565
     locked: 0

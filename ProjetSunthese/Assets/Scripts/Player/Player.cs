@@ -27,11 +27,18 @@ public class Player : MonoBehaviour
         iframesTimer += ammount;
     }
 
-    public void Hard(float ammount)
+    /// <summary>
+    /// harms the player. returns true if it did damage
+    /// </summary>
+    /// <param name="ammount"></param>
+    /// <returns></returns>
+    public bool Harm(float ammount)
     {
         if(iframesTimer <= 0)
         {
-            //hitplayer
+            Debug.Log("oof ouch ive been hit for " + ammount + " damage");
+            return true;
         }
+        return false;
     }
 }
