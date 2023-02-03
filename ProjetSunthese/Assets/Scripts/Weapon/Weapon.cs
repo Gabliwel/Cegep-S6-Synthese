@@ -5,11 +5,11 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     private const int ROTATION_OFFSET = 45;
-    Vector3 axis;
-    Vector3 mousePosition;
-    Vector3 objectWorldPosition;
-    Transform rotationPoint;
-    [SerializeField] bool orbit = true;
+    private Vector3 axis;
+    private Vector3 mousePosition;
+    private Vector3 objectWorldPosition;
+    private Transform rotationPoint;
+    [SerializeField] private bool orbit = true;
     [Header("Parameters")]
     [SerializeField] private float damage;
     [SerializeField] private float startup;
@@ -48,16 +48,15 @@ public class Weapon : MonoBehaviour
             Attack();
         }
     }
-    private void OnEnemyUnsense(Enemy otherObject)
+
+    private void OnEnemySense(Enemy enemy)
     {
-        Debug.Log(otherObject.name + "unsensed");
+        enemy.Harm(damage);
     }
 
-    private void OnEnemySense(Enemy otherObject)
+    private void OnEnemyUnsense(Enemy enemy)
     {
-        Debug.Log(otherObject.name + "sensed");
     }
-
     void OrbitClosestToMouse()
     {
         Vector3 newMousePosition = mousePosition;
@@ -90,7 +89,7 @@ public class Weapon : MonoBehaviour
         while (Time.time < stopTime)
         {
             yield return new WaitForEndOfFrame();
-            axis.z -= (recoilDistance + windUpDistance) / duration * Time.deltaTime; // changement :D
+            axis.z -= (recoilDistance + windUpDistance) / duration * Time.deltaTime;
             rotationPoint.rotation = Quaternion.Euler(axis);
             yield return null;
         }

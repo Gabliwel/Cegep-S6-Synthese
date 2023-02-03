@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerAnimationController animationController;
     private SpriteRenderer sprite;
+    private Player player;
 
 
     private void Awake()
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animationController = GetComponent<PlayerAnimationController>();
         sprite = GetComponent<SpriteRenderer>();
+        player = GetComponent<Player>();
     }
 
     private void Update()
@@ -104,8 +106,8 @@ public class PlayerMovement : MonoBehaviour
             Vector2 direction = GetInputDirection();
             isRolling = true;
             animationController.SetRoll(true);
+            player.AddIframes(rollSpeedupTime + rollSlowdownTime);
             rollCooldownTimer = ROLL_COOLDOWN + rollSpeedupTime + rollSlowdownTime;
-            // TODO: add invincible frames
             // TODO: add sound
             currentVelocity = Vector2.zero;
             currentVelocity.x += direction.x * (BASE_SPEED * rollSpeed);
@@ -140,8 +142,14 @@ public class PlayerMovement : MonoBehaviour
     {
         canMove = true;
     }
+
     public void DisableMovement()
     {
         canMove = false;
+    }
+
+    public bool IsRolling()
+    {
+        return isRolling;
     }
 }

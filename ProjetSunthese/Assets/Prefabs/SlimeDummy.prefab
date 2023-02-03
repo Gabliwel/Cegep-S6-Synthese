@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4831749139912137681}
   - component: {fileID: 4831749139912137680}
+  - component: {fileID: 6608584960183906285}
   - component: {fileID: 4831749139912137687}
-  - component: {fileID: 4831749139912137686}
   - component: {fileID: 4831749139912137691}
   m_Layer: 0
   m_Name: SlimeDummy
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1009326817
+  m_SortingLayer: 4
   m_SortingOrder: 10
   m_Sprite: {fileID: 425682320, guid: c08ddd1698ae31743a70f53df798cc6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -88,6 +88,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6608584960183906285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831749139912137690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266fe23a921d9114088299ee027068cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &4831749139912137687
 Animator:
   serializedVersion: 5
@@ -108,18 +120,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &4831749139912137686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4831749139912137690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: def90bc1f664aaa4289b78f01abb95d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &4831749139912137691
 Rigidbody2D:
   serializedVersion: 4
