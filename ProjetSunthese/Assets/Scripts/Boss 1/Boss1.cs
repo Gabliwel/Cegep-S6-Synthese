@@ -5,17 +5,26 @@ using UnityEngine;
 public class Boss1 : MonoBehaviour
 {
     private GrowingAttackZone growingZoneAttack;
+    private RangedCircleAttack rangedCircleAttack;
+
 
     void Start()
     {
-        growingZoneAttack = gameObject.transform.GetChild(0).gameObject.GetComponent<GrowingAttackZone>();
+        growingZoneAttack = gameObject.GetComponentInChildren<GrowingAttackZone>();
+        rangedCircleAttack = gameObject.GetComponentInChildren<RangedCircleAttack>();
     }
-    // allo
+
     void Update()
     {
-        if(Input.GetKey(KeyCode.O))
+        // Pour tests
+        if(Input.GetKeyDown(KeyCode.O))
         {
             growingZoneAttack.Launch();
+        }
+
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            rangedCircleAttack.Launch();
         }
     }
 }

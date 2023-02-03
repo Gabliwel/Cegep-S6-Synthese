@@ -4,34 +4,50 @@ using UnityEngine;
 
 public class GrowingAttackZone : MonoBehaviour
 {
+    [Header("Base stats")]
     [SerializeField] private float speedInSec;
-    [SerializeField] private float firstScale;
-    [SerializeField] private float lastScale;
+    [SerializeField] private Vector3 smallScale;
+    [SerializeField] private Vector3 bigScale;
 
-    private bool isActive = false;
+    [Header("Particularity")]
+    [SerializeField] private bool reverseOrder;
+    [SerializeField] private bool returnToInitial;
+    [SerializeField] private float waitSecBeforeReturn;
 
     void Start()
     {
-        transform.localScale = new Vector3(1, 1, 1);   
+        transform.localScale = smallScale;
     }
 
     public void Launch()
     {
-        StartCoroutine(Attack());
+        if(!reverseOrder) StartCoroutine(Attack(smallScale, bigScale));
+        else StartCoroutine(Attack(bigScale, smallScale));
     }
 
-    private IEnumerator Attack()
+    private IEnumerator Attack(Vector3 initialScale, Vector3 endScale)
     {
-        float newScale = Mathf.Lerp(firstScale, lastScale, Time.deltaTime / speedInSec);
-        transform.localScale = new Vector3(newScale, newScale, 1);
+        transform.localScale = initialScale;
 
+        bool doneHalf = false;
+        float timeScale = 1;
+        if (returnToInitial) timeScale = 2;
 
+        for (float time = 0; time < speedInSec * timeScale; time += Time.deltaTime)
+        {
+            // For the wait with "Return to Initial"
+            if (!doneHalf && returnToInitial && time > speedInSec) {
+                transform.localScale = endScale;
+                doneHalf = true;
+                yield return new WaitForSeconds(waitSecBeforeReturn);
+            }
 
-        yield return null;
-    }
+            // Scalling of the zone and mask in the parent object
+            if (returnToInitial) transform.localScale = Vector3.Lerp(initialScale, endScale, (Mathf.PingPong(time, speedInSec) / speedInSec));
+            else transform.localScale = Vector3.Lerp(initialScale, endScale, time / speedInSec);
+            yield return null;
+        }
 
-    public bool CanAttack()
-    {
-        return !isActive;
+        transform.localScale = smallScale;
     }
 }
