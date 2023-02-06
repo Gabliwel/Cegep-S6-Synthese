@@ -22,8 +22,11 @@ public class BossMovement : MonoBehaviour
     private float reactionTime = 1.5f;
     private Vector3 savedPlayerPos;
     private bool charging = false;
+
+    private Animator animator;
     void Start()
     {
+        animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         dangerRectangle.transform.localScale = new Vector3(10, 1f, 1);
         Attacks[0] = "CHARGE";
@@ -37,7 +40,9 @@ public class BossMovement : MonoBehaviour
         if (!attackInProgress)
         {
             attackDelay -= Time.deltaTime;
-            if(attackDelay <= 0)
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, 0.03f);
+            CheckAnimationSide();
+            if (attackDelay <= 0)
             {
                 attackDelay = 3f;
                 attackInProgress = true;
@@ -45,6 +50,35 @@ public class BossMovement : MonoBehaviour
             }
         }
         ExecuteCurrentAttack();
+    }
+
+    private void CheckAnimationSide()
+    {
+
+        if(player.transform.position.x < transform.position.x && 
+            Mathf.Abs(Mathf.Abs(player.transform.position.x) - Mathf.Abs(transform.position.x)) 
+                > Mathf.Abs((Mathf.Abs(player.transform.position.y) - Mathf.Abs(transform.position.y))))
+        {
+            animator.Play("Michael_Ani_Left");
+        }
+        if (player.transform.position.x > transform.position.x && 
+            Mathf.Abs(Mathf.Abs(player.transform.position.x) - Mathf.Abs(transform.position.x)) 
+                > Mathf.Abs((Mathf.Abs(player.transform.position.y) - Mathf.Abs(transform.position.y))))
+        {
+            animator.Play("Michael_Ani_Right");
+        }
+        if (player.transform.position.y < transform.position.y && 
+            Mathf.Abs(Mathf.Abs(player.transform.position.x) - Mathf.Abs(transform.position.x)) 
+                < Mathf.Abs((Mathf.Abs(player.transform.position.y) - Mathf.Abs(transform.position.y))))
+        {
+            animator.Play("Michael_Ani");
+        }
+        if (player.transform.position.y > transform.position.y && 
+            Mathf.Abs(Mathf.Abs(player.transform.position.x) - Mathf.Abs(transform.position.x)) 
+                < Mathf.Abs((Mathf.Abs(player.transform.position.y) - Mathf.Abs(transform.position.y))))
+        {
+            animator.Play("Michael_Ani_Back");
+        }
     }
 
     private void ExecuteCurrentAttack()

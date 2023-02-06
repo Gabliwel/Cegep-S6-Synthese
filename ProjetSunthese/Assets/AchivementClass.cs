@@ -4,10 +4,38 @@ using UnityEngine;
 
 public class AchivementClass
 {
-    private bool lotsChestOpened;
+    public bool lotsChestOpened;
+    public bool rageQuit;
+    public bool beatBob;
+    public bool beatGontrand;
+    public bool beatMichael;
+    public bool beatJeanGuy;
+    public bool beatTheGame;
 
-    public AchivementClass(bool firstChestOpened)
+
+    public int nbChestOpened;
+
+    public AchivementClass(bool lotsChestOpened, int nbChestOpened, bool rageQuit, bool beatBob, bool beatGontrand, bool beatMichael, bool beatJeanGuy, bool beatTheGame)
     {
-        this.lotsChestOpened = firstChestOpened;
+        this.lotsChestOpened = lotsChestOpened;
+        this.nbChestOpened = nbChestOpened;
+        this.rageQuit = rageQuit;
+        this.beatBob = beatBob;
+        this.beatGontrand = beatGontrand;
+        this.beatMichael = beatMichael;
+        this.beatJeanGuy = beatJeanGuy;
+        this.beatTheGame = beatTheGame;
+    }
+
+    public AchivementClass()
+    {
+        this.lotsChestOpened = false;
+        this.nbChestOpened = 0;
+        this.rageQuit = false;
+        this.beatBob = false;
+        this.beatGontrand = false;
+        this.beatMichael = false;
+        this.beatJeanGuy = false;
+        this.beatTheGame = false;
     }
 }

@@ -7,15 +7,22 @@ public class JSONSave : MonoBehaviour
 {
     private string path = "";
     private string persitentPath = "";
+    private AchivementManager manager;
     void Start()
     {
-        
+        SetPaths();
+        manager = GetComponent<AchivementManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void OnApplicationQuit()
+    {
+        SaveData(manager.getAchivementData());
     }
 
     private void SetPaths()
@@ -26,7 +33,7 @@ public class JSONSave : MonoBehaviour
 
     public void SaveData(AchivementClass achives)
     {
-        string savePath = path;
+        string savePath = persitentPath;
 
         string json = JsonUtility.ToJson(achives);
 
@@ -35,11 +42,13 @@ public class JSONSave : MonoBehaviour
         writer.Write(json);
     }
 
-    public void LoadData()
+    public AchivementClass LoadData()
     {
-        using StreamReader reader = new StreamReader(path);
+        using StreamReader reader = new StreamReader(persitentPath);
         string json = reader.ReadToEnd();
 
         AchivementClass data = JsonUtility.FromJson<AchivementClass>(json);
+
+        return data;
     }
 }
