@@ -73,13 +73,13 @@ public class BossMountain : Enemy
         {
             BossMountainStalagmite stalagmite = GetAvailableStalagamite();
             stalagmite.gameObject.SetActive(false);
-            Vector3 stalagmiteSpawn = GetRandomPillarSpawn();
+            Vector3 stalagmiteSpawn = GetRandomStalagmiteSpawnLocation();
             stalagmite.transform.position = stalagmiteSpawn;
             stalagmite.gameObject.SetActive(true);
         }
     }
 
-    Vector3Int GetRandomPillarSpawn()
+    Vector3Int GetRandomStalagmiteSpawnLocation()
     {
         int x = Random.Range(minStalagmiteSpawnRange.x, maxStalagmiteSpawnRange.x);
         int y = Random.Range(minStalagmiteSpawnRange.y, maxStalagmiteSpawnRange.y);

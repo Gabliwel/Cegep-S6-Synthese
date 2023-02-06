@@ -36,7 +36,6 @@ public class BossMountainStalagmite : MonoBehaviour
         else if (isWarning)
         {
             DisableWarning();
-            //play sound
             animator.SetTrigger("Rise");
         }
 
