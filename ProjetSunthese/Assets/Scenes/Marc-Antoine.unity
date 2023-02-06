@@ -462,11 +462,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2606476511501836249, guid: 86496471f7ef86d4f889c324abfff5a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -57.05
+      value: -56.54
       objectReference: {fileID: 0}
     - target: {fileID: 2606476511501836249, guid: 86496471f7ef86d4f889c324abfff5a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.91
+      value: 33.45
       objectReference: {fileID: 0}
     - target: {fileID: 2606476511501836249, guid: 86496471f7ef86d4f889c324abfff5a2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -39935,6 +39935,30 @@ PrefabInstance:
     - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
       propertyPath: minPillarSpawn.y
       value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
+      propertyPath: maxStalagmiteSpawnNb
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
+      propertyPath: minStalagmiteSpawnNb
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
+      propertyPath: maxStalagmiteSpawnRange.x
+      value: -56
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
+      propertyPath: maxStalagmiteSpawnRange.y
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
+      propertyPath: minStalagmiteSpawnRange.x
+      value: -69
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
+      propertyPath: minStalagmiteSpawnRange.y
+      value: 43
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

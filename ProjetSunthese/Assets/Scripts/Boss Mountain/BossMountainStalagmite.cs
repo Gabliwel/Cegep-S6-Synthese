@@ -5,6 +5,13 @@ using UnityEngine;
 public class BossMountainStalagmite : MonoBehaviour
 {
     [SerializeField] private float damage;
+    [SerializeField] private float warningTime;
+    [SerializeField] private bool isWarning;
+    [SerializeField] private float waitTime;
+    [SerializeField] private bool isWaiting;
+
+    private float warningTimer;
+    private float waitTimer;
 
     private BossMountain bossMountain;
     private Animator animator;
@@ -24,12 +31,40 @@ public class BossMountainStalagmite : MonoBehaviour
 
     private void Update()
     {
-        
+        if (warningTimer > 0)
+            warningTimer -= Time.deltaTime;
+        else if (isWarning)
+        {
+            DisableWarning();
+            //play sound
+            animator.SetTrigger("Rise");
+        }
+
+        if (waitTimer > 0)
+            waitTimer -= Time.deltaTime;
+        else if (isWaiting)
+        {
+            isWaiting = false;
+            animator.SetTrigger("Fall");
+        }
     }
 
     private void OnEnable()
     {
-        animator.SetTrigger("Rise");
+        warningTimer = warningTime;
+        EnableWarning();
+    }
+
+    void EnableWarning()
+    {
+        isWarning = true;
+        animator.SetBool("Warning", true);
+    }
+
+    void DisableWarning()
+    {
+        isWarning = false;
+        animator.SetBool("Warning", false);
     }
 
     public void EnableSensor()
@@ -40,6 +75,13 @@ public class BossMountainStalagmite : MonoBehaviour
     public void DisableSensor()
     {
         sensor.gameObject.SetActive(false);
+    }
+
+    public void FinishedRising()
+    {
+        DisableSensor();
+        isWaiting = true;
+        waitTimer = waitTime;
     }
 
     public void EnteredGround()
@@ -53,10 +95,9 @@ public class BossMountainStalagmite : MonoBehaviour
             DisableSensor();
     }
 
+    //required to make sensor work, no use case here
     void OnPlayerUnsense(Player player)
     {
 
     }
-
-    
 }

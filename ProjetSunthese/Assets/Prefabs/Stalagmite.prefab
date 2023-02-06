@@ -48,6 +48,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
+  warningTime: 0.3
+  warningTimer: 0
+  isWarning: 0
+  waitTime: 0.2
+  waitTimer: 0
+  isWaiting: 0
 --- !u!212 &3852574081589724316
 SpriteRenderer:
   m_ObjectHideFlags: 0
