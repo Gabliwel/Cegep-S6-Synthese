@@ -27,12 +27,14 @@ public class ParticleManager : MonoBehaviour
         }
     }
 
-    public void CallParticles(Vector3 position, float scale)
+    public void CallParticles(Vector3 position, float scale, Color colour)
     {
         ParticleSystem particle = GetAvailableParticles();
         particle.transform.position = position;
         particle.gameObject.SetActive(true);
         particle.transform.localScale = new Vector3(scale,scale,0);
+        var main = particle.main;
+        main.startColor = colour;
         var emission = particle.emission;
 
         emission.enabled = true;

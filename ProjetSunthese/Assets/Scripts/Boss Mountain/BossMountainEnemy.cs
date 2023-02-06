@@ -16,6 +16,8 @@ public class BossMountainEnemy : Enemy
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         animator = GetComponent<Animator>();
+        particleScale = 4;
+        particleColor = new Color(163, 167, 194);
     }
 
 
