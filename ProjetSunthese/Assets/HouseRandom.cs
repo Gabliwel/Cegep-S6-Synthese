@@ -16,7 +16,6 @@ public class HouseRandom : MonoBehaviour
         for (int i = 0; i < posibleSpawn.Count + 1; i++)
         {
             int spawnRolledNumber = Random.Range(0, 2);
-            Debug.Log(spawnRolledNumber);
 
             if (spawnRolledNumber == 1)
             {

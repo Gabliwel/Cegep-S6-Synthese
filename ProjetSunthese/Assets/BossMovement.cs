@@ -55,29 +55,29 @@ public class BossMovement : MonoBehaviour
     private void CheckAnimationSide()
     {
 
-        if(player.transform.position.x < transform.position.x && 
-            Mathf.Abs(Mathf.Abs(player.transform.position.x) - Mathf.Abs(transform.position.x)) 
+        if (Mathf.Abs(Mathf.Abs(player.transform.position.x) - Mathf.Abs(transform.position.x))
                 > Mathf.Abs((Mathf.Abs(player.transform.position.y) - Mathf.Abs(transform.position.y))))
         {
-            animator.Play("Michael_Ani_Left");
+            if (player.transform.position.x < transform.position.x)
+            {
+                animator.Play("Michael_Ani_Left");
+            }
+            if (player.transform.position.x > transform.position.x)
+            {
+                animator.Play("Michael_Ani_Right");
+            }
         }
-        if (player.transform.position.x > transform.position.x && 
-            Mathf.Abs(Mathf.Abs(player.transform.position.x) - Mathf.Abs(transform.position.x)) 
-                > Mathf.Abs((Mathf.Abs(player.transform.position.y) - Mathf.Abs(transform.position.y))))
-        {
-            animator.Play("Michael_Ani_Right");
-        }
-        if (player.transform.position.y < transform.position.y && 
-            Mathf.Abs(Mathf.Abs(player.transform.position.x) - Mathf.Abs(transform.position.x)) 
-                < Mathf.Abs((Mathf.Abs(player.transform.position.y) - Mathf.Abs(transform.position.y))))
-        {
-            animator.Play("Michael_Ani");
-        }
-        if (player.transform.position.y > transform.position.y && 
-            Mathf.Abs(Mathf.Abs(player.transform.position.x) - Mathf.Abs(transform.position.x)) 
-                < Mathf.Abs((Mathf.Abs(player.transform.position.y) - Mathf.Abs(transform.position.y))))
-        {
-            animator.Play("Michael_Ani_Back");
+
+        if (Mathf.Abs(Mathf.Abs(player.transform.position.x) - Mathf.Abs(transform.position.x))
+                < Mathf.Abs((Mathf.Abs(player.transform.position.y) - Mathf.Abs(transform.position.y)))) {
+            if (player.transform.position.y < transform.position.y)
+            {
+                animator.Play("Michael_Ani");
+            }
+            if (player.transform.position.y > transform.position.y)
+            {
+                animator.Play("Michael_Ani_Back");
+            }
         }
     }
 
