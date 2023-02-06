@@ -302,7 +302,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -183943731
-  m_SortingLayer: 9
+  m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: -910412451, guid: b7005513355925e4e9e8c8a3deed0d6f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -327,10 +327,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3aebaa8bcd71143960759b29ea3386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rockNb: 5
   rockPrefab: {fileID: 4161923199008325614, guid: 88bea44d72ed8f6479f8a77110013113, type: 3}
+  stalagmiteNb: 10
   stalagmitePrefab: {fileID: 2773625189584627821, guid: 8d9fc97ec1d2ef340be89883a8c3c284, type: 3}
-  minPillarSpawn: {x: 0, y: 0}
-  maxPillarSpawn: {x: 0, y: 0}
+  minStalagmiteSpawnRange: {x: 0, y: 0}
+  maxStalagmiteSpawnRange: {x: 0, y: 0}
+  minStalagmiteSpawnNb: 0
+  maxStalagmiteSpawnNb: 0
+  enemyNb: 5
+  enemyPrefab: {fileID: 1254572643622295535, guid: 001d2b890ac615c4782f23cb57df468b, type: 3}
+  minEnemySpawnRange: {x: 0, y: 0}
+  maxEnemySpawnRange: {x: 0, y: 0}
+  minEnemySpawnNb: 0
+  maxEnemySpawnNb: 0
 --- !u!95 &1699003815475913399
 Animator:
   serializedVersion: 5

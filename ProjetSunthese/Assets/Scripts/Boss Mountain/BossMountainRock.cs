@@ -12,9 +12,9 @@ public class BossMountainRock : MonoBehaviour
 
     private BossMountain bossMountain;
     private Animator animator;
-
     private Sensor sensor;
     private ISensor<Player> playerSensor;
+    private Player player;
 
     private void Awake()
     {
@@ -24,6 +24,7 @@ public class BossMountainRock : MonoBehaviour
         playerSensor.OnUnsensedObject += OnPlayerUnsense;
         bossMountain = GetComponentInParent<BossMountain>();
         animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
     private void OnEnable()
     {
@@ -53,11 +54,6 @@ public class BossMountainRock : MonoBehaviour
         }
     }
 
-    public void SetDestination(Vector2 newDest)
-    {
-        destination = newDest;
-    }
-
     bool DestinationReached()
     {
         return (Vector2)transform.position == destination;
@@ -75,6 +71,7 @@ public class BossMountainRock : MonoBehaviour
     {
         animator.SetBool("Spin", true);
         moving = true;
+        destination = player.transform.position;
     }
 
     public void RockBreakEnd()

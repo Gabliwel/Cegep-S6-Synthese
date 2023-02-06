@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class BossMountain : Enemy
 {
@@ -15,9 +14,17 @@ public class BossMountain : Enemy
     [SerializeField] private Vector2Int maxStalagmiteSpawnRange;
     [SerializeField] private int minStalagmiteSpawnNb;
     [SerializeField] private int maxStalagmiteSpawnNb;
+    [Header("Enemy")]
+    [SerializeField] private int enemyNb = 20;
+    [SerializeField] private BossMountainEnemy enemyPrefab;
+    [SerializeField] private Vector2Int minEnemySpawnRange;
+    [SerializeField] private Vector2Int maxEnemySpawnRange;
+    [SerializeField] private int minEnemySpawnNb;
+    [SerializeField] private int maxEnemySpawnNb;
 
     private BossMountainRock[] rocks;
     private BossMountainStalagmite[] stalagmites;
+    private BossMountainEnemy[] enemies;
     private Vector3 rockThrowOffset = new Vector3(0, 3, 0);
     private Player player;
 
@@ -37,6 +44,13 @@ public class BossMountain : Enemy
             stalagmites[i].gameObject.SetActive(false);
         }
 
+        enemies = new BossMountainEnemy[enemyNb];
+        for (int i = 0; i < enemyNb; i++)
+        {
+            enemies[i] = GameObject.Instantiate<BossMountainEnemy>(enemyPrefab);
+            enemies[i].gameObject.SetActive(false);
+        }
+
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
     protected override void Drop()
@@ -49,22 +63,21 @@ public class BossMountain : Enemy
             StartRockThrow();
         if (Input.GetKeyDown(KeyCode.G))
             StartStalagmites();
+        if (Input.GetKeyDown(KeyCode.H))
+            StartEnemySpawn();
     }
 
     void StartRockThrow()
     {
         BossMountainRock rock = GetAvailableRock();
         rock.gameObject.SetActive(true);
-        rock.SetDestination(player.transform.position);
         rock.transform.position = transform.position + rockThrowOffset;
     }
 
     void StartStalagmites()
     {
         BossMountainStalagmite trackingStalagmite = GetAvailableStalagamite();
-        trackingStalagmite.gameObject.SetActive(false);
-        Vector3 trackingLocation = player.transform.position;
-        trackingStalagmite.transform.position = trackingLocation;
+        trackingStalagmite.transform.position = player.transform.position;
         trackingStalagmite.gameObject.SetActive(true);
 
         int ammount = Random.Range(minStalagmiteSpawnNb, maxStalagmiteSpawnNb);
@@ -72,14 +85,24 @@ public class BossMountain : Enemy
         for(int i = 0; i < ammount; i++)
         {
             BossMountainStalagmite stalagmite = GetAvailableStalagamite();
-            stalagmite.gameObject.SetActive(false);
-            Vector3 stalagmiteSpawn = GetRandomStalagmiteSpawnLocation();
-            stalagmite.transform.position = stalagmiteSpawn;
+            stalagmite.transform.position = GetRandomSpawnLocation();
             stalagmite.gameObject.SetActive(true);
         }
     }
 
-    Vector3Int GetRandomStalagmiteSpawnLocation()
+    void StartEnemySpawn()
+    {
+        int ammount = Random.Range(minEnemySpawnNb, maxEnemySpawnNb);
+
+        for (int i = 0; i < ammount; i++)
+        {
+            BossMountainEnemy enemy = GetAvailableEnemy();
+            enemy.transform.position = GetRandomSpawnLocation();
+            enemy.gameObject.SetActive(true);
+        }
+    }
+
+    Vector3Int GetRandomSpawnLocation()
     {
         int x = Random.Range(minStalagmiteSpawnRange.x, maxStalagmiteSpawnRange.x);
         int y = Random.Range(minStalagmiteSpawnRange.y, maxStalagmiteSpawnRange.y);
@@ -109,5 +132,17 @@ public class BossMountain : Enemy
 
         rocks[rocks.Length - 1].gameObject.SetActive(false);
         return rocks[rocks.Length - 1];
+    }
+
+    BossMountainEnemy GetAvailableEnemy()
+    {
+        foreach (BossMountainEnemy enemy in enemies)
+        {
+            if (!enemy.gameObject.activeSelf)
+                return enemy;
+        }
+
+        enemies[enemies.Length - 1].gameObject.SetActive(false);
+        return enemies[enemies.Length - 1];
     }
 }

@@ -14,6 +14,7 @@ public abstract class Enemy : MonoBehaviour
     {
         Drop();
         gameObject.SetActive(false);
+        ParticleManager.instance.CallParticles(transform.position, 1);
     }
 
     protected abstract void Drop();
