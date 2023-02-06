@@ -328,6 +328,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rockPrefab: {fileID: 4161923199008325614, guid: 88bea44d72ed8f6479f8a77110013113, type: 3}
+  stalagmitePrefab: {fileID: 2773625189584627821, guid: 8d9fc97ec1d2ef340be89883a8c3c284, type: 3}
+  minPillarSpawn: {x: 0, y: 0}
+  maxPillarSpawn: {x: 0, y: 0}
 --- !u!95 &1699003815475913399
 Animator:
   serializedVersion: 5
