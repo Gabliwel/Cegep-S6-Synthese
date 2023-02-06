@@ -106,4 +106,9 @@ public class Weapon : MonoBehaviour
     {
         sensor.gameObject.SetActive(false);
     }
+
+    public void BoostDamage()
+    {
+        damage += 1;
+    }
 }
