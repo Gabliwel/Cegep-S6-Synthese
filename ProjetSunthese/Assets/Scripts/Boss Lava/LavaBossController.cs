@@ -65,10 +65,4 @@ public class LavaBossController : MonoBehaviour
             gameObject.GetComponentInChildren<ParticleSystem>().Stop();
         }
     }
-
-    [ContextMenu("Test")]
-    public void Test()
-    {
-        Debug.Log("Test");
-    }
 }

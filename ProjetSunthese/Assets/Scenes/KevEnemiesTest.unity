@@ -2592,7 +2592,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362903755}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.27, y: 0.16, z: 0}
+  m_LocalPosition: {x: -11.55, y: 15.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3308,7 +3308,7 @@ Transform:
   m_GameObject: {fileID: 786070761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 1}
+  m_LocalScale: {x: 8, y: 8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1526248378}
@@ -3356,7 +3356,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.000000059604645, y: 0}
@@ -3379,7 +3379,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
@@ -3644,7 +3644,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8018868, g: 0.45152292, b: 0.07943218, a: 1}
   m_FlipX: 0
@@ -3667,7 +3667,8 @@ Transform:
   m_LocalPosition: {x: -0.041432884, y: -0.078811266, z: 0}
   m_LocalScale: {x: 4.1432824, y: 4.3784037, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1072070658}
   m_Father: {fileID: 1861268384}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3913,12 +3914,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072070657}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -0.09, z: 0}
-  m_LocalScale: {x: 4.1, y: 4.3, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0027593374, y: -0.0025554975, z: 0}
+  m_LocalScale: {x: 0.9895536, y: 0.98209316, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1861268384}
+  m_Father: {fileID: 806877827}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!331 &1072070659
@@ -3989,7 +3990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1274930723
 Transform:
   m_ObjectHideFlags: 0
@@ -8982,6 +8983,7 @@ GameObject:
   - component: {fileID: 1526248378}
   - component: {fileID: 1526248380}
   - component: {fileID: 1526248379}
+  - component: {fileID: 1526248381}
   m_Layer: 0
   m_Name: LavaShockWaveMask
   m_TagString: Untagged
@@ -8998,7 +9000,7 @@ Transform:
   m_GameObject: {fileID: 1526248377}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8333333, y: 0.8333333, z: 1}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 786070762}
@@ -9033,7 +9035,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -9090,6 +9092,19 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1526248381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526248377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c580c213535eef4095a6d4a0af8bf84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerIsInSafeZone: 0
 --- !u!1 &1636163522
 GameObject:
   m_ObjectHideFlags: 0
@@ -9551,13 +9566,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1861268379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.88, y: 17.1, z: 0}
+  m_LocalPosition: {x: -17.36, y: 10.16, z: 0}
   m_LocalScale: {x: 1.2067727, y: 1.1419687, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 806877827}
   - {fileID: 1274930723}
-  - {fileID: 1072070658}
   - {fileID: 786070762}
   m_Father: {fileID: 0}
   m_RootOrder: 16
@@ -10314,6 +10328,10 @@ PrefabInstance:
     - target: {fileID: 7644832379053787431, guid: 90296369b6e65134d8f765b38299cbd1, type: 3}
       propertyPath: m_Name
       value: ChestCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644832379053787431, guid: 90296369b6e65134d8f765b38299cbd1, type: 3}
+      propertyPath: m_TagString
+      value: Achivement
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
