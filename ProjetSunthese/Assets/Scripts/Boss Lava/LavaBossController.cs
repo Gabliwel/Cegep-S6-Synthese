@@ -11,10 +11,12 @@ public class LavaBossController : MonoBehaviour
     float trailTimeElapsed = 0;
     float auraTimeElapsed = 0;
     LavaAura lavaAura;
+    LavaShockWaveController lavaShockWave;
     
     // Start is called before the first frame update
     void Awake()
     {
+        lavaShockWave = GetComponentInChildren<LavaShockWaveController>(true);
         lavaAura = GetComponentInChildren<LavaAura>(true);
         Debug.Log(lavaAura);
         trailArray = new GameObject[trailListSize];
@@ -57,11 +59,13 @@ public class LavaBossController : MonoBehaviour
         if(auraTimeElapsed > 10)
         {
             lavaAuraChild.SetActive(true);
+            lavaShockWave.gameObject.SetActive(true);
             gameObject.GetComponentInChildren<ParticleSystem>().Play();
         }
         if(auraTimeElapsed > 20)
         {
             auraTimeElapsed = 0;
+            lavaShockWave.gameObject.SetActive(false);
             gameObject.GetComponentInChildren<ParticleSystem>().Stop();
         }
     }

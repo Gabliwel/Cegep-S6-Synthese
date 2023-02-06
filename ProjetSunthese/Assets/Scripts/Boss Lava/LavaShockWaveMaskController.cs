@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LavaShockWaveMaskController : MonoBehaviour
 {
-    public bool playerIsInSafeZone = false;
     CircleCollider2D collider;
+    public bool playerIsInSafeZone = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -17,15 +17,6 @@ public class LavaShockWaveMaskController : MonoBehaviour
     {
         
     }
-
-    public void Grow(float deltaTime, int dividedBy)
-    {
-        transform.localScale += new Vector3(0.005f, 0.005f, 0);
-        collider.radius += 0.005f;
-        //transform.localScale += transform.localScale * deltaTime/dividedBy;
-        //collider.radius += collider.radius * deltaTime / dividedBy;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag.Equals("Player"))
@@ -35,9 +26,10 @@ public class LavaShockWaveMaskController : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (other.tag.Equals("Player"))
+        if (collision.tag.Equals("Player"))
         {
             playerIsInSafeZone = false;
             Debug.Log(playerIsInSafeZone);
