@@ -16,4 +16,9 @@ public class TestCollider : MonoBehaviour
     {
         
     }
+
+    public void Die()
+    {
+        gameObject.SetActive(false);
+    }
 }

@@ -5,9 +5,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
     }
 
     // Update is called once per frame
@@ -24,5 +23,10 @@ public class EnemyController : MonoBehaviour
             gameObject.SetActive(false);
             DropManager.instance.DropItem(GetComponent<Collider2D>().bounds.center, collision.gameObject.GetComponent<Collider2D>().bounds.center);
         }
+    }
+
+    public void Ascend()
+    {
+        gameObject.GetComponentInChildren<ParticleSystem>().Play();
     }
 }
