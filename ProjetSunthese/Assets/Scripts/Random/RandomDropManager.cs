@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropManager: MonoBehaviour
+public class RandomDropManager: MonoBehaviour
 {
     [SerializeField] private List<GameObject> dropList;
     private GameObject currentDrop;
     private int randomItem;
     private Vector2 currentPlayerPosition;
-    public static DropManager instance;
+    public static RandomDropManager instance;
     void Awake()
     {
         if (instance == null)
