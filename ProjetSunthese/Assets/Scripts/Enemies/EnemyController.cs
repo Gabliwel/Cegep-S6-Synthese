@@ -19,9 +19,9 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            DropManager.instance.SelectRandomItem();
+            RandomDropManager.instance.SelectRandomItem();
             gameObject.SetActive(false);
-            DropManager.instance.DropItem(GetComponent<Collider2D>().bounds.center, collision.gameObject.GetComponent<Collider2D>().bounds.center);
+            RandomDropManager.instance.DropItem(GetComponent<Collider2D>().bounds.center, collision.gameObject.GetComponent<Collider2D>().bounds.center);
         }
     }
 
