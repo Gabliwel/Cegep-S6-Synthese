@@ -24,4 +24,9 @@ public class EnemyController : MonoBehaviour
             DropManager.instance.DropItem(GetComponent<Collider2D>().bounds.center, collision.gameObject.GetComponent<Collider2D>().bounds.center);
         }
     }
+
+    public void Ascend()
+    {
+        gameObject.GetComponentInChildren<ParticleSystem>().Play();
+    }
 }

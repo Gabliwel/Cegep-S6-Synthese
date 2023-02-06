@@ -17,7 +17,6 @@ public class BurstParticules : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log("ON DISABLED");
         var emission = collisionParticule.emission;
 
         emission.enabled = true;
