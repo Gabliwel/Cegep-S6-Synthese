@@ -17,7 +17,7 @@ public class LavaAura : MonoBehaviour
         timeElapsed += Time.deltaTime;
         CalculateAuraTiming();
     }
-
+    
     public void CalculateAuraTiming()
     {
         Debug.Log(timeElapsed);
@@ -31,5 +31,18 @@ public class LavaAura : MonoBehaviour
     public void DespawnAura()
     {
         gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            collision.gameObject.GetComponent<TestCollider>().Die();
+        }
+        else if (collision.gameObject.tag.Equals("LavaEnemy"))
+        {
+            Debug.Log("Je rentre dans la collision");
+            collision.gameObject.GetComponent<EnemyController>().Ascend();
+        }
     }
 }
