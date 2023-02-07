@@ -69,4 +69,11 @@ public class LavaBossController : MonoBehaviour
             gameObject.GetComponentInChildren<ParticleSystem>().Stop();
         }
     }
+
+    [ContextMenu("NextLevel")]
+    public void NextLevelTest()
+    {
+        Debug.Log("Hellooooooo");
+        GameManager.instance.StartNextlevel(1);
+    }
 }
