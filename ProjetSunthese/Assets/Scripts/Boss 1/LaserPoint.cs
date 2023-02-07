@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class LaserPoint : MonoBehaviour
 {
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
 
     public void StartMovement(Vector3 pivotPoint)
     {
