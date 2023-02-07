@@ -49,10 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   warningTime: 0.3
-  warningTimer: 0
   isWarning: 0
   waitTime: 0.2
-  waitTimer: 0
   isWaiting: 0
 --- !u!212 &3852574081589724316
 SpriteRenderer:
@@ -92,8 +90,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -183943731
-  m_SortingLayer: 9
+  m_SortingLayerID: -1396708451
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 1119256947, guid: 5b2cc1dff9f2e39438dc0cc58aead3e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

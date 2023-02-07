@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Intensity: 2.8
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000df93b080d991e29cedc62c991fe5d6c3e10b2ed00dfd2a5ce9b8331b47d92a26cd3d09f5
+  m_ApplyToSortingLayers: 00000000e57795f247f0915c9debbfac
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -334,22 +334,20 @@ MonoBehaviour:
   particleScale: 7
   rockThrowMinTime: 4
   rockThrowMaxTime: 5
-  minStalagmiteSpawnRange: {x: -69, y: 43}
-  maxStalagmiteSpawnRange: {x: -56, y: 33}
   minStalagmiteSpawnNb: 3
   maxStalagmiteSpawnNb: 6
   stalagmiteSpawnMinTime: 2
   stalagmiteSpawnMaxTime: 5
-  minEnemySpawnRange: {x: -69, y: 43}
-  maxEnemySpawnRange: {x: -45, y: 33}
   minEnemySpawnNb: 6
   maxEnemySpawnNb: 8
   enemySpawnMinTime: 3
   enemySpawnMaxTime: 10
-  positionTop: {x: -63, y: 47, z: 0}
-  positionBottom: {x: -63, y: 35, z: 0}
-  positionRight: {x: -56, y: 41, z: 0}
-  positionLeft: {x: -70, y: 41, z: 0}
+  minSpawnRange: {x: 0, y: 0}
+  maxSpawnRange: {x: 0, y: 0}
+  positionTop: {x: -61, y: 47, z: 0}
+  positionBottom: {x: -61, y: 35, z: 0}
+  positionRight: {x: -54, y: 41, z: 0}
+  positionLeft: {x: -68, y: 41, z: 0}
   positionChangeBaseTime: 10
   rockThrowTimer: 0
   stalagmiteSpawnTimer: 0

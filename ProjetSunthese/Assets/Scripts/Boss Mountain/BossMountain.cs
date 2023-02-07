@@ -8,20 +8,18 @@ public class BossMountain : Enemy
     [SerializeField] private float rockThrowMinTime;
     [SerializeField] private float rockThrowMaxTime;
     [Header("Stalagmite")]
-    [SerializeField] private Vector2Int minStalagmiteSpawnRange;
-    [SerializeField] private Vector2Int maxStalagmiteSpawnRange;
     [SerializeField] private int minStalagmiteSpawnNb;
     [SerializeField] private int maxStalagmiteSpawnNb;
     [SerializeField] private float stalagmiteSpawnMinTime;
     [SerializeField] private float stalagmiteSpawnMaxTime;
     [Header("Enemy")]
-    [SerializeField] private Vector2Int minEnemySpawnRange;
-    [SerializeField] private Vector2Int maxEnemySpawnRange;
     [SerializeField] private int minEnemySpawnNb;
     [SerializeField] private int maxEnemySpawnNb;
     [SerializeField] private float enemySpawnMinTime;
     [SerializeField] private float enemySpawnMaxTime;
     [Header("Positions")]
+    [SerializeField] private Vector2Int minSpawnRange;
+    [SerializeField] private Vector2Int maxSpawnRange;
     [SerializeField] private Vector3Int positionTop;
     [SerializeField] private Vector3Int positionBottom;
     [SerializeField] private Vector3Int positionRight;
@@ -165,8 +163,8 @@ public class BossMountain : Enemy
 
     Vector3Int GetRandomSpawnLocation()
     {
-        int x = Random.Range(minStalagmiteSpawnRange.x, maxStalagmiteSpawnRange.x);
-        int y = Random.Range(minStalagmiteSpawnRange.y, maxStalagmiteSpawnRange.y);
+        int x = Random.Range(minSpawnRange.x, maxSpawnRange.x);
+        int y = Random.Range(minSpawnRange.y, maxSpawnRange.y);
 
         return new Vector3Int(x, y, 0);
     }
