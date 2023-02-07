@@ -27,6 +27,7 @@ public class BossMountainEnemy : Enemy
         animator.SetBool("Shake", true);
         shaking = true;
         shakeTimer = shakeTime;
+        hp = 5;
     }
     protected override void Drop()
     {

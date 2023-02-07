@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 1699003815475913401}
   - component: {fileID: 1699003815475913400}
   - component: {fileID: 1699003815475913402}
+  - component: {fileID: 5022521320898729836}
   - component: {fileID: 1699003815475913399}
   m_Layer: 0
   m_Name: MountainBoss
@@ -327,20 +328,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3aebaa8bcd71143960759b29ea3386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleColor: {r: 255, g: 0, b: 0, a: 1}
+  particleScale: 1
+  rockThrowMinTime: 4
+  rockThrowMaxTime: 5
+  minStalagmiteSpawnRange: {x: -69, y: 43}
+  maxStalagmiteSpawnRange: {x: -56, y: 33}
+  minStalagmiteSpawnNb: 3
+  maxStalagmiteSpawnNb: 6
+  stalagmiteSpawnMinTime: 2
+  stalagmiteSpawnMaxTime: 5
+  minEnemySpawnRange: {x: -69, y: 43}
+  maxEnemySpawnRange: {x: -45, y: 33}
+  minEnemySpawnNb: 6
+  maxEnemySpawnNb: 8
+  enemySpawnMinTime: 3
+  enemySpawnMaxTime: 10
+  positionTop: {x: -63, y: 47, z: 0}
+  positionBottom: {x: -63, y: 35, z: 0}
+  positionRight: {x: -56, y: 41, z: 0}
+  positionLeft: {x: -70, y: 41, z: 0}
+  positionChangeBaseTime: 10
+  rockThrowTimer: 0
+  stalagmiteSpawnTimer: 0
+  enemySpawnTimer: 0
+  positionChangeTimer: 0
+--- !u!114 &5022521320898729836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699003815475913398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e3ed68d4fb8e74e92e5bef5a3bcb96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   rockNb: 5
   rockPrefab: {fileID: 4161923199008325614, guid: 88bea44d72ed8f6479f8a77110013113, type: 3}
-  stalagmiteNb: 10
+  stalagmiteNb: 20
   stalagmitePrefab: {fileID: 2773625189584627821, guid: 8d9fc97ec1d2ef340be89883a8c3c284, type: 3}
-  minStalagmiteSpawnRange: {x: 0, y: 0}
-  maxStalagmiteSpawnRange: {x: 0, y: 0}
-  minStalagmiteSpawnNb: 0
-  maxStalagmiteSpawnNb: 0
-  enemyNb: 5
+  enemyNb: 20
   enemyPrefab: {fileID: 1254572643622295535, guid: 001d2b890ac615c4782f23cb57df468b, type: 3}
-  minEnemySpawnRange: {x: 0, y: 0}
-  maxEnemySpawnRange: {x: 0, y: 0}
-  minEnemySpawnNb: 0
-  maxEnemySpawnNb: 0
 --- !u!95 &1699003815475913399
 Animator:
   serializedVersion: 5

@@ -253,7 +253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115886742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 60, z: -10}
+  m_LocalPosition: {x: 5, y: 60, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39921,18 +39921,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
-      propertyPath: enemyNb
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
-      propertyPath: maxEnemySpawnNb
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
-      propertyPath: minEnemySpawnNb
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
       propertyPath: maxPillarSpawn.x
       value: -57
       objectReference: {fileID: 0}
@@ -39947,46 +39935,6 @@ PrefabInstance:
     - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
       propertyPath: minPillarSpawn.y
       value: 46
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
-      propertyPath: maxEnemySpawnRange.x
-      value: -45
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
-      propertyPath: maxEnemySpawnRange.y
-      value: 33
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
-      propertyPath: maxStalagmiteSpawnNb
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
-      propertyPath: minEnemySpawnRange.x
-      value: -69
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
-      propertyPath: minEnemySpawnRange.y
-      value: 43
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
-      propertyPath: minStalagmiteSpawnNb
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
-      propertyPath: maxStalagmiteSpawnRange.x
-      value: -56
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
-      propertyPath: maxStalagmiteSpawnRange.y
-      value: 33
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
-      propertyPath: minStalagmiteSpawnRange.x
-      value: -69
-      objectReference: {fileID: 0}
-    - target: {fileID: 1699003815475913402, guid: 5beb3e6171913314ba0608f1d8d19aab, type: 3}
-      propertyPath: minStalagmiteSpawnRange.y
-      value: 43
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
