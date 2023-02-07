@@ -5,21 +5,37 @@ using UnityEngine;
 public class BossMountainEnemy : Enemy
 {
     [SerializeField] private float speed = 0.01f;
+    [SerializeField] private float damage;
     [SerializeField] private bool shaking;
     [SerializeField] private float shakeTime;
     [SerializeField] private float shakeTimer;
     [SerializeField] private bool isMoving;
     private Player player;
     private Animator animator;
+    private Sensor sensor;
+    private ISensor<Player> playerSensor;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         animator = GetComponent<Animator>();
+        sensor = GetComponentInChildren<Sensor>();
+        playerSensor = sensor.For<Player>();
+        playerSensor.OnSensedObject += OnPlayerSense;
+        playerSensor.OnUnsensedObject += OnPlayerUnsense;
         particleScale = 4;
         particleColor = new Color(163, 167, 194);
     }
 
+    void OnPlayerSense(Player player)
+    {
+        player.Harm(damage);
+    }
+
+    void OnPlayerUnsense(Player player)
+    {
+
+    }
 
     private void OnEnable()
     {
