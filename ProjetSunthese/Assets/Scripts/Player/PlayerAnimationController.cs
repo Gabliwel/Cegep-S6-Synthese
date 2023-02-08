@@ -3,12 +3,23 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
+    [SerializeField] RuntimeAnimatorController warrior;
+    [SerializeField] RuntimeAnimatorController archer;
     private Animator animator;
     private bool rollAnim = false;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        // debug
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            animator.runtimeAnimatorController = warrior;
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            animator.runtimeAnimatorController = archer;
     }
 
     public void SetSpeed(float speed)

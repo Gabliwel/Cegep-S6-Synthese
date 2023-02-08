@@ -50,7 +50,6 @@ public class BossMountain : Enemy
         stalagmiteSpawnTimer = Random.Range(stalagmiteSpawnMinTime, stalagmiteSpawnMaxTime);
         rockThrowTimer = Random.Range(rockThrowMinTime, rockThrowMaxTime);
         positionChangeTimer = positionChangeBaseTime;
-        hp = 5;
     }
 
     protected override void Drop()
