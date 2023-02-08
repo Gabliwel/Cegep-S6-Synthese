@@ -1,7 +1,18 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
+using System.Linq;
+
+public enum Scene  
+{
+    MainStage,
+    Keven,
+    FPP1,
+    FPP2
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +22,8 @@ public class GameManager : MonoBehaviour
     private const int lastGamingLevel = 3;
     private const int maxLives = 3;
 
-    private int actualLevel = 0;
+    private Scene actualLevel = 0;
+    List<Scene> sceneList = Enum.GetValues(typeof(Scene)).Cast<Scene>().ToList();
 
     private int lives = maxLives;
 
@@ -30,6 +42,8 @@ public class GameManager : MonoBehaviour
 
         else if (instance != this)
             Destroy(gameObject);
+
+        sceneList.Remove(Scene.MainStage);
 
         DontDestroyOnLoad(gameObject);
     }
@@ -51,35 +65,67 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void RestartLevel(float delay)
+    public void GetRandomNextLevelAndStart()
+    {
+        Debug.Log("Before : " + sceneList.Count);
+        int nbSceneAccessible = sceneList.Count;
+        if(nbSceneAccessible > 0)
+        {
+            int randomChoice = UnityEngine.Random.Range(0, nbSceneAccessible);
+            Debug.Log(randomChoice);
+            StartNextlevel(0, (sceneList.ElementAt(randomChoice)));
+        }
+        else
+        {
+            LoadEndScene();
+        }
+    }
+
+    public void LoadEndScene()
+    {
+        Debug.Log("AHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAH END");
+    }
+
+    public void GetBackToMainStageAndStart()
+    {
+        StartCoroutine(RestartLevelDelay(0, Scene.Keven)); 
+    }
+
+    public void RemoveSceneFromSceneList(Scene sceneToRemove)
+    {
+        sceneList.Remove(sceneToRemove);
+    }
+    
+    public void StartNextlevel(float delay, Scene chosenLevel)
     {
         if (scenesAreInTransition) return;  
+
+        scenesAreInTransition = true;
+
+        StartCoroutine(RestartLevelDelay(delay, chosenLevel));
+        RemoveSceneFromSceneList(chosenLevel);
+        Debug.Log("After : " + sceneList.Count);
+    }
+
+    public void RestartLevel(float delay)
+    {
+        if (scenesAreInTransition) return;
 
         scenesAreInTransition = true;
 
         StartCoroutine(RestartLevelDelay(delay, actualLevel));
     }
 
-    
-    public void StartNextlevel(float delay)
-    {
-        if (scenesAreInTransition) return;  
-
-        scenesAreInTransition = true;
-
-        StartCoroutine(RestartLevelDelay(delay, GetNextLevel()));
-    }
-
-    private IEnumerator RestartLevelDelay(float delay, int level)
+    private IEnumerator RestartLevelDelay(float delay, Scene level)
     {
         yield return new WaitForSeconds(delay);
         textsNotLinked = true;
 
         if (lives == 0)
             SceneManager.LoadScene("Charles");
-        else if (level == 2)
+        else if (level.Equals(Scene.FPP1))
             SceneManager.LoadScene("FPP1");
-        else if (level == 3)
+        else if (level.Equals(Scene.FPP2))
             SceneManager.LoadScene("FPP2");
         else
             SceneManager.LoadScene("Keven");
@@ -90,22 +136,20 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         lives = maxLives;
-        actualLevel = 0;
-        SceneManager.LoadScene("Scene0");
+        actualLevel = Scene.Keven;
+        SceneManager.LoadScene("Gab");
     }
 
-    private int GetNextLevel()
-    {
-        if (++actualLevel == lastGamingLevel + 1)
-            actualLevel = firstGamingLevel;
-
-        return actualLevel;
-    }
 
     public void PlayerDie()
     {
         lives--;
         playerLivesText.text = lives.ToString();
+    }
+
+    public void SetGameOver()
+    {
+
     }
 
 }
