@@ -25,6 +25,17 @@ public class Weapon : MonoBehaviour
     private Sensor sensor;
     private ISensor<Enemy> enemySensor;
 
+    private bool doubleNumber;
+    private int poisonDamage = 0;
+    private int levelDamage = 0;
+
+    private float attackSpeedBoost = 0;
+    private int damageBoost = 0;
+
+    [Header("Melee weapons sprite")]
+    [SerializeField] Sprite sword;
+    [SerializeField] Sprite axe;
+    [SerializeField] Sprite dagger;
     private void Awake()
     {
         sensor = GetComponentInChildren<Sensor>();
@@ -51,7 +62,14 @@ public class Weapon : MonoBehaviour
 
     private void OnEnemySense(Enemy enemy)
     {
-        enemy.Harm(damage);
+        if (doubleNumber)
+        {
+            enemy.Harm(damage * 2 + levelDamage, poisonDamage);
+        }
+        else
+        {
+            enemy.Harm(damage + levelDamage, poisonDamage);
+        }
     }
 
     private void OnEnemyUnsense(Enemy enemy)
@@ -110,5 +128,60 @@ public class Weapon : MonoBehaviour
     public void BoostDamage()
     {
         damage += 1;
+        damageBoost++;
+    }
+
+    public void IncreaseAttackSpeed()
+    {
+        startup -= 0.1f;
+        recovery -= 0.1f;
+        attackSpeedBoost++;
+    }
+
+    public void AddPoison()
+    {
+        poisonDamage += 5;
+    }
+
+    public void GainLevelDamage()
+    {
+        levelDamage++;
+    }
+
+    public void GetDoubleNumber()
+    {
+        doubleNumber = true;
+    }
+
+    public void SwitchWeapon(int weaponNb)
+    {
+        float speedIncrease = attackSpeedBoost * 5 / 100;
+        switch (weaponNb)
+        {
+            case 1:
+                Debug.Log("Sword");
+                damage = 10 + damageBoost;
+
+                startup = 0.15f - speedIncrease * 0.15f;
+                recovery = 0.2f - speedIncrease * 0.2f;
+                GetComponent<SpriteRenderer>().sprite = sword;
+                break;
+            case 2:
+                Debug.Log("Axe");
+                damage = 10 + damageBoost;
+
+                startup = 0.2f - speedIncrease * 0.2f;
+                recovery = 0.3f - speedIncrease * 0.3f;
+                GetComponent<SpriteRenderer>().sprite = axe;
+                break;
+            case 3:
+                Debug.Log("Dagger");
+                damage = 3 + damageBoost;
+
+                startup = 0.015f - speedIncrease * 0.015f;
+                recovery = 0.02f - speedIncrease * 0.02f;
+                GetComponent<SpriteRenderer>().sprite = dagger;
+                break;
+        }
     }
 }
