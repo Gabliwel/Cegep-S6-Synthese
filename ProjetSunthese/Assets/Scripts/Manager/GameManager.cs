@@ -6,8 +6,9 @@ using UnityEngine.UI;
 using System;
 using System.Linq;
 
-public enum Scene
+public enum Scene  
 {
+    MainStage,
     Keven,
     FPP1,
     FPP2
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
     private const int maxLives = 3;
 
     private Scene actualLevel = 0;
-     List<Scene> sceneList = Enum.GetValues(typeof(Scene)).Cast<Scene>().ToList();
+    List<Scene> sceneList = Enum.GetValues(typeof(Scene)).Cast<Scene>().ToList();
 
     private int lives = maxLives;
 
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
 
-
+        sceneList.Remove(Scene.MainStage);
 
         DontDestroyOnLoad(gameObject);
     }
@@ -66,19 +67,33 @@ public class GameManager : MonoBehaviour
 
     public void GetRandomNextLevelAndStart()
     {
+        Debug.Log("Before : " + sceneList.Count);
         int nbSceneAccessible = sceneList.Count;
-        int randomChoice = UnityEngine.Random.Range(0, nbSceneAccessible - 1);
-        StartNextlevel(0,(sceneList.ElementAt(randomChoice)));
+        if(nbSceneAccessible > 0)
+        {
+            int randomChoice = UnityEngine.Random.Range(0, nbSceneAccessible);
+            Debug.Log(randomChoice);
+            StartNextlevel(0, (sceneList.ElementAt(randomChoice)));
+        }
+        else
+        {
+            LoadEndScene();
+        }
+    }
+
+    public void LoadEndScene()
+    {
+        Debug.Log("AHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAH END");
     }
 
     public void GetBackToMainStageAndStart()
-    { 
-        StartNextlevel(0, Scene.Keven);
+    {
+        StartCoroutine(RestartLevelDelay(0, Scene.Keven)); 
     }
 
-    public void RemoveSceneFromSceneList(int index)
+    public void RemoveSceneFromSceneList(Scene sceneToRemove)
     {
-        sceneList.RemoveAt(index);
+        sceneList.Remove(sceneToRemove);
     }
     
     public void StartNextlevel(float delay, Scene chosenLevel)
@@ -88,7 +103,8 @@ public class GameManager : MonoBehaviour
         scenesAreInTransition = true;
 
         StartCoroutine(RestartLevelDelay(delay, chosenLevel));
-        RemoveSceneFromSceneList((int)chosenLevel);
+        RemoveSceneFromSceneList(chosenLevel);
+        Debug.Log("After : " + sceneList.Count);
     }
 
     public void RestartLevel(float delay)
@@ -121,15 +137,19 @@ public class GameManager : MonoBehaviour
     {
         lives = maxLives;
         actualLevel = Scene.Keven;
-        SceneManager.LoadScene("Scene0");
+        SceneManager.LoadScene("Gab");
     }
 
-  
 
     public void PlayerDie()
     {
         lives--;
         playerLivesText.text = lives.ToString();
+    }
+
+    public void SetGameOver()
+    {
+
     }
 
 }

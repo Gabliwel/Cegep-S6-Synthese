@@ -74,6 +74,12 @@ public class LavaBossController : MonoBehaviour
     public void NextLevelTest()
     {
         Debug.Log("Hellooooooo");
-        GameManager.instance.StartNextlevel(1, (Scene)2);
+        GameManager.instance.GetRandomNextLevelAndStart();
+    }
+
+    [ContextMenu("MainStage")]
+    public void GetBackToMainStage()
+    {
+        GameManager.instance.GetBackToMainStageAndStart();
     }
 }
