@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 62bba6602cb23ee4bb432870b4e709c5
+guid: 25d6bf4610bfbf04684037fa3aabf157
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: archer_idle-no-weapon_0
+      name: archer-roll_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7f04911a9df1df4d87f4db40d37180f
-      internalID: -1259138894
+      spriteID: 9541ce56c20e8d7419cbdab68a96acc0
+      internalID: -1125862756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: archer_idle-no-weapon_1
+      name: archer-roll_1
       rect:
         serializedVersion: 2
         x: 64
@@ -142,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd435e20b2d96554bbaf55a5ce5110b4
-      internalID: -1093866767
+      spriteID: 0a94b3b5e3858a74cb0e1d78d6561ed1
+      internalID: -413849185
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: archer_idle-no-weapon_2
+      name: archer-roll_2
       rect:
         serializedVersion: 2
         x: 128
@@ -163,29 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca4a09889ea22034cb41396e84a77855
-      internalID: -1670481343
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: archer_idle-no-weapon_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4034f9bea6b016a478bbbbdc2261c7b1
-      internalID: -1849946385
+      spriteID: 8a48063688fb94f4abbe10294d3a50e5
+      internalID: -1495583834
       vertices: []
       indices: 
       edges: []
@@ -201,10 +180,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      archer_idle-no-weapon_1: -1093866767
-      archer_idle-no-weapon_2: -1670481343
-      archer_idle-no-weapon_3: -1849946385
-      archer_idle-no-weapon_0: -1259138894
+      archer-roll_2: -1495583834
+      archer-roll_1: -413849185
+      archer-roll_0: -1125862756
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
