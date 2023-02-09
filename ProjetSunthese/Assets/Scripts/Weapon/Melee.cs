@@ -49,9 +49,21 @@ public class Melee : Weapon
     }
     protected override IEnumerator Attack()
     {
+        Vector3 worldPosition = Camera.main.WorldToScreenPoint(transform.position);
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.x -= worldPosition.x;
+        mousePosition.y -= worldPosition.y;
+        mousePosition.z = 0;
+
+        bool flipped = (Mathf.Abs(Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg)) > 90;
+
         cooldownTimer = cooldown + duration + startup + recovery;
         orbit = false;
-        axis.z += windUpDistance;
+        if (flipped)
+            axis.z -= windUpDistance;
+        else
+            axis.z += windUpDistance;
+
         rotationPoint.rotation = Quaternion.Euler(axis);
         yield return new WaitForSeconds(startup);
         float stopTime = Time.time + duration;
@@ -59,7 +71,10 @@ public class Melee : Weapon
         while (Time.time < stopTime)
         {
             yield return new WaitForEndOfFrame();
-            axis.z -= (recoilDistance + windUpDistance) / duration * Time.deltaTime;
+            if (flipped)
+                axis.z += (recoilDistance + windUpDistance) / duration * Time.deltaTime;
+            else
+                axis.z -= (recoilDistance + windUpDistance) / duration * Time.deltaTime;
             rotationPoint.rotation = Quaternion.Euler(axis);
             yield return null;
         }
