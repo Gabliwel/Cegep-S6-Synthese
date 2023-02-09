@@ -5,6 +5,8 @@ using UnityEngine;
 public class Scaling : MonoBehaviour
 {
     [SerializeField] int currentScaling;
+
+    public static Scaling instance;
     void Start()
     {
         if(currentScaling <= 0)
@@ -13,9 +15,15 @@ public class Scaling : MonoBehaviour
         }
     }
 
-    void Update()
+    void Awake()
     {
-        
+        if (instance == null)
+            instance = this;
+
+        else if (instance != this)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public int SendScaling()
