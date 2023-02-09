@@ -17,7 +17,6 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected float cooldown;
     [SerializeField] protected float cooldownTimer;
 
-
     protected virtual void Awake()
     {
         rotationPoint = transform.parent;
