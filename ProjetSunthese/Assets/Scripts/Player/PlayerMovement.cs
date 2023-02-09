@@ -38,7 +38,12 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-            StartCoroutine(Roll());
+        {
+            if (!RollOnCooldown() && !isRolling && DirectionHeld() && canMove)
+            {
+                StartCoroutine(Roll());
+            }
+        }
         movementInput.x = Input.GetAxis("Horizontal");
         movementInput.y = Input.GetAxis("Vertical");
         // Timers
@@ -85,42 +90,26 @@ public class PlayerMovement : MonoBehaviour
         mousePosition.y -= worldPosition.y;
         mousePosition.z = 0;
 
-        angle = Mathf.Abs(Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg);
-        if (angle < 90)
-        {
-            sprite.flipX = false;
-            //transform.rotation = Quaternion.Euler(0f, 0, 0f);
-
-        }
-        else
-        {
-            sprite.flipX = true;
-            //transform.rotation = Quaternion.Euler(0f, 180, 0f);
-        }
+        sprite.flipX = Mathf.Abs(Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg) > 90;
     }
 
     IEnumerator Roll()
     {
-        if (!RollOnCooldown() && !isRolling && DirectionHeld() && canMove)
-        {
-            Vector2 direction = GetInputDirection();
-            isRolling = true;
-            animationController.SetRoll(true);
-            player.AddIframes(rollSpeedupTime + rollSlowdownTime);
-            rollCooldownTimer = ROLL_COOLDOWN + rollSpeedupTime + rollSlowdownTime;
-            // TODO: add sound
-            currentVelocity = Vector2.zero;
-            currentVelocity.x += direction.x * (BASE_SPEED * rollSpeed);
-            currentVelocity.y += direction.y * (BASE_SPEED * rollSpeed);
-            AdjustRotation();
-            yield return new WaitForSeconds(rollSpeedupTime);
-            currentVelocity /= 2;
-            yield return new WaitForSeconds(rollSlowdownTime);
-            isRolling = false;
-            animationController.SetRoll(false);
-        }
-        else
-            yield return null;
+        Vector2 direction = GetInputDirection();
+        isRolling = true;
+        animationController.SetRoll(true);
+        player.AddIframes(rollSpeedupTime + rollSlowdownTime);
+        rollCooldownTimer = ROLL_COOLDOWN + rollSpeedupTime + rollSlowdownTime;
+        // TODO: add sound
+        currentVelocity = Vector2.zero;
+        currentVelocity.x += direction.x * (BASE_SPEED * rollSpeed);
+        currentVelocity.y += direction.y * (BASE_SPEED * rollSpeed);
+        AdjustRotation();
+        yield return new WaitForSeconds(rollSpeedupTime);
+        currentVelocity /= 2;
+        yield return new WaitForSeconds(rollSlowdownTime);
+        isRolling = false;
+        animationController.SetRoll(false);
     }
 
     bool RollOnCooldown()
