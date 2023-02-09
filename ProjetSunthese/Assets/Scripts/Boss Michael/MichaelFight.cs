@@ -45,7 +45,7 @@ public class MichaelFight : Enemy
         if (!attackInProgress)
         {
             attackDelay -= Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, 0.03f);
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, 0.009f);
             CheckAnimationSide();
             if (attackDelay <= 0)
             {
@@ -213,7 +213,7 @@ public class MichaelFight : Enemy
                     gameObject.transform.position = new Vector3(vector2.x + savedPlayerPos.x, vector2.y + savedPlayerPos.y, 0);
 
                     sprite.color = new Color(1f, 1f, 1f, 1f);
-                    GetComponent<Collider2D>().enabled = true;
+                    //GetComponent<Collider2D>().enabled = true;
 
                     projectile.transform.position = transform.position;
                     projectile.GetComponent<ProjectilleMovement>().SetDestination(savedPlayerPos);
@@ -227,7 +227,7 @@ public class MichaelFight : Enemy
 
     private void Disapear()
     {
-        GetComponent<Collider2D>().enabled = false;
+        //GetComponent<Collider2D>().enabled = false;
         fadeInProgress = false;
         fadeAmount = 1f;
     }
@@ -235,7 +235,7 @@ public class MichaelFight : Enemy
     private void Reapear()
     {
         sprite.color = new Color(1f, 1f, 1f, 1f);
-        GetComponent<Collider2D>().enabled = true;
+        //aGetComponent<Collider2D>().enabled = true;
 
         fadeInProgress = true;
     }
@@ -252,5 +252,13 @@ public class MichaelFight : Enemy
     protected override void Drop()
     {
         player.GetComponent<Player>().GainXp(xpGiven);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            player.GetComponent<Player>().Harm(damageDealt);
+        }
     }
 }

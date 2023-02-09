@@ -4,12 +4,13 @@ using System.Collections.Generic;
 
 public class Slime : Enemy
 {
-    [SerializeField] float damageDealt;
     private GameObject player;
     private void Start()
     {
+        scaling = GameObject.FindGameObjectWithTag("Scaling").GetComponent<Scaling>();
         player = GameObject.FindGameObjectWithTag("Player");
-        hp = 100;
+        scalingLevel = scaling.SendScaling();
+        hp = 30 * scalingLevel;
     }
 
     protected override void Drop()

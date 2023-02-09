@@ -18,10 +18,6 @@ public class ChestOpen : MonoBehaviour
         achivement = GameObject.FindGameObjectWithTag("Achivement").GetComponent<AchivementManager>();
     }
 
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (chestClosed)
@@ -31,6 +27,7 @@ public class ChestOpen : MonoBehaviour
             Debug.Log("Give item");
             GameObject drop = chestDropManager.SendRandomItem();
             drop.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, 0);
+            drop.GetComponent<Collider2D>().enabled = false;
             drop.SetActive(true);
             achivement.OpenedChest();
         }

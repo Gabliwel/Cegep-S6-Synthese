@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class DamageItem : MonoBehaviour
 {
-    private GameObject weapon;
+    private GameObject player;
     void Start()
     {
-        weapon = GameObject.FindGameObjectWithTag("Weapon");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            weapon.GetComponent<Weapon>().BoostDamage();
+            player.GetComponent<Player>().BoostDamage();
             gameObject.SetActive(false);
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class WeaponsChange : MonoBehaviour
 {
-    protected GameObject weapon;
+    protected GameObject player;
     protected bool playerInbound = false;
 
     private void OnTriggerEnter2D(Collider2D collision)

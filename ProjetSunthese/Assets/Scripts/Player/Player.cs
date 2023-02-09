@@ -25,6 +25,15 @@ public class Player : MonoBehaviour
 
     [SerializeField] int xp;
     [SerializeField] int level;
+
+    [SerializeField] GameObject[] possibleWeapons;
+
+    private int poisonDamage = 0;
+    private int levelDamage = 0;
+
+    private float attackSpeedBoost = 0;
+    private int damageBoost = 0;
+
     private void Awake()
     {
         animationController = GetComponent<PlayerAnimationController>();
@@ -67,6 +76,12 @@ public class Player : MonoBehaviour
     public void GetDoubleNumber()
     {
         doubleNumber = true;
+        weapon.GainDoubleNumber();
+    }
+
+    public bool CheckDouble()
+    {
+        return doubleNumber;
     }
 
     public void GainBloodSuck()
@@ -136,8 +151,65 @@ public class Player : MonoBehaviour
         {
             xp -= 100;
             level++;
-            weapon.GainLevelDamage();
+            damageBoost++;
             MAX_HEALTH += 10;
         }
     }
+
+
+    public void BoostDamage()
+    {
+        damageBoost++;
+        weapon.AddDamage();
+    }
+
+    public int GetDamageBoost()
+    {
+        return damageBoost;
+    }
+
+    public void IncreaseAttackSpeed()
+    {
+        attackSpeedBoost++;
+        weapon.GainSpeed(attackSpeedBoost);
+    }
+
+    public float GetAttackSpeed()
+    {
+        return attackSpeedBoost;
+    }
+
+    public void AddPoison()
+    {
+        poisonDamage += 5;
+        weapon.GainPoison();
+    }
+
+    public int GetPoisonDamage()
+    {
+        return poisonDamage;
+    }
+
+    public void SwitchWeaponType(int weaponNb)
+    {
+        if(weapon.gameObject.tag == "Melee" && weaponNb == 4)
+        {
+            weapon.gameObject.SetActive(false);
+            possibleWeapons[0].SetActive(true);
+            weapon = possibleWeapons[0].GetComponent<Weapon>();
+            weapon.SwitchWeapon(weaponNb);
+        }
+        else if (weapon.gameObject.tag == "Ranged")
+        {
+            weapon.gameObject.SetActive(false);
+            possibleWeapons[1].SetActive(true);
+            weapon = possibleWeapons[1].GetComponent<Weapon>();
+            weapon.SwitchWeapon(weaponNb);
+        }
+        else
+        {
+            weapon.SwitchWeapon(weaponNb);
+        }
+    }
+
 }

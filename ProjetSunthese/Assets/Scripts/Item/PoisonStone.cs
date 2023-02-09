@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PoisonStone : MonoBehaviour
 {
-    private GameObject weapon;
+    private GameObject player;
     void Start()
     {
-        weapon = GameObject.FindGameObjectWithTag("Weapon");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
@@ -19,7 +19,7 @@ public class PoisonStone : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            weapon.GetComponent<Weapon>().AddPoison();
+            player.GetComponent<Player>().AddPoison();
             gameObject.SetActive(false);
         }
     }

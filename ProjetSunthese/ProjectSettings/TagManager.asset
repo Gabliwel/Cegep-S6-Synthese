@@ -5,11 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Chest
-  - Item
-  - Navmesh
-  - Achivement
-  - Weapon
-  - Scaling
+  - Ranged
+  - Melee
   layers:
   - Default
   - TransparentFX

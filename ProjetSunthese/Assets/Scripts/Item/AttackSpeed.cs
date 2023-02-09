@@ -4,23 +4,32 @@ using UnityEngine;
 
 public class AttackSpeed : MonoBehaviour
 {
-    private GameObject weapon;
+    private GameObject player;
+    private float time = 1.5f;
     void Start()
     {
-        weapon = GameObject.FindGameObjectWithTag("Weapon");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
-
 
     void Update()
     {
+        if(time >= 0)
+        {
+            time -= Time.deltaTime;
 
+            if(time <= 0)
+            {
+                GetComponent<Collider2D>().enabled = true;
+            }
+        }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            weapon.GetComponent<Weapon>().IncreaseAttackSpeed();
-            //gameObject.SetActive(false);
+            player.GetComponent<Player>().IncreaseAttackSpeed();
+            gameObject.SetActive(false);
         }
     }
 }

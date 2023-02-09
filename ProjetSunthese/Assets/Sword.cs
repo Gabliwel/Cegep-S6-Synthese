@@ -6,14 +6,14 @@ public class Sword : WeaponsChange
 {
     void Start()
     {
-        weapon = GameObject.FindGameObjectWithTag("Weapon");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && playerInbound)
         {
-            weapon.GetComponent<Weapon>().SwitchWeapon(1);
+            player.GetComponent<Player>().SwitchWeaponType(1);
         }
     }
 }

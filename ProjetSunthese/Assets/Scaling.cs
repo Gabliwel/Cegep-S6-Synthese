@@ -7,10 +7,12 @@ public class Scaling : MonoBehaviour
     [SerializeField] int currentScaling;
     void Start()
     {
-        
+        if(currentScaling <= 0)
+        {
+            currentScaling = 1;
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         

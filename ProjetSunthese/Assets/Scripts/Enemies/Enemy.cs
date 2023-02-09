@@ -4,10 +4,14 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    protected float hp;
+    [SerializeField] protected float hp;
+    [SerializeField] protected Color particleColor = new Color(255, 0, 0);
+    [SerializeField] protected float particleScale = 1;
+    [SerializeField] protected float damageDealt;
     protected float overtime = 0;
     protected float overtimeTimer = 1f;
     protected Scaling scaling;
+    protected int scalingLevel;
     protected int xpGiven;
 
     private void Update()
@@ -30,6 +34,15 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (scaling != null)
+        {
+            scalingLevel = scaling.SendScaling();
+            Debug.Log(scaling);
+        }
+    }
+
     public virtual void Harm(float ammount, float overtimeDamage)
     {
         Debug.Log(name + " ouched for " + ammount + " damage.");
@@ -44,8 +57,10 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Die()
     {
+        Debug.Log(name + " deathed forever");
         Drop();
         gameObject.SetActive(false);
+        ParticleManager.instance.CallParticles(transform.position, particleScale, particleColor);
     }
 
     protected abstract void Drop();
