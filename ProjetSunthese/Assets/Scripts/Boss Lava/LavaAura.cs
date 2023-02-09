@@ -20,7 +20,7 @@ public class LavaAura : MonoBehaviour
     
     public void CalculateAuraTiming()
     {
-        Debug.Log(timeElapsed);
+        //Debug.Log(timeElapsed);
         if (timeElapsed > 10)
         {
             DespawnAura();

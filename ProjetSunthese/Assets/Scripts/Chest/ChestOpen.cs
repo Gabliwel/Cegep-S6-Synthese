@@ -20,19 +20,25 @@ public class ChestOpen : MonoBehaviour
 
     void Update()
     {
-        
+
+    }
+
+    [ContextMenu("test")]
+    public void Test()
+    {
+        Debug.Log("test");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (chestClosed)
-        {
-            tilemap.SetTile(tilemap.WorldToCell(transform.position), coffreOuvert);
-            chestClosed = false;
-            Debug.Log("Give item");
-            GameObject drop = chestDropManager.SendRandomItem();
-            drop.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, 0);
-            drop.SetActive(true);
-            achivement.OpenedChest();
-        }
+        //if (chestClosed)
+        //{
+        //    tilemap.SetTile(tilemap.WorldToCell(transform.position), coffreOuvert);
+        //    chestClosed = false;
+        //    Debug.Log("Give item");
+        //    GameObject drop = chestDropManager.SendRandomItem();
+        //    drop.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, 0);
+        //    drop.SetActive(true);
+        //    achivement.OpenedChest();
+        //}
     }
 }

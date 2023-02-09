@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Intensity: 2.8
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000df93b080d991e29cedc62c991fe5d6c3e10b2ed00dfd2a5ce9b8331b47d92a26cd3d09f5
+  m_ApplyToSortingLayers: 00000000e57795f247f0915c9debbfac
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -238,7 +238,10 @@ GameObject:
   - component: {fileID: 1699003815475913401}
   - component: {fileID: 1699003815475913400}
   - component: {fileID: 1699003815475913402}
+  - component: {fileID: 5022521320898729836}
   - component: {fileID: 1699003815475913399}
+  - component: {fileID: 322310799184830659}
+  - component: {fileID: 7733229124772987795}
   m_Layer: 0
   m_Name: MountainBoss
   m_TagString: Untagged
@@ -302,7 +305,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -183943731
-  m_SortingLayer: 9
+  m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: -910412451, guid: b7005513355925e4e9e8c8a3deed0d6f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -327,7 +330,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3aebaa8bcd71143960759b29ea3386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 10
+  particleColor: {r: 0.3679245, g: 0.13016197, b: 0.13016197, a: 1}
+  particleScale: 7
+  rockThrowMinTime: 4
+  rockThrowMaxTime: 5
+  minStalagmiteSpawnNb: 3
+  maxStalagmiteSpawnNb: 6
+  stalagmiteSpawnMinTime: 2
+  stalagmiteSpawnMaxTime: 5
+  minEnemySpawnNb: 6
+  maxEnemySpawnNb: 8
+  enemySpawnMinTime: 3
+  enemySpawnMaxTime: 10
+  minSpawnRange: {x: 0, y: 0}
+  maxSpawnRange: {x: 0, y: 0}
+  positionTop: {x: -61, y: 47, z: 0}
+  positionBottom: {x: -61, y: 35, z: 0}
+  positionRight: {x: -54, y: 41, z: 0}
+  positionLeft: {x: -68, y: 41, z: 0}
+  positionChangeBaseTime: 10
+  rockThrowTimer: 0
+  stalagmiteSpawnTimer: 0
+  enemySpawnTimer: 0
+  positionChangeTimer: 0
+--- !u!114 &5022521320898729836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699003815475913398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e3ed68d4fb8e74e92e5bef5a3bcb96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rockNb: 5
   rockPrefab: {fileID: 4161923199008325614, guid: 88bea44d72ed8f6479f8a77110013113, type: 3}
+  stalagmiteNb: 20
+  stalagmitePrefab: {fileID: 2773625189584627821, guid: 8d9fc97ec1d2ef340be89883a8c3c284, type: 3}
+  enemyNb: 20
+  enemyPrefab: {fileID: 1254572643622295535, guid: 001d2b890ac615c4782f23cb57df468b, type: 3}
 --- !u!95 &1699003815475913399
 Animator:
   serializedVersion: 5
@@ -348,3 +392,75 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!61 &322310799184830659
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699003815475913398}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.48, y: 0.48}
+    newSize: {x: 0.48, y: 0.48}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.15, y: 0.1}
+  m_EdgeRadius: 0
+--- !u!50 &7733229124772987795
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699003815475913398}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
