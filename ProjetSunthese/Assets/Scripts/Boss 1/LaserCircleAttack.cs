@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedCircleAttack : MonoBehaviour
+public class LaserCircleAttack : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
 
@@ -16,16 +16,16 @@ public class RangedCircleAttack : MonoBehaviour
     [SerializeField] private float bulletFirstDistance;
     [SerializeField] private float bulletLastDistance;
 
-    private GameObject[] fireballs;
+    private GameObject[] lasers;
 
     void Start()
     {
-        fireballs = new GameObject[numberBullets];
+        lasers = new GameObject[numberBullets];
 
         for (int i = 0; i < numberBullets; i++)
         {
-            fireballs[i] = Instantiate(prefab);
-            fireballs[i].SetActive(false);
+            lasers[i] = Instantiate(prefab, transform);
+            lasers[i].SetActive(false);
         }
     }
 
@@ -35,10 +35,10 @@ public class RangedCircleAttack : MonoBehaviour
         {
             float rad = i * Mathf.PI * 2f / numberBullets;
             Vector3 newPos = transform.position + (new Vector3(Mathf.Cos(rad) * numberBullets * bulletFirstDistance, Mathf.Sin(rad) * numberBullets * bulletFirstDistance + yAddedValue, 0));
-            fireballs[i].SetActive(true);
-            fireballs[i].transform.position = newPos;
-            fireballs[i].transform.rotation = Quaternion.Euler(0, 0, ((180 / Mathf.PI) * rad));
-            fireballs[i].GetComponent<LaserPoint>().StartMovement(transform.position + (Vector3.up * yAddedValue));
+            lasers[i].SetActive(true);
+            lasers[i].transform.position = newPos;
+            lasers[i].transform.rotation = Quaternion.Euler(0, 0, ((180 / Mathf.PI) * rad));
+            lasers[i].GetComponent<LaserPoint>().StartMovement(transform.position + (Vector3.up * yAddedValue));
         }   
     }
 }

@@ -5,19 +5,21 @@ using UnityEngine;
 public class Boss1 : MonoBehaviour
 {
     private GrowingAttackZone growingZoneAttack;
-    private RangedCircleAttack rangedCircleAttack;
+    private LaserCircleAttack rangedCircleAttack;
+    private LavaThrowAttack lavaThrowAttack;
 
 
     void Start()
     {
         growingZoneAttack = gameObject.GetComponentInChildren<GrowingAttackZone>();
-        rangedCircleAttack = gameObject.GetComponentInChildren<RangedCircleAttack>();
+        rangedCircleAttack = gameObject.GetComponentInChildren<LaserCircleAttack>();
+        lavaThrowAttack = gameObject.GetComponentInChildren<LavaThrowAttack>();
     }
 
     void Update()
     {
         // Pour tests
-        if(Input.GetKeyDown(KeyCode.O))
+        if(Input.GetKeyDown(KeyCode.O) && growingZoneAttack.IsUsable())
         {
             growingZoneAttack.Launch();
         }
@@ -25,6 +27,11 @@ public class Boss1 : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.P))
         {
             rangedCircleAttack.Launch();
+        }
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            lavaThrowAttack.Launch();
         }
     }
 }

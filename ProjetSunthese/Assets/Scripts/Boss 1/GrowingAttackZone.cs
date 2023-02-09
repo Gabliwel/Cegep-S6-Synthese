@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GrowingAttackZone : MonoBehaviour
 {
+    [Header("Link")]
+    [SerializeField] private Sensor sensor;
+
     [Header("Base stats")]
     [SerializeField] private float speedInSec;
     [SerializeField] private Vector3 smallScale;
@@ -14,15 +17,35 @@ public class GrowingAttackZone : MonoBehaviour
     [SerializeField] private bool returnToInitial;
     [SerializeField] private float waitSecBeforeReturn;
 
+    private ISensor<Player> playerSensor;
+
+    private bool isAvailable = false;
+
+    private void Awake()
+    {
+        playerSensor = sensor.For<Player>();
+        playerSensor.OnSensedObject += OnPlayerSense;
+        playerSensor.OnUnsensedObject += OnPlayerUnsense;
+        SetChildState(false);
+    }
+
     void Start()
     {
         transform.localScale = smallScale;
+        isAvailable = true;
     }
 
     public void Launch()
     {
-        if(!reverseOrder) StartCoroutine(Attack(smallScale, bigScale));
+        isAvailable = false;
+        SetChildState(true);
+        if (!reverseOrder) StartCoroutine(Attack(smallScale, bigScale));
         else StartCoroutine(Attack(bigScale, smallScale));
+    }
+
+    public bool IsUsable()
+    {
+        return isAvailable;
     }
 
     private IEnumerator Attack(Vector3 initialScale, Vector3 endScale)
@@ -48,6 +71,27 @@ public class GrowingAttackZone : MonoBehaviour
             yield return null;
         }
 
+
+        SetChildState(false);
         transform.localScale = smallScale;
+        isAvailable = true;
+    }
+
+    private void OnPlayerSense(Player otherObject)
+    {
+        Debug.Log("in");
+    }
+
+    private void OnPlayerUnsense(Player otherObject)
+    {
+        Debug.Log("out");
+    }
+
+    private void SetChildState(bool state)
+    {
+        for (int i = 0; i < transform.childCount; ++i)
+        {
+            transform.GetChild(i).gameObject.SetActive(state);
+        }
     }
 }
