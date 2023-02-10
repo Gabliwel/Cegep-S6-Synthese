@@ -5,20 +5,12 @@ using UnityEngine;
 public class ShopRandom : MonoBehaviour
 {
     [SerializeField] Vector3[] positionItem;
-    private List<GameObject> itemList;
+    [SerializeField] List<GameObject> itemListPrefab;
     void Start()
     {
-        int totalWeapon = transform.childCount;
-        itemList = new List<GameObject>(totalWeapon);
-
-        for (int i = 0; i < totalWeapon; i++)
-        {
-            itemList.Add(transform.GetChild(i).gameObject);
-            itemList[i].SetActive(false);
-        }
-
         SpawnItem();
     }
+
 
     void Update()
     {
@@ -27,13 +19,13 @@ public class ShopRandom : MonoBehaviour
 
     private void SpawnItem()
     {
-        for(int i = 0; i < positionItem.Length; i++)
+        for (int i = 0; i < positionItem.Length; i++)
         {
-            int nb = Random.Range(0, itemList.Count);
-            GameObject item = itemList[nb];
-            itemList.RemoveAt(nb);
+            int itemNumber = Random.Range(0, itemListPrefab.Count);
+            GameObject item = Instantiate(itemListPrefab[itemNumber]);
             item.transform.position = positionItem[i];
             item.SetActive(true);
+            itemListPrefab.RemoveAt(itemNumber);
         }
     }
 }

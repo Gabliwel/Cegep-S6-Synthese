@@ -95,12 +95,10 @@ public class MichaelFight : Enemy
                 FadedCharge();
                 break;
             case "TELEPORT":
-                //TeleportUnder();
-                FadedCharge();
+                TeleportUnder();
                 break;
             case "PROJECTILE":
-                //ShootProjectile();
-                FadedCharge();
+                ShootProjectile();
                 break;
         }
     }

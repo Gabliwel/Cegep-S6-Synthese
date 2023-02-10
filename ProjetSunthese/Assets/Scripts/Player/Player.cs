@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     private PlayerAnimationController animationController;
     private PlayerMovement playerMovement;
     private Weapon weapon;
-    private int currentWeapon = 4;
+    private int currentWeapon = 2;
     private float iframesTimer;
 
     [Header("Health")]
