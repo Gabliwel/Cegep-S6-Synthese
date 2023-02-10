@@ -56,6 +56,17 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
+    public virtual void Harm(float ammount)
+    {
+        Debug.Log(name + " ouched for " + ammount + " damage.");
+        hp -= ammount;
+
+        if (hp <= 0)
+        {
+            Die();
+        }
+    }
+
     public virtual void Die()
     {
         Debug.Log(name + " deathed forever");
