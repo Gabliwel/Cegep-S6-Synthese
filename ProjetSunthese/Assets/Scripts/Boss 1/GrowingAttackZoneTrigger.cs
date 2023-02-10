@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GrowingAttackZoneTrigger : MonoBehaviour
 {
+    // À supprimer quand le sensor est implémenter complètement avec les réactions transmises au joueur
     [SerializeField] private float knockBackForce = 2f;
 
     private void OnTriggerEnter2D(Collider2D collision)
