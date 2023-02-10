@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossMountainRock : MonoBehaviour
+public class BossMountainRock : BossAttack
 {
     [SerializeField] private float damage;
     [SerializeField] private float speed;
@@ -25,11 +25,16 @@ public class BossMountainRock : MonoBehaviour
         bossMountain = GetComponentInParent<BossMountain>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        gameObject.SetActive(false);
     }
     private void OnEnable()
     {
         moving = false;
         animator.SetTrigger("Formation");
+    }
+    public override void Launch()
+    {
+        gameObject.SetActive(true);
     }
 
     void OnPlayerSense(Player player)
@@ -79,4 +84,6 @@ public class BossMountainRock : MonoBehaviour
         breaking = false;
         gameObject.SetActive(false);
     }
+
+    
 }

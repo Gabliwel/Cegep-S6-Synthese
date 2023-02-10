@@ -7,8 +7,6 @@ public class PlayerMovement : MonoBehaviour
 {
     private const float STOP_TRESHOLD = 0.2f;
     [Header("Speed")]
-    [SerializeField] private float MAX_SPEED = 16f;
-    [SerializeField] private float SPEED_DECREASE = 0.2f;
     [SerializeField] private float BASE_SPEED = 4;
     [SerializeField] private Vector2 currentVelocity;
     [Header("Roll")]
@@ -176,5 +174,10 @@ public class PlayerMovement : MonoBehaviour
     public bool IsRolling()
     {
         return isRolling;
+    }
+
+    public void SpeedItemPickup()
+    {
+        BASE_SPEED += 1;
     }
 }

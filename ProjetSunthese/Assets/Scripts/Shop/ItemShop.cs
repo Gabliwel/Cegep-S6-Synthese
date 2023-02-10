@@ -6,25 +6,27 @@ public class ItemShop : MonoBehaviour
 {
     private bool playerInbound = false;
     private GameObject player;
-    private GameObject item;
-    private int price;
+    [SerializeField] private GameObject item;
+    private Player playerInfo;
+    [SerializeField] private int price;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerInfo = player.GetComponent<Player>();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && playerInbound)
         {
-            Debug.Log("Bought item");
-            /*
-            bool bought = player.GetComponent<PlayerStats>().BuyItem(price);
+            Debug.Log("Trying to buy");
+            bool bought = playerInfo.BuyItem(price);
 
             if(bought) {
                 gameObject.SetActive(false);
+                item.transform.position = gameObject.transform.position;
+                item.SetActive(true);
             }
-            */
         }
     }
 

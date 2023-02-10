@@ -162,7 +162,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -225085467
+  m_SortingLayerID: 359206789
   m_SortingLayer: 1
   m_SortingOrder: 9
   m_Sprite: {fileID: 21300000, guid: 292e696ddfc7aae4f97e0922d6be6dea, type: 3}
@@ -195,6 +195,10 @@ MonoBehaviour:
   recovery: 1
   cooldown: 0.1
   cooldownTimer: 0
+  poisonDamage: 0
+  sword: {fileID: 0}
+  axe: {fileID: 0}
+  dagger: {fileID: 0}
   duration: 0.07
   windUpDistance: 45
   recoilDistance: 45

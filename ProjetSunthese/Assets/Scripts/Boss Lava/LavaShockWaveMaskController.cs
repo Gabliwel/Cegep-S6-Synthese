@@ -4,35 +4,32 @@ using UnityEngine;
 
 public class LavaShockWaveMaskController : MonoBehaviour
 {
-    CircleCollider2D collider;
     public bool playerIsInSafeZone = false;
-    // Start is called before the first frame update
-    void Awake()
+    private Sensor sensor;
+    private ISensor<Player> playerSensor;
+    [SerializeField] private float damage;
+
+    void Start()
     {
-        collider = GetComponent<CircleCollider2D>();
+        sensor = GetComponentInChildren<Sensor>();
+        playerSensor = sensor.For<Player>();
+        playerSensor.OnSensedObject += OnPlayerSense;
+        playerSensor.OnUnsensedObject += OnPlayerUnsense;
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    void OnPlayerSense(Player player)
     {
-        if (collision.tag.Equals("Player"))
-        {
-            playerIsInSafeZone = true;
-            Debug.Log(playerIsInSafeZone);
-        }
+        playerIsInSafeZone = true;
     }
 
 
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnPlayerUnsense(Player player)
     {
-        if (collision.tag.Equals("Player"))
-        {
-            playerIsInSafeZone = false;
-            Debug.Log(playerIsInSafeZone);
-        }
+        playerIsInSafeZone = false;
     }
 }

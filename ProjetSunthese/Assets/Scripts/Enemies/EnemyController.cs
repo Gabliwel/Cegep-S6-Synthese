@@ -25,8 +25,5 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void Ascend()
-    {
-        gameObject.GetComponentInChildren<ParticleSystem>().Play();
-    }
+    
 }

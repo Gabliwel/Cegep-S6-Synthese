@@ -16,10 +16,24 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected float recovery;
     [SerializeField] protected float cooldown;
     [SerializeField] protected float cooldownTimer;
+    [SerializeField] protected float poisonDamage;
+
+    [Header("Melee weapons sprite")]
+    [SerializeField] Sprite sword;
+    [SerializeField] Sprite axe;
+    [SerializeField] Sprite dagger;
+    protected Player player;
+    protected bool doubleNumber;
+
+    protected float defaultStartup;
+    protected float defaultRecovery;
 
     protected virtual void Awake()
     {
         rotationPoint = transform.parent;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        defaultStartup = startup;
+        defaultRecovery = recovery;
     }
 
     void Update()
@@ -35,7 +49,6 @@ public abstract class Weapon : MonoBehaviour
             StartAttack();
         }
     }
-
 
     void OrbitClosestToMouse()
     {
@@ -54,6 +67,80 @@ public abstract class Weapon : MonoBehaviour
         if (cooldownTimer <= 0)
         {
             StartCoroutine(Attack());
+        }
+    }
+
+    public void GainDoubleNumber()
+    {
+        doubleNumber = true;
+    }
+
+    public void GainSpeed(float speed)
+    {
+        startup = defaultStartup * (1 - speed * 0.05f);
+        recovery = defaultRecovery * (1 - speed * 0.05f);
+    }
+
+    public void GainPoison()
+    {
+        poisonDamage += 5;
+    }
+
+    public void AddDamage()
+    {
+        damage++;
+    }
+
+    public void SwitchWeapon(int weaponNb)
+    {
+        int currentDamageBoost = player.GetDamageBoost();
+        float currentSpeed = player.GetAttackSpeed();
+        float speedIncrease = currentSpeed * 5 / 100;
+
+        poisonDamage = player.GetPoisonDamage();
+        doubleNumber = player.CheckDouble();
+
+        switch (weaponNb)
+        {
+            case 1:
+                Debug.Log("Sword");
+                damage = 10 + currentDamageBoost;
+                defaultRecovery = 0.2f;
+                defaultStartup = 0.15f;
+
+                startup = defaultStartup - speedIncrease * defaultStartup;
+                recovery = defaultRecovery - speedIncrease * defaultRecovery;
+                GetComponent<SpriteRenderer>().sprite = sword;
+                break;
+            case 2:
+                Debug.Log("Axe");
+                damage = 15 + currentDamageBoost;
+                defaultRecovery = 0.5f;
+                defaultStartup = 0.35f;
+
+                startup = defaultStartup - speedIncrease * defaultStartup;
+                recovery = defaultRecovery - speedIncrease * defaultRecovery;
+                GetComponent<SpriteRenderer>().sprite = axe;
+                break;
+            case 3:
+                Debug.Log("Dagger");
+                damage = 3 + currentDamageBoost;
+                defaultRecovery = 0.02f;
+                defaultStartup = 0.015f;
+
+                startup = defaultStartup - speedIncrease * defaultStartup;
+                recovery = defaultRecovery - speedIncrease * defaultRecovery;
+                GetComponent<SpriteRenderer>().sprite = dagger;
+                break;
+            case 4:
+                Debug.Log("Bow");
+                damage = 5 + currentDamageBoost;
+                defaultRecovery = 0.1f;
+                defaultStartup = 0.2f;
+
+                startup = defaultStartup - speedIncrease * defaultStartup;
+                recovery = defaultRecovery - speedIncrease * defaultRecovery;
+                break;
         }
     }
 
