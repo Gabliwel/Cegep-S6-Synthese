@@ -16,7 +16,7 @@ public class Arrow : Projectile
 
     private void OnEnemySense(Enemy enemy)
     {
-        enemy.Harm(damage);
+        enemy.Harm(damage, poisonDamage);
         gameObject.SetActive(false);
     }
 

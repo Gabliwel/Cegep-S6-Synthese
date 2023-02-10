@@ -49,9 +49,9 @@ public class BossMountainEnemy : Enemy
     {
     }
 
-    public override void Harm(float ammount)
+    public override void Harm(float ammount, float overtime)
     {
-        base.Harm(ammount);
+        base.Harm(ammount, overtime);
 
         Die();
     }
