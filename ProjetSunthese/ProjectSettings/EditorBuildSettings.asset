@@ -4,26 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/RandomDrop.unity
-    guid: 282b0434e79ae0d478f35a66dc8424a5
-  - enabled: 1
-    path: Assets/Scenes/KevEnemiesTest.unity
-    guid: 6a22253b194945b4e959789a8eb2fffc
-  - enabled: 1
-    path: Assets/Scenes/Charles.unity
-    guid: 611acf324d6d2db47b89322d113aa9b9
-  - enabled: 1
-    path: Assets/Scenes/FPP1.unity
-    guid: 56a65a13d6267c34f9e14884ff67bab7
-  - enabled: 1
-    path: Assets/Scenes/FPP2.unity
-    guid: 369658f6bb40caf4dbb97f306debcb19
-  - enabled: 1
-    path: Assets/Scenes/Keven.unity
-    guid: 872e6af462bf8a44b954487f15f12344
+  m_Scenes: []
   m_configObjects: {}
