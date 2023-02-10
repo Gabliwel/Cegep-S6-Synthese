@@ -10,29 +10,47 @@ public class BossBofrer : Enemy
     [Header("BFL")]
     [SerializeField] private BossBofrerBFL bflPrefab;
     [SerializeField] private float bflChargeup;
+    [Header("Shield Minions")]
+    [SerializeField] private BossBofrerShieldMinionSpawner shieldMinionSpawnerPrefab;
+    [SerializeField] private bool shieldActive;
+    private BossBofrerShieldMinionSpawner minionSpawner;
     private BossBofrerBFL bfl;
     private Animator animator;
+    private GameObject shield;
     private void Awake()
     {
         stolenAttacks = new List<BossAttack>();
         bfl = Instantiate(bflPrefab);
         bfl.transform.position = transform.position;
         bfl.gameObject.SetActive(false);
+        minionSpawner = Instantiate(shieldMinionSpawnerPrefab);
+        minionSpawner.transform.position = transform.position;
         animator = GetComponent<Animator>();
+        shield = transform.Find("Shield").gameObject;
+        shield.SetActive(false);
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.U))
-        {
             StartRandomStolenAttack();
-        }
         if (Input.GetKeyDown(KeyCode.I))
             StealRandomMountainAttack();
         if (Input.GetKeyDown(KeyCode.J))
             StartBFL();
+        if (Input.GetKeyDown(KeyCode.K))
+            StartMinionSpawn();
+        shieldActive = minionSpawner.AnyMinionActive();
+        shield.SetActive(shieldActive);
     }
     protected override void Drop()
     {
+    }
+
+    public override void Harm(float ammount)
+    {
+        if (!shieldActive)
+            base.Harm(ammount);
     }
 
     void StealRandomMountainAttack()
@@ -58,6 +76,11 @@ public class BossBofrer : Enemy
     void StartBFL()
     {
         StartCoroutine(BFLRoutine());
+    }
+
+    void StartMinionSpawn()
+    {
+        minionSpawner.Launch();
     }
 
     IEnumerator BFLRoutine()
