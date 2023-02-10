@@ -13,6 +13,7 @@ public abstract class Enemy : MonoBehaviour
     protected Scaling scaling;
     protected int scalingLevel;
     protected int xpGiven;
+    protected int goldDropped = 0;
 
     private void Update()
     {

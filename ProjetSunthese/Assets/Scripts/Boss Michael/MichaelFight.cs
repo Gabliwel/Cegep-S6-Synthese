@@ -30,10 +30,11 @@ public class MichaelFight : Enemy
         scaling = GameObject.FindGameObjectWithTag("Scaling").GetComponent<Scaling>();
         hp = 100 * scaling.SendScaling();
         xpGiven = 110;
+        goldDropped = 50;
 
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
-        dangerRectangle.transform.localScale = new Vector3(10, 1f, 1);
+        dangerRectangle.transform.localScale = new Vector3(10, 1.5f, 1);
         Attacks[0] = "CHARGE";
         Attacks[1] = "TELEPORT";
         Attacks[2] = "PROJECTILE";
@@ -94,10 +95,12 @@ public class MichaelFight : Enemy
                 FadedCharge();
                 break;
             case "TELEPORT":
-                TeleportUnder();
+                //TeleportUnder();
+                FadedCharge();
                 break;
             case "PROJECTILE":
-                ShootProjectile();
+                //ShootProjectile();
+                FadedCharge();
                 break;
         }
     }
@@ -157,8 +160,13 @@ public class MichaelFight : Enemy
                 Vector3 spot = new Vector3(savedPlayerPos.x, savedPlayerPos.y, 0);
                 Vector3 position = (bossPos + spot) / 2;
 
+                float distanceY = Mathf.Pow(Mathf.Abs(savedPlayerPos.y - bossPos.y), 2);
+                float distanceX = Mathf.Pow(Mathf.Abs(savedPlayerPos.x - bossPos.x), 2);
+                float distance = Mathf.Sqrt(distanceX + distanceY);
+
                 dangerRectangle.transform.rotation = Quaternion.LookRotation(Vector3.forward, position - bossPos) * Quaternion.Euler(0, 0, 90);
                 dangerRectangle.transform.position = position;
+                dangerRectangle.transform.localScale = new Vector3(distance / 5, 0.2f, 1);
 
                 dangerRectangle.SetActive(true);
             }
@@ -177,11 +185,11 @@ public class MichaelFight : Enemy
 
             if(fadeInProgress && charging)
             {
+                dangerRectangle.SetActive(false);
                 transform.position = Vector2.MoveTowards(transform.position, savedPlayerPos, 1);
 
                 if(transform.position == savedPlayerPos)
                 {
-                    dangerRectangle.SetActive(false);
                     attackInProgress = false;
                     charging = false;
                 }
@@ -213,7 +221,9 @@ public class MichaelFight : Enemy
                     gameObject.transform.position = new Vector3(vector2.x + savedPlayerPos.x, vector2.y + savedPlayerPos.y, 0);
 
                     sprite.color = new Color(1f, 1f, 1f, 1f);
-                    //GetComponent<Collider2D>().enabled = true;
+                    Collider2D[] colliders = GetComponentsInChildren<Collider2D>(true);
+                    colliders[0].enabled = true;
+                    colliders[1].enabled = true;
 
                     projectile.transform.position = transform.position;
                     projectile.GetComponent<ProjectilleMovement>().SetDestination(savedPlayerPos);
@@ -227,7 +237,9 @@ public class MichaelFight : Enemy
 
     private void Disapear()
     {
-        //GetComponent<Collider2D>().enabled = false;
+        Collider2D[] colliders = GetComponentsInChildren<Collider2D>(true);
+        colliders[0].enabled = false;
+        colliders[1].enabled = false;
         fadeInProgress = false;
         fadeAmount = 1f;
     }
@@ -235,7 +247,9 @@ public class MichaelFight : Enemy
     private void Reapear()
     {
         sprite.color = new Color(1f, 1f, 1f, 1f);
-        //aGetComponent<Collider2D>().enabled = true;
+        Collider2D[] colliders = GetComponentsInChildren<Collider2D>(true);
+        colliders[0].enabled = true;
+        colliders[1].enabled = true;
 
         fadeInProgress = true;
     }
@@ -251,7 +265,8 @@ public class MichaelFight : Enemy
 
     protected override void Drop()
     {
-        player.GetComponent<Player>().GainXp(xpGiven);
+        player.GetComponent<Player>().GainDrops(2, xpGiven, goldDropped);
+        GameObject.FindGameObjectWithTag("WeaponSwitch").GetComponent<WeaponSwitchManager>().SwitchWeaponOnGround(Random.Range(1, 5), transform.position);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

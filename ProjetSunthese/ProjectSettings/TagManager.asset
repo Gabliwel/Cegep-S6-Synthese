@@ -7,6 +7,14 @@ TagManager:
   - Chest
   - Ranged
   - Melee
+  - Scaling
+  - Life
+  - LavaEnemy
+  - Achivement
+  - Item
+  - Navmesh
+  - WeaponSwitch
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private PlayerAnimationController animationController;
     private PlayerMovement playerMovement;
     private Weapon weapon;
+    private int currentWeapon = 4;
     private float iframesTimer;
 
     [Header("Health")]
@@ -22,20 +23,22 @@ public class Player : MonoBehaviour
     [SerializeField] bool bloodSuck;
     [SerializeField] bool stoneHeart;
 
-
+    [Header("Ressources")]
+    [SerializeField] int gold;
     [SerializeField] int xp;
     [SerializeField] int level;
 
     [SerializeField] GameObject[] possibleWeapons;
+    private WeaponSwitchManager switchWeapon;
 
     private int poisonDamage = 0;
-    private int levelDamage = 0;
 
     private float attackSpeedBoost = 0;
     private int damageBoost = 0;
 
     private void Awake()
     {
+        switchWeapon = GameObject.FindGameObjectWithTag("WeaponSwitch").GetComponent<WeaponSwitchManager>();
         animationController = GetComponent<PlayerAnimationController>();
         playerMovement = GetComponent<PlayerMovement>();
         weapon = GetComponentInChildren<Weapon>();
@@ -144,6 +147,13 @@ public class Player : MonoBehaviour
         return false;
     }
 
+    public void GainDrops(int health, int xp, int gold)
+    {
+        HealBloodSuck(health);
+        GainXp(xp);
+        GainGold(gold);
+    }
+
     public void GainXp(int amount)
     {
         xp += amount;
@@ -210,6 +220,23 @@ public class Player : MonoBehaviour
         {
             weapon.SwitchWeapon(weaponNb);
         }
+        switchWeapon.SwitchWeaponOnGround(currentWeapon, transform.position);
+        currentWeapon = weaponNb;
     }
 
+
+    public void GainGold(int amount)
+    {
+        gold += amount;
+    }
+
+    public bool BuyItem(int price)
+    {
+        if(gold >= price)
+        {
+            gold -= price;
+            return true;
+        }
+        return false;
+    }
 }

@@ -20,7 +20,7 @@ public class ChestOpen : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (chestClosed)
+        if (chestClosed && collision.tag == "Player")
         {
             tilemap.SetTile(tilemap.WorldToCell(transform.position), coffreOuvert);
             chestClosed = false;

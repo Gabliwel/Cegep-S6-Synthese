@@ -12,7 +12,7 @@ public class ProjectilleMovement : MonoBehaviour
 
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, playerPos, 0.05f);
+        transform.position = Vector2.MoveTowards(transform.position, playerPos, 0.1f);
 
         if(transform.position == playerPos)
         {

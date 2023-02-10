@@ -11,11 +11,13 @@ public class Slime : Enemy
         player = GameObject.FindGameObjectWithTag("Player");
         scalingLevel = scaling.SendScaling();
         hp = 30 * scalingLevel;
+        goldDropped = 5;
+        xpGiven = 5;
     }
 
     protected override void Drop()
     {
-        player.GetComponent<Player>().HealBloodSuck(2);
+        player.GetComponent<Player>().GainDrops(2, xpGiven, goldDropped);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
