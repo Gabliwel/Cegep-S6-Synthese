@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LavaBossController : MonoBehaviour
+public class LavaBossController : Enemy
 {
     [SerializeField] private GameObject trail;
     [SerializeField]private int trailListSize = 50;
@@ -12,8 +12,8 @@ public class LavaBossController : MonoBehaviour
     float auraTimeElapsed = 0;
     LavaAura lavaAura;
     LavaShockWaveController lavaShockWave;
-    
-    // Start is called before the first frame update
+
+
     void Awake()
     {
         lavaShockWave = GetComponentInChildren<LavaShockWaveController>(true);
@@ -27,7 +27,6 @@ public class LavaBossController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         trailTimeElapsed += Time.deltaTime;
@@ -39,7 +38,7 @@ public class LavaBossController : MonoBehaviour
 
     public void LeaveTrail()
     {
-        if (trailTimeElapsed >= 1)
+        if (trailTimeElapsed >= 3)
         {
             for (int i = 0; i < trailListSize; i++)
             {
@@ -81,5 +80,20 @@ public class LavaBossController : MonoBehaviour
     public void GetBackToMainStage()
     {
         GameManager.instance.GetBackToMainStageAndStart();
+    }
+
+    public override void Harm(float ammount)
+    {
+        base.Harm(ammount);
+    }
+
+    public override void Die()
+    {
+        base.Die();
+    }
+
+    protected override void Drop()
+    {
+        Debug.Log("Je drop");
     }
 }

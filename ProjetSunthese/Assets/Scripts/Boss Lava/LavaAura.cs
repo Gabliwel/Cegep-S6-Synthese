@@ -4,23 +4,66 @@ using UnityEngine;
 
 public class LavaAura : MonoBehaviour
 {
+    [SerializeField] private float damage;
     float timeElapsed = 0;
-    // Start is called before the first frame update
-    void Start()
+    private Sensor sensor;
+    private ISensor<Player> playerSensor;
+    private ISensor<EnemyLavaController> enemySensor; 
+    private Player player;
+    [SerializeField] private float damageTicksTimer;
+    void Awake()
     {
-        
+        sensor = GetComponentInChildren<Sensor>();
+        playerSensor = sensor.For<Player>();
+        enemySensor = sensor.For<EnemyLavaController>();
+        playerSensor.OnSensedObject += OnPlayerSense;
+        playerSensor.OnUnsensedObject += OnPlayerUnsense;
+        enemySensor.OnSensedObject += OnEnemySense;
+        enemySensor.OnSensedObject += OnEnemyUnsense;
     }
 
-    // Update is called once per frame
+    void OnEnemySense(EnemyLavaController enemy)
+    {
+        Debug.Log("COde -1 9");
+        enemy.Ascend();
+    }
+
+
+    void OnEnemyUnsense(EnemyLavaController enemy)
+    {
+
+    }
+
+
+    void OnPlayerSense(Player player)
+    {
+        player.Harm(damage);
+        this.player = player;
+    }
+
+    
+    void OnPlayerUnsense(Player player)
+    {
+        this.player = null;
+    }
+
     void Update()
     {
+        damageTicksTimer += Time.deltaTime;
+        if (player != null)
+        {
+            if(damageTicksTimer > 1)
+            {
+                player.Harm(damage);
+                damageTicksTimer = 0;
+            }
+        }
         timeElapsed += Time.deltaTime;
         CalculateAuraTiming();
     }
     
     public void CalculateAuraTiming()
     {
-        //Debug.Log(timeElapsed);
         if (timeElapsed > 10)
         {
             DespawnAura();
@@ -31,18 +74,5 @@ public class LavaAura : MonoBehaviour
     public void DespawnAura()
     {
         gameObject.SetActive(false);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag.Equals("Player"))
-        {
-            collision.gameObject.GetComponent<TestCollider>().Die();
-        }
-        else if (collision.gameObject.tag.Equals("LavaEnemy"))
-        {
-            Debug.Log("Je rentre dans la collision");
-            collision.gameObject.GetComponent<EnemyController>().Ascend();
-        }
     }
 }
