@@ -5,21 +5,18 @@ using UnityEngine;
 public class BossMountain : Enemy
 {
     [Header("Rock")]
+    [SerializeField] private BossMountainRock rockAttackPrefab;
     [SerializeField] private float rockThrowMinTime;
     [SerializeField] private float rockThrowMaxTime;
     [Header("Stalagmite")]
-    [SerializeField] private int minStalagmiteSpawnNb;
-    [SerializeField] private int maxStalagmiteSpawnNb;
+    [SerializeField] private BossMountainStalagmiteSpawner stalagmiteAttackPrefab;
     [SerializeField] private float stalagmiteSpawnMinTime;
     [SerializeField] private float stalagmiteSpawnMaxTime;
     [Header("Enemy")]
-    [SerializeField] private int minEnemySpawnNb;
-    [SerializeField] private int maxEnemySpawnNb;
+    [SerializeField] private BossMountainEnemySpawner enemyAttackPrefab;
     [SerializeField] private float enemySpawnMinTime;
     [SerializeField] private float enemySpawnMaxTime;
     [Header("Positions")]
-    [SerializeField] private Vector2Int minSpawnRange;
-    [SerializeField] private Vector2Int maxSpawnRange;
     [SerializeField] private Vector3Int positionTop;
     [SerializeField] private Vector3Int positionBottom;
     [SerializeField] private Vector3Int positionRight;
@@ -30,18 +27,27 @@ public class BossMountain : Enemy
     [SerializeField] private float stalagmiteSpawnTimer;
     [SerializeField] private float enemySpawnTimer;
     [SerializeField] private float positionChangeTimer;
+
     private Vector3 rockThrowOffset = new Vector3(0, 3, 0);
     private Player player;
-    private BossMountainSpawnsManager spawnsManager;
     private Animator animator;
     private Transform childLight;
+    private BossMountainEnemySpawner enemySpawner;
+    private BossMountainStalagmiteSpawner stalagmiteSpawner;
+    private BossMountainRock rock;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        spawnsManager = GetComponent<BossMountainSpawnsManager>();
         animator = GetComponent<Animator>();
         childLight = transform.Find("Light 2D");
+
+        enemySpawner = Instantiate(enemyAttackPrefab);
+        enemySpawner.transform.parent = transform;
+        stalagmiteSpawner = Instantiate(stalagmiteAttackPrefab);
+        stalagmiteSpawner.transform.parent = transform;
+        rock = Instantiate(rockAttackPrefab);
+        rock.transform.parent = transform;
     }
 
     private void OnEnable()
@@ -98,37 +104,20 @@ public class BossMountain : Enemy
 
     void StartRockThrow()
     {
-        BossMountainRock rock = spawnsManager.GetAvailableRock();
-        rock.gameObject.SetActive(true);
+        rock.Launch();
         rock.transform.position = transform.position + rockThrowOffset;
     }
 
     void StartStalagmites()
     {
-        BossMountainStalagmite trackingStalagmite = spawnsManager.GetAvailableStalagamite();
-        trackingStalagmite.transform.position = player.transform.position;
-        trackingStalagmite.gameObject.SetActive(true);
-
-        int ammount = Random.Range(minStalagmiteSpawnNb, maxStalagmiteSpawnNb);
-
-        for (int i = 0; i < ammount; i++)
-        {
-            BossMountainStalagmite stalagmite = spawnsManager.GetAvailableStalagamite();
-            stalagmite.transform.position = GetRandomSpawnLocation();
-            stalagmite.gameObject.SetActive(true);
-        }
+        stalagmiteSpawner.Launch();
     }
 
     void StartEnemySpawn()
     {
-        int ammount = Random.Range(minEnemySpawnNb, maxEnemySpawnNb);
+        enemySpawner.Launch();
 
-        for (int i = 0; i < ammount; i++)
-        {
-            BossMountainEnemy enemy = spawnsManager.GetAvailableEnemy();
-            enemy.transform.position = GetRandomSpawnLocation();
-            enemy.gameObject.SetActive(true);
-        }
+
     }
 
     void StartPositionChange()
@@ -160,11 +149,5 @@ public class BossMountain : Enemy
         }
     }
 
-    Vector3Int GetRandomSpawnLocation()
-    {
-        int x = Random.Range(minSpawnRange.x, maxSpawnRange.x);
-        int y = Random.Range(minSpawnRange.y, maxSpawnRange.y);
 
-        return new Vector3Int(x, y, 0);
-    }
 }

@@ -8,6 +8,9 @@ TagManager:
   - Chest
   - Achievement
   - Achivement
+  - Life
+  - ArenaLimitTopLeft
+  - ArenaLimitBottomRight
   layers:
   - Default
   - TransparentFX
