@@ -41,4 +41,12 @@ public class Player : MonoBehaviour
         }
         return false;
     }
+
+    public void KnockBack(Vector2 difference, float force)
+    {
+        if (iframesTimer <= 0)
+        {
+            playerMovement.AddKnockBack(difference, force);
+        }
+    }
 }

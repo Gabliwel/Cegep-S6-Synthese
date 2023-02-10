@@ -24,7 +24,7 @@ public class Boss1 : MonoBehaviour
             growingZoneAttack.Launch();
         }
 
-        if(Input.GetKeyDown(KeyCode.P))
+        if(Input.GetKeyDown(KeyCode.P) && rangedCircleAttack.IsUsable())
         {
             rangedCircleAttack.Launch();
         }
@@ -33,5 +33,15 @@ public class Boss1 : MonoBehaviour
         {
             lavaThrowAttack.Launch();
         }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Move();
+        }
+    }
+
+    private void Move()
+    {
+
     }
 }

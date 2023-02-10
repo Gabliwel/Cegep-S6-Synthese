@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rollCooldownTimer;
     [SerializeField] private bool canMove = true;
     [SerializeField] private float angle;
+    [Header("KnockBack")]
+    [Range(1, 20)]
+    [SerializeField] private float dragStopper = 8;
+    [Range(0, 2)]
+    [SerializeField] private float stopAtMagnitude = 1.35f;
+    private bool isKnockBack = false;
 
     private Vector2 movementInput;
     private Rigidbody2D rb;
@@ -37,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (isKnockBack) return;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!RollOnCooldown() && !isRolling && DirectionHeld() && canMove)
@@ -54,6 +63,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isKnockBack) return;
+
         if (!isRolling && canMove)
         {
             currentVelocity = rb.velocity;
@@ -110,6 +121,31 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(rollSlowdownTime);
         isRolling = false;
         animationController.SetRoll(false);
+    }
+
+
+    public void AddKnockBack(Vector2 difference, float force)
+    {
+        if (isKnockBack) return;
+
+        isKnockBack = true;
+        rb.velocity = Vector2.zero;
+        rb.drag = dragStopper;
+
+        rb.AddForce(difference * force, ForceMode2D.Impulse);
+        StartCoroutine(CheckKnockBack());
+    }
+
+    private IEnumerator CheckKnockBack()
+    {
+        while (rb.velocity.magnitude > stopAtMagnitude)
+        {
+            Debug.Log(rb.velocity.magnitude);
+            yield return true;
+        }
+        rb.velocity = Vector2.zero;
+        isKnockBack = false;
+        rb.drag = 0;
     }
 
     bool RollOnCooldown()

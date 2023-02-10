@@ -8,6 +8,7 @@ public class GrowingAttackZone : MonoBehaviour
     [SerializeField] private Sensor sensor;
 
     [Header("Base stats")]
+    [SerializeField] private float knockBackForce = 2f;
     [SerializeField] private float speedInSec;
     [SerializeField] private Vector3 smallScale;
     [SerializeField] private Vector3 bigScale;
@@ -77,14 +78,16 @@ public class GrowingAttackZone : MonoBehaviour
         isAvailable = true;
     }
 
-    private void OnPlayerSense(Player otherObject)
+    private void OnPlayerSense(Player player)
     {
-        Debug.Log("in");
+        Vector2 difference = (player.gameObject.transform.position - transform.position).normalized;
+        player.KnockBack(difference, knockBackForce);
     }
 
-    private void OnPlayerUnsense(Player otherObject)
+    private void OnPlayerUnsense(Player player)
     {
-        Debug.Log("out");
+        Vector2 difference = (transform.position - player.gameObject.transform.position).normalized;
+        player.KnockBack(difference, knockBackForce);
     }
 
     private void SetChildState(bool state)
