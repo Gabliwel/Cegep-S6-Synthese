@@ -15,6 +15,9 @@ TagManager:
   - Navmesh
   - WeaponSwitch
   - Boss
+  - Life
+  - ArenaLimitTopLeft
+  - ArenaLimitBottomRight
   layers:
   - Default
   - TransparentFX
