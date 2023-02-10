@@ -18,27 +18,18 @@ public class ChestOpen : MonoBehaviour
         achivement = GameObject.FindGameObjectWithTag("Achivement").GetComponent<AchivementManager>();
     }
 
-    void Update()
-    {
-
-    }
-
-    [ContextMenu("test")]
-    public void Test()
-    {
-        Debug.Log("test");
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (chestClosed)
-        //{
-        //    tilemap.SetTile(tilemap.WorldToCell(transform.position), coffreOuvert);
-        //    chestClosed = false;
-        //    Debug.Log("Give item");
-        //    GameObject drop = chestDropManager.SendRandomItem();
-        //    drop.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, 0);
-        //    drop.SetActive(true);
-        //    achivement.OpenedChest();
-        //}
+        if (chestClosed && collision.tag == "Player")
+        {
+            tilemap.SetTile(tilemap.WorldToCell(transform.position), coffreOuvert);
+            chestClosed = false;
+            Debug.Log("Give item");
+            GameObject drop = chestDropManager.SendRandomItem();
+            drop.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, 0);
+            drop.GetComponent<Collider2D>().enabled = false;
+            drop.SetActive(true);
+            achivement.OpenedChest();
+        }
     }
 }

@@ -25,7 +25,14 @@ public class Melee : Weapon
 
     private void OnEnemySense(Enemy enemy)
     {
-        enemy.Harm(damage);
+        if (doubleNumber)
+        {
+            enemy.Harm(damage * 2, poisonDamage);
+        }
+        else
+        {
+            enemy.Harm(damage, poisonDamage);
+        }
     }
 
     private void OnEnemyUnsense(Enemy enemy)
@@ -75,4 +82,5 @@ public class Melee : Weapon
         yield return new WaitForSeconds(recovery);
         orbit = true;
     }
+
 }

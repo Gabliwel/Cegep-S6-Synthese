@@ -10,8 +10,6 @@ public class LavaThrowAttack : MonoBehaviour
     [SerializeField] private int numberLavaObjects;
     [SerializeField] private int minToThrow;
     [SerializeField] private int maxToThrow;
-    [SerializeField] private float minSpeed;
-    [SerializeField] private float maxSpeed;
 
     [Header("Distance")]
     [SerializeField] private Transform minDistance;

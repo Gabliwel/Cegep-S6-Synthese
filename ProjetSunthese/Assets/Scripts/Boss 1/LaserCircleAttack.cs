@@ -8,15 +8,16 @@ public class LaserCircleAttack : MonoBehaviour
 
     [Header("Base Stats")]
     [SerializeField] private int numberBullets;
-    [SerializeField] private float bulletImpulseSpeed;
     [SerializeField] private float time;
+    [SerializeField] private float chargeTime;
+    [SerializeField] private float unchargeTime;
 
     [Header("Distance")]
     [SerializeField] private float yAddedValue;
     [SerializeField] private float bulletFirstDistance;
-    [SerializeField] private float bulletLastDistance;
 
     private GameObject[] lasers;
+    private bool isAvailable = true;
 
     void Start()
     {
@@ -31,6 +32,7 @@ public class LaserCircleAttack : MonoBehaviour
 
     public void Launch()
     {
+        isAvailable = false;
         for (int i = 0; i < numberBullets; i++)
         {
             float rad = i * Mathf.PI * 2f / numberBullets;
@@ -38,7 +40,60 @@ public class LaserCircleAttack : MonoBehaviour
             lasers[i].SetActive(true);
             lasers[i].transform.position = newPos;
             lasers[i].transform.rotation = Quaternion.Euler(0, 0, ((180 / Mathf.PI) * rad));
+            lasers[i].GetComponent<LaserPoint>().Charge(chargeTime);
+        }
+
+        StartCoroutine(StartLaserPoint());
+    }
+
+    private IEnumerator StartLaserPoint()
+    {
+        yield return new WaitForSeconds(chargeTime);
+        for (int i = 0; i < numberBullets; i++)
+        {
             lasers[i].GetComponent<LaserPoint>().StartMovement(transform.position + (Vector3.up * yAddedValue));
-        }   
+        }
+        StartCoroutine(SimpleLaserCicle());
+    }
+
+
+    private IEnumerator SimpleLaserCicle()
+    {
+        for (int i = 0; i < numberBullets; i+=2)
+        {
+            lasers[i].GetComponent<LaserPoint>().ActivateLaser(time);
+        }
+        yield return new WaitForSeconds(time + 0.54f);
+        for (int i = 1; i < numberBullets; i += 2)
+        {
+            lasers[i].GetComponent<LaserPoint>().ActivateLaser(time);
+        }
+        yield return new WaitForSeconds(time + 0.54f);
+        for (int i = 0; i < numberBullets; i ++)
+        {
+            lasers[i].GetComponent<LaserPoint>().ActivateLaser(time);
+        }
+        yield return new WaitForSeconds(time);
+        StartCoroutine(DeactivateLasers());
+    }
+
+    private IEnumerator DeactivateLasers()
+    {
+        for (int i = 0; i < numberBullets; i++)
+        {
+            lasers[i].GetComponent<LaserPoint>().DeactivateLaser(unchargeTime);
+        }
+        yield return new WaitForSeconds(unchargeTime);
+        for (int i = 0; i < numberBullets; i++)
+        {
+            lasers[i].SetActive(false);
+        }
+
+        isAvailable = true;
+    }
+
+    public bool IsUsable()
+    {
+        return isAvailable;
     }
 }

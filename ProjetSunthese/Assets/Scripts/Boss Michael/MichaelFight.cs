@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossMovement : MonoBehaviour
+public class MichaelFight : Enemy
 {
     [SerializeField] GameObject player;
     [SerializeField] GameObject dangerCircle;
@@ -24,11 +24,17 @@ public class BossMovement : MonoBehaviour
     private bool charging = false;
 
     private Animator animator;
+
     void Start()
     {
+        scaling = GameObject.FindGameObjectWithTag("Scaling").GetComponent<Scaling>();
+        hp = 100 * scaling.SendScaling();
+        xpGiven = 110;
+        goldDropped = 50;
+
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
-        dangerRectangle.transform.localScale = new Vector3(10, 1f, 1);
+        dangerRectangle.transform.localScale = new Vector3(10, 1.5f, 1);
         Attacks[0] = "CHARGE";
         Attacks[1] = "TELEPORT";
         Attacks[2] = "PROJECTILE";
@@ -40,7 +46,7 @@ public class BossMovement : MonoBehaviour
         if (!attackInProgress)
         {
             attackDelay -= Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, 0.03f);
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, 0.009f);
             CheckAnimationSide();
             if (attackDelay <= 0)
             {
@@ -89,10 +95,12 @@ public class BossMovement : MonoBehaviour
                 FadedCharge();
                 break;
             case "TELEPORT":
-                TeleportUnder();
+                //TeleportUnder();
+                FadedCharge();
                 break;
             case "PROJECTILE":
-                ShootProjectile();
+                //ShootProjectile();
+                FadedCharge();
                 break;
         }
     }
@@ -152,8 +160,13 @@ public class BossMovement : MonoBehaviour
                 Vector3 spot = new Vector3(savedPlayerPos.x, savedPlayerPos.y, 0);
                 Vector3 position = (bossPos + spot) / 2;
 
+                float distanceY = Mathf.Pow(Mathf.Abs(savedPlayerPos.y - bossPos.y), 2);
+                float distanceX = Mathf.Pow(Mathf.Abs(savedPlayerPos.x - bossPos.x), 2);
+                float distance = Mathf.Sqrt(distanceX + distanceY);
+
                 dangerRectangle.transform.rotation = Quaternion.LookRotation(Vector3.forward, position - bossPos) * Quaternion.Euler(0, 0, 90);
                 dangerRectangle.transform.position = position;
+                dangerRectangle.transform.localScale = new Vector3(distance / 5, 0.2f, 1);
 
                 dangerRectangle.SetActive(true);
             }
@@ -172,11 +185,11 @@ public class BossMovement : MonoBehaviour
 
             if(fadeInProgress && charging)
             {
+                dangerRectangle.SetActive(false);
                 transform.position = Vector2.MoveTowards(transform.position, savedPlayerPos, 1);
 
                 if(transform.position == savedPlayerPos)
                 {
-                    dangerRectangle.SetActive(false);
                     attackInProgress = false;
                     charging = false;
                 }
@@ -208,7 +221,9 @@ public class BossMovement : MonoBehaviour
                     gameObject.transform.position = new Vector3(vector2.x + savedPlayerPos.x, vector2.y + savedPlayerPos.y, 0);
 
                     sprite.color = new Color(1f, 1f, 1f, 1f);
-                    GetComponent<Collider2D>().enabled = true;
+                    Collider2D[] colliders = GetComponentsInChildren<Collider2D>(true);
+                    colliders[0].enabled = true;
+                    colliders[1].enabled = true;
 
                     projectile.transform.position = transform.position;
                     projectile.GetComponent<ProjectilleMovement>().SetDestination(savedPlayerPos);
@@ -222,7 +237,9 @@ public class BossMovement : MonoBehaviour
 
     private void Disapear()
     {
-        GetComponent<Collider2D>().enabled = false;
+        Collider2D[] colliders = GetComponentsInChildren<Collider2D>(true);
+        colliders[0].enabled = false;
+        colliders[1].enabled = false;
         fadeInProgress = false;
         fadeAmount = 1f;
     }
@@ -230,7 +247,9 @@ public class BossMovement : MonoBehaviour
     private void Reapear()
     {
         sprite.color = new Color(1f, 1f, 1f, 1f);
-        GetComponent<Collider2D>().enabled = true;
+        Collider2D[] colliders = GetComponentsInChildren<Collider2D>(true);
+        colliders[0].enabled = true;
+        colliders[1].enabled = true;
 
         fadeInProgress = true;
     }
@@ -241,6 +260,20 @@ public class BossMovement : MonoBehaviour
         {
             sprite.color = new Color(1f, 1f, 1f, fadeAmount);
             fadeAmount -= 0.025f;
+        }
+    }
+
+    protected override void Drop()
+    {
+        player.GetComponent<Player>().GainDrops(2, xpGiven, goldDropped);
+        GameObject.FindGameObjectWithTag("WeaponSwitch").GetComponent<WeaponSwitchManager>().SwitchWeaponOnGround(Random.Range(1, 5), transform.position);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            player.GetComponent<Player>().Harm(damageDealt);
         }
     }
 }
