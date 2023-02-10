@@ -82,9 +82,9 @@ public class LavaBossController : Enemy
         GameManager.instance.GetBackToMainStageAndStart();
     }
 
-    public override void Harm(float ammount)
+    public override void Harm(float ammount, float overtimeDamage)
     {
-        base.Harm(ammount);
+        base.Harm(ammount, overtimeDamage);
     }
 
     public override void Die()
