@@ -12,7 +12,6 @@ public class LavaBossController : Enemy
     float auraTimeElapsed = 0;
     LavaAura lavaAura;
     LavaShockWaveController lavaShockWave;
-    [SerializeField] private float HP;
 
 
     void Awake()
@@ -83,8 +82,18 @@ public class LavaBossController : Enemy
         GameManager.instance.GetBackToMainStageAndStart();
     }
 
+    public override void Harm(float ammount)
+    {
+        base.Harm(ammount);
+    }
+
+    public override void Die()
+    {
+        base.Die();
+    }
+
     protected override void Drop()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Je drop");
     }
 }
