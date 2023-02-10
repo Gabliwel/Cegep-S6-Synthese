@@ -289,8 +289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6bd2cd57c77da4a9942d71dbdcb7bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MAX_SPEED: 16
-  SPEED_DECREASE: 0.2
   BASE_SPEED: 4
   currentVelocity: {x: 0, y: 0}
   rollSpeed: 2.2
@@ -301,6 +299,8 @@ MonoBehaviour:
   rollCooldownTimer: 0
   canMove: 1
   angle: 0
+  dragStopper: 8
+  stopAtMagnitude: 1.35
 --- !u!114 &5415799239863309041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,6 +313,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7635ccf626c31549bc84c64b5a91199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MAX_HEALTH: 0
+  currentHealth: 0
+  secondChance: 0
+  deathContract: 0
+  doubleNumber: 0
+  bloodSuck: 0
+  stoneHeart: 0
+  gold: 0
+  xp: 0
+  level: 0
+  possibleWeapons: []
 --- !u!50 &2606476511501836253
 Rigidbody2D:
   serializedVersion: 4
@@ -423,7 +434,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -225085467
+  m_SortingLayerID: 359206789
   m_SortingLayer: 1
   m_SortingOrder: 3
   m_Sprite: {fileID: -468838080, guid: 7fedd2e90f4b73b4ca3a95a4e999215f, type: 3}
@@ -683,6 +694,14 @@ PrefabInstance:
     - target: {fileID: 6612553489704683181, guid: b2c6321b293b41246a998724f0fbe565, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8402220814431009428, guid: b2c6321b293b41246a998724f0fbe565, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8402220814431009428, guid: b2c6321b293b41246a998724f0fbe565, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 359206789
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
