@@ -10,6 +10,7 @@ public class LavaAura : MonoBehaviour
     private ISensor<Player> playerSensor;
     private ISensor<EnemyLavaController> enemySensor; 
     private Player player;
+    [SerializeField] private float damageTicksTimer;
     void Awake()
     {
         sensor = GetComponentInChildren<Sensor>();
@@ -48,9 +49,14 @@ public class LavaAura : MonoBehaviour
 
     void Update()
     {
+        damageTicksTimer += Time.deltaTime;
         if (player != null)
         {
-            player.Harm(damage);
+            if(damageTicksTimer > 1)
+            {
+                player.Harm(damage);
+                damageTicksTimer = 0;
+            }
         }
         timeElapsed += Time.deltaTime;
         CalculateAuraTiming();

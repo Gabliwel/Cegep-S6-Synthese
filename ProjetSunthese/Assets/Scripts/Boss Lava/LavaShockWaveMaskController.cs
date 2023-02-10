@@ -9,8 +9,9 @@ public class LavaShockWaveMaskController : MonoBehaviour
     private ISensor<Player> playerSensor;
     [SerializeField] private float damage;
 
-    void Awake()
+    void Start()
     {
+        sensor = GetComponentInChildren<Sensor>();
         playerSensor = sensor.For<Player>();
         playerSensor.OnSensedObject += OnPlayerSense;
         playerSensor.OnUnsensedObject += OnPlayerUnsense;

@@ -11,9 +11,11 @@ public class LavaShockWaveController : MonoBehaviour
     [SerializeField] private float damage;
 
 
-    void Awake()
+    void Start()
     {
         originalScale = transform.localScale;
+        maskController = GetComponentInChildren<LavaShockWaveMaskController>();
+        sensor = GetComponentInChildren<Sensor>();
         playerSensor = sensor.For<Player>();
         playerSensor.OnSensedObject += OnPlayerSense;
         playerSensor.OnUnsensedObject += OnPlayerUnsense;
@@ -26,7 +28,7 @@ public class LavaShockWaveController : MonoBehaviour
 
     void OnPlayerSense(Player player)
     {
-        if (maskController.playerIsInSafeZone)
+        if (!maskController.playerIsInSafeZone)
         {
             player.Harm(damage);
         }
