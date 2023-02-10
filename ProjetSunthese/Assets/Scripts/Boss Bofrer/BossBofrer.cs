@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class BossBofrer : Enemy
 {
+    [Header("Attack Steal")]
     [SerializeField] private List<BossAttack> mountainBossAttackPrefabs;
     [SerializeField] private List<BossAttack> stolenAttacks;
+    [Header("BFL")]
     [SerializeField] private BossBofrerBFL bflPrefab;
+    [SerializeField] private float bflChargeup;
     private BossBofrerBFL bfl;
+    private Animator animator;
     private void Awake()
     {
         stolenAttacks = new List<BossAttack>();
         bfl = Instantiate(bflPrefab);
         bfl.transform.position = transform.position;
         bfl.gameObject.SetActive(false);
+        animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -52,6 +57,14 @@ public class BossBofrer : Enemy
 
     void StartBFL()
     {
+        StartCoroutine(BFLRoutine());
+    }
+
+    IEnumerator BFLRoutine()
+    {
+        animator.SetBool("Charging", true);
+        yield return new WaitForSeconds(bflChargeup);
         bfl.Launch();
+        animator.SetBool("Charging", false);
     }
 }

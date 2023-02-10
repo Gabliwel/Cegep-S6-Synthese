@@ -13565,6 +13565,10 @@ PrefabInstance:
       propertyPath: bflPrefab
       value: 
       objectReference: {fileID: 4592944309761159550, guid: 73fa87cbf6d578e41a03f0a81e281fac, type: 3}
+    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
+      propertyPath: bflChargeup
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5013013055534734159, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
       propertyPath: m_Name
       value: Bofrer
