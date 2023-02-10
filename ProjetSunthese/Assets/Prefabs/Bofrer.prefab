@@ -226,6 +226,7 @@ MonoBehaviour:
   bflChargeup: 2
   shieldMinionSpawnerPrefab: {fileID: 8566137690466289898, guid: f80b40905b1575d459a9444dfd0b6192, type: 3}
   shieldActive: 0
+  boltSpawnerPrefab: {fileID: 5109038637771827725, guid: b40c339a4b2e3b047885fb607959edf0, type: 3}
 --- !u!212 &5013013055534734157
 SpriteRenderer:
   m_ObjectHideFlags: 0
