@@ -47,10 +47,10 @@ public class BossBofrer : Enemy
     {
     }
 
-    public override void Harm(float ammount)
+    public override void Harm(float ammount, float overtime)
     {
         if (!shieldActive)
-            base.Harm(ammount);
+            base.Harm(ammount, overtime);
     }
 
     void StealRandomMountainAttack()
