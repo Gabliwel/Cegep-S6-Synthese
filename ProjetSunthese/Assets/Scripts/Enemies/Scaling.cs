@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Scaling : MonoBehaviour
 {
-    [SerializeField] int currentScaling;
-
+    [SerializeField] private int currentScaling;
     public static Scaling instance;
+
     void Start()
     {
         if(currentScaling <= 0)

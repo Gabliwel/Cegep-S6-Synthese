@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bow : WeaponsChange
 {
-    void Start()
+    /*void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -16,5 +16,5 @@ public class Bow : WeaponsChange
             player.GetComponent<Player>().SwitchWeaponType(4);
             gameObject.SetActive(false);
         }
-    }
+    }*/
 }

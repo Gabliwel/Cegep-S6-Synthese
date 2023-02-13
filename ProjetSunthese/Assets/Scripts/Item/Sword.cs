@@ -9,12 +9,12 @@ public class Sword : WeaponsChange
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    void Update()
+   /* void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && playerInbound)
         {
             player.GetComponent<Player>().SwitchWeaponType(1);
             gameObject.SetActive(false);
         }
-    }
+    }*/
 }

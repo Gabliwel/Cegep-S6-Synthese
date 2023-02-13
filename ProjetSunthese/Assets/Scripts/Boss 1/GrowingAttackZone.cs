@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrowingAttackZone : MonoBehaviour
+public class GrowingAttackZone : BossAttack
 {
     [Header("Link")]
     [SerializeField] private Sensor sensor;
@@ -20,8 +20,6 @@ public class GrowingAttackZone : MonoBehaviour
 
     private ISensor<Player> playerSensor;
 
-    private bool isAvailable = false;
-
     private void Awake()
     {
         playerSensor = sensor.For<Player>();
@@ -36,17 +34,12 @@ public class GrowingAttackZone : MonoBehaviour
         isAvailable = true;
     }
 
-    public void Launch()
+    public override void Launch()
     {
         isAvailable = false;
         SetChildState(true);
         if (!reverseOrder) StartCoroutine(Attack(smallScale, bigScale));
         else StartCoroutine(Attack(bigScale, smallScale));
-    }
-
-    public bool IsUsable()
-    {
-        return isAvailable;
     }
 
     private IEnumerator Attack(Vector3 initialScale, Vector3 endScale)
