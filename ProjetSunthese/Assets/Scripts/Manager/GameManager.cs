@@ -8,7 +8,7 @@ using System.Linq;
 
 public enum Scene  
 {
-    MainStage,
+    Main-Stage,
     Keven,
     FPP1,
     FPP2
