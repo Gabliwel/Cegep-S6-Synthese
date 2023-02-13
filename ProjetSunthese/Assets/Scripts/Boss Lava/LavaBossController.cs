@@ -10,10 +10,10 @@ public class LavaBossController : Enemy
     private GameObject[] trailArray;
     float trailTimeElapsed = 0;
     float attackTimer = 0;
-    LavaAura lavaAura;
-    LavaShockWaveController lavaShockWave;
-
-
+    private LavaAura lavaAura;
+    private LavaShockWaveController lavaShockWave;
+    private GameObject player;
+    private int speed =3 ;
 
     void Awake()
     {
@@ -25,6 +25,7 @@ public class LavaBossController : Enemy
             trailArray[i] = Instantiate(trail);
             trailArray[i].SetActive(false);
         }
+        player =GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
@@ -37,7 +38,7 @@ public class LavaBossController : Enemy
             lavaShockWave.Launch();
             attackTimer = 0;
         }
-        gameObject.transform.position = gameObject.transform.position + new Vector3(0.001f, 0.001f, 0);
+        gameObject.transform.position = Vector2.MoveTowards(transform.position,player.transform.position, speed * Time.deltaTime);
         LeaveTrail();
     }
 
