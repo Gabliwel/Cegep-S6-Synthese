@@ -58,13 +58,12 @@ public class LavaBossController : Enemy
         if(auraTimeElapsed > 10)
         {
             lavaAuraChild.SetActive(true);
-            lavaShockWave.gameObject.SetActive(true);
             gameObject.GetComponentInChildren<ParticleSystem>().Play();
         }
         if(auraTimeElapsed > 20)
         {
+            lavaShockWave.Launch();
             auraTimeElapsed = 0;
-            lavaShockWave.gameObject.SetActive(false);
             gameObject.GetComponentInChildren<ParticleSystem>().Stop();
         }
     }
@@ -80,16 +79,6 @@ public class LavaBossController : Enemy
     public void GetBackToMainStage()
     {
         GameManager.instance.GetBackToMainStageAndStart();
-    }
-
-    public override void Harm(float ammount, float overtimeDamage)
-    {
-        base.Harm(ammount, overtimeDamage);
-    }
-
-    public override void Die()
-    {
-        base.Die();
     }
 
     protected override void Drop()
