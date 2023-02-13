@@ -4,5 +4,26 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Tutoriel.unity
+    guid: 872e6af462bf8a44b954487f15f12344
+  - enabled: 1
+    path: Assets/Scenes/CentralBoss.unity
+    guid: c2cea2bb935b09841b4af2b73b4b61bf
+  - enabled: 1
+    path: Assets/Scenes/Charles.unity
+    guid: 611acf324d6d2db47b89322d113aa9b9
+  - enabled: 1
+    path: Assets/Scenes/GabLevel.unity
+    guid: 57b044c9aec71af408253fe0b38d4f21
+  - enabled: 1
+    path: Assets/Scenes/GabShop.unity
+    guid: f8af144df8461d04ca3ec6178b3dc0f5
+  - enabled: 1
+    path: Assets/Scenes/KevenNiveau.unity
+    guid: 3465fdba9b0f2454b924b9fcb7e72553
+  - enabled: 1
+    path: Assets/Scenes/MarcAntoine.unity
+    guid: 3f640f4308881d847aaa572b1f65133a
   m_configObjects: {}
