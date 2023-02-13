@@ -13,6 +13,8 @@ public class ItemShop : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerInfo = player.GetComponent<Player>();
+        item = Instantiate(item);
+        item.SetActive(false);
     }
 
     void Update()

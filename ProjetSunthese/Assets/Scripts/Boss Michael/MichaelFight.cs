@@ -8,9 +8,11 @@ public class MichaelFight : Enemy
     [SerializeField] GameObject dangerCircle;
     [SerializeField] GameObject dangerRectangle;
     [SerializeField] GameObject projectile;
+    [SerializeField] private List<BossAttack> michaelAttacks;
 
     private string[] Attacks = new string[3];
     private string currentAttack;
+    private int attackNb = 0;
 
     private float fadeAmount = 1f;
     private SpriteRenderer sprite;
@@ -22,6 +24,8 @@ public class MichaelFight : Enemy
     private float reactionTime = 1.5f;
     private Vector3 savedPlayerPos;
     private bool charging = false;
+
+    private float attackDuration = 2.5f;
 
     private Animator animator;
 
@@ -38,6 +42,11 @@ public class MichaelFight : Enemy
         Attacks[0] = "CHARGE";
         Attacks[1] = "TELEPORT";
         Attacks[2] = "PROJECTILE";
+
+        for(int i = 0; i < michaelAttacks.Count; i++)
+        {
+            michaelAttacks[i] = Instantiate(michaelAttacks[i]);
+        }
     }
 
     // Update is called once per frame
@@ -52,10 +61,22 @@ public class MichaelFight : Enemy
             {
                 attackDelay = 3f;
                 attackInProgress = true;
-                currentAttack = Attacks[Random.Range(0, 3)];
+                attackNb = Random.Range(0, 3);
+                currentAttack = Attacks[attackNb];
             }
         }
-        ExecuteCurrentAttack();
+        else
+        {
+
+            if (michaelAttacks[attackNb].tempBossAttackReady)
+            {
+                ResetAttackState();
+            }
+            else
+            {
+                ExecuteCurrentAttack();
+            }
+        }
     }
 
     private void CheckAnimationSide()
@@ -89,22 +110,45 @@ public class MichaelFight : Enemy
 
     private void ExecuteCurrentAttack()
     {
-        switch (currentAttack)
+        if (attackInProgress)
         {
-            case "CHARGE":
-                FadedCharge();
-                break;
-            case "TELEPORT":
-                //TeleportUnder();
-                FadedCharge();
-                break;
-            case "PROJECTILE":
-                //ShootProjectile();
-                FadedCharge();
-                break;
+            switch (currentAttack)
+            {
+                case "CHARGE":
+                    StartFadedCharge();
+                    break;
+                case "TELEPORT":
+                    StartTeleportUnder();
+                    break;
+                case "PROJECTILE":
+                    StartProjectile();
+                    break;
+            }
         }
     }
 
+    public void ResetAttackState()
+    {
+        attackInProgress = false;
+        attackDelay = 3f;
+        michaelAttacks[attackNb].tempBossAttackReady = false;
+    }
+
+    private void StartFadedCharge()
+    {
+        michaelAttacks[0].Launch();
+    }
+
+    private void StartProjectile()
+    {
+        michaelAttacks[2].Launch();
+    }
+
+
+    private void StartTeleportUnder()
+    {
+        michaelAttacks[1].Launch();
+    }
 
     private void TeleportUnder()
     {
@@ -136,104 +180,104 @@ public class MichaelFight : Enemy
         }
     }
 
-    private void FadedCharge()
-    {
-        if (attackInProgress)
-        {
-            if (!charging)
-            {
-                Fadeing();
-            }
+    //private void FadedCharge()
+    //{
+    //    if (attackInProgress)
+    //    {
+    //        if (!charging)
+    //        {
+    //            Fadeing();
+    //        }
 
-            if (fadeAmount <= 0)
-            {
-                Disapear();
+    //        if (fadeAmount <= 0)
+    //        {
+    //            Disapear();
 
-                var vector2 = Random.insideUnitCircle.normalized * 10;
+    //            var vector2 = Random.insideUnitCircle.normalized * 10;
 
-                savedPlayerPos = player.transform.position;
+    //            savedPlayerPos = player.transform.position;
 
-                gameObject.transform.position = new Vector3(vector2.x + savedPlayerPos.x, vector2.y + savedPlayerPos.y, 0);
+    //            gameObject.transform.position = new Vector3(vector2.x + savedPlayerPos.x, vector2.y + savedPlayerPos.y, 0);
 
-                Vector3 bossPos = gameObject.transform.position;
+    //            Vector3 bossPos = gameObject.transform.position;
 
-                Vector3 spot = new Vector3(savedPlayerPos.x, savedPlayerPos.y, 0);
-                Vector3 position = (bossPos + spot) / 2;
+    //            Vector3 spot = new Vector3(savedPlayerPos.x, savedPlayerPos.y, 0);
+    //            Vector3 position = (bossPos + spot) / 2;
 
-                float distanceY = Mathf.Pow(Mathf.Abs(savedPlayerPos.y - bossPos.y), 2);
-                float distanceX = Mathf.Pow(Mathf.Abs(savedPlayerPos.x - bossPos.x), 2);
-                float distance = Mathf.Sqrt(distanceX + distanceY);
+    //            float distanceY = Mathf.Pow(Mathf.Abs(savedPlayerPos.y - bossPos.y), 2);
+    //            float distanceX = Mathf.Pow(Mathf.Abs(savedPlayerPos.x - bossPos.x), 2);
+    //            float distance = Mathf.Sqrt(distanceX + distanceY);
 
-                dangerRectangle.transform.rotation = Quaternion.LookRotation(Vector3.forward, position - bossPos) * Quaternion.Euler(0, 0, 90);
-                dangerRectangle.transform.position = position;
-                dangerRectangle.transform.localScale = new Vector3(distance / 5, 0.2f, 1);
+    //            dangerRectangle.transform.rotation = Quaternion.LookRotation(Vector3.forward, position - bossPos) * Quaternion.Euler(0, 0, 90);
+    //            dangerRectangle.transform.position = position;
+    //            dangerRectangle.transform.localScale = new Vector3(distance / 5, 0.2f, 1);
 
-                dangerRectangle.SetActive(true);
-            }
+    //            dangerRectangle.SetActive(true);
+    //        }
 
-            if (!fadeInProgress)
-            {
-                reactionTime -= Time.deltaTime;
+    //        if (!fadeInProgress)
+    //        {
+    //            reactionTime -= Time.deltaTime;
 
-                if (reactionTime <= 0)
-                {
-                    Reapear();
-                    charging = true;
-                    reactionTime = 1.5f;
-                }
-            }
+    //            if (reactionTime <= 0)
+    //            {
+    //                Reapear();
+    //                charging = true;
+    //                reactionTime = 1.5f;
+    //            }
+    //        }
 
-            if(fadeInProgress && charging)
-            {
-                dangerRectangle.SetActive(false);
-                transform.position = Vector2.MoveTowards(transform.position, savedPlayerPos, 1);
+    //        if(fadeInProgress && charging)
+    //        {
+    //            dangerRectangle.SetActive(false);
+    //            transform.position = Vector2.MoveTowards(transform.position, savedPlayerPos, 1);
 
-                if(transform.position == savedPlayerPos)
-                {
-                    attackInProgress = false;
-                    charging = false;
-                }
-            }
-        }
-    }
+    //            if(transform.position == savedPlayerPos)
+    //            {
+    //                attackInProgress = false;
+    //                charging = false;
+    //            }
+    //        }
+    //    }
+    //}
 
-    private void ShootProjectile()
-    {
-        if (attackInProgress)
-        {
-            Fadeing();
+    //private void ShootProjectile()
+    //{
+    //    if (attackInProgress)
+    //    {
+    //        Fadeing();
 
-            if (fadeAmount <= 0)
-            {
-                Disapear();
-            }
+    //        if (fadeAmount <= 0)
+    //        {
+    //            Disapear();
+    //        }
 
-            if (!fadeInProgress)
-            {
-                reactionTime -= Time.deltaTime;
+    //        if (!fadeInProgress)
+    //        {
+    //            reactionTime -= Time.deltaTime;
 
-                if (reactionTime <= 0)
-                {
-                    var vector2 = Random.insideUnitCircle.normalized * 10;
+    //            if (reactionTime <= 0)
+    //            {
+    //                var vector2 = Random.insideUnitCircle.normalized * 10;
 
-                    savedPlayerPos = player.transform.position;
+    //                savedPlayerPos = player.transform.position;
 
-                    gameObject.transform.position = new Vector3(vector2.x + savedPlayerPos.x, vector2.y + savedPlayerPos.y, 0);
+    //                gameObject.transform.position = new Vector3(vector2.x + savedPlayerPos.x, vector2.y + savedPlayerPos.y, 0);
 
-                    sprite.color = new Color(1f, 1f, 1f, 1f);
-                    Collider2D[] colliders = GetComponentsInChildren<Collider2D>(true);
-                    colliders[0].enabled = true;
-                    colliders[1].enabled = true;
+    //                sprite.color = new Color(1f, 1f, 1f, 1f);
+    //                Collider2D[] colliders = GetComponentsInChildren<Collider2D>(true);
+    //                colliders[0].enabled = true;
+    //                colliders[1].enabled = true;
 
-                    projectile.transform.position = transform.position;
-                    projectile.GetComponent<ProjectilleMovement>().SetDestination(savedPlayerPos);
-                    attackInProgress = false;
-                    fadeInProgress = true;
-                    reactionTime = 1.5f;
-                }
-            }
-        }
-    }
+    //                projectile.transform.position = transform.position;
+    //                projectile.GetComponent<ProjectilleMovement>().SetDestination(savedPlayerPos);
+    //                attackInProgress = false;
+    //                fadeInProgress = true;
+    //                reactionTime = 1.5f;
+    //            }
+    //        }
+    //    }
+    //}
 
     private void Disapear()
     {
