@@ -29,7 +29,7 @@ public class BossBofrerHomingBoltProjectile : Projectile
     {
 
     }
-    private void Update()
+    protected override void Update()
     {
         transform.position += speed * Time.deltaTime * transform.right;
         AdjustRotation();
