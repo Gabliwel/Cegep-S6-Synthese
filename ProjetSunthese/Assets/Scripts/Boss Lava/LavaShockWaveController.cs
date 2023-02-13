@@ -14,55 +14,56 @@ public class LavaShockWaveController : BossAttack
 
     private bool spread = false;
 
+    GameObject shockWaveMask;
+
     private Collider2D shockWaveCollider;
     private SpriteRenderer shockWaveSpriteRenderer;
     private Collider2D shockWaveMaskCollider;
     private SpriteMask shockWaveSpriteMask;
 
+    private Coroutine shockWaveCoroutine;
     void Awake()
     {
         originalScale = transform.localScale;
         maskController = GetComponentInChildren<LavaShockWaveMaskController>();
 
-        shockWaveCollider = GetComponent<Collider2D>();
+        shockWaveCollider = GetComponentInChildren<Collider2D>();
         shockWaveSpriteRenderer = GetComponent<SpriteRenderer>();
-        shockWaveMaskCollider = GetComponentInChildren<Collider2D>();
-        shockWaveSpriteMask = GetComponentInChildren<SpriteMask>();
+
+        shockWaveMaskCollider = transform.Find("LavaShockWaveMask").GetComponentInChildren<Collider2D>();
+        shockWaveSpriteMask = transform.Find("LavaShockWaveMask").GetComponent<SpriteMask>();
 
         sensor = GetComponentInChildren<Sensor>();
         playerSensor = sensor.For<Player>();
         playerSensor.OnSensedObject += OnPlayerSense;
         playerSensor.OnUnsensedObject += OnPlayerUnsense;
 
+        shockWaveCollider.enabled = false;
+        shockWaveMaskCollider.enabled = false;
     }
 
     void Update()
     {
         if (spread)
-        {
-            ReactivateColliderAndSprite();
             transform.localScale += transform.localScale * Time.deltaTime / 3;
-            livedTime += Time.deltaTime;
-            if (livedTime > timeToLive)
-            {
-                spread = false;
-                livedTime = 0;
-                ShrinkBackToOriginal();
-                DeactivateColliderAndSprite();
-            }
-        }
     }
 
-
+    private IEnumerator StartShockWave()
+    {
+        ReactivateColliderAndSprite();
+        livedTime = 10f;
+        yield return new WaitForSeconds(livedTime);
+        ShrinkBackToOriginal();
+        DeactivateColliderAndSprite();
+        spread = false;
+        StopCoroutine(shockWaveCoroutine);
+    }
 
     void OnPlayerSense(Player player)
     {
         if (!maskController.playerIsInSafeZone)
-        {
             player.Harm(damage);
-        }
     }
-
 
     void OnPlayerUnsense(Player player)
     {
@@ -98,5 +99,6 @@ public class LavaShockWaveController : BossAttack
     public override void Launch()
     {
         spread = true;
+        shockWaveCoroutine = StartCoroutine(StartShockWave());
     }
 }

@@ -15,6 +15,9 @@ public class LavaAura : BossAttack
     private bool activate = false;
     private Collider2D auraCollider;
     private float timer = 0f;
+    private Coroutine tickCoroutine;
+    private Coroutine auraCoroutine;
+    private int tickDamage;
     void Awake()
     {
         sensor = GetComponentInChildren<Sensor>();
@@ -26,45 +29,16 @@ public class LavaAura : BossAttack
         enemySensor.OnSensedObject += OnEnemyUnsense;
         particleSystem = GetComponentInChildren<ParticleSystem>();
         auraCollider = sensor.GetComponent<Collider2D>();
+        auraCollider.enabled = false;
     }
 
-    void Update()
+    private IEnumerator StartAura()
     {
-        timer += Time.deltaTime;
-        if (activate && timer < 10)
-        {
-            ActivateAura();
-        }
-        else
-        {
-            DespawnAura();
-        }
-        damageTicksTimer += Time.deltaTime;
-        if (player != null)
-        {
-            if(damageTicksTimer > 1)
-            {
-                player.Harm(damage);
-                damageTicksTimer = 0;
-            }
-        }
-        timeElapsed += Time.deltaTime;
-        CalculateAuraTiming();
-    }
-    
-    public void CalculateAuraTiming()
-    {
-        
-        if (timeElapsed < 10)
-        {
-            ActivateAura();
-        }
-        else if(timeElapsed > 10)
-        {
-            DespawnAura();
-            timeElapsed = 0;
-        }   
-        
+        ActivateAura();
+        timer = 10f;
+        yield return new WaitForSeconds(timer);
+        DespawnAura();
+        StopCoroutine(auraCoroutine);
     }
 
     public void DespawnAura()
@@ -75,40 +49,45 @@ public class LavaAura : BossAttack
 
     private void ActivateAura()
     {
-        if(!particleSystem.isPlaying)
-            particleSystem.Play();
+        
+        particleSystem.Play();
         auraCollider.enabled = true;
     }
 
     public override void Launch()
     {
-        throw new System.NotImplementedException();
+        auraCoroutine = StartCoroutine(StartAura());
+    }
+
+    IEnumerator Tick(Player player)
+    {
+        while (isActiveAndEnabled)
+        {
+            player.Harm(damage);
+            yield return new WaitForSeconds(tickDamage);
+        }
     }
 
     #region Sensor
+
     void OnEnemySense(EnemyLavaController enemy)
     {
-        Debug.Log("COde -1 9");
         enemy.Ascend();
     }
-
 
     void OnEnemyUnsense(EnemyLavaController enemy)
     {
 
     }
 
-
     void OnPlayerSense(Player player)
     {
-        player.Harm(damage);
-        this.player = player;
+        tickCoroutine = StartCoroutine(Tick(player));
     }
-
 
     void OnPlayerUnsense(Player player)
     {
-        this.player = null;
+        StopCoroutine(tickCoroutine);
     }
 
     #endregion

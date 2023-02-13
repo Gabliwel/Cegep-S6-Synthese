@@ -9,16 +9,16 @@ public class LavaBossController : Enemy
     [SerializeField] GameObject lavaAuraChild;
     private GameObject[] trailArray;
     float trailTimeElapsed = 0;
-    float auraTimeElapsed = 0;
+    float attackTimer = 0;
     LavaAura lavaAura;
     LavaShockWaveController lavaShockWave;
+
 
 
     void Awake()
     {
         lavaShockWave = GetComponentInChildren<LavaShockWaveController>(true);
         lavaAura = GetComponentInChildren<LavaAura>(true);
-        Debug.Log(lavaAura);
         trailArray = new GameObject[trailListSize];
         for (int i = 0; i < trailListSize; i++)
         {
@@ -30,10 +30,15 @@ public class LavaBossController : Enemy
     void Update()
     {
         trailTimeElapsed += Time.deltaTime;
-        auraTimeElapsed += Time.deltaTime;
+        attackTimer += Time.deltaTime;
+        if(attackTimer > 15)
+        {
+            lavaAura.Launch();
+            lavaShockWave.Launch();
+            attackTimer = 0;
+        }
         gameObject.transform.position = gameObject.transform.position + new Vector3(0.001f, 0.001f, 0);
         LeaveTrail();
-        CalculateAuraTiming();
     }
 
     public void LeaveTrail()
@@ -53,34 +58,7 @@ public class LavaBossController : Enemy
         }
     }
 
-    public void CalculateAuraTiming()
-    {
-        if(auraTimeElapsed > 10)
-        {
-            lavaAuraChild.SetActive(true);
-            gameObject.GetComponentInChildren<ParticleSystem>().Play();
-        }
-        if(auraTimeElapsed > 20)
-        {
-            lavaShockWave.Launch();
-            auraTimeElapsed = 0;
-            gameObject.GetComponentInChildren<ParticleSystem>().Stop();
-        }
-    }
-
-    [ContextMenu("NextLevel")]
-    public void NextLevelTest()
-    {
-        Debug.Log("Hellooooooo");
-        GameManager.instance.GetRandomNextLevelAndStart();
-    }
-
-    [ContextMenu("MainStage")]
-    public void GetBackToMainStage()
-    {
-        GameManager.instance.GetBackToMainStageAndStart();
-    }
-
+ 
     protected override void Drop()
     {
         Debug.Log("Je drop");
