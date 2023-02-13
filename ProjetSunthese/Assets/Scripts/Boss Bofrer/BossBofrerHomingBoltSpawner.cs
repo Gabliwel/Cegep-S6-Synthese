@@ -54,7 +54,7 @@ public class BossBofrerHomingBoltSpawner : BossAttack
             BossBofrerHomingBolt bolt = GetAvailableBolt();
             bolt.gameObject.SetActive(true);
             axis.z = rotation;
-            bolt.transform.rotation = Quaternion.Euler(axis);
+            bolt.transform.rotation = Quaternion.Euler(Vector3.down);
             bolt.transform.position = transform.position;
             float rad = i * Mathf.PI * 2 / ammount;
             Vector3 newPos = transform.position + (new Vector3(Mathf.Cos(rad) * ammount * boltDistance, Mathf.Sin(rad) * ammount * boltDistance + yAddedValue, 0));

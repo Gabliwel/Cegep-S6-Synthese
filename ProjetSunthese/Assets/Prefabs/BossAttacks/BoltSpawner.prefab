@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boltNb: 25
-  boltPrefab: {fileID: 8898137639781085136, guid: 7ee75a6a51e6f3f45931ffd1c0e4b393, type: 3}
+  boltPrefab: {fileID: 8952411512873279779, guid: 7ee75a6a51e6f3f45931ffd1c0e4b393, type: 3}
   minBoltNb: 8
   maxBoltNb: 10
   positionOffset: {x: 0, y: 0, z: 0}

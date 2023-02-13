@@ -2,35 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossBofrerHomingBolt : Projectile
+public class BossBofrerHomingBolt : MonoBehaviour
 {
-    [SerializeField] private float rotationSpeed;
-    private Player player;
+    private BossBofrerHomingBoltExplosion explosion;
+    private BossBofrerHomingBoltProjectile projectile;
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-    }
-    private void Update()
-    {
-        transform.position += speed * Time.deltaTime * transform.right;
-        AdjustRotation();
-        if (ttlTimer > 0)
-            ttlTimer -= Time.deltaTime;
-        else
-            gameObject.SetActive(false);
+        explosion = GetComponentInChildren<BossBofrerHomingBoltExplosion>();
+        projectile = GetComponentInChildren<BossBofrerHomingBoltProjectile>();
     }
 
-    private void AdjustRotation()
+    private void OnEnable()
     {
-        Vector2 targetDirection = player.transform.position - transform.position;
+        explosion.gameObject.SetActive(false);
+        projectile.gameObject.SetActive(true);
+        projectile.transform.position = transform.position;
+    }
 
-        targetDirection.Normalize();
+    public void ProjectileReached()
+    {
+        explosion.gameObject.SetActive(true);
+        explosion.transform.position = projectile.transform.position;
+    }
 
-        float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
-
+    public void ExplosionFinished()
+    {
+        gameObject.SetActive(false);
     }
 }
