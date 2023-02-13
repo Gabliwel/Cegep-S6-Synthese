@@ -20,13 +20,15 @@ public class MichaelProjectile : BossAttack
 
     public override void Launch()
     {
-        tempBossAttackReady = false;
+        gameObject.SetActive(true);
+        isAvailable = false;
         attackInProgress = true;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        isAvailable = false;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         boss = GameObject.FindGameObjectWithTag("Boss");
         bossSprite = boss.GetComponent<SpriteRenderer>();
@@ -72,7 +74,7 @@ public class MichaelProjectile : BossAttack
                     projectile.GetComponent<ProjectilleMovement>().SetDestination(savedPlayerPos);
                     attackInProgress = false;
                     reactionTime = 1.5f;
-                    tempBossAttackReady = true;
+                    isAvailable = true;
                 }
             }
         }

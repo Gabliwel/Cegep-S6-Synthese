@@ -11,11 +11,11 @@ public abstract class Projectile : MonoBehaviour
     protected float ttlTimer;
     [SerializeField] protected Vector2 destination;
 
-    void Update()
+    protected virtual void Update()
     {
         if (HasDestination())
         {
-            transform.position = Vector2.MoveTowards(transform.position, destination, speed);
+            transform.position = Vector2.MoveTowards(transform.position, destination, speed * Time.deltaTime);
             if (HasArrived())
             {
                 DestinationReached();
@@ -26,7 +26,7 @@ public abstract class Projectile : MonoBehaviour
         if (ttlTimer > 0)
             ttlTimer -= Time.deltaTime;
         else
-            gameObject.SetActive(false);
+            DestinationReached();
     }
 
     private void OnEnable()

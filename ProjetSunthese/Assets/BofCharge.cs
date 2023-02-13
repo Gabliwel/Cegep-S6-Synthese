@@ -54,7 +54,7 @@ public class BofCharge : BossAttack
     {
         Debug.Log("Test");
         attackInProgress = true;
-        tempBossAttackReady = false;
+        isAvailable = false;
     }
 
     private void FadedChargeAttack()
@@ -108,7 +108,7 @@ public class BofCharge : BossAttack
                 {
                     attackInProgress = false;
                     charging = false;
-                    tempBossAttackReady = true;
+                    isAvailable = true;
                 }
             }
         }

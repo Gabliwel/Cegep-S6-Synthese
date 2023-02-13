@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class BossAttack : MonoBehaviour
 {
-    public bool tempBossAttackReady;
+    protected bool isAvailable = true;
     public abstract void Launch();
+    public bool IsAvailable() { return isAvailable; }
 }

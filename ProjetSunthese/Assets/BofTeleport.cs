@@ -23,7 +23,7 @@ public class BofTeleport : BossAttack
     public override void Launch()
     {
         Debug.Log("Test");
-        tempBossAttackReady = false;
+        isAvailable = false;
         attackInProgress = true;
     }
 
@@ -61,7 +61,7 @@ public class BofTeleport : BossAttack
             if(duration <= 0)
             {
                 laserAoE.SetActive(false);
-                tempBossAttackReady = true;
+                isAvailable = true;
             }
         }
     }

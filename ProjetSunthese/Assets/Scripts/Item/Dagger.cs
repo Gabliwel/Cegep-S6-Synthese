@@ -9,12 +9,12 @@ public class Dagger : WeaponsChange
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    void Update()
+   /* void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && playerInbound)
         {
             player.GetComponent<Player>().SwitchWeaponType(3);
             gameObject.SetActive(false);
         }
-    }
+    }*/
 }

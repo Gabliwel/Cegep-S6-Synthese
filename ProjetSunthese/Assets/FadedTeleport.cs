@@ -18,13 +18,15 @@ public class FadedTeleport : BossAttack
 
     public override void Launch()
     {
-        tempBossAttackReady = false;
+        gameObject.SetActive(true);
+        isAvailable = false;
         attackInProgress = true;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        isAvailable = false;
         boss = GameObject.FindGameObjectWithTag("Boss");
         bossSprite = boss.GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -64,7 +66,7 @@ public class FadedTeleport : BossAttack
                     dangerCircle.SetActive(false);
                     attackInProgress = false;
                     reactionTime = 1.5f;
-                    tempBossAttackReady = true;
+                    isAvailable = true;
                 }
             }
         }

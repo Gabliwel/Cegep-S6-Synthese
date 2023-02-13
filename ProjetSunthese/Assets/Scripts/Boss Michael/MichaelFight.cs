@@ -22,10 +22,6 @@ public class MichaelFight : Enemy
 
     private float attackDelay = 3f;
     private float reactionTime = 1.5f;
-    private Vector3 savedPlayerPos;
-    private bool charging = false;
-
-    private float attackDuration = 2.5f;
 
     private Animator animator;
 
@@ -63,18 +59,14 @@ public class MichaelFight : Enemy
                 attackInProgress = true;
                 attackNb = Random.Range(0, 3);
                 currentAttack = Attacks[attackNb];
+                ExecuteCurrentAttack();
             }
         }
         else
         {
-
-            if (michaelAttacks[attackNb].tempBossAttackReady)
+            if (michaelAttacks[attackNb].IsAvailable())
             {
                 ResetAttackState();
-            }
-            else
-            {
-                ExecuteCurrentAttack();
             }
         }
     }
@@ -110,13 +102,11 @@ public class MichaelFight : Enemy
 
     private void ExecuteCurrentAttack()
     {
-        if (attackInProgress)
-        {
             switch (currentAttack)
             {
                 case "CHARGE":
-                    StartFadedCharge();
-                    break;
+                StartFadedCharge();
+                break;
                 case "TELEPORT":
                     StartTeleportUnder();
                     break;
@@ -124,14 +114,13 @@ public class MichaelFight : Enemy
                     StartProjectile();
                     break;
             }
-        }
     }
 
     public void ResetAttackState()
     {
         attackInProgress = false;
         attackDelay = 3f;
-        michaelAttacks[attackNb].tempBossAttackReady = false;
+        //michaelAttacks[attackNb]
     }
 
     private void StartFadedCharge()

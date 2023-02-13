@@ -13,8 +13,14 @@ public class BossBofrer : Enemy
     [Header("Shield Minions")]
     [SerializeField] private BossBofrerShieldMinionSpawner shieldMinionSpawnerPrefab;
     [SerializeField] private bool shieldActive;
+    [Header("Homing Bolts")]
+    [SerializeField] private BossBofrerHomingBoltSpawner boltSpawnerPrefab;
+    [Header("Ball")]
+    [SerializeField] private BossBofrerBall ballPrefab;
+    private BossBofrerHomingBoltSpawner boltSpawner;
     private BossBofrerShieldMinionSpawner minionSpawner;
     private BossBofrerBFL bfl;
+    private BossBofrerBall ball;
     private Animator animator;
     private GameObject shield;
     private void Awake()
@@ -25,6 +31,10 @@ public class BossBofrer : Enemy
         bfl.gameObject.SetActive(false);
         minionSpawner = Instantiate(shieldMinionSpawnerPrefab);
         minionSpawner.transform.position = transform.position;
+        boltSpawner = Instantiate(boltSpawnerPrefab);
+        boltSpawner.transform.position = transform.position;
+        ball = Instantiate(ballPrefab);
+        ball.transform.position = transform.position;
         animator = GetComponent<Animator>();
         shield = transform.Find("Shield").gameObject;
         shield.SetActive(false);
@@ -40,6 +50,10 @@ public class BossBofrer : Enemy
             StartBFL();
         if (Input.GetKeyDown(KeyCode.K))
             StartMinionSpawn();
+        if (Input.GetKeyDown(KeyCode.L))
+            StartBoltSpawn();
+        if (Input.GetKeyDown(KeyCode.H))
+            StartBallAttack();
         shieldActive = minionSpawner.AnyMinionActive();
         shield.SetActive(shieldActive);
     }
@@ -81,6 +95,16 @@ public class BossBofrer : Enemy
     void StartMinionSpawn()
     {
         minionSpawner.Launch();
+    }
+
+    void StartBoltSpawn()
+    {
+        boltSpawner.Launch();
+    }
+
+    void StartBallAttack()
+    {
+        ball.Launch();
     }
 
     IEnumerator BFLRoutine()

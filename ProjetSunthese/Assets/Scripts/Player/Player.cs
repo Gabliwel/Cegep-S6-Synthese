@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Weapons;
 
 public class Player : MonoBehaviour
 {
     private PlayerAnimationController animationController;
     private PlayerMovement playerMovement;
     private Weapon weapon;
-    private int currentWeapon = 4;
     private float iframesTimer;
 
     [Header("Health")]
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     [SerializeField] int level;
 
     [SerializeField] GameObject[] possibleWeapons;
-    private WeaponSwitchManager switchWeapon;
+    //private WeaponSwitchManager switchWeapon;
 
     private int poisonDamage = 0;
 
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        switchWeapon = GameObject.FindGameObjectWithTag("WeaponSwitch").GetComponent<WeaponSwitchManager>();
+        //switchWeapon = GameObject.FindGameObjectWithTag("WeaponSwitch").GetComponent<WeaponSwitchManager>();
         animationController = GetComponent<PlayerAnimationController>();
         playerMovement = GetComponent<PlayerMovement>();
         weapon = GetComponentInChildren<Weapon>();
@@ -200,7 +200,44 @@ public class Player : MonoBehaviour
         return poisonDamage;
     }
 
-    public void SwitchWeaponType(int weaponNb)
+    public void SwitchWeapon(GameObject newWeapon)
+    {
+        WeaponInformations info = newWeapon.GetComponent<WeaponInformations>();
+
+        Transform weaponParent = weapon.transform.parent;
+        weapon.transform.parent = null;
+
+        WeaponInformations oldWeaponInfo = weapon.GetComponent<WeaponInformations>();
+        oldWeaponInfo.gameObject.transform.position = gameObject.transform.position;
+        oldWeaponInfo.gameObject.transform.localScale = oldWeaponInfo.GetScaleNotWithPlayer();
+        oldWeaponInfo.gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        oldWeaponInfo.SwitchToInteractable();
+
+        weapon = newWeapon.GetComponent<Weapon>();
+
+        newWeapon.transform.SetParent(weaponParent.transform, true);
+        WeaponInformations newWeaponInfo = newWeapon.GetComponent<WeaponInformations>();
+        newWeapon.transform.localPosition = newWeaponInfo.GetPositionWithPlayer();
+        newWeapon.transform.localScale = new Vector3(1, 1, 1);
+        weapon.gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        newWeaponInfo.SwitchToWeapon();
+        weapon.SetDefault();
+
+        switch (info.GetWeaponType())
+        {
+            case WeaponsType.AXE:
+                
+                break;
+            case WeaponsType.BOW:
+                break;
+            case WeaponsType.DAGUER:
+                break;
+            case WeaponsType.SWORD:
+                break;
+        }
+    }
+
+   /* public void SwitchWeaponType(int weaponNb)
     {
         if(weapon.gameObject.tag == "Melee" && weaponNb == 4)
         {
@@ -222,7 +259,7 @@ public class Player : MonoBehaviour
         }
         switchWeapon.SwitchWeaponOnGround(currentWeapon, transform.position);
         currentWeapon = weaponNb;
-    }
+    }*/
 
 
     public void GainGold(int amount)

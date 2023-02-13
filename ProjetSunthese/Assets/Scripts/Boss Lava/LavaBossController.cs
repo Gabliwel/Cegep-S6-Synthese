@@ -9,31 +9,37 @@ public class LavaBossController : Enemy
     [SerializeField] GameObject lavaAuraChild;
     private GameObject[] trailArray;
     float trailTimeElapsed = 0;
-    float auraTimeElapsed = 0;
-    LavaAura lavaAura;
-    LavaShockWaveController lavaShockWave;
-
+    float attackTimer = 0;
+    private LavaAura lavaAura;
+    private LavaShockWaveController lavaShockWave;
+    private GameObject player;
+    private int speed =3 ;
 
     void Awake()
     {
         lavaShockWave = GetComponentInChildren<LavaShockWaveController>(true);
         lavaAura = GetComponentInChildren<LavaAura>(true);
-        Debug.Log(lavaAura);
         trailArray = new GameObject[trailListSize];
         for (int i = 0; i < trailListSize; i++)
         {
             trailArray[i] = Instantiate(trail);
             trailArray[i].SetActive(false);
         }
+        player =GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
     {
         trailTimeElapsed += Time.deltaTime;
-        auraTimeElapsed += Time.deltaTime;
-        gameObject.transform.position = gameObject.transform.position + new Vector3(0.001f, 0.001f, 0);
+        attackTimer += Time.deltaTime;
+        if(attackTimer > 15)
+        {
+            lavaAura.Launch();
+            lavaShockWave.Launch();
+            attackTimer = 0;
+        }
+        gameObject.transform.position = Vector2.MoveTowards(transform.position,player.transform.position, speed * Time.deltaTime);
         LeaveTrail();
-        CalculateAuraTiming();
     }
 
     public void LeaveTrail()
@@ -53,45 +59,7 @@ public class LavaBossController : Enemy
         }
     }
 
-    public void CalculateAuraTiming()
-    {
-        if(auraTimeElapsed > 10)
-        {
-            lavaAuraChild.SetActive(true);
-            lavaShockWave.gameObject.SetActive(true);
-            gameObject.GetComponentInChildren<ParticleSystem>().Play();
-        }
-        if(auraTimeElapsed > 20)
-        {
-            auraTimeElapsed = 0;
-            lavaShockWave.gameObject.SetActive(false);
-            gameObject.GetComponentInChildren<ParticleSystem>().Stop();
-        }
-    }
-
-    [ContextMenu("NextLevel")]
-    public void NextLevelTest()
-    {
-        Debug.Log("Hellooooooo");
-        GameManager.instance.GetRandomNextLevelAndStart();
-    }
-
-    [ContextMenu("MainStage")]
-    public void GetBackToMainStage()
-    {
-        GameManager.instance.GetBackToMainStageAndStart();
-    }
-
-    public override void Harm(float ammount, float overtimeDamage)
-    {
-        base.Harm(ammount, overtimeDamage);
-    }
-
-    public override void Die()
-    {
-        base.Die();
-    }
-
+ 
     protected override void Drop()
     {
         Debug.Log("Je drop");

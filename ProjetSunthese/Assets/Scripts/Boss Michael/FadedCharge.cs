@@ -20,7 +20,7 @@ public class FadedCharge : BossAttack
 
     void Start()
     {
-        tempBossAttackReady = false;
+        isAvailable = false;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         boss = GameObject.FindGameObjectWithTag("Boss");
         bossSprite = boss.GetComponent<SpriteRenderer>();
@@ -39,7 +39,7 @@ public class FadedCharge : BossAttack
     public override void Launch()
     {
         attackInProgress = true;
-        tempBossAttackReady = false;
+        isAvailable = false;
     }
 
     private void FadedChargeAttack()
@@ -99,7 +99,7 @@ public class FadedCharge : BossAttack
                 {
                     attackInProgress = false;
                     charging = false;
-                    tempBossAttackReady = true;
+                    isAvailable = true;
                 }
             }
         }
