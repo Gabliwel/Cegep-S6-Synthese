@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4a674686aca9672449349e421119c0bf
+guid: a930f11dd3d99ff43ac701463fd99176
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -45,10 +45,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chests_0
+      name: pixel-chest_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 725ab224960749c4aae0351672aa1643
-      internalID: -1017041049
+      spriteID: 2d76f41930069284d96274d300b74ae0
+      internalID: 116124136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chests_1
+      name: pixel-chest_1
       rect:
         serializedVersion: 2
         x: 16
@@ -142,35 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7434ac5ecf1caa418b3d8213b7496b6
-      internalID: 361531531
+      spriteID: d787f1448eeca2a4da853456493ffb3d
+      internalID: 548970884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chests_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e06c3c5a226735d40b3640d9514e9c0a
-      internalID: -81115727
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chests_3
+      name: pixel-chest_2
       rect:
         serializedVersion: 2
         x: 0
@@ -184,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e5b32220cb0fa74bbc731124ee11e9b
-      internalID: 2057364154
+      spriteID: 344f12a107b7d6b4c964d0f035c9e0dc
+      internalID: 62364568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chests_4
+      name: pixel-chest_3
       rect:
         serializedVersion: 2
         x: 16
@@ -205,35 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69b0e8de466e84844834a0ccb829d629
-      internalID: 757893173
+      spriteID: 00285e53d1de63345a18965d364ae9ca
+      internalID: -949753649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chests_5
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6730f35f7163fb147b299ffbb50b9b77
-      internalID: 792727585
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chests_6
+      name: pixel-chest_4
       rect:
         serializedVersion: 2
         x: 0
@@ -247,14 +205,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70efccc9bc2df9d4282b487c55d133bc
-      internalID: -1237564801
+      spriteID: e2be7f5e02dd11b4384e46d79519e1c1
+      internalID: 1984634752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chests_7
+      name: pixel-chest_5
       rect:
         serializedVersion: 2
         x: 16
@@ -268,35 +226,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8abe5055112e4e24dbb4a1ca7eeba70a
-      internalID: -1085000833
+      spriteID: 19f938d649eb2c645a7391c072b753e4
+      internalID: -835349641
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chests_8
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ae14509a911166418cefc62a71be4f4
-      internalID: -1718682409
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chests_9
+      name: pixel-chest_6
       rect:
         serializedVersion: 2
         x: 0
@@ -310,14 +247,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64cea2dfb6586a14886c6fb4a56bd91a
-      internalID: 715628111
+      spriteID: 46d06fb13cdf96344b7ea7c83d25a02a
+      internalID: -1057654784
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chests_10
+      name: pixel-chest_7
       rect:
         serializedVersion: 2
         x: 16
@@ -331,35 +268,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55a71739901e8bf468ad42f082dbdfcc
-      internalID: 1785255502
+      spriteID: 7eda214a7d6ba1947a4fadacac48b6da
+      internalID: -2142691371
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chests_11
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 97f6515cc2dfc504c97ed398e92ce070
-      internalID: 885258187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chests_12
+      name: pixel-chest_8
       rect:
         serializedVersion: 2
         x: 0
@@ -373,14 +289,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d540d0c5c2f8fd349a376483855131de
-      internalID: -927541376
+      spriteID: a025ee4de282f014fa34321f55aed3ac
+      internalID: 1284512546
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chests_13
+      name: pixel-chest_9
       rect:
         serializedVersion: 2
         x: 16
@@ -394,35 +310,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4052ed3cb316e54883f4d720b757680
-      internalID: 1532918642
+      spriteID: 1a5081fb78e01f3449ec164c19bbfe36
+      internalID: 1494545071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chests_14
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 52239790fd244c045a749031cb795453
-      internalID: 850165531
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chests_15
+      name: pixel-chest_10
       rect:
         serializedVersion: 2
         x: 0
@@ -436,14 +331,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a509c97869a8bb944885b020fb123b66
-      internalID: -87593393
+      spriteID: 1c75c6be90c166640bf8a549e98ee3a4
+      internalID: 1684908906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chests_16
+      name: pixel-chest_11
       rect:
         serializedVersion: 2
         x: 16
@@ -457,35 +352,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 243f426727a03e4469ba6d91be30ee77
-      internalID: -1553945363
+      spriteID: 7bca760c25f09a64c9b01be1b1b64951
+      internalID: 1699548574
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chests_17
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4c464f2d04ba47b40a60aff2286c9e72
-      internalID: 140941110
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chests_18
+      name: pixel-chest_12
       rect:
         serializedVersion: 2
         x: 0
@@ -499,14 +373,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9753bde1e61a3e439aa124cfca54154
-      internalID: 1609612746
+      spriteID: d776b75eb807300498ecf43cae5d3587
+      internalID: 103323693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chests_19
+      name: pixel-chest_13
       rect:
         serializedVersion: 2
         x: 16
@@ -520,35 +394,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6dc52dd3e27ab924cb948983a61778a8
-      internalID: -1398361226
+      spriteID: 4633f5cf0b2990148937da6a4e389089
+      internalID: 1254442680
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chests_20
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 86c9a866f2f9167438a8562679cee424
-      internalID: 1776423247
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chests_21
+      name: pixel-chest_14
       rect:
         serializedVersion: 2
         x: 0
@@ -562,14 +415,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57b5ad023eb272649949419d2018ddfa
-      internalID: 2072069333
+      spriteID: a651fb9df15dfb647a1cc559a09f1855
+      internalID: 1963383404
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chests_22
+      name: pixel-chest_15
       rect:
         serializedVersion: 2
         x: 16
@@ -583,29 +436,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1484569ec255cf44cb2d857c3a2d598d
-      internalID: -1821915586
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chests_23
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ff10fc3f5720be41863508bb80ea11e
-      internalID: 181767003
+      spriteID: ad8b288c60c4ce445bf7eda353c3ef99
+      internalID: 1861034056
       vertices: []
       indices: 
       edges: []
@@ -621,30 +453,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      chests_14: 850165531
-      chests_7: -1085000833
-      chests_21: 2072069333
-      chests_6: -1237564801
-      chests_4: 757893173
-      chests_0: -1017041049
-      chests_9: 715628111
-      chests_19: -1398361226
-      chests_18: 1609612746
-      chests_2: -81115727
-      chests_23: 181767003
-      chests_8: -1718682409
-      chests_11: 885258187
-      chests_13: 1532918642
-      chests_5: 792727585
-      chests_16: -1553945363
-      chests_22: -1821915586
-      chests_3: 2057364154
-      chests_12: -927541376
-      chests_17: 140941110
-      chests_20: 1776423247
-      chests_1: 361531531
-      chests_15: -87593393
-      chests_10: 1785255502
+      pixel-chest_12: 103323693
+      pixel-chest_3: -949753649
+      pixel-chest_8: 1284512546
+      pixel-chest_0: 116124136
+      pixel-chest_2: 62364568
+      pixel-chest_5: -835349641
+      pixel-chest_15: 1861034056
+      pixel-chest_10: 1684908906
+      pixel-chest_6: -1057654784
+      pixel-chest_13: 1254442680
+      pixel-chest_1: 548970884
+      pixel-chest_9: 1494545071
+      pixel-chest_14: 1963383404
+      pixel-chest_11: 1699548574
+      pixel-chest_4: 1984634752
+      pixel-chest_7: -2142691371
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

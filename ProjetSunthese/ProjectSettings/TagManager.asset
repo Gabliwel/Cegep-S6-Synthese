@@ -18,6 +18,7 @@ TagManager:
   - Life
   - ArenaLimitTopLeft
   - ArenaLimitBottomRight
+  - FollowingBoss
   layers:
   - Default
   - TransparentFX

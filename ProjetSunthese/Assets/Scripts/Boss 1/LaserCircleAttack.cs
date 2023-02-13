@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserCircleAttack : MonoBehaviour
+public class LaserCircleAttack : BossAttack
 {
     [SerializeField] private GameObject prefab;
 
@@ -17,7 +17,6 @@ public class LaserCircleAttack : MonoBehaviour
     [SerializeField] private float bulletFirstDistance;
 
     private GameObject[] lasers;
-    private bool isAvailable = true;
 
     void Start()
     {
@@ -30,7 +29,7 @@ public class LaserCircleAttack : MonoBehaviour
         }
     }
 
-    public void Launch()
+    public override void Launch()
     {
         isAvailable = false;
         for (int i = 0; i < numberBullets; i++)
@@ -90,10 +89,5 @@ public class LaserCircleAttack : MonoBehaviour
         }
 
         isAvailable = true;
-    }
-
-    public bool IsUsable()
-    {
-        return isAvailable;
     }
 }
