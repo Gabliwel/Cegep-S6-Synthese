@@ -18,11 +18,6 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected float cooldownTimer;
     [SerializeField] protected float poisonDamage;
 
-    [Header("Melee weapons sprite")]
-    [SerializeField] Sprite sword;
-    [SerializeField] Sprite axe;
-    [SerializeField] Sprite dagger;
-    protected Player player;
     protected bool doubleNumber;
 
     protected float defaultStartup;
@@ -31,7 +26,13 @@ public abstract class Weapon : MonoBehaviour
     protected virtual void Awake()
     {
         rotationPoint = transform.parent;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        defaultStartup = startup;
+        defaultRecovery = recovery;
+    }
+
+    public void SetDefault()
+    {
+        rotationPoint = transform.parent;
         defaultStartup = startup;
         defaultRecovery = recovery;
     }
@@ -91,7 +92,7 @@ public abstract class Weapon : MonoBehaviour
         damage++;
     }
 
-    public void SwitchWeapon(int weaponNb)
+   /* public void SwitchWeapon(int weaponNb)
     {
         int currentDamageBoost = player.GetDamageBoost();
         float currentSpeed = player.GetAttackSpeed();
@@ -142,7 +143,7 @@ public abstract class Weapon : MonoBehaviour
                 recovery = defaultRecovery - speedIncrease * defaultRecovery;
                 break;
         }
-    }
+    }*/
 
     protected abstract IEnumerator Attack();
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LavaThrowAttack : MonoBehaviour
+public class LavaThrowAttack : BossAttack
 {
     [SerializeField] private GameObject prefab;
 
@@ -23,12 +23,12 @@ public class LavaThrowAttack : MonoBehaviour
 
         for (int i = 0; i < numberLavaObjects; i++)
         {
-            lavaObjects[i] = Instantiate(prefab, transform);
+            lavaObjects[i] = Instantiate(prefab);
             lavaObjects[i].SetActive(false);
         }
     }
 
-    public void Launch()
+    public override void Launch()
     {
         // max is exclusive
         int rand = Random.Range(minToThrow, maxToThrow + 1);
