@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,28 +10,30 @@ public class Player : MonoBehaviour
     private PlayerAnimationController animationController;
     private PlayerMovement playerMovement;
     private Weapon weapon;
+    private WeaponInformations weaponInfo;
+    private Inventory inventory;
+    private PlayerLight playerLight;
+    private ProjectilesManager projectilesManager;
+    private SpriteRenderer sprite;
     private float iframesTimer;
 
     [Header("Health")]
-    [SerializeField] float MAX_HEALTH;
-    [SerializeField] float currentHealth;
+    [SerializeField] private float MAX_HEALTH;
+    [SerializeField] private float currentHealth;
 
     private int armorBonus = 0;
 
     [Header("Unique Buff")]
-    [SerializeField] bool secondChance;
-    [SerializeField] bool deathContract;
-    [SerializeField] bool doubleNumber;
-    [SerializeField] bool bloodSuck;
-    [SerializeField] bool stoneHeart;
+    [SerializeField] private bool secondChance;
+    [SerializeField] private bool deathContract;
+    [SerializeField] private bool doubleNumber;
+    [SerializeField] private bool bloodSuck;
+    [SerializeField] private bool stoneHeart;
 
     [Header("Ressources")]
-    [SerializeField] int gold;
-    [SerializeField] int xp;
-    [SerializeField] int level;
-
-    [SerializeField] GameObject[] possibleWeapons;
-    //private WeaponSwitchManager switchWeapon;
+    [SerializeField] private int gold;
+    [SerializeField] private int xp;
+    [SerializeField] private int level;
 
     private int poisonDamage = 0;
 
@@ -39,6 +42,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+<<<<<<< HEAD
         if (instance == null)
             instance = this;
 
@@ -48,9 +52,19 @@ public class Player : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         //switchWeapon = GameObject.FindGameObjectWithTag("WeaponSwitch").GetComponent<WeaponSwitchManager>();
+=======
+        sprite = GetComponent<SpriteRenderer>();
+>>>>>>> 06d6c925b336295fdd65f36169f803dc3f21d024
         animationController = GetComponent<PlayerAnimationController>();
         playerMovement = GetComponent<PlayerMovement>();
         weapon = GetComponentInChildren<Weapon>();
+        weaponInfo = weapon.gameObject.GetComponent<WeaponInformations>();
+        playerLight = GetComponentInChildren<PlayerLight>();
+    }
+
+    private void Start()
+    {
+        animationController.ChangeOnWeaponType(weaponInfo.GetWeaponType());
     }
 
     private void Update()
@@ -209,15 +223,50 @@ public class Player : MonoBehaviour
         return poisonDamage;
     }
 
+    public void ChangeLayer(string layer, string sortingLayer)
+    {
+        gameObject.layer = LayerMask.NameToLayer(layer);
+        sprite.sortingLayerName = sortingLayer;
+        weaponInfo.ChangeLayer(layer, sortingLayer);
+        playerLight.UpdateLightUsage(sortingLayer);
+    }
+
+    public void BlocMovement(bool state)
+    {
+        if(state) playerMovement.DisableMovement();
+        else playerMovement.EnableMovement();
+    }
+
+    public void BlocAttack(bool state)
+    {
+        weapon.gameObject.SetActive(!state);
+    }
+
+    public void SetProjectilesManager(ProjectilesManager newProjectilesManager)
+    {
+        projectilesManager = newProjectilesManager;
+        SetCurrentWeapon();
+    }
+
+    private void SetCurrentWeapon()
+    {
+        if(weaponInfo.GetWeaponType() == WeaponsType.BOW)
+        {
+            weapon.gameObject.GetComponent<Ranged>().SetProjectiles(projectilesManager.GetArrows());
+        }
+    }
+
     public void SwitchWeapon(GameObject newWeapon)
     {
-        WeaponInformations info = newWeapon.GetComponent<WeaponInformations>();
+        Vector3 originalPosition = newWeapon.transform.position;
+
+        weapon.EndAttack();
 
         Transform weaponParent = weapon.transform.parent;
         weapon.transform.parent = null;
 
         WeaponInformations oldWeaponInfo = weapon.GetComponent<WeaponInformations>();
-        oldWeaponInfo.gameObject.transform.position = gameObject.transform.position;
+        oldWeaponInfo.gameObject.transform.position = originalPosition;
         oldWeaponInfo.gameObject.transform.localScale = oldWeaponInfo.GetScaleNotWithPlayer();
         oldWeaponInfo.gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
         oldWeaponInfo.SwitchToInteractable();
@@ -226,50 +275,21 @@ public class Player : MonoBehaviour
 
         newWeapon.transform.SetParent(weaponParent.transform, true);
         WeaponInformations newWeaponInfo = newWeapon.GetComponent<WeaponInformations>();
+        weaponInfo = newWeaponInfo;
+
         newWeapon.transform.localPosition = newWeaponInfo.GetPositionWithPlayer();
         newWeapon.transform.localScale = new Vector3(1, 1, 1);
         weapon.gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
         newWeaponInfo.SwitchToWeapon();
         weapon.SetDefault();
 
-        switch (info.GetWeaponType())
+        //change anim et autre...
+        animationController.ChangeOnWeaponType(weaponInfo.GetWeaponType());
+        if(weaponInfo.GetWeaponType() == WeaponsType.BOW)
         {
-            case WeaponsType.AXE:
-                
-                break;
-            case WeaponsType.BOW:
-                break;
-            case WeaponsType.DAGUER:
-                break;
-            case WeaponsType.SWORD:
-                break;
+            weapon.gameObject.GetComponent<Ranged>().SetProjectiles(projectilesManager.GetArrows());
         }
     }
-
-   /* public void SwitchWeaponType(int weaponNb)
-    {
-        if(weapon.gameObject.tag == "Melee" && weaponNb == 4)
-        {
-            weapon.gameObject.SetActive(false);
-            possibleWeapons[0].SetActive(true);
-            weapon = possibleWeapons[0].GetComponent<Weapon>();
-            weapon.SwitchWeapon(weaponNb);
-        }
-        else if (weapon.gameObject.tag == "Ranged")
-        {
-            weapon.gameObject.SetActive(false);
-            possibleWeapons[1].SetActive(true);
-            weapon = possibleWeapons[1].GetComponent<Weapon>();
-            weapon.SwitchWeapon(weaponNb);
-        }
-        else
-        {
-            weapon.SwitchWeapon(weaponNb);
-        }
-        switchWeapon.SwitchWeaponOnGround(currentWeapon, transform.position);
-        currentWeapon = weaponNb;
-    }*/
-
 
     public void GainGold(int amount)
     {

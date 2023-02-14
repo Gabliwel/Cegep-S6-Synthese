@@ -224,8 +224,7 @@ MonoBehaviour:
   lavaBossAttackPrefabs:
   - {fileID: 706298543432613032, guid: d3f163a0c04e2ad449fd2ad72011a3a6, type: 3}
   - {fileID: 8912023561678747702, guid: 72ed6d19577505644a28a3e3b8860fbb, type: 3}
-  stolenAttacks:
-  - {fileID: 0}
+  stolenAttacks: []
   bflPrefab: {fileID: 4592944309761159550, guid: 73fa87cbf6d578e41a03f0a81e281fac, type: 3}
   bflChargeup: 2
   shieldMinionSpawnerPrefab: {fileID: 8566137690466289898, guid: f80b40905b1575d459a9444dfd0b6192, type: 3}

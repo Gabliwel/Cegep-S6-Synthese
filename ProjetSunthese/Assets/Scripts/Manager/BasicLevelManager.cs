@@ -6,6 +6,7 @@ using UnityEngine;
 public class BasicLevelManager : MonoBehaviour
 {
     private GameObject player;
+    private Player playerScript;
     private GameObject boss;
     private GameObject followingBoss;
 
@@ -42,6 +43,8 @@ public class BasicLevelManager : MonoBehaviour
         followingBoss = GameObject.FindGameObjectWithTag("FollowingBoss");
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
+        playerScript = player.GetComponent<Player>();
+
         ChangeListsActivation(true);
         SetStartPositions();
 
@@ -51,6 +54,7 @@ public class BasicLevelManager : MonoBehaviour
 
     protected virtual void SetStartPositions()
     {
+        playerScript.ChangeLayer(spawnLayer, spawnLayer);
         player.transform.position = firstPlayerTrans.position;
         followingBoss.transform.position = followingBossTrans.position;
     }
@@ -69,6 +73,9 @@ public class BasicLevelManager : MonoBehaviour
 
     protected virtual IEnumerator Cinematic()
     {
+        playerScript.BlocMovement(true);
+        playerScript.BlocAttack(true);
+
         float firstOrthographicSize = cam.orthographicSize;
         FollowPlayer f = cam.GetComponent<FollowPlayer>();
         f.enabled = false;
@@ -134,6 +141,8 @@ public class BasicLevelManager : MonoBehaviour
 
         f.enabled = true;
         followingBoss.GetComponent<AnimatedFollow>().StartChasing(player.transform, this);
+        playerScript.BlocMovement(false);
+        playerScript.BlocAttack(false);
     }
 
     // Status du "during" en param, et iverse pour le "after"
@@ -156,6 +165,8 @@ public class BasicLevelManager : MonoBehaviour
 
     protected virtual IEnumerator TransitionToBoss()
     {
+        playerScript.BlocMovement(true);
+        playerScript.BlocAttack(true);
         yield return new WaitForSeconds(0.2f);
         //do something (sound, anim...)
 
@@ -166,10 +177,13 @@ public class BasicLevelManager : MonoBehaviour
         followingBoss.SetActive(false);
         boss.transform.position = bossTrans.position;
         player.transform.position = secondPlayerTrans.position;
+        playerScript.ChangeLayer(bossLayer, bossLayer);
         boss.SetActive(true);
         cinematicBars.Deactivate(0.75f);
         yield return new WaitForSeconds(1f);
         //begin movement and attack
+        playerScript.BlocMovement(false);
+        playerScript.BlocAttack(false);
     }
 
     protected virtual void FirstSpawn()

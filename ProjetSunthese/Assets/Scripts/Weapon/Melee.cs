@@ -83,4 +83,9 @@ public class Melee : Weapon
         orbit = true;
     }
 
+    protected override void EndAttackSpecifics()
+    {
+        cooldownTimer = 0;
+        DeactivateSensor();
+    }
 }
