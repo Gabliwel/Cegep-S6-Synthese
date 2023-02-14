@@ -7,6 +7,7 @@ public class BossBofrer : Enemy
     [Header("Attack Steal")]
     [SerializeField] private List<BossAttack> mountainBossAttackPrefabs;
     [SerializeField] private List<BossAttack> lavaBossAttackPrefabs;
+    [SerializeField] private List<BossAttack> bobBossAttackPrefabs;
     [SerializeField] private List<BossAttack> stolenAttacks;
     [Header("BFL")]
     [SerializeField] private BossBofrerBFL bflPrefab;
@@ -46,7 +47,7 @@ public class BossBofrer : Enemy
         if (Input.GetKeyDown(KeyCode.U))
             StartRandomStolenAttack();
         if (Input.GetKeyDown(KeyCode.I))
-            StealRandomLavaAttack();
+            StealRandomBobAttack();
         if (Input.GetKeyDown(KeyCode.J))
             StartBFL();
         if (Input.GetKeyDown(KeyCode.K))
@@ -84,6 +85,15 @@ public class BossBofrer : Enemy
         stolenAttacks[stolenAttacks.Count - 1].transform.position = transform.position;
         stolenAttacks[stolenAttacks.Count - 1].gameObject.SetActive(false);
         Debug.Log("stole " + lavaBossAttackPrefabs[num].name + " number " + num);
+    }
+
+    void StealRandomBobAttack()
+    {
+        int num = Random.Range(0, bobBossAttackPrefabs.Count);
+        stolenAttacks.Add(Instantiate(bobBossAttackPrefabs[num]));
+        stolenAttacks[stolenAttacks.Count - 1].transform.position = transform.position;
+        stolenAttacks[stolenAttacks.Count - 1].gameObject.SetActive(false);
+        Debug.Log("stole " + bobBossAttackPrefabs[num].name + " number " + num);
     }
 
     void StartRandomStolenAttack()
