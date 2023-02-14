@@ -4,8 +4,27 @@ using UnityEngine;
 
 public class ProjectilleMovement : MonoBehaviour
 {
+    private Player player;
     private Vector3 playerPos;
+    private Sensor sensor;
+    private ISensor<Player> playerSensor;
+    [SerializeField] private float damage;
     void Start()
+    {
+        sensor = GetComponentInChildren<Sensor>(true);
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        playerSensor = sensor.For<Player>();
+        playerSensor.OnSensedObject += OnPlayerSense;
+        playerSensor.OnUnsensedObject += OnPlayerUnsense;
+    }
+
+    void OnPlayerSense(Player player)
+    {
+        Debug.Log("Damage");
+        player.Harm(damage);
+    }
+
+    void OnPlayerUnsense(Player player)
     {
 
     }
