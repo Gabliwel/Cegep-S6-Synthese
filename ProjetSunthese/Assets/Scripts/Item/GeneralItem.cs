@@ -18,4 +18,10 @@ public class GeneralItem : MonoBehaviour
             }
         }
     }
+
+    private void OnEnable()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        time = 1f;
+    }
 }
