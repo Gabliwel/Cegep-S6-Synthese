@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 7733229124772987795}
   m_Layer: 0
   m_Name: MountainBoss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -304,7 +304,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1553068103
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: -910412451, guid: b7005513355925e4e9e8c8a3deed0d6f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -332,6 +332,7 @@ MonoBehaviour:
   hp: 10
   particleColor: {r: 0.3679245, g: 0.13016197, b: 0.13016197, a: 1}
   particleScale: 7
+  damageDealt: 0
   rockAttackPrefab: {fileID: 4161923199008325614, guid: 88bea44d72ed8f6479f8a77110013113, type: 3}
   rockThrowMinTime: 4
   rockThrowMaxTime: 5

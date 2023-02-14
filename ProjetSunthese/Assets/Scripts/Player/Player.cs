@@ -300,4 +300,16 @@ public class Player : MonoBehaviour
             playerMovement.AddKnockBack(difference, force);
         }
     }
+
+    [ContextMenu("NextLevel")]
+    public void NextLevel()
+    {
+        GameManager.instance.GetRandomNextLevelAndStart();
+    }
+
+    [ContextMenu("Central")]
+    public void BackToMain()
+    {
+        GameManager.instance.GetBackToMainStageAndStart();
+    }
 }

@@ -8,10 +8,14 @@ using System.Linq;
 
 public enum Scene  
 {
-    MainStage,
-    Keven,
-    FPP1,
-    FPP2
+    Tutoriel,
+    CentralBoss,
+    Charles,
+    GabLevel,
+    GabShop,
+    KevenLevel,
+    MarcAntoine,
+    EarlyCentralBoss
 }
 
 public class GameManager : MonoBehaviour
@@ -23,7 +27,16 @@ public class GameManager : MonoBehaviour
     private const int maxLives = 3;
 
     private Scene actualLevel = 0;
-    List<Scene> sceneList = Enum.GetValues(typeof(Scene)).Cast<Scene>().ToList();
+    List<Scene> levelSceneList = new List<Scene>
+    {
+    Scene.Charles,
+    Scene.GabLevel,
+    Scene.GabShop,
+    Scene.KevenLevel,
+    Scene.MarcAntoine,
+    Scene.EarlyCentralBoss
+    };
+    
 
     private int lives = maxLives;
 
@@ -42,8 +55,6 @@ public class GameManager : MonoBehaviour
 
         else if (instance != this)
             Destroy(gameObject);
-
-        sceneList.Remove(Scene.MainStage);
 
         DontDestroyOnLoad(gameObject);
     }
@@ -67,13 +78,13 @@ public class GameManager : MonoBehaviour
 
     public void GetRandomNextLevelAndStart()
     {
-        Debug.Log("Before : " + sceneList.Count);
-        int nbSceneAccessible = sceneList.Count;
+        Debug.Log("Before : " + levelSceneList.Count);
+        int nbSceneAccessible = levelSceneList.Count;
         if(nbSceneAccessible > 0)
         {
             int randomChoice = UnityEngine.Random.Range(0, nbSceneAccessible);
             Debug.Log(randomChoice);
-            StartNextlevel(0, (sceneList.ElementAt(randomChoice)));
+            StartNextlevel(0, (levelSceneList.ElementAt(randomChoice)));
         }
         else
         {
@@ -88,12 +99,12 @@ public class GameManager : MonoBehaviour
 
     public void GetBackToMainStageAndStart()
     {
-        StartCoroutine(RestartLevelDelay(0, Scene.Keven)); 
+        StartCoroutine(RestartLevelDelay(0, Scene.CentralBoss)); 
     }
 
     public void RemoveSceneFromSceneList(Scene sceneToRemove)
     {
-        sceneList.Remove(sceneToRemove);
+        levelSceneList.Remove(sceneToRemove);
     }
     
     public void StartNextlevel(float delay, Scene chosenLevel)
@@ -104,7 +115,7 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(RestartLevelDelay(delay, chosenLevel));
         RemoveSceneFromSceneList(chosenLevel);
-        Debug.Log("After : " + sceneList.Count);
+        Debug.Log("After : " + levelSceneList.Count);
     }
 
     public void RestartLevel(float delay)
@@ -122,13 +133,21 @@ public class GameManager : MonoBehaviour
         textsNotLinked = true;
 
         if (lives == 0)
+            SceneManager.LoadScene("Tutoriel");
+        else if (level.Equals(Scene.KevenLevel))
+            SceneManager.LoadScene("KevenNiveau");
+        else if (level.Equals(Scene.Charles))
             SceneManager.LoadScene("Charles");
-        else if (level.Equals(Scene.FPP1))
-            SceneManager.LoadScene("FPP1");
-        else if (level.Equals(Scene.FPP2))
-            SceneManager.LoadScene("FPP2");
-        else
-            SceneManager.LoadScene("Keven");
+        else if(level.Equals(Scene.GabLevel))
+            SceneManager.LoadScene("Charles");
+        else if (level.Equals(Scene.MarcAntoine))
+            SceneManager.LoadScene("MarcAntoine");
+        else if (level.Equals(Scene.CentralBoss))
+            SceneManager.LoadScene("CentralBoss");
+        else if (level.Equals(Scene.EarlyCentralBoss))
+            SceneManager.LoadScene("EarlyCentralBoss");
+        else 
+            SceneManager.LoadScene("GabShop");
 
         scenesAreInTransition = false;
     }
@@ -136,8 +155,8 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         lives = maxLives;
-        actualLevel = Scene.Keven;
-        SceneManager.LoadScene("Gab");
+        actualLevel = Scene.Tutoriel;
+        SceneManager.LoadScene("Tutoriel");
     }
 
 
