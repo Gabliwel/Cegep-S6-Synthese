@@ -40,6 +40,7 @@ public class LavaShockWaveController : BossAttack
 
         shockWaveCollider.enabled = false;
         shockWaveMaskCollider.enabled = false;
+        type = BossAttackType.Lava;
     }
 
     void Update()

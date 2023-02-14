@@ -13664,17 +13664,45 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: michaelBossAttackPrefabs.Array.size
-      value: 2
+      propertyPath: bflActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: michaelBossAttackPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 4203734232129174575, guid: 4ce1087c592d7d740a9c6c6ebf5db508, type: 3}
+      propertyPath: ballActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: michaelBossAttackPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 6606153650833549468, guid: c778e4fe384ebe3409217f742507d914, type: 3}
+      propertyPath: bflminTimer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
+      propertyPath: boltsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
+      propertyPath: ballMinTimer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
+      propertyPath: boltMinTimer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
+      propertyPath: stolenActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
+      propertyPath: stolenMinTimer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
+      propertyPath: shieldMinionsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
+      propertyPath: shieldMinionsMinTimer
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5013013055534734159, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
       propertyPath: m_Name
       value: Bofrer

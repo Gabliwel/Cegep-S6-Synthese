@@ -32,6 +32,7 @@ public class FadedTeleport : BossAttack
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         dangerCircle = Instantiate(dangerCircle);
         dangerCircle.SetActive(false);
+        type = BossAttackType.Michael;
     }
 
     // Update is called once per frame

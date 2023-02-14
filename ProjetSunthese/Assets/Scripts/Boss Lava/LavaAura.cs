@@ -30,6 +30,7 @@ public class LavaAura : BossAttack
         particleSystem = GetComponentInChildren<ParticleSystem>();
         auraCollider = sensor.GetComponent<Collider2D>();
         auraCollider.enabled = false;
+        type = BossAttackType.Lava;
     }
 
     private IEnumerator StartAura()
