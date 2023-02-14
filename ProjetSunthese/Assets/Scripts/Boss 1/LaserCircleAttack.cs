@@ -18,7 +18,7 @@ public class LaserCircleAttack : BossAttack
 
     private GameObject[] lasers;
 
-    void Start()
+    void Awake()
     {
         lasers = new GameObject[numberBullets];
 

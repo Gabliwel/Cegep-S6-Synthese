@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Weapons;
 
 public class PlayerAnimationController : MonoBehaviour
 {
@@ -13,13 +14,23 @@ public class PlayerAnimationController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    public void ChangeOnWeaponType(WeaponsType type)
     {
-        // debug
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            animator.runtimeAnimatorController = warrior;
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            animator.runtimeAnimatorController = archer;
+        switch (type)
+        {
+            case WeaponsType.AXE:
+                animator.runtimeAnimatorController = warrior;
+                break;
+            case WeaponsType.BOW:
+                animator.runtimeAnimatorController = archer;
+                break;
+            case WeaponsType.DAGUER:
+                // impossible pour le moment
+                break;
+            case WeaponsType.SWORD:
+                // impossible pour le moment
+                break;
+        }
     }
 
     public void SetSpeed(float speed)

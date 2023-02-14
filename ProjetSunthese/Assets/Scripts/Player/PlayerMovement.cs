@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dragStopper = 8;
     [Range(0, 2)]
     [SerializeField] private float stopAtMagnitude = 1.35f;
+    
     private bool isKnockBack = false;
 
     private Vector2 movementInput;
@@ -169,6 +170,7 @@ public class PlayerMovement : MonoBehaviour
     public void DisableMovement()
     {
         canMove = false;
+        currentVelocity = Vector2.zero;
     }
 
     public bool IsRolling()

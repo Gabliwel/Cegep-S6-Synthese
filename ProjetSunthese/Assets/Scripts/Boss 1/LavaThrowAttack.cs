@@ -17,7 +17,7 @@ public class LavaThrowAttack : BossAttack
 
     private GameObject[] lavaObjects;
 
-    void Start()
+    void Awake()
     {
         lavaObjects = new GameObject[numberLavaObjects];
 
