@@ -89,6 +89,7 @@ public class AnimatedFollow : MonoBehaviour
 
     private void OnPlayerSense(Player otherObject)
     {
+        canMove = false;
         manager.FollowingBossTouched();
     }
 

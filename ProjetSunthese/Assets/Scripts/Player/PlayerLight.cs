@@ -19,6 +19,7 @@ public class PlayerLight : MonoBehaviour
 
     public void UpdateLightUsage(string renderLayer)
     {
+        Debug.Log(renderLayer);
         if(renderLayer == "Layer 1")
         {
             layer1Light.enabled = true;
