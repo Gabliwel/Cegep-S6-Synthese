@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     private const int lastGamingLevel = 3;
     private const int maxLives = 3;
 
+    [SerializeField]
+    private GameObject player;
+
     private Scene actualLevel = 0;
     List<Scene> levelSceneList = new List<Scene>
     {
@@ -57,6 +60,12 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+        
+    }
+
+    private void Start()
+    {
+        SetPlayerPosition();
     }
 
     void Update()
@@ -73,6 +82,7 @@ public class GameManager : MonoBehaviour
 
             playerLivesText = GameObject.FindGameObjectWithTag("Life").GetComponent<Text>();
             playerLivesText.text = lives.ToString();
+
         }
     }
 
@@ -115,6 +125,7 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(RestartLevelDelay(delay, chosenLevel));
         RemoveSceneFromSceneList(chosenLevel);
+        SetPlayerPosition();
         Debug.Log("After : " + levelSceneList.Count);
     }
 
@@ -171,4 +182,31 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void SetPlayerPosition()
+    {
+        switch (player.scene.name)
+        {
+            case "Tutoriel":
+                player.transform.position = new Vector3(-165, 34, 0);
+                break;
+            case "CentralBoss":
+                player.transform.position = new Vector3(1000, 1000, 0);
+                break;
+            case "Charles":
+                player.transform.position = new Vector3(1000, 1000, 0);
+                break;
+            case "GabLevel":
+                player.transform.position = new Vector3(1000, 1000, 0);
+                break;
+            case "GabShop":
+                player.transform.position = new Vector3(1000, 1000, 0);
+                break;
+            case "KevenNiveau":
+                player.transform.position = new Vector3(1000, 1000, 0);
+                break;
+            case "MarcAntoine":
+                player.transform.position = new Vector3(1000, 1000, 0);
+                break;
+        }
+    }
 }

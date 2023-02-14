@@ -5,6 +5,7 @@ using Weapons;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
     private PlayerAnimationController animationController;
     private PlayerMovement playerMovement;
     private Weapon weapon;
@@ -38,6 +39,14 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+            instance = this;
+
+        else if (instance != this)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+
         //switchWeapon = GameObject.FindGameObjectWithTag("WeaponSwitch").GetComponent<WeaponSwitchManager>();
         animationController = GetComponent<PlayerAnimationController>();
         playerMovement = GetComponent<PlayerMovement>();

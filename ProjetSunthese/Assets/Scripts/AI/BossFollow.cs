@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class BossFollow : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    private GameObject player;
     private float speedIncreaseTime = 10f;
 
     private GameObject boss;
@@ -16,6 +16,7 @@ public class BossFollow : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        player = GameObject.FindGameObjectWithTag("Player");
 
         boss = GameObject.FindGameObjectWithTag("Boss");
     }
