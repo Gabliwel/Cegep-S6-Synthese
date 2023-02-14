@@ -46,4 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dangerRectangle: {fileID: 2588840852711393249, guid: 977ed4c8317329e4d919a9dcebf3b174, type: 3}
   bossShadow: {fileID: 2671165191672617807, guid: ff2636ad590e41042926e3555359982b, type: 3}
-  damage: 15
+  damage: 0
+  speed: 6
