@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
         else if (level.Equals(Scene.Charles))
             SceneManager.LoadScene("Charles");
         else if(level.Equals(Scene.GabLevel))
-            SceneManager.LoadScene("Charles");
+            SceneManager.LoadScene("CharlesLevel");
         else if (level.Equals(Scene.MarcAntoine))
             SceneManager.LoadScene("MarcAntoine");
         else if (level.Equals(Scene.CentralBoss))
