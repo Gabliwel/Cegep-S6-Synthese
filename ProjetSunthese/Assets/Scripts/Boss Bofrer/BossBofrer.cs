@@ -73,6 +73,7 @@ public class BossBofrer : Enemy
         int num = Random.Range(0, mountainBossAttackPrefabs.Count);
         stolenAttacks.Add(Instantiate(mountainBossAttackPrefabs[num]));
         stolenAttacks[stolenAttacks.Count - 1].transform.position = transform.position;
+        stolenAttacks[stolenAttacks.Count - 1].gameObject.SetActive(false);
         Debug.Log("stole " + mountainBossAttackPrefabs[num].name + " number " + num);
     }
 
@@ -81,6 +82,7 @@ public class BossBofrer : Enemy
         int num = Random.Range(0, lavaBossAttackPrefabs.Count);
         stolenAttacks.Add(Instantiate(lavaBossAttackPrefabs[num]));
         stolenAttacks[stolenAttacks.Count - 1].transform.position = transform.position;
+        stolenAttacks[stolenAttacks.Count - 1].gameObject.SetActive(false);
         Debug.Log("stole " + lavaBossAttackPrefabs[num].name + " number " + num);
     }
 
