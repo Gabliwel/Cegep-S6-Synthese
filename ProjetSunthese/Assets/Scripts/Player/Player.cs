@@ -13,12 +13,9 @@ public class Player : MonoBehaviour
     private Inventory inventory;
     private PlayerLight playerLight;
     private ProjectilesManager projectilesManager;
+    private PlayerHealth health;
     private SpriteRenderer sprite;
     private float iframesTimer;
-
-    [Header("Health")]
-    [SerializeField] private float MAX_HEALTH;
-    [SerializeField] private float currentHealth;
 
     private int armorBonus = 0;
 
@@ -47,6 +44,7 @@ public class Player : MonoBehaviour
         weapon = GetComponentInChildren<Weapon>();
         weaponInfo = weapon.gameObject.GetComponent<WeaponInformations>();
         playerLight = GetComponentInChildren<PlayerLight>();
+        health = GetComponent<PlayerHealth>();
     }
 
     private void Start()
@@ -64,13 +62,16 @@ public class Player : MonoBehaviour
     {
         iframesTimer += ammount;
     }
+
+    
     public void MaxHealthBoost()
     {
-        MAX_HEALTH += 10;
+        //MAX_HEALTH += 10;
     }
 
     public void Heal(int healingAmount)
     {
+        /*
         if (!stoneHeart)
         {
             currentHealth += healingAmount;
@@ -79,6 +80,7 @@ public class Player : MonoBehaviour
                 currentHealth = MAX_HEALTH;
             }
         }
+        */
     }
 
     public void GainArmor()
@@ -102,19 +104,24 @@ public class Player : MonoBehaviour
         bloodSuck = true;
     }
 
+    
     public void GainStoneHeart()
     {
+        /*
         stoneHeart = true;
         MAX_HEALTH *= 2;
         currentHealth *= 2;
+        */
     }
 
     public void HealBloodSuck(int amount)
     {
+        /*
         if (bloodSuck)
         {
             Heal(amount);
         }
+        */
     }
 
     /// <summary>
@@ -125,6 +132,7 @@ public class Player : MonoBehaviour
     /// 
     public bool Harm(float ammount)
     {
+        /*
         if(iframesTimer <= 0)
         {
             if (doubleNumber)
@@ -153,7 +161,7 @@ public class Player : MonoBehaviour
             }
 
             return true;
-        }
+        }*/
         return false;
     }
 
@@ -166,6 +174,7 @@ public class Player : MonoBehaviour
 
     public void GainXp(int amount)
     {
+        /*
         xp += amount;
         if(xp >= 100)
         {
@@ -173,9 +182,8 @@ public class Player : MonoBehaviour
             level++;
             damageBoost++;
             MAX_HEALTH += 10;
-        }
+        }*/
     }
-
 
     public void BoostDamage()
     {
