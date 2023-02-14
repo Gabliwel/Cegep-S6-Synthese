@@ -685,6 +685,12 @@ MonoBehaviour:
   - {x: 13, y: -3, z: 0}
   - {x: 17, y: -3, z: 0}
   - {x: 21, y: -3, z: 0}
+  itemList:
+  - {fileID: 1595709667711164384, guid: 1b82efbda808d9e4e98a6d44a83ce4f7, type: 3}
+  - {fileID: 643456917422378693, guid: e83bb6830843be744a006ff8b3c71ba2, type: 3}
+  - {fileID: 5850901928912833178, guid: 40ac431189069f74fa003bc339cd0c4a, type: 3}
+  - {fileID: 190482830201901754, guid: 6d04904f5562c2049846a6f15fc4114d, type: 3}
+  - {fileID: 6170238159860358857, guid: 4d0ad18076bbbc5468deb2c52362644b, type: 3}
 --- !u!1 &5413422697246717571
 GameObject:
   m_ObjectHideFlags: 0

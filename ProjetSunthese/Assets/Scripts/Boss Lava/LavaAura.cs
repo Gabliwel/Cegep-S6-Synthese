@@ -64,7 +64,7 @@ public class LavaAura : BossAttack
         while (isActiveAndEnabled)
         {
             player.Harm(damage);
-            yield return new WaitForSeconds(tickDamage);
+            yield return new WaitForSeconds(damageTicksTimer);
         }
     }
 

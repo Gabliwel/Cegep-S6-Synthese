@@ -6,6 +6,7 @@ public class BossBofrer : Enemy
 {
     [Header("Attack Steal")]
     [SerializeField] private List<BossAttack> mountainBossAttackPrefabs;
+    [SerializeField] private List<BossAttack> lavaBossAttackPrefabs;
     [SerializeField] private List<BossAttack> stolenAttacks;
     [Header("BFL")]
     [SerializeField] private BossBofrerBFL bflPrefab;
@@ -45,7 +46,7 @@ public class BossBofrer : Enemy
         if (Input.GetKeyDown(KeyCode.U))
             StartRandomStolenAttack();
         if (Input.GetKeyDown(KeyCode.I))
-            StealRandomMountainAttack();
+            StealRandomLavaAttack();
         if (Input.GetKeyDown(KeyCode.J))
             StartBFL();
         if (Input.GetKeyDown(KeyCode.K))
@@ -72,19 +73,34 @@ public class BossBofrer : Enemy
         int num = Random.Range(0, mountainBossAttackPrefabs.Count);
         stolenAttacks.Add(Instantiate(mountainBossAttackPrefabs[num]));
         stolenAttacks[stolenAttacks.Count - 1].transform.position = transform.position;
+        stolenAttacks[stolenAttacks.Count - 1].gameObject.SetActive(false);
         Debug.Log("stole " + mountainBossAttackPrefabs[num].name + " number " + num);
+    }
+
+    void StealRandomLavaAttack()
+    {
+        int num = Random.Range(0, lavaBossAttackPrefabs.Count);
+        stolenAttacks.Add(Instantiate(lavaBossAttackPrefabs[num]));
+        stolenAttacks[stolenAttacks.Count - 1].transform.position = transform.position;
+        stolenAttacks[stolenAttacks.Count - 1].gameObject.SetActive(false);
+        Debug.Log("stole " + lavaBossAttackPrefabs[num].name + " number " + num);
     }
 
     void StartRandomStolenAttack()
     {
         int num = Random.Range(0, stolenAttacks.Count);
-        stolenAttacks[num].transform.position = transform.position;
-        stolenAttacks[num].Launch();
+        if (stolenAttacks[num].IsAvailable())
+        {
+            stolenAttacks[num].transform.position = transform.position;
+            stolenAttacks[num].gameObject.SetActive(true);
+            stolenAttacks[num].Launch();
+        }
         Debug.Log("firering " + stolenAttacks[num].name + " number " + num);
     }
 
     void StartRandomNormalAttack()
     {
+
     }
 
     void StartBFL()
