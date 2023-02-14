@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     Scene.MarcAntoine,
     Scene.EarlyCentralBoss
     };
-    List<Scene> levelsDone = new List<Scene>();
+    [SerializeField] List<Scene> levelsDone;// = new List<Scene>();
     List<BossAttack> bofrerStolenAttacks = new List<BossAttack>();
     
 

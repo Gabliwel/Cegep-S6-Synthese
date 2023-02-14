@@ -4,28 +4,33 @@ using UnityEngine;
 
 public class BossBofrer : Enemy
 {
+    private const int ACTIVE_BFL_SCALE = 1;
+    private const int ACTIVE_SHIELD_MINION_SCALE = 2;
+    private const int ACTIVE_BOLT_SCALE = 3;
+    private const int ACTIVE_BALL_SCALE = 4;
     [Header("Attack Steal")]
     [SerializeField] private List<BossAttack> stolenAttacks;
     [SerializeField] private float stolenMinTimer;
-    [SerializeField] private bool stolenActive;
     [Header("BFL")]
     [SerializeField] private BossBofrerBFL bflPrefab;
     [SerializeField] private float bflChargeup;
     [SerializeField] private float bflminTimer;
-    [SerializeField] private bool bflActive;
     [Header("Shield Minions")]
     [SerializeField] private BossBofrerShieldMinionSpawner shieldMinionSpawnerPrefab;
     [SerializeField] private bool shieldActive;
     [SerializeField] private float shieldMinionsMinTimer;
-    [SerializeField] private bool shieldMinionsActive;
     [Header("Homing Bolts")]
     [SerializeField] private BossBofrerHomingBoltSpawner boltSpawnerPrefab;
     [SerializeField] private float boltMinTimer;
-    [SerializeField] private bool boltsActive;
     [Header("Ball")]
     [SerializeField] private BossBofrerBall ballPrefab;
     [SerializeField] private float ballMinTimer;
+    [Header("Debug")]
+    [SerializeField] private bool boltsActive;
+    [SerializeField] private bool bflActive;
     [SerializeField] private bool ballActive;
+    [SerializeField] private bool shieldMinionsActive;
+    [SerializeField] private bool stolenActive;
 
     private BossBofrerHomingBoltSpawner boltSpawner;
     private BossBofrerShieldMinionSpawner minionSpawner;
@@ -57,7 +62,20 @@ public class BossBofrer : Enemy
         animator = GetComponent<Animator>();
         stealManager = GetComponent<BofrerStolenAttackManager>();
         stolenAttacks = stealManager.GetStolenAttacks();
+        ActivateAttacks();
         EnsureRoutinesStarted();
+    }
+
+    void ActivateAttacks()
+    {
+        int scaling = Scaling.instance.SendScaling();
+
+        bflActive = scaling >= ACTIVE_BFL_SCALE;
+        ballActive = scaling >= ACTIVE_BALL_SCALE;
+        shieldMinionsActive = scaling >= ACTIVE_SHIELD_MINION_SCALE;
+        boltsActive = scaling >= ACTIVE_BOLT_SCALE;
+
+        stolenActive = stolenAttacks.Count != 0;
     }
 
     void EnsureRoutinesStarted()
@@ -150,7 +168,7 @@ public class BossBofrer : Enemy
         return random;
     }
 
-    
+
 
     void StartRandomStolenAttack()
     {

@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 873655346591603271, guid: ac0ee4e18dc2e874aac221711e05947a, type: 3}
+      propertyPath: currentScaling
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 873655346591604152, guid: ac0ee4e18dc2e874aac221711e05947a, type: 3}
       propertyPath: m_Name
       value: ScalingManager
@@ -416,6 +420,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1356696138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1356696140}
+  - component: {fileID: 1356696139}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1356696139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356696138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f270c8e68f756d45bc6b2a0b224c109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelsDone: 060000000500000002000000
+--- !u!4 &1356696140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356696138}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.43769044, y: -0.30037475, z: 0.13455018}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1518455407
 PrefabInstance:
@@ -13662,46 +13711,6 @@ PrefabInstance:
     - target: {fileID: 5013013055534734154, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: bflActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: ballActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: bflminTimer
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: boltsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: ballMinTimer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: boltMinTimer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: stolenActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: stolenMinTimer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: shieldMinionsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: shieldMinionsMinTimer
-      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5013013055534734159, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
       propertyPath: m_Name
