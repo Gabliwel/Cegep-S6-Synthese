@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.AI;
 
 public class AnimatedFollow : MonoBehaviour
 {
+    [SerializeField] private bool useNavMesh;
     [SerializeField] private float speed;
     private BasicLevelManager manager;
     private Transform objective;
@@ -13,9 +15,21 @@ public class AnimatedFollow : MonoBehaviour
     private Sensor sensor;
     private bool canMove = false;
     private ISensor<Player> playerSensor;
+    private NavMeshAgent agent;
+
+    [SerializeField] private float timeToAccelerate;
+    private float initialTime;
 
     private void Start()
     {
+        if (useNavMesh)
+        {
+            agent = GetComponent<NavMeshAgent>();
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
+            agent.speed = speed;
+        }
+        initialTime = timeToAccelerate;
         animator = GetComponentInChildren<Animator>();
         sensor = GetComponentInChildren<Sensor>();
         playerSensor = sensor.For<Player>();
@@ -38,7 +52,37 @@ public class AnimatedFollow : MonoBehaviour
         if (!canMove) return;
         animator.SetFloat("Move X", objective.transform.position.x - transform.position.x);
         animator.SetFloat("Move Y", objective.transform.position.y - transform.position.y);
-        transform.position = Vector2.MoveTowards(transform.position, objective.position, speed * Time.deltaTime);
+
+        Acceleration();
+
+        if (useNavMesh)
+        {
+            agent.SetDestination(objective.position);
+        }
+        else 
+        {
+            transform.position = Vector2.MoveTowards(transform.position, objective.position, speed * Time.deltaTime);
+        }
+    }
+
+    private void Acceleration()
+    {
+        timeToAccelerate -= Time.deltaTime;
+
+        if (timeToAccelerate <= 0)
+        {
+            timeToAccelerate = initialTime;
+
+            if (useNavMesh)
+            {
+                agent.speed += 0.5f;
+                agent.acceleration += 0.5f;
+            }
+            else
+            {
+                speed += 0.5f;
+            }
+        }
     }
 
     private void OnPlayerUnsense(Player otherObject) { }

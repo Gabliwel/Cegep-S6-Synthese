@@ -120,7 +120,6 @@ public class MichaelFight : Enemy
     {
         attackInProgress = false;
         attackDelay = 3f;
-        //michaelAttacks[attackNb]
     }
 
     private void StartFadedCharge()
