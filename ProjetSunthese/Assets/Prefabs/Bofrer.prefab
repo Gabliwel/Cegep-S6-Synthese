@@ -224,13 +224,20 @@ MonoBehaviour:
   lavaBossAttackPrefabs:
   - {fileID: 706298543432613032, guid: d3f163a0c04e2ad449fd2ad72011a3a6, type: 3}
   - {fileID: 8912023561678747702, guid: 72ed6d19577505644a28a3e3b8860fbb, type: 3}
+  bobBossAttackPrefabs:
+  - {fileID: 7317202516772109539, guid: dda2d2cdf6299474593d7996f8193339, type: 3}
+  - {fileID: 6754728910071601463, guid: 06134080abeea1b45bc683065b30968d, type: 3}
+  - {fileID: 7057483641724944357, guid: c561dd2adca1ef14e96596b5c92bbd6e, type: 3}
+  michaelBossAttackPrefabs:
+  - {fileID: 4203734232129174575, guid: 4ce1087c592d7d740a9c6c6ebf5db508, type: 3}
+  - {fileID: 6606153650833549468, guid: c778e4fe384ebe3409217f742507d914, type: 3}
   stolenAttacks: []
   bflPrefab: {fileID: 4592944309761159550, guid: 73fa87cbf6d578e41a03f0a81e281fac, type: 3}
   bflChargeup: 2
   shieldMinionSpawnerPrefab: {fileID: 8566137690466289898, guid: f80b40905b1575d459a9444dfd0b6192, type: 3}
   shieldActive: 0
   boltSpawnerPrefab: {fileID: 5109038637771827725, guid: b40c339a4b2e3b047885fb607959edf0, type: 3}
-  ballPrefab: {fileID: 0}
+  ballPrefab: {fileID: 4408345744752626618, guid: 8cd3e58f4ce29544ba9fd5492e0290a5, type: 3}
 --- !u!212 &5013013055534734157
 SpriteRenderer:
   m_ObjectHideFlags: 0

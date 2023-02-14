@@ -6,13 +6,14 @@ public class BofTeleport : BossAttack
 {
     private Player player;
     [SerializeField] GameObject dangerCircle;
-    [SerializeField] GameObject laserAoE;
+    [SerializeField] GameObject shadowClone;
     [SerializeField] float damage;
+    [SerializeField] float durationReset = 1.5f;
 
     private bool attackInProgress = false;
 
     private float reactionTime = 2.5f;
-    private float duration = 1.5f;
+    private float duration;
 
     private bool aoeOnce = true;
 
@@ -25,12 +26,15 @@ public class BofTeleport : BossAttack
         Debug.Log("Test");
         isAvailable = false;
         attackInProgress = true;
+        duration = durationReset;
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        sensor = laserAoE.GetComponentInChildren<Sensor>(true);
+        shadowClone = Instantiate(shadowClone);
+        dangerCircle = Instantiate(dangerCircle);
+        sensor = shadowClone.GetComponentInChildren<Sensor>(true);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         playerSensor = sensor.For<Player>();
         playerSensor.OnSensedObject += OnPlayerSense;
@@ -54,13 +58,13 @@ public class BofTeleport : BossAttack
         {
             TeleportUnder();
         }
-        if (laserAoE.activeSelf)
+        if (shadowClone.activeSelf)
         {
             duration -= Time.deltaTime;
 
             if(duration <= 0)
             {
-                laserAoE.SetActive(false);
+                shadowClone.SetActive(false);
                 isAvailable = true;
             }
         }
@@ -83,11 +87,12 @@ public class BofTeleport : BossAttack
 
                 if (reactionTime <= 0)
                 {
-                    laserAoE.transform.position = dangerCircle.transform.position;
-                    laserAoE.SetActive(true);
+                    shadowClone.transform.position = dangerCircle.transform.position;
+                    shadowClone.SetActive(true);
                     dangerCircle.SetActive(false);
                     reactionTime = 1.5f;
                     attackInProgress = false;
+                    aoeOnce = true;
                 }
             }
         }
