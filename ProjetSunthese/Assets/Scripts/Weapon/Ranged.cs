@@ -4,25 +4,19 @@ using UnityEngine;
 
 public class Ranged : Weapon
 {
-    [SerializeField] private int projectileNb = 20;
-    [SerializeField] private Projectile projectilePrefab;
-    private Projectile[] projectiles;
+    private Projectile[] projectiles = null;
 
     private Animator animator;
+
     protected override void Awake()
     {
         base.Awake();
         animator = GetComponent<Animator>();
-        projectiles = new Projectile[projectileNb];
-        for (int i = 0; i < projectileNb; i++)
-        {
-            projectiles[i] = GameObject.Instantiate<Projectile>(projectilePrefab);
-            projectiles[i].gameObject.SetActive(false);
-        }
     }
 
     protected override IEnumerator Attack()
     {
+        if (projectiles == null) yield break;
         cooldownTimer = cooldown + startup + recovery;
         animator.SetBool("Pull", true);
         yield return new WaitForSeconds(startup);
@@ -35,6 +29,19 @@ public class Ranged : Weapon
         yield return new WaitForSeconds(recovery);
         animator.SetBool("Recoil", false);
         orbit = true;
+    }
+
+    protected override void EndAttackSpecifics()
+    {
+        animator.SetBool("Pull", false);
+        animator.SetBool("Recoil", false);
+        animator.Play("bow-idle");
+        cooldownTimer = 0;
+
+        foreach (Projectile projectile in projectiles)
+        {
+            projectile.gameObject.SetActive(false);
+        }
     }
 
     private void SpawnProjectile()
@@ -64,5 +71,10 @@ public class Ranged : Weapon
 
         projectiles[projectiles.Length - 1].gameObject.SetActive(false);
         return projectiles[projectiles.Length - 1];
+    }
+
+    public void SetProjectiles(Projectile[] newProjectiles)
+    {
+        projectiles = newProjectiles;
     }
 }

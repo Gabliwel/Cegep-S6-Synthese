@@ -27,6 +27,12 @@ public class WeaponInformations : MonoBehaviour
     [SerializeField] private Weapon weapon;
     [SerializeField] private GameObject interactStimuli;
     [SerializeField] private GameObject weaponSensor;
+    private SpriteRenderer sprite;
+
+    private void Awake()
+    {
+        sprite = GetComponent<SpriteRenderer>();
+    }
 
     private void Start()
     {
@@ -74,5 +80,13 @@ public class WeaponInformations : MonoBehaviour
         weapon.enabled = true;
         if (weaponSensor != null) weaponSensor.SetActive(true);
         isCurrentWeapon = true;
+    }
+
+    public void ChangeLayer(string layer, string sortingLayer)
+    {
+        gameObject.layer = LayerMask.NameToLayer(layer);
+        sprite.sortingLayerName = sortingLayer;
+        if (weaponSensor != null) weaponSensor.gameObject.layer = LayerMask.NameToLayer(layer);
+        interactStimuli.gameObject.layer = LayerMask.NameToLayer(layer);
     }
 }

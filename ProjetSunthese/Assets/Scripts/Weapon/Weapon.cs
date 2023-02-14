@@ -23,11 +23,11 @@ public abstract class Weapon : MonoBehaviour
     protected float defaultStartup;
     protected float defaultRecovery;
 
+    private Coroutine attack = null;
+
     protected virtual void Awake()
     {
-        rotationPoint = transform.parent;
-        defaultStartup = startup;
-        defaultRecovery = recovery;
+        SetDefault();
     }
 
     public void SetDefault()
@@ -67,7 +67,21 @@ public abstract class Weapon : MonoBehaviour
     {
         if (cooldownTimer <= 0)
         {
-            StartCoroutine(Attack());
+            attack = StartCoroutine(Attack());
+        }
+    }
+
+    protected abstract void EndAttackSpecifics();
+
+    public void EndAttack()
+    {
+        if(attack != null)
+        {
+            StopCoroutine(attack);
+            attack = null;
+
+            EndAttackSpecifics();
+            orbit = true;
         }
     }
 
