@@ -42,7 +42,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-<<<<<<< HEAD
         if (instance == null)
             instance = this;
 
@@ -52,9 +51,6 @@ public class Player : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         //switchWeapon = GameObject.FindGameObjectWithTag("WeaponSwitch").GetComponent<WeaponSwitchManager>();
-=======
-        sprite = GetComponent<SpriteRenderer>();
->>>>>>> 06d6c925b336295fdd65f36169f803dc3f21d024
         animationController = GetComponent<PlayerAnimationController>();
         playerMovement = GetComponent<PlayerMovement>();
         weapon = GetComponentInChildren<Weapon>();
