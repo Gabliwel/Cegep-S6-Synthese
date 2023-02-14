@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 2923368848914482684}
   - component: {fileID: 2923368848914482681}
   - component: {fileID: 2923368848914482680}
+  - component: {fileID: 4754938058146790218}
   m_Layer: 0
   m_Name: AlphaEnemy
   m_TagString: Untagged
@@ -116,7 +117,7 @@ Transform:
   - {fileID: 2923368849417642242}
   - {fileID: 2923368848813502294}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2923368848914482683
 SpriteRenderer:
@@ -185,6 +186,7 @@ MonoBehaviour:
   hp: 20
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 1
+  damageDealt: 0
   speed: 3
 --- !u!95 &2923368848914482681
 Animator:
@@ -233,6 +235,41 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &4754938058146790218
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2923368848914482685}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.27}
+  serializedVersion: 2
+  m_Radius: 0.2
 --- !u!1 &2923368849417642243
 GameObject:
   m_ObjectHideFlags: 0
