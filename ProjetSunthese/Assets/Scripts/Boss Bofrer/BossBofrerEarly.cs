@@ -25,6 +25,7 @@ public class BossBofrerEarly : Enemy
     {
     }
 
+
     private void OnPlayerSense(Player player)
     {
         player.Harm(damageDealt);
@@ -51,7 +52,7 @@ public class BossBofrerEarly : Enemy
     {
         if(hp < HPTreshold)
         {
-            Debug.Log("die idiot");
+            GameManager.instance.SetNextLevel();
         }
     }
 
