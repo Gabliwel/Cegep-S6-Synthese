@@ -21,7 +21,7 @@ public class BofrerStolenAttackManager : MonoBehaviour
     private void UpdateStolenAttackList()
     { // TODO: implement game manager
         List<Scene> levelsDone = new List<Scene>(); //GameManager.instance.GetLevelsDone();
-        levelsDone.Add(Scene.Charles);
+        levelsDone.Add(Scene.CharlesLevel);
         levelsDone.Add(Scene.MarcAntoine);
         levelsDone.Add(Scene.GabLevel);
         levelsDone.Add(Scene.KevenLevel);
@@ -30,7 +30,7 @@ public class BofrerStolenAttackManager : MonoBehaviour
         {
             switch (item)
             {
-                case Scene.Charles:
+                case Scene.CharlesLevel:
                     if (!HasAttackTypeOf(BossAttackType.Michael))
                         StealRandomMichaelAttack();
                     break;

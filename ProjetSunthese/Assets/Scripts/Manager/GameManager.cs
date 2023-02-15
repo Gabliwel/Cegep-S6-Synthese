@@ -10,7 +10,7 @@ public enum Scene
 {
     Tutoriel,
     CentralBoss,
-    Charles,
+    CharlesLevel,
     GabLevel,
     GabShop,
     KevenLevel,
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     private Scene actualLevel = 0;
     List<Scene> levelSceneList = new List<Scene>
     {
-    Scene.Charles,
+    Scene.CharlesLevel,
     Scene.GabLevel,
     Scene.GabShop,
     Scene.KevenLevel,
@@ -172,10 +172,10 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Tutoriel");
         else if (level.Equals(Scene.KevenLevel))
             SceneManager.LoadScene("KevenNiveau");
-        else if (level.Equals(Scene.Charles))
-            SceneManager.LoadScene("Charles");
-        else if(level.Equals(Scene.GabLevel))
+        else if (level.Equals(Scene.CharlesLevel))
             SceneManager.LoadScene("CharlesLevel");
+        else if(level.Equals(Scene.GabLevel))
+            SceneManager.LoadScene("GabLevel");
         else if (level.Equals(Scene.MarcAntoine))
             SceneManager.LoadScene("MarcAntoine");
         else if (level.Equals(Scene.CentralBoss))

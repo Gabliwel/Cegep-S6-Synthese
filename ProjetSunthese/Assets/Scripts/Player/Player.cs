@@ -47,12 +47,9 @@ public class Player : MonoBehaviour
         weapon = GetComponentInChildren<Weapon>();
         weaponInfo = weapon.gameObject.GetComponent<WeaponInformations>();
         playerLight = GetComponentInChildren<PlayerLight>();
-<<<<<<< HEAD
         sprite = GetComponent<SpriteRenderer>();
-=======
         health = GetComponent<PlayerHealth>();
         baseWeaponStat = GetComponent<PlayerBaseWeaponStat>();
->>>>>>> a137f41b9eae4541857da69621f365a526f91e3f
     }
 
     private void Start()
