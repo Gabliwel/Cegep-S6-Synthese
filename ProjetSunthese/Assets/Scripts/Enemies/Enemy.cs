@@ -15,6 +15,9 @@ public abstract class Enemy : MonoBehaviour
     protected int xpGiven;
     protected int goldDropped = 0;
 
+    protected float poisonDuration = 5f;
+    protected float poisonDamage = 0f;
+
     private void Update()
     {
         if(overtime > 0)
@@ -44,22 +47,16 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public virtual void Harm(float ammount, float overtimeDamage)
+    public virtual void Harm(float ammount, float poison)
     {
         Debug.Log(name + " ouched for " + ammount + " damage.");
         hp -= ammount;
-        overtime += overtimeDamage;
 
-        if(hp <= 0)
+        if(poison > 0)
         {
-            Die();
+            poisonDamage = poison;
+            overtime = poisonDuration;
         }
-    }
-
-    public virtual void Harm(float ammount)
-    {
-        Debug.Log(name + " ouched for " + ammount + " damage.");
-        hp -= ammount;
 
         if (hp <= 0)
         {

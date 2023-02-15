@@ -8,7 +8,7 @@ public class CrazyHearth : GeneralItem
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.GetComponent<Player>().GetDoubleNumber();
+            collision.GetComponent<Player>().GetCrazyHalfHeart();
             gameObject.SetActive(false);
         }
     }

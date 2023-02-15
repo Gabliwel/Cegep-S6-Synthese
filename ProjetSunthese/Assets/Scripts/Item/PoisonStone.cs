@@ -8,7 +8,7 @@ public class PoisonStone : GeneralItem
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.GetComponent<Player>().AddPoison();
+            collision.GetComponent<Player>().AddPoison(1);
             gameObject.SetActive(false);
         }
     }
