@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject player;
+    private Player playerInfo;
 
     private Scene actualLevel = 0;
     List<Scene> levelSceneList = new List<Scene>
@@ -43,6 +44,9 @@ public class GameManager : MonoBehaviour
 
 
     private int lives = maxLives;
+    
+    private int gold;
+    private int currentXp;
 
     bool scenesAreInTransition = false;
 
@@ -61,7 +65,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-
+        playerInfo = player.GetComponent<Player>();
     }
 
     void Update()
@@ -89,7 +93,6 @@ public class GameManager : MonoBehaviour
         bofrerStolenAttacks.Clear();
     }
 
-
     private void linkTexts()
     {
         if (textsNotLinked)
@@ -100,8 +103,24 @@ public class GameManager : MonoBehaviour
             playerLivesText = GameObject.FindGameObjectWithTag("Life").GetComponent<Text>();
             playerLivesText.text = lives.ToString();
 
+            playerGoldText = GameObject.FindGameObjectWithTag("Gold").GetComponent<Text>();
+            playerGoldText.text = gold.ToString();
+
+            playerXPText = GameObject.FindGameObjectWithTag("CurrentXP").GetComponent<Text>();
+            playerXPText.text = currentXp.ToString();
         }
     }
+
+    //public void UpdateHUD()
+    //{
+    //    lives = playerInfo.Health;
+    //    gold = playerInfo.Gold;
+    //    currentXp = playerInfo.CurrentXp;
+
+    //    playerXPText.text = currentXp.ToString();
+    //    playerGoldText.text = gold.ToString();
+    //    playerLivesText.text = lives.ToString();
+    //}
 
     public void GetRandomNextLevelAndStart()
     {
@@ -162,7 +181,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("AHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAH END");
     }
-
 
     public void GetBackToMainStageAndStart()
     {
@@ -227,7 +245,6 @@ public class GameManager : MonoBehaviour
         actualLevel = Scene.Tutoriel;
         SceneManager.LoadScene("Tutoriel");
     }
-
 
     public void PlayerDie()
     {
