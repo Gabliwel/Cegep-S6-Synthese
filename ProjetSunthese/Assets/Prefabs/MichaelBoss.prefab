@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 171f340d1369dd745a7f08940302f25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
 --- !u!1 &6353282494476876303
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,14 +567,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc01b9d38ed12748b613375da1a0f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseHP: 100
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 1
+  baseDamageDealt: 0
   damageDealt: 0
   player: {fileID: 0}
   dangerCircle: {fileID: 6353282494994834608}
   dangerRectangle: {fileID: 6353282494476876303}
   projectile: {fileID: 6353282494471356994}
+  michaelAttacks: []
 --- !u!95 &6353282496565748720
 Animator:
   serializedVersion: 5

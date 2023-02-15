@@ -4,13 +4,14 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+    [SerializeField] protected float baseHP;
     [SerializeField] protected float hp;
     [SerializeField] protected Color particleColor = new Color(255, 0, 0);
     [SerializeField] protected float particleScale = 1;
+    [SerializeField] protected float baseDamageDealt;
     [SerializeField] protected float damageDealt;
     protected float overtime = 0;
     protected float overtimeTimer = 1f;
-    protected Scaling scaling;
     protected int scalingLevel;
     protected int xpGiven;
     protected int goldDropped = 0;
@@ -40,11 +41,8 @@ public abstract class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        if (scaling != null)
-        {
-            scalingLevel = scaling.SendScaling();
-            Debug.Log(scaling);
-        }
+        hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
+        damageDealt = Scaling.instance.CalculateDamageOnScaling(baseDamageDealt);
     }
 
     public virtual void Harm(float ammount, float poison)

@@ -433,9 +433,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f14de1a1c60d5146bfee866a61e3a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  baseHP: 10
+  hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 2
+  baseDamageDealt: 0
   damageDealt: 0
   rotationSpeed: 10
   damage: 4

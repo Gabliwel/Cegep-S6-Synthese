@@ -27,8 +27,6 @@ public class MichaelFight : Enemy
 
     void Start()
     {
-        scaling = GameObject.FindGameObjectWithTag("Scaling").GetComponent<Scaling>();
-        hp = 100 * scaling.SendScaling();
         xpGiven = 110;
         goldDropped = 50;
 
