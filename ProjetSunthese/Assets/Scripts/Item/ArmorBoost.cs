@@ -8,7 +8,7 @@ public class ArmorBoost : GeneralItem
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.GetComponent<Player>().GainArmor();
+            collision.GetComponent<Player>().GainArmor(1f);
             gameObject.SetActive(false);
         }
     }

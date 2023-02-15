@@ -8,7 +8,7 @@ public class AttackSpeed : GeneralItem
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.GetComponent<Player>().IncreaseAttackSpeed();
+            collision.GetComponent<Player>().IncreaseAttackSpeed(1);
             gameObject.SetActive(false);
         }
     }
