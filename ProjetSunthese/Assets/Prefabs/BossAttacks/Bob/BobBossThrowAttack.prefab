@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c483202a9fc8a9d459fda48d06fec044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
   prefab: {fileID: 2490192414949957309, guid: b45938c7e1edf56408ba78b14ae94fdf, type: 3}
   numberLavaObjects: 10
   minToThrow: 4

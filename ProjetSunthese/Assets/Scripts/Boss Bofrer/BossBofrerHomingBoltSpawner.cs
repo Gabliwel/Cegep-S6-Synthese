@@ -22,6 +22,7 @@ public class BossBofrerHomingBoltSpawner : BossAttack
             bolts[i] = GameObject.Instantiate<BossBofrerHomingBolt>(boltPrefab);
             bolts[i].gameObject.SetActive(false);
         }
+        type = BossAttackType.Bofrer;
     }
 
     public override void Launch()

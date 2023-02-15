@@ -24,6 +24,7 @@ public class BossMountainStalagmiteSpawner : BossAttack
         }
         minSpawnRange = GameObject.FindGameObjectWithTag("ArenaLimitTopLeft").transform.position;
         maxSpawnRange = GameObject.FindGameObjectWithTag("ArenaLimitBottomRight").transform.position;
+        type = BossAttackType.Mountain;
     }
     public override void Launch()
     {

@@ -8,7 +8,7 @@ public class HealthBoostItem : GeneralItem
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.GetComponent<Player>().MaxHealthBoost();
+            collision.GetComponent<Player>().MaxHealthBoost(10f);
             gameObject.SetActive(false);
         }
     }

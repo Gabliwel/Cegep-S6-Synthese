@@ -25,14 +25,7 @@ public class Melee : Weapon
 
     private void OnEnemySense(Enemy enemy)
     {
-        if (doubleNumber)
-        {
-            enemy.Harm(damage * 2, poisonDamage);
-        }
-        else
-        {
-            enemy.Harm(damage, poisonDamage);
-        }
+        enemy.Harm(baseDamage * playerBaseWeaponStat.GetBaseAttackMultiplicator(), playerBaseWeaponStat.GetPoisonLevel());
     }
 
     private void OnEnemyUnsense(Enemy enemy)

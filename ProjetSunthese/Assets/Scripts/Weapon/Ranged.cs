@@ -50,15 +50,7 @@ public class Ranged : Weapon
         projectile.transform.SetPositionAndRotation(transform.position, transform.rotation);
         projectile.gameObject.SetActive(true);
 
-        if (doubleNumber)
-        {
-            projectile.SetDamage(damage * 2, poisonDamage);
-        }
-        else
-        {
-            projectile.SetDamage(damage, poisonDamage);
-        }
-
+        projectile.SetDamage(baseDamage * playerBaseWeaponStat.GetBaseAttackMultiplicator(), playerBaseWeaponStat.GetPoisonLevel());
     }
 
     private Projectile GetAvailableProjectile()

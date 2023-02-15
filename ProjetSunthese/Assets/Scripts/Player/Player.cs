@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Weapons;
+using Billy.Weapons;
+using Billy.Utils;
 
 public class Player : MonoBehaviour
 {
@@ -14,31 +15,21 @@ public class Player : MonoBehaviour
     private Inventory inventory;
     private PlayerLight playerLight;
     private ProjectilesManager projectilesManager;
+    private PlayerHealth health;
+    private PlayerBaseWeaponStat baseWeaponStat;
     private SpriteRenderer sprite;
     private float iframesTimer;
 
-    [Header("Health")]
-    [SerializeField] private float MAX_HEALTH;
-    [SerializeField] private float currentHealth;
-
-    private int armorBonus = 0;
-
-    [Header("Unique Buff")]
-    [SerializeField] private bool secondChance;
-    [SerializeField] private bool deathContract;
-    [SerializeField] private bool doubleNumber;
-    [SerializeField] private bool bloodSuck;
-    [SerializeField] private bool stoneHeart;
+    [Header("Link")]
+    [SerializeField] private GameObject stimuli;
+    [SerializeField] private GameObject sensor;
 
     [Header("Ressources")]
-    [SerializeField] private int gold;
-    [SerializeField] private int xp;
-    [SerializeField] private int level;
-
-    private int poisonDamage = 0;
-
-    private float attackSpeedBoost = 0;
-    private int damageBoost = 0;
+    [ReadOnlyAttribute, SerializeField] private int gold = 0;
+    [ReadOnlyAttribute, SerializeField] private float levelUpAugmentationRate = 1.4f;
+    [ReadOnlyAttribute, SerializeField] private int neededXp = 100;
+    [ReadOnlyAttribute, SerializeField] private int currentXp = 0;
+    [ReadOnlyAttribute, SerializeField] private int level = 1;
 
     private void Awake()
     {
@@ -56,11 +47,18 @@ public class Player : MonoBehaviour
         weapon = GetComponentInChildren<Weapon>();
         weaponInfo = weapon.gameObject.GetComponent<WeaponInformations>();
         playerLight = GetComponentInChildren<PlayerLight>();
+<<<<<<< HEAD
         sprite = GetComponent<SpriteRenderer>();
+=======
+        health = GetComponent<PlayerHealth>();
+        baseWeaponStat = GetComponent<PlayerBaseWeaponStat>();
+>>>>>>> a137f41b9eae4541857da69621f365a526f91e3f
     }
 
     private void Start()
     {
+        weapon.SetPlayerBaseWeaponStat(baseWeaponStat);
+        weapon.CalculateNewSpeed();
         animationController.ChangeOnWeaponType(weaponInfo.GetWeaponType());
     }
 
@@ -74,97 +72,83 @@ public class Player : MonoBehaviour
     {
         iframesTimer += ammount;
     }
-    public void MaxHealthBoost()
+
+
+    #region Health
+    public void MaxHealthBoost(float value)
     {
-        MAX_HEALTH += 10;
+        health.AddMaxHp(value);
     }
 
-    public void Heal(int healingAmount)
+    public void Heal(float healingAmount)
     {
-        if (!stoneHeart)
-        {
-            currentHealth += healingAmount;
-            if (currentHealth > MAX_HEALTH)
-            {
-                currentHealth = MAX_HEALTH;
-            }
-        }
+        health.Heal(healingAmount);
     }
 
-    public void GainArmor()
+    public void GainArmor(float value)
     {
-        armorBonus += 1;
-    }
-
-    public void GetDoubleNumber()
-    {
-        doubleNumber = true;
-        weapon.GainDoubleNumber();
-    }
-
-    public bool CheckDouble()
-    {
-        return doubleNumber;
-    }
-
-    public void GainBloodSuck()
-    {
-        bloodSuck = true;
+        health.GainArmor(value);
     }
 
     public void GainStoneHeart()
     {
-        stoneHeart = true;
-        MAX_HEALTH *= 2;
-        currentHealth *= 2;
+        health.GainStoneHeart();
+    }
+    #endregion
+
+    public void GetCrazyHalfHeart()
+    {
+        health.IncreaseReceiveDamageMultiplicator();
+        baseWeaponStat.DoubleBaseAttack();
+    }
+
+    public void GainBloodSuck()
+    {
+        //bloodSuck = true;
     }
 
     public void HealBloodSuck(int amount)
     {
+        /*
         if (bloodSuck)
         {
             Heal(amount);
         }
+        */
     }
 
-    /// <summary>
-    /// harms the player. returns true if it did damage
-    /// </summary>
-    /// <param name="ammount"></param>
-    /// <returns></returns>
-    /// 
-    public bool Harm(float ammount)
+    public void GainXp(int amount)
     {
-        if(iframesTimer <= 0)
+        currentXp += amount;
+        if (currentXp >= neededXp)
         {
-            if (doubleNumber)
-            {
-                ammount = ammount * 2;
-            }
-
-            Debug.Log("oof ouch ive been hit for " + (ammount - armorBonus) + " damage");
-            currentHealth -= (ammount - armorBonus);
-
-            if (deathContract && currentHealth <= 0)
-            {
-                deathContract = false;
-                currentHealth = 1;
-            }
-
-            if (currentHealth <= (MAX_HEALTH * 15 / 100) && secondChance)
-            {
-                currentHealth = MAX_HEALTH * 80 / 100;
-                secondChance = false;
-            }
-
-            if (currentHealth <= 0)
-            {
-                Debug.Log("I am dead");
-            }
-
-            return true;
+            currentXp -= neededXp;
+            neededXp = (int)Math.Round(neededXp * levelUpAugmentationRate);
+            level++;
+            BoostDamage();
+            MaxHealthBoost(10);
         }
-        return false;
+    }
+
+    public void BoostDamage()
+    {
+        baseWeaponStat.IncreaseBaseAttack();
+    }
+
+    public void IncreaseAttackSpeed(int lvl)
+    {
+        baseWeaponStat.IncreaseSpeedLevel(lvl);
+        weapon.CalculateNewSpeed();
+    }
+
+    public void AddPoison(int lvl)
+    {
+        baseWeaponStat.IncreasePoisonLevel(lvl);
+    }
+
+    public void GainGold(int amount)
+    {
+        gold += amount;
     }
 
     public void GainDrops(int health, int xp, int gold)
@@ -174,55 +158,31 @@ public class Player : MonoBehaviour
         GainGold(gold);
     }
 
-    public void GainXp(int amount)
+    public bool BuyItem(int price)
     {
-        xp += amount;
-        if(xp >= 100)
+        if (gold >= price)
         {
-            xp -= 100;
-            level++;
-            damageBoost++;
-            MAX_HEALTH += 10;
+            gold -= price;
+            return true;
         }
+        return false;
     }
 
-
-    public void BoostDamage()
+    public bool Harm(float ammount)
     {
-        damageBoost++;
-        weapon.AddDamage();
-    }
-
-    public int GetDamageBoost()
-    {
-        return damageBoost;
-    }
-
-    public void IncreaseAttackSpeed()
-    {
-        attackSpeedBoost++;
-        weapon.GainSpeed(attackSpeedBoost);
-    }
-
-    public float GetAttackSpeed()
-    {
-        return attackSpeedBoost;
-    }
-
-    public void AddPoison()
-    {
-        poisonDamage += 5;
-        weapon.GainPoison();
-    }
-
-    public int GetPoisonDamage()
-    {
-        return poisonDamage;
+        if(iframesTimer <= 0)
+        {
+            health.Harm(ammount);
+            return true;
+        }
+        return false;
     }
 
     public void ChangeLayer(string layer, string sortingLayer)
     {
         gameObject.layer = LayerMask.NameToLayer(layer);
+        stimuli.layer = LayerMask.NameToLayer(layer);
+        sensor.layer = LayerMask.NameToLayer(layer);
         sprite.sortingLayerName = sortingLayer;
         weaponInfo.ChangeLayer(layer, sortingLayer);
         playerLight.UpdateLightUsage(sortingLayer);
@@ -277,30 +237,14 @@ public class Player : MonoBehaviour
         newWeapon.transform.localPosition = newWeaponInfo.GetPositionWithPlayer();
         newWeapon.transform.localScale = new Vector3(1, 1, 1);
         weapon.gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
         newWeaponInfo.SwitchToWeapon();
+        weapon.SetPlayerBaseWeaponStat(baseWeaponStat);
         weapon.SetDefault();
 
         //change anim et autre...
         animationController.ChangeOnWeaponType(weaponInfo.GetWeaponType());
-        if(weaponInfo.GetWeaponType() == WeaponsType.BOW)
-        {
-            weapon.gameObject.GetComponent<Ranged>().SetProjectiles(projectilesManager.GetArrows());
-        }
-    }
-
-    public void GainGold(int amount)
-    {
-        gold += amount;
-    }
-
-    public bool BuyItem(int price)
-    {
-        if(gold >= price)
-        {
-            gold -= price;
-            return true;
-        }
-        return false;
+        SetCurrentWeapon();
     }
 
     public void KnockBack(Vector2 difference, float force)

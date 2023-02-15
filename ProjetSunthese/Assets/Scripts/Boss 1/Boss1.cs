@@ -106,12 +106,6 @@ public class Boss1 : Enemy
         return randomNr;
     }
 
-    public override void Harm(float ammount)
-    {
-        if (isProtected) return;
-        base.Harm(ammount);
-    }
-
     public override void Harm(float ammount, float overtimeDamage)
     {
         if (isProtected) return;

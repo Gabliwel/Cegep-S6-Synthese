@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
     Scene.MarcAntoine,
     Scene.EarlyCentralBoss
     };
+    [SerializeField] List<Scene> levelsDone;// = new List<Scene>();
+    List<BossAttack> bofrerStolenAttacks = new List<BossAttack>();
     
 
     private int lives = maxLives;
@@ -72,6 +74,27 @@ public class GameManager : MonoBehaviour
     {
         linkTexts();
     }
+
+    public List<Scene> GetLevelsDone()
+    {
+        return levelsDone;
+    }
+
+    public List<BossAttack> GetStoredBofrerStolenAttacks()
+    {
+        return bofrerStolenAttacks;
+    }
+
+    public void StoreBofrerStolenAttacks(List<BossAttack> newAttacks)
+    {
+        bofrerStolenAttacks = newAttacks;
+    }
+
+    public void ClearBofrerStolenAttack()
+    {
+        bofrerStolenAttacks.Clear();
+    }
+
 
     private void linkTexts()
     {
@@ -107,6 +130,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("AHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAH END");
     }
 
+
     public void GetBackToMainStageAndStart()
     {
         StartCoroutine(RestartLevelDelay(0, Scene.CentralBoss)); 
@@ -114,6 +138,7 @@ public class GameManager : MonoBehaviour
 
     public void RemoveSceneFromSceneList(Scene sceneToRemove)
     {
+        levelsDone.Add(sceneToRemove);
         levelSceneList.Remove(sceneToRemove);
     }
     

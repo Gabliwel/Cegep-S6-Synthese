@@ -13,6 +13,7 @@ public class BossBofrerBall : BossAttack
         projectile = GetComponentInChildren<BossBofrerBallProjectile>();
         explosion.gameObject.SetActive(false);
         projectile.gameObject.SetActive(false);
+        type = BossAttackType.Bofrer;
     }
     public override void Launch()
     {

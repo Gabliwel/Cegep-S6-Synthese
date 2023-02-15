@@ -34,12 +34,6 @@ public class BossBofrerEarly : Enemy
 
     }
 
-    public override void Harm(float ammount)
-    {
-        base.Harm(ammount);
-        CheckHPForTeleport();
-    }
-
     public override void Harm(float ammount, float overtimeDamage)
     {
         base.Harm(ammount, overtimeDamage);
