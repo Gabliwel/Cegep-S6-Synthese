@@ -73,31 +73,8 @@ public class MichaelFight : Enemy
 
     private void CheckAnimationSide()
     {
-
-        if (Mathf.Abs(Mathf.Abs(player.transform.position.x) - Mathf.Abs(transform.position.x))
-                > Mathf.Abs((Mathf.Abs(player.transform.position.y) - Mathf.Abs(transform.position.y))))
-        {
-            if (player.transform.position.x < transform.position.x)
-            {
-                animator.Play("Michael_Ani_Left");
-            }
-            if (player.transform.position.x > transform.position.x)
-            {
-                animator.Play("Michael_Ani_Right");
-            }
-        }
-
-        if (Mathf.Abs(Mathf.Abs(player.transform.position.x) - Mathf.Abs(transform.position.x))
-                < Mathf.Abs((Mathf.Abs(player.transform.position.y) - Mathf.Abs(transform.position.y)))) {
-            if (player.transform.position.y < transform.position.y)
-            {
-                animator.Play("Michael_Ani");
-            }
-            if (player.transform.position.y > transform.position.y)
-            {
-                animator.Play("Michael_Ani_Back");
-            }
-        }
+        animator.SetFloat("Move X", player.transform.position.x - transform.position.x);
+        animator.SetFloat("Move Y", player.transform.position.y - transform.position.y);
     }
 
     private void ExecuteCurrentAttack()
