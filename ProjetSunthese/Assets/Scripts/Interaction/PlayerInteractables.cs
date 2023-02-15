@@ -8,7 +8,7 @@ public class PlayerInteractables : MonoBehaviour
     private Sensor sensor;
     private ISensor<Interactable> interactablesSensor;
 
-    private List<Interactable> closeInteractables;
+    [SerializeField] private List<Interactable> closeInteractables;
     private Interactable currentSelected = null;
 
     private Player player;
@@ -38,6 +38,7 @@ public class PlayerInteractables : MonoBehaviour
 
     private void OnInteractableSense(Interactable interectable)
     {
+        Debug.Log("Sense");
         if(currentSelected != null)
         {
             currentSelected.ChangeSelectedState(false);

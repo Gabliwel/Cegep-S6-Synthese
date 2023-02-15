@@ -8,6 +8,7 @@ public class BofCharge : BossAttack
     [SerializeField] GameObject dangerRectangle;
     [SerializeField] GameObject bossShadow;
     [SerializeField] float damage;
+    [SerializeField] float speed = 6;
 
     private bool attackInProgress = false;
 
@@ -20,9 +21,10 @@ public class BofCharge : BossAttack
     private Sensor sensor;
     private ISensor<Player> playerSensor;
 
-    void Start()
+    void Awake()
     {
         bossShadow = Instantiate(bossShadow);
+        dangerRectangle = Instantiate(dangerRectangle);
         sensor = bossShadow.GetComponentInChildren<Sensor>(true);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         playerSensor = sensor.For<Player>();
@@ -102,13 +104,15 @@ public class BofCharge : BossAttack
             {
                 bossShadow.SetActive(true);
                 dangerRectangle.SetActive(false);
-                bossShadow.transform.position = Vector2.MoveTowards(bossShadow.transform.position, savedPlayerPos, 0.5f);
+                bossShadow.transform.position = Vector2.MoveTowards(bossShadow.transform.position, savedPlayerPos, speed * Time.deltaTime);
 
                 if (bossShadow.transform.position == savedPlayerPos)
                 {
                     attackInProgress = false;
                     charging = false;
                     isAvailable = true;
+                    aoeOnce = true;
+                    bossShadow.gameObject.SetActive(false);
                 }
             }
         }

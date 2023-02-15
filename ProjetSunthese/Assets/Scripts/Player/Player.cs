@@ -19,17 +19,16 @@ public class Player : MonoBehaviour
     private SpriteRenderer sprite;
     private float iframesTimer;
 
+    [Header("Link")]
+    [SerializeField] private GameObject stimuli;
+    [SerializeField] private GameObject sensor;
+
     [Header("Ressources")]
     [ReadOnlyAttribute, SerializeField] private int gold = 0;
     [ReadOnlyAttribute, SerializeField] private float levelUpAugmentationRate = 1.4f;
     [ReadOnlyAttribute, SerializeField] private int neededXp = 100;
     [ReadOnlyAttribute, SerializeField] private int currentXp = 0;
     [ReadOnlyAttribute, SerializeField] private int level = 1;
-
-    private int poisonDamage = 0;
-
-    private float attackSpeedBoost = 0;
-    private int damageBoost = 0;
 
     private void Awake()
     {
@@ -169,6 +168,8 @@ public class Player : MonoBehaviour
     public void ChangeLayer(string layer, string sortingLayer)
     {
         gameObject.layer = LayerMask.NameToLayer(layer);
+        stimuli.layer = LayerMask.NameToLayer(layer);
+        sensor.layer = LayerMask.NameToLayer(layer);
         sprite.sortingLayerName = sortingLayer;
         weaponInfo.ChangeLayer(layer, sortingLayer);
         playerLight.UpdateLightUsage(sortingLayer);

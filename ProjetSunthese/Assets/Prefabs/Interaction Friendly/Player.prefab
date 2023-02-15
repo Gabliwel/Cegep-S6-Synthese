@@ -467,7 +467,7 @@ Transform:
   - {fileID: 4354586378031761042}
   - {fileID: 4086347055166615789}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4354586378036888147
 MonoBehaviour:
@@ -550,8 +550,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7635ccf626c31549bc84c64b5a91199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stimuli: {fileID: 4354586378031761043}
+  sensor: {fileID: 4086347055166615788}
   gold: 0
-  xp: 0
+  levelUpAugmentationRate: 1.4
+  neededXp: 100
+  currentXp: 0
   level: 0
 --- !u!50 &4354586378036888145
 Rigidbody2D:
@@ -709,6 +713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e682a19d2b6f34eb65dc6ab11dff74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  closeInteractables: []
 --- !u!1 &7095158222791125730
 GameObject:
   m_ObjectHideFlags: 0
