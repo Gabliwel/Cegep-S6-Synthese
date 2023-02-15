@@ -25,12 +25,11 @@ public class BossBofrer : Enemy
     [Header("Ball")]
     [SerializeField] private BossBofrerBall ballPrefab;
     [SerializeField] private float ballMinTimer;
-    [Header("Debug")]
-    [SerializeField] private bool boltsActive;
-    [SerializeField] private bool bflActive;
-    [SerializeField] private bool ballActive;
-    [SerializeField] private bool shieldMinionsActive;
-    [SerializeField] private bool stolenActive;
+    private bool boltsActive;
+    private bool bflActive;
+    private bool ballActive;
+    private bool shieldMinionsActive;
+    private bool stolenActive;
 
     private BossBofrerHomingBoltSpawner boltSpawner;
     private BossBofrerShieldMinionSpawner minionSpawner;
@@ -61,9 +60,14 @@ public class BossBofrer : Enemy
 
         animator = GetComponent<Animator>();
         stealManager = GetComponent<BofrerStolenAttackManager>();
+    }
+
+    private void Start()
+    {
         stolenAttacks = stealManager.GetStolenAttacks();
         ActivateAttacks();
         EnsureRoutinesStarted();
+
     }
 
     void ActivateAttacks()

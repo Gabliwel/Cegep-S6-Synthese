@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562368e32a4b7b0409a56144380d5f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
   sensor: {fileID: 7317202517588566781}
   knockBackForce: 12
   speedInSec: 2

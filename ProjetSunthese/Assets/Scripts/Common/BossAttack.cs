@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class BossAttack : MonoBehaviour
 {
     protected bool isAvailable = true;
-    protected BossAttackType type;
+   [SerializeField] protected BossAttackType type;
 
 
     public abstract void Launch();
