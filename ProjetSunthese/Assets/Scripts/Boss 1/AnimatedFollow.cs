@@ -21,6 +21,15 @@ public class AnimatedFollow : MonoBehaviour
     [SerializeField] private float timeToAccelerate;
     private float initialTime;
 
+    private void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+        sensor = GetComponentInChildren<Sensor>();
+        playerSensor = sensor.For<Player>();
+        playerSensor.OnSensedObject += OnPlayerSense;
+        playerSensor.OnUnsensedObject += OnPlayerUnsense;
+        DeactivateSensor();
+    }
     private void Start()
     {
         if (useNavMesh)
@@ -31,12 +40,6 @@ public class AnimatedFollow : MonoBehaviour
             agent.speed = speed;
         }
         initialTime = timeToAccelerate;
-        animator = GetComponentInChildren<Animator>();
-        sensor = GetComponentInChildren<Sensor>();
-        playerSensor = sensor.For<Player>();
-        playerSensor.OnSensedObject += OnPlayerSense;
-        playerSensor.OnUnsensedObject += OnPlayerUnsense;
-        DeactivateSensor();
     }
 
     public void StartChasing(Transform player, BasicLevelManager basicLevelManager)

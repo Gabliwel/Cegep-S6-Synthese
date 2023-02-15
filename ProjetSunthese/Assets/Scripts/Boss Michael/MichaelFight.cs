@@ -38,6 +38,7 @@ public class MichaelFight : Enemy
         Attacks[0] = "CHARGE";
         Attacks[1] = "TELEPORT";
         Attacks[2] = "PROJECTILE";
+        player = GameObject.FindGameObjectWithTag("Player");
 
         for(int i = 0; i < michaelAttacks.Count; i++)
         {

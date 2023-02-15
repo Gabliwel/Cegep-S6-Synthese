@@ -8,9 +8,18 @@ public class ProjectilesManager : MonoBehaviour
     [SerializeField] private int arrowNb = 20;
     [SerializeField] private GameObject arrowPrefab;
     private Projectile[] arrows;
+    private ProjectilesManager instance;
 
     private void Awake()
     {
+        if (instance == null)
+            instance = this;
+
+        else if (instance != this)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+
         arrows = new Projectile[arrowNb];
         for (int i = 0; i < arrowNb; i++)
         {
