@@ -7,6 +7,6 @@ public class Portal : Interactable
     public override void Interact(Player player)
     {
         Debug.Log("Called");
-        GameManager.instance.GetRandomNextLevelAndStart();
+        GameManager.instance.SetNextLevel();
     }
 }
