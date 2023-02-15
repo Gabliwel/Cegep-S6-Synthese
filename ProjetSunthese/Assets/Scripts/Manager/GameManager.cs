@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<Scene> levelsDone;// = new List<Scene>();
     List<BossAttack> bofrerStolenAttacks = new List<BossAttack>();
     
-
     private int lives = maxLives;
 
     bool scenesAreInTransition = false;
@@ -61,8 +60,7 @@ public class GameManager : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
 
-        DontDestroyOnLoad(gameObject);
-        
+        DontDestroyOnLoad(gameObject);  
     }
 
     void Update()
@@ -89,7 +87,6 @@ public class GameManager : MonoBehaviour
     {
         bofrerStolenAttacks.Clear();
     }
-
 
     private void linkTexts()
     {
@@ -124,7 +121,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("AHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAH END");
     }
-
 
     public void GetBackToMainStageAndStart()
     {
@@ -188,7 +184,6 @@ public class GameManager : MonoBehaviour
         actualLevel = Scene.Tutoriel;
         SceneManager.LoadScene("Tutoriel");
     }
-
 
     public void PlayerDie()
     {
