@@ -31,9 +31,9 @@ public class Player : MonoBehaviour
     [ReadOnlyAttribute, SerializeField] private int currentXp = 0;
     [ReadOnlyAttribute, SerializeField] private int level = 1;
 
-    public int Gold{get;set;}
-    public int CurrentXp { get; set; }
-    public float Health { get => health.CurrentHealth;}
+    //public int Gold{get;set;}
+    //public int CurrentXp { get; set; }
+    //public float Health { get => health.CurrentHealth;}
 
     private void Awake()
     {

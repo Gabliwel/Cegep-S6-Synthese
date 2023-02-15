@@ -41,16 +41,10 @@ public class GameManager : MonoBehaviour
     };
     [SerializeField] List<Scene> levelsDone;// = new List<Scene>();
     List<BossAttack> bofrerStolenAttacks = new List<BossAttack>();
-<<<<<<< HEAD
     
     private float lives;
     private int gold;
     private int currentXp;
-=======
-
-
-    private int lives = maxLives;
->>>>>>> 4ce8e189340b924ebafa91b447b94d8a2188cdd3
 
     bool scenesAreInTransition = false;
 
@@ -69,11 +63,9 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-<<<<<<< HEAD
-        playerInfo = player.GetComponent<Player>();
-=======
 
->>>>>>> 4ce8e189340b924ebafa91b447b94d8a2188cdd3
+        //playerInfo = player.GetComponent<Player>();
+
     }
 
     void Update()
