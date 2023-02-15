@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3590006991846360811}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.08, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8130493802473667749}
@@ -105,7 +105,7 @@ MonoBehaviour:
   scaleWithPlayer: {x: 1, y: 1, z: 1}
   scaleNotWithPlayer: {x: 6, y: 6, z: 1}
   positionWithPlayer: {x: 0.08, y: 0, z: 0}
-  isCurrentWeapon: 1
+  isCurrentWeapon: 0
   weapon: {fileID: 1454111212443538057}
   interactStimuli: {fileID: 8130493802473667748}
   weaponSensor: {fileID: 0}
@@ -123,12 +123,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ROTATION_OFFSET: 0
   orbit: 1
-  damage: 6
+  baseDamage: 0
   startup: 0.2
   recovery: 0.1
   cooldown: 0.1
   cooldownTimer: 0
-  poisonDamage: 0
 --- !u!114 &459978937407105301
 MonoBehaviour:
   m_ObjectHideFlags: 0
