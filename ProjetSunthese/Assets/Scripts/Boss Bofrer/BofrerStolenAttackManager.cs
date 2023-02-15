@@ -14,18 +14,13 @@ public class BofrerStolenAttackManager : MonoBehaviour
 
     private void Awake()
     { // TODO: implement game manager
-        stolenAttacks = new List<BossAttack>();//GameManager.instance.GetStoredBofrerStolenAttacks();
+        stolenAttacks = GameManager.instance.GetStoredBofrerStolenAttacks();
         UpdateStolenAttackList();
     }
 
     private void UpdateStolenAttackList()
     { // TODO: implement game manager
-        List<Scene> levelsDone = new List<Scene>(); //GameManager.instance.GetLevelsDone();
-        levelsDone.Add(Scene.Charles);
-        levelsDone.Add(Scene.MarcAntoine);
-        levelsDone.Add(Scene.GabLevel);
-        levelsDone.Add(Scene.KevenLevel);
-
+        List<Scene> levelsDone = GameManager.instance.GetLevelsDone();
         foreach (var item in levelsDone)
         {
             switch (item)

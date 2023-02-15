@@ -19,6 +19,7 @@ public class BossBofrerBFL : BossAttack
         playerSensor.OnSensedObject += OnPlayerSense;
         playerSensor.OnUnsensedObject += OnPlayerUnsense;
         type = BossAttackType.Bofrer;
+        damage = Scaling.instance.CalculateDamageOnScaling(damage);
     }
     private void OnEnable()
     {

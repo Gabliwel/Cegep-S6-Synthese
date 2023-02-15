@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
-  boltNb: 25
+  boltNb: 30
   boltPrefab: {fileID: 8952411512873279779, guid: 7ee75a6a51e6f3f45931ffd1c0e4b393, type: 3}
-  minBoltNb: 8
-  maxBoltNb: 10
+  minBoltNb: 3
+  maxBoltNb: 5
   positionOffset: {x: 0, y: 0, z: 0}
-  totalTimeToSpawn: 2
+  totalTimeToSpawn: 1.5
   yAddedValue: 0
   boltDistance: 0.25

@@ -16,6 +16,7 @@ public class Explosion : MonoBehaviour
         playerSensor = sensor.For<Player>();
         playerSensor.OnSensedObject += OnPlayerSense;
         playerSensor.OnUnsensedObject += OnPlayerUnsense;
+        damage = Scaling.instance.CalculateDamageOnScaling(damage);
     }
 
     private void OnPlayerSense(Player player)
