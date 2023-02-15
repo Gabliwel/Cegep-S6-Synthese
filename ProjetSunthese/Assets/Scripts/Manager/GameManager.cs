@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System;
 using System.Linq;
 
-public enum Scene  
+public enum Scene
 {
     Tutoriel,
     CentralBoss,
@@ -37,15 +37,20 @@ public class GameManager : MonoBehaviour
     Scene.GabLevel,
     Scene.GabShop,
     Scene.KevenLevel,
-    Scene.MarcAntoine,
-    Scene.EarlyCentralBoss
+    Scene.MarcAntoine
     };
     [SerializeField] List<Scene> levelsDone;// = new List<Scene>();
     List<BossAttack> bofrerStolenAttacks = new List<BossAttack>();
+<<<<<<< HEAD
     
     private float lives;
     private int gold;
     private int currentXp;
+=======
+
+
+    private int lives = maxLives;
+>>>>>>> 4ce8e189340b924ebafa91b447b94d8a2188cdd3
 
     bool scenesAreInTransition = false;
 
@@ -64,7 +69,11 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+<<<<<<< HEAD
         playerInfo = player.GetComponent<Player>();
+=======
+
+>>>>>>> 4ce8e189340b924ebafa91b447b94d8a2188cdd3
     }
 
     void Update()
@@ -125,7 +134,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Before : " + levelSceneList.Count);
         int nbSceneAccessible = levelSceneList.Count;
-        if(nbSceneAccessible > 0)
+        if (nbSceneAccessible > 0)
         {
             int randomChoice = UnityEngine.Random.Range(0, nbSceneAccessible);
             Debug.Log(randomChoice);
@@ -138,15 +147,41 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetNextLevel()
+    [ContextMenu("Early wood")]
+    public void GoToEarlyBofrer()
     {
-        if(actualLevel == Scene.CentralBoss || actualLevel == Scene.EarlyCentralBoss || actualLevel == Scene.Tutoriel)
+        Debug.Log("leaving to early");
+        int nbSceneAccessible = levelSceneList.Count;
+        if (nbSceneAccessible > 0)
         {
-            GetBackToMainStageAndStart();
+            actualLevel = Scene.EarlyCentralBoss;
+            StartNextlevel(0, actualLevel);
         }
         else
         {
-            GetBackToMainStageAndStart();
+            LoadEndScene();
+        }
+    }
+
+    public void SetNextLevel()
+    {
+        switch (actualLevel)
+        {
+            case Scene.Tutoriel:
+                GoToEarlyBofrer();
+                break;
+            case Scene.CentralBoss:
+                GetRandomNextLevelAndStart();
+                break;
+            case Scene.GabShop:
+                GetRandomNextLevelAndStart();
+                break;
+            case Scene.EarlyCentralBoss:
+                GetRandomNextLevelAndStart();
+                break;
+            default:
+                GetBackToMainStageAndStart();
+                break;
         }
     }
 
@@ -158,7 +193,7 @@ public class GameManager : MonoBehaviour
     public void GetBackToMainStageAndStart()
     {
         actualLevel = Scene.CentralBoss;
-        StartCoroutine(RestartLevelDelay(0, Scene.CentralBoss)); 
+        StartCoroutine(RestartLevelDelay(0, Scene.CentralBoss));
     }
 
     public void RemoveSceneFromSceneList(Scene sceneToRemove)
@@ -166,10 +201,10 @@ public class GameManager : MonoBehaviour
         levelsDone.Add(sceneToRemove);
         levelSceneList.Remove(sceneToRemove);
     }
-    
+
     public void StartNextlevel(float delay, Scene chosenLevel)
     {
-        if (scenesAreInTransition) return;  
+        if (scenesAreInTransition) return;
 
         scenesAreInTransition = true;
 
@@ -198,7 +233,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("KevenNiveau");
         else if (level.Equals(Scene.CharlesLevel))
             SceneManager.LoadScene("CharlesLevel");
-        else if(level.Equals(Scene.GabLevel))
+        else if (level.Equals(Scene.GabLevel))
             SceneManager.LoadScene("GabLevel");
         else if (level.Equals(Scene.MarcAntoine))
             SceneManager.LoadScene("MarcAntoine");
@@ -206,7 +241,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("CentralBoss");
         else if (level.Equals(Scene.EarlyCentralBoss))
             SceneManager.LoadScene("EarlyCentralBoss");
-        else 
+        else
             SceneManager.LoadScene("GabShop");
 
         scenesAreInTransition = false;

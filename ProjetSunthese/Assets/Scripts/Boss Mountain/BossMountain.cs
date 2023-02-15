@@ -62,6 +62,12 @@ public class BossMountain : Enemy
     {
     }
 
+    public override void Die()
+    {
+        base.Die();
+        GetComponent<BossDrops>().BossDrop(transform.position);
+    }
+
     private void Update()
     {
         //debug

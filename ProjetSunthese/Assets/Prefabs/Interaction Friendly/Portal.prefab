@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2221131244936500873}
   - component: {fileID: 2221131244936500983}
   - component: {fileID: 2221131244936500982}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Stimuli
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 6202557103775462471}
   - component: {fileID: 6202557103775462465}
   - component: {fileID: 6202557103775462478}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ Transform:
   m_Children:
   - {fileID: 2221131244936500873}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
 --- !u!212 &6202557103775462471
 SpriteRenderer:

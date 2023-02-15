@@ -123,7 +123,7 @@ public class BossBofrer : Enemy
     {
         if (hp < HPTreshold)
         {
-            Debug.Log("die idiot");
+            GameManager.instance.SetNextLevel();
         }
     }
 
