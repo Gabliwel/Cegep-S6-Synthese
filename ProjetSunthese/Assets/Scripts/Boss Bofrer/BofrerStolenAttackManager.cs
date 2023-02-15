@@ -25,7 +25,7 @@ public class BofrerStolenAttackManager : MonoBehaviour
         {
             switch (item)
             {
-                case Scene.Charles:
+                case Scene.CharlesLevel:
                     if (!HasAttackTypeOf(BossAttackType.Michael))
                         StealRandomMichaelAttack();
                     break;

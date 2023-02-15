@@ -61,7 +61,7 @@ public class BasicLevelManager : MonoBehaviour
 
     private void Start()
     {
-        if(doCinematic)
+        if (doCinematic)
         {
             StartCoroutine(Cinematic());
         }

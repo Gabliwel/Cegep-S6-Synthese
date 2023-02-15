@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-    [SerializeField] private Transform player;
-
+    private Transform player;
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;   
+    }
     void Update()
     {
         transform.position = new Vector3(player.position.x, player.position.y, -10);
