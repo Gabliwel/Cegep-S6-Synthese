@@ -4,62 +4,107 @@ using UnityEngine;
 
 public class BossBofrer : Enemy
 {
+    private const int ACTIVE_BFL_SCALE = 1;
+    private const int ACTIVE_SHIELD_MINION_SCALE = 2;
+    private const int ACTIVE_BOLT_SCALE = 3;
+    private const int ACTIVE_BALL_SCALE = 4;
     [Header("Attack Steal")]
-    [SerializeField] private List<BossAttack> mountainBossAttackPrefabs;
-    [SerializeField] private List<BossAttack> lavaBossAttackPrefabs;
-    [SerializeField] private List<BossAttack> bobBossAttackPrefabs;
-    [SerializeField] private List<BossAttack> michaelBossAttackPrefabs;
     [SerializeField] private List<BossAttack> stolenAttacks;
+    [SerializeField] private float stolenMinTimer;
     [Header("BFL")]
     [SerializeField] private BossBofrerBFL bflPrefab;
     [SerializeField] private float bflChargeup;
+    [SerializeField] private float bflminTimer;
     [Header("Shield Minions")]
     [SerializeField] private BossBofrerShieldMinionSpawner shieldMinionSpawnerPrefab;
     [SerializeField] private bool shieldActive;
+    [SerializeField] private float shieldMinionsMinTimer;
     [Header("Homing Bolts")]
     [SerializeField] private BossBofrerHomingBoltSpawner boltSpawnerPrefab;
+    [SerializeField] private float boltMinTimer;
     [Header("Ball")]
     [SerializeField] private BossBofrerBall ballPrefab;
+    [SerializeField] private float ballMinTimer;
+    private bool boltsActive;
+    private bool bflActive;
+    private bool ballActive;
+    private bool shieldMinionsActive;
+    private bool stolenActive;
+
     private BossBofrerHomingBoltSpawner boltSpawner;
     private BossBofrerShieldMinionSpawner minionSpawner;
     private BossBofrerBFL bfl;
     private BossBofrerBall ball;
+    private BofrerStolenAttackManager stealManager;
     private Animator animator;
     private GameObject shield;
+    private bool routinesStarted;
+
     private void Awake()
     {
-        stolenAttacks = new List<BossAttack>();
         bfl = Instantiate(bflPrefab);
         bfl.transform.position = transform.position;
         bfl.gameObject.SetActive(false);
+
         minionSpawner = Instantiate(shieldMinionSpawnerPrefab);
         minionSpawner.transform.position = transform.position;
+
         boltSpawner = Instantiate(boltSpawnerPrefab);
         boltSpawner.transform.position = transform.position;
+
         ball = Instantiate(ballPrefab);
         ball.transform.position = transform.position;
-        animator = GetComponent<Animator>();
+
         shield = transform.Find("Shield").gameObject;
         shield.SetActive(false);
+
+        animator = GetComponent<Animator>();
+        stealManager = GetComponent<BofrerStolenAttackManager>();
+    }
+
+    private void Start()
+    {
+        stolenAttacks = stealManager.GetStolenAttacks();
+        ActivateAttacks();
+        EnsureRoutinesStarted();
+
+    }
+
+    void ActivateAttacks()
+    {
+        int scaling = Scaling.instance.SendScaling();
+
+        bflActive = scaling >= ACTIVE_BFL_SCALE;
+        ballActive = scaling >= ACTIVE_BALL_SCALE;
+        shieldMinionsActive = scaling >= ACTIVE_SHIELD_MINION_SCALE;
+        boltsActive = scaling >= ACTIVE_BOLT_SCALE;
+
+        stolenActive = stolenAttacks.Count != 0;
+    }
+
+    void EnsureRoutinesStarted()
+    {
+        if (routinesStarted) return;
+
+        if (bflActive)
+            StartCoroutine(BFLTimerRoutine());
+        if (ballActive)
+            StartCoroutine(BallTimerRoutine());
+        if (boltsActive)
+            StartCoroutine(BoltTimerRoutine());
+        if (shieldMinionsActive)
+            StartCoroutine(ShieldMinionTimerRoutine());
+        if (stolenActive)
+            StartCoroutine(StolenAttackTimerRoutine());
+        routinesStarted = true;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
-            StartRandomStolenAttack();
-        if (Input.GetKeyDown(KeyCode.I))
-            StealRandomMichaelAttack();
-        if (Input.GetKeyDown(KeyCode.J))
-            StartBFL();
-        if (Input.GetKeyDown(KeyCode.K))
-            StartMinionSpawn();
-        if (Input.GetKeyDown(KeyCode.L))
-            StartBoltSpawn();
-        if (Input.GetKeyDown(KeyCode.H))
-            StartBallAttack();
         shieldActive = minionSpawner.AnyMinionActive();
         shield.SetActive(shieldActive);
     }
+
     protected override void Drop()
     {
     }
@@ -70,41 +115,64 @@ public class BossBofrer : Enemy
             base.Harm(ammount, overtime);
     }
 
-    void StealRandomMountainAttack()
+    IEnumerator BFLTimerRoutine()
     {
-        int num = Random.Range(0, mountainBossAttackPrefabs.Count);
-        stolenAttacks.Add(Instantiate(mountainBossAttackPrefabs[num]));
-        stolenAttacks[stolenAttacks.Count - 1].transform.position = transform.position;
-        stolenAttacks[stolenAttacks.Count - 1].gameObject.SetActive(false);
-        Debug.Log("stole " + mountainBossAttackPrefabs[num].name + " number " + num);
+        while (isActiveAndEnabled && bflActive)
+        {
+            float timer = GetRandomTimer(bflminTimer);
+            yield return new WaitForSeconds(timer);
+            StartBFL();
+        }
+    }
+    IEnumerator BallTimerRoutine()
+    {
+        while (isActiveAndEnabled && ballActive)
+        {
+            float timer = GetRandomTimer(ballMinTimer);
+            yield return new WaitForSeconds(timer);
+            StartBallAttack();
+        }
     }
 
-    void StealRandomLavaAttack()
+    IEnumerator BoltTimerRoutine()
     {
-        int num = Random.Range(0, lavaBossAttackPrefabs.Count);
-        stolenAttacks.Add(Instantiate(lavaBossAttackPrefabs[num]));
-        stolenAttacks[stolenAttacks.Count - 1].transform.position = transform.position;
-        stolenAttacks[stolenAttacks.Count - 1].gameObject.SetActive(false);
-        Debug.Log("stole " + lavaBossAttackPrefabs[num].name + " number " + num);
+        while (isActiveAndEnabled && boltsActive)
+        {
+            float timer = GetRandomTimer(boltMinTimer);
+            yield return new WaitForSeconds(timer);
+            StartBoltSpawn();
+        }
     }
 
-    void StealRandomBobAttack()
+    IEnumerator ShieldMinionTimerRoutine()
     {
-        int num = Random.Range(0, bobBossAttackPrefabs.Count);
-        stolenAttacks.Add(Instantiate(bobBossAttackPrefabs[num]));
-        stolenAttacks[stolenAttacks.Count - 1].transform.position = transform.position;
-        stolenAttacks[stolenAttacks.Count - 1].gameObject.SetActive(false);
-        Debug.Log("stole " + bobBossAttackPrefabs[num].name + " number " + num);
+        while (isActiveAndEnabled && shieldMinionsActive)
+        {
+            float timer = GetRandomTimer(shieldMinionsMinTimer);
+            yield return new WaitForSeconds(timer);
+            StartMinionSpawn();
+        }
     }
 
-    void StealRandomMichaelAttack()
+    IEnumerator StolenAttackTimerRoutine()
     {
-        int num = Random.Range(0, michaelBossAttackPrefabs.Count);
-        stolenAttacks.Add(Instantiate(michaelBossAttackPrefabs[num]));
-        stolenAttacks[stolenAttacks.Count - 1].transform.position = transform.position;
-        stolenAttacks[stolenAttacks.Count - 1].gameObject.SetActive(false);
-        Debug.Log("stole " + michaelBossAttackPrefabs[num].name + " number " + num);
+        while (isActiveAndEnabled && stolenActive)
+        {
+            float timer = GetRandomTimer(stolenMinTimer);
+            yield return new WaitForSeconds(timer);
+            StartRandomStolenAttack();
+        }
     }
+
+    float GetRandomTimer(float minTime)
+    {
+        float maxTime = minTime * 1.5f;
+
+        float random = Random.Range(minTime, maxTime);
+        return random;
+    }
+
+
 
     void StartRandomStolenAttack()
     {
@@ -116,11 +184,6 @@ public class BossBofrer : Enemy
             stolenAttacks[num].Launch();
         }
         Debug.Log("firering " + stolenAttacks[num].name + " number " + num);
-    }
-
-    void StartRandomNormalAttack()
-    {
-
     }
 
     void StartBFL()

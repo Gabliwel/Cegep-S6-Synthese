@@ -26,6 +26,7 @@ public class FadedCharge : BossAttack
         bossSprite = boss.GetComponent<SpriteRenderer>();
         dangerRectangle = Instantiate(dangerRectangle);
         dangerRectangle.SetActive(false);
+        type = BossAttackType.Michael;
     }
 
     void Update()

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6020758f2d131af42966528548bece63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 3
   damage: 20
   damageTicksTimer: 1
 --- !u!1 &6691081997010773880

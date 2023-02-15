@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0cb99e74aad83c4bbed537324d906f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 4
   boltNb: 25
   boltPrefab: {fileID: 8952411512873279779, guid: 7ee75a6a51e6f3f45931ffd1c0e4b393, type: 3}
   minBoltNb: 8

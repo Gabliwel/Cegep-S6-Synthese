@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e601846ed253ff24596d8785aa7d52e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 2
   dangerCircle: {fileID: 2524090855295497768, guid: d65d209808267f3409df99605eea1afc, type: 3}
   shadowClone: {fileID: 2671165191672617807, guid: ff2636ad590e41042926e3555359982b, type: 3}
   damage: 10
+  durationReset: 1.5

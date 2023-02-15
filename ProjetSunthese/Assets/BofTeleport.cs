@@ -39,6 +39,7 @@ public class BofTeleport : BossAttack
         playerSensor = sensor.For<Player>();
         playerSensor.OnSensedObject += OnPlayerSense;
         playerSensor.OnUnsensedObject += OnPlayerUnsense;
+        type = BossAttackType.Michael;
     }
 
     void OnPlayerSense(Player player)
