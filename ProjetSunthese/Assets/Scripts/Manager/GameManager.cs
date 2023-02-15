@@ -10,7 +10,7 @@ public enum Scene
 {
     Tutoriel,
     CentralBoss,
-    Charles,
+    CharlesLevel,
     GabLevel,
     GabShop,
     KevenLevel,
@@ -26,10 +26,13 @@ public class GameManager : MonoBehaviour
     private const int lastGamingLevel = 3;
     private const int maxLives = 3;
 
+    [SerializeField]
+    private GameObject player;
+
     private Scene actualLevel = 0;
     List<Scene> levelSceneList = new List<Scene>
     {
-    Scene.Charles,
+    Scene.CharlesLevel,
     Scene.GabLevel,
     Scene.GabShop,
     Scene.KevenLevel,
@@ -59,6 +62,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+        
     }
 
     void Update()
@@ -96,6 +100,7 @@ public class GameManager : MonoBehaviour
 
             playerLivesText = GameObject.FindGameObjectWithTag("Life").GetComponent<Text>();
             playerLivesText.text = lives.ToString();
+
         }
     }
 
@@ -161,10 +166,10 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Tutoriel");
         else if (level.Equals(Scene.KevenLevel))
             SceneManager.LoadScene("KevenNiveau");
-        else if (level.Equals(Scene.Charles))
-            SceneManager.LoadScene("Charles");
+        else if (level.Equals(Scene.CharlesLevel))
+            SceneManager.LoadScene("CharlesLevel");
         else if(level.Equals(Scene.GabLevel))
-            SceneManager.LoadScene("Charles");
+            SceneManager.LoadScene("GabLevel");
         else if (level.Equals(Scene.MarcAntoine))
             SceneManager.LoadScene("MarcAntoine");
         else if (level.Equals(Scene.CentralBoss))
@@ -195,5 +200,4 @@ public class GameManager : MonoBehaviour
     {
 
     }
-
 }

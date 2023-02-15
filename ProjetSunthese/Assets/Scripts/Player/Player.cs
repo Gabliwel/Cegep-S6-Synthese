@@ -7,6 +7,7 @@ using Billy.Utils;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
     private PlayerAnimationController animationController;
     private PlayerMovement playerMovement;
     private Weapon weapon;
@@ -32,12 +33,21 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        sprite = GetComponent<SpriteRenderer>();
+        if (instance == null)
+            instance = this;
+
+        else if (instance != this)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+
+        //switchWeapon = GameObject.FindGameObjectWithTag("WeaponSwitch").GetComponent<WeaponSwitchManager>();
         animationController = GetComponent<PlayerAnimationController>();
         playerMovement = GetComponent<PlayerMovement>();
         weapon = GetComponentInChildren<Weapon>();
         weaponInfo = weapon.gameObject.GetComponent<WeaponInformations>();
         playerLight = GetComponentInChildren<PlayerLight>();
+        sprite = GetComponent<SpriteRenderer>();
         health = GetComponent<PlayerHealth>();
         baseWeaponStat = GetComponent<PlayerBaseWeaponStat>();
     }
