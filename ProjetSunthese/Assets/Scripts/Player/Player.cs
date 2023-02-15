@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
         weapon = GetComponentInChildren<Weapon>();
         weaponInfo = weapon.gameObject.GetComponent<WeaponInformations>();
         playerLight = GetComponentInChildren<PlayerLight>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
