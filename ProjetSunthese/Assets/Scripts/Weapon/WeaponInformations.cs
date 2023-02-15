@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Weapons;
+using Billy.Weapons;
 
-namespace Weapons
+namespace Billy.Weapons
 {
     public enum WeaponsType
     {

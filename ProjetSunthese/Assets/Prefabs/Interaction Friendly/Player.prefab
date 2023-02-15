@@ -434,6 +434,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4354586378036888149}
   - component: {fileID: 4354586378036888147}
+  - component: {fileID: 1268080196}
+  - component: {fileID: 7865854449598212296}
   - component: {fileID: 4354586378036888148}
   - component: {fileID: 6010688224067948413}
   - component: {fileID: 4354586378036888145}
@@ -465,7 +467,7 @@ Transform:
   - {fileID: 4354586378031761042}
   - {fileID: 4086347055166615789}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4354586378036888147
 MonoBehaviour:
@@ -481,6 +483,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   warrior: {fileID: 9100000, guid: 21039bf0f50c7294699760e4ff488fab, type: 2}
   archer: {fileID: 9100000, guid: e67fa8213824e26498f5fdb8297d20aa, type: 2}
+--- !u!114 &1268080196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4354586378036888150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866f87f011698d948926411c7dbb3ca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentMax: 100
+  currentHealth: 100
+  armor: 0
+--- !u!114 &7865854449598212296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4354586378036888150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ed7683d022b8534197f02a711abf5ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseAttackMultiplicator: 1
+  baseSpeedLevel: 1
+  poisonLevel: 0
 --- !u!114 &4354586378036888148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,15 +550,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7635ccf626c31549bc84c64b5a91199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MAX_HEALTH: 0
-  currentHealth: 0
-  secondChance: 0
-  deathContract: 0
-  doubleNumber: 0
-  bloodSuck: 0
-  stoneHeart: 0
+  stimuli: {fileID: 4354586378031761043}
+  sensor: {fileID: 4086347055166615788}
   gold: 0
-  xp: 0
+  levelUpAugmentationRate: 1.4
+  neededXp: 100
+  currentXp: 0
   level: 0
 --- !u!50 &4354586378036888145
 Rigidbody2D:
@@ -683,6 +713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e682a19d2b6f34eb65dc6ab11dff74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  closeInteractables: []
 --- !u!1 &7095158222791125730
 GameObject:
   m_ObjectHideFlags: 0

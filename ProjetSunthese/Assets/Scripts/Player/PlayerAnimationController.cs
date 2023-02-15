@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using Weapons;
+using Billy.Weapons;
 
 public class PlayerAnimationController : MonoBehaviour
 {
