@@ -27,6 +27,7 @@ public class BossMountainStalagmite : MonoBehaviour
         playerSensor.OnUnsensedObject += OnPlayerUnsense;
         bossMountain = GetComponentInParent<BossMountain>();
         animator = GetComponent<Animator>();
+        damage = Scaling.instance.CalculateDamageOnScaling(damage);
     }
 
     private void Update()

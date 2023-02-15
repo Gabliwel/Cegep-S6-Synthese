@@ -129,10 +129,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dde5936318e2f445ae5fc4eb861833b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 50
+  baseHP: 50
+  hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 1
-  damageDealt: 10
+  baseDamageDealt: 10
+  damageDealt: 0
   speed: 0.5
   HPTreshold: 25
 --- !u!212 &3530604300807225534

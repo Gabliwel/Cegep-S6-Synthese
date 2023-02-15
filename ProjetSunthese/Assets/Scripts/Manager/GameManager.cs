@@ -109,11 +109,24 @@ public class GameManager : MonoBehaviour
         {
             int randomChoice = UnityEngine.Random.Range(0, nbSceneAccessible);
             Debug.Log(randomChoice);
-            StartNextlevel(0, (levelSceneList.ElementAt(randomChoice)));
+            actualLevel = levelSceneList.ElementAt(randomChoice);
+            StartNextlevel(0, actualLevel);
         }
         else
         {
             LoadEndScene();
+        }
+    }
+
+    public void SetNextLevel()
+    {
+        if(actualLevel == Scene.CentralBoss || actualLevel == Scene.EarlyCentralBoss || actualLevel == Scene.Tutoriel)
+        {
+            GetBackToMainStageAndStart();
+        }
+        else
+        {
+            GetBackToMainStageAndStart();
         }
     }
 
@@ -124,6 +137,7 @@ public class GameManager : MonoBehaviour
 
     public void GetBackToMainStageAndStart()
     {
+        actualLevel = Scene.CentralBoss;
         StartCoroutine(RestartLevelDelay(0, Scene.CentralBoss)); 
     }
 

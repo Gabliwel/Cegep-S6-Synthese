@@ -329,9 +329,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3aebaa8bcd71143960759b29ea3386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  baseHP: 100
+  hp: 0
   particleColor: {r: 0.3679245, g: 0.13016197, b: 0.13016197, a: 1}
   particleScale: 7
+  baseDamageDealt: 0
   damageDealt: 0
   rockAttackPrefab: {fileID: 4161923199008325614, guid: 88bea44d72ed8f6479f8a77110013113, type: 3}
   rockThrowMinTime: 4

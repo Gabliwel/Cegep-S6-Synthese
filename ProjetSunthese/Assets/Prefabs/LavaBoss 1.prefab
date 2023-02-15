@@ -209,9 +209,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd94ee65cb26a6d4f89287ca32443cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseHP: 100
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 1
+  baseDamageDealt: 0
   damageDealt: 0
   trail: {fileID: 7903956196021880511, guid: 039c57c16f2fb4a4b9c9c2ef977328c5, type: 3}
   trailListSize: 50

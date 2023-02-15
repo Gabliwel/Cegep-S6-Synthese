@@ -185,9 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc01b9d38ed12748b613375da1a0f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseHP: 100
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 1
+  baseDamageDealt: 0
   damageDealt: 0
   player: {fileID: 0}
   dangerCircle: {fileID: 770559643585829696}
@@ -580,6 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 171f340d1369dd745a7f08940302f25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
 --- !u!1 &770559643986922348
 GameObject:
   m_ObjectHideFlags: 0

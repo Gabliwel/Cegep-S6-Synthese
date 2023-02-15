@@ -28,7 +28,7 @@ public class BossMountainEnemySpawner : BossAttack
 
     public override void Launch()
     {
-        int ammount = Random.Range(minEnemySpawnNb, maxEnemySpawnNb);
+        int ammount = Random.Range(minEnemySpawnNb, maxEnemySpawnNb) * Scaling.instance.SendScaling();
 
         for (int i = 0; i < ammount; i++)
         {

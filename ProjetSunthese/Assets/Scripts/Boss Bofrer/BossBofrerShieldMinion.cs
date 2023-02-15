@@ -5,7 +5,6 @@ using UnityEngine;
 public class BossBofrerShieldMinion : Enemy
 {
     [SerializeField] private float rotationSpeed;
-    [SerializeField] private float damage;
     Transform childTransform;
     private Sensor sensor;
     private ISensor<Player> playerSensor;
@@ -32,7 +31,6 @@ public class BossBofrerShieldMinion : Enemy
 
     void OnPlayerSense(Player player)
     {
-        player.Harm(damage);
     }
 
     void OnPlayerUnsense(Player player)

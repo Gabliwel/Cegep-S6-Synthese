@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
-  damage: 7
+  damage: 3
   tickRate: 0.1
   ttl: 3
 --- !u!1 &7638210630424768056
