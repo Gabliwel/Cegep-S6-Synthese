@@ -240,27 +240,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c8a89a51a8bd2644ada469703517a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  baseHP: 100
+  hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 10
+  baseDamageDealt: 0
   damageDealt: 0
   stolenAttacks: []
   stolenMinTimer: 10
-  stolenActive: 0
   bflPrefab: {fileID: 4592944309761159550, guid: 73fa87cbf6d578e41a03f0a81e281fac, type: 3}
   bflChargeup: 2
   bflminTimer: 15
-  bflActive: 0
   shieldMinionSpawnerPrefab: {fileID: 8566137690466289898, guid: f80b40905b1575d459a9444dfd0b6192, type: 3}
   shieldActive: 0
   shieldMinionsMinTimer: 30
-  shieldMinionsActive: 0
   boltSpawnerPrefab: {fileID: 5109038637771827725, guid: b40c339a4b2e3b047885fb607959edf0, type: 3}
   boltMinTimer: 7
-  boltsActive: 0
   ballPrefab: {fileID: 4408345744752626618, guid: 8cd3e58f4ce29544ba9fd5492e0290a5, type: 3}
   ballMinTimer: 10
-  ballActive: 0
 --- !u!212 &5013013055534734157
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -44,7 +44,7 @@ public class BossBofrerHomingBoltSpawner : BossAttack
 
     IEnumerator SpawnBolts()
     {
-        int ammount = Random.Range(minBoltNb, maxBoltNb);
+        int ammount = Random.Range(minBoltNb, maxBoltNb)  * Scaling.instance.SendScaling();
         float rotation = 0;
         float step = 360 / ammount;
         float timePerBolt = totalTimeToSpawn / ammount;

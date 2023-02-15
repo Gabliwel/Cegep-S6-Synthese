@@ -7,10 +7,7 @@ public class Slime : Enemy
     private GameObject player;
     private void Start()
     {
-        scaling = GameObject.FindGameObjectWithTag("Scaling").GetComponent<Scaling>();
         player = GameObject.FindGameObjectWithTag("Player");
-        scalingLevel = scaling.SendScaling();
-        hp = 30 * scalingLevel;
         goldDropped = 5;
         xpGiven = 5;
     }

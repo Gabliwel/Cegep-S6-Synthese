@@ -8,6 +8,7 @@ public class BossBofrer : Enemy
     private const int ACTIVE_SHIELD_MINION_SCALE = 2;
     private const int ACTIVE_BOLT_SCALE = 3;
     private const int ACTIVE_BALL_SCALE = 4;
+    [SerializeField] private float HPTreshold;
     [Header("Attack Steal")]
     [SerializeField] private List<BossAttack> stolenAttacks;
     [SerializeField] private float stolenMinTimer;
@@ -67,7 +68,7 @@ public class BossBofrer : Enemy
         stolenAttacks = stealManager.GetStolenAttacks();
         ActivateAttacks();
         EnsureRoutinesStarted();
-
+        HPTreshold = hp / Scaling.instance.SendScaling();
     }
 
     void ActivateAttacks()
@@ -112,8 +113,20 @@ public class BossBofrer : Enemy
     public override void Harm(float ammount, float overtime)
     {
         if (!shieldActive)
+        {
             base.Harm(ammount, overtime);
+            CheckHPForTeleport();
+        }
     }
+
+    private void CheckHPForTeleport()
+    {
+        if (hp < HPTreshold)
+        {
+            Debug.Log("die idiot");
+        }
+    }
+
 
     IEnumerator BFLTimerRoutine()
     {

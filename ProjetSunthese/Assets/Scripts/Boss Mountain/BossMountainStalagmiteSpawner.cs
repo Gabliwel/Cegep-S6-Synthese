@@ -32,7 +32,7 @@ public class BossMountainStalagmiteSpawner : BossAttack
         trackingStalagmite.transform.position = player.transform.position;
         trackingStalagmite.gameObject.SetActive(true);
 
-        int ammount = Random.Range(minStalagmiteSpawnNb, maxStalagmiteSpawnNb);
+        int ammount = Random.Range(minStalagmiteSpawnNb, maxStalagmiteSpawnNb) * Scaling.instance.SendScaling();
 
         for (int i = 0; i < ammount; i++)
         {

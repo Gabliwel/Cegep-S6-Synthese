@@ -18,6 +18,7 @@ public class BossBofrerBallProjectile : Projectile
         playerSensor = sensor.For<Player>();
         playerSensor.OnSensedObject += OnPlayerSense;
         playerSensor.OnUnsensedObject += OnPlayerUnSense;
+        damage = Scaling.instance.CalculateDamageOnScaling(damage);
     }
 
     protected override void Update()

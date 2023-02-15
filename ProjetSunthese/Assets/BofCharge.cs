@@ -31,6 +31,7 @@ public class BofCharge : BossAttack
         playerSensor.OnSensedObject += OnPlayerSense;
         playerSensor.OnUnsensedObject += OnPlayerUnsense;
         type = BossAttackType.Michael;
+        damage = Scaling.instance.CalculateDamageOnScaling(damage);
     }
 
     void Update()
