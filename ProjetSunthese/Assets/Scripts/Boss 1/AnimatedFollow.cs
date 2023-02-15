@@ -9,6 +9,7 @@ public class AnimatedFollow : MonoBehaviour
 {
     [SerializeField] private bool useNavMesh;
     [SerializeField] private float speed;
+    [SerializeField] private float speedIncrease;
     private BasicLevelManager manager;
     private Transform objective;
     private Animator animator;
@@ -78,12 +79,12 @@ public class AnimatedFollow : MonoBehaviour
 
             if (useNavMesh)
             {
-                agent.speed += 0.5f;
-                agent.acceleration += 0.5f;
+                agent.speed += speedIncrease;
+                agent.acceleration += speedIncrease;
             }
             else
             {
-                speed += 0.5f;
+                speed += speedIncrease;
             }
         }
     }

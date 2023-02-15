@@ -6,7 +6,7 @@ using NavMeshPlus.Components;
 public class RandomGenerationGameObject : MonoBehaviour
 {
     [SerializeField] GameObject chest;
-    [SerializeField] List<Vector3Int> posibleSpawn;
+    [SerializeField] List<Vector3> posibleSpawn;
     [SerializeField] int mapMinChest;
     [SerializeField] bool redoNavMesh;
     private int chanceOfBonus = 90;
@@ -57,7 +57,7 @@ public class RandomGenerationGameObject : MonoBehaviour
     {
         int chosen = Random.Range(0, posibleSpawn.Count - 1);
 
-        Vector3Int spawnChosen = posibleSpawn[chosen];
+        Vector3 spawnChosen = posibleSpawn[chosen];
 
         GameObject chestClone = Instantiate(chest);
 
