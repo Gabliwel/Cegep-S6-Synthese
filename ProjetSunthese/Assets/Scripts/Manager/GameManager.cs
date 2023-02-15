@@ -36,8 +36,7 @@ public class GameManager : MonoBehaviour
     Scene.GabLevel,
     Scene.GabShop,
     Scene.KevenLevel,
-    Scene.MarcAntoine,
-    Scene.EarlyCentralBoss
+    Scene.MarcAntoine
     };
     [SerializeField] List<Scene> levelsDone;// = new List<Scene>();
     List<BossAttack> bofrerStolenAttacks = new List<BossAttack>();
@@ -128,7 +127,7 @@ public class GameManager : MonoBehaviour
         int nbSceneAccessible = levelSceneList.Count;
         if (nbSceneAccessible > 0)
         {
-            actualLevel = levelSceneList[5];
+            actualLevel = Scene.EarlyCentralBoss;
             StartNextlevel(0, actualLevel);
         }
         else
