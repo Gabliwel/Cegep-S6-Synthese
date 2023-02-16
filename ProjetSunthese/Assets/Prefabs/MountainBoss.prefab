@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 1699003815475913401}
   - component: {fileID: 1699003815475913400}
   - component: {fileID: 1699003815475913402}
+  - component: {fileID: 2729232660580561206}
   - component: {fileID: 1699003815475913399}
   - component: {fileID: 322310799184830659}
   - component: {fileID: 7733229124772987795}
@@ -304,8 +305,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1553068103
-  m_SortingLayer: 0
+  m_SortingLayerID: -1240086991
+  m_SortingLayer: 2
   m_SortingOrder: 10
   m_Sprite: {fileID: -910412451, guid: b7005513355925e4e9e8c8a3deed0d6f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -331,11 +332,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHP: 100
-  hp: 0
+  hp: 50
   particleColor: {r: 0.3679245, g: 0.13016197, b: 0.13016197, a: 1}
   particleScale: 7
   baseDamageDealt: 0
   damageDealt: 0
+  goldDropped: 0
+  xpGiven: 0
   rockAttackPrefab: {fileID: 4161923199008325614, guid: 88bea44d72ed8f6479f8a77110013113, type: 3}
   rockThrowMinTime: 4
   rockThrowMaxTime: 5
@@ -345,15 +348,32 @@ MonoBehaviour:
   enemyAttackPrefab: {fileID: 3278353848727762761, guid: 000663b9708efef46861b2f0b6f01ca2, type: 3}
   enemySpawnMinTime: 3
   enemySpawnMaxTime: 10
-  positionTop: {x: -61, y: 47, z: 0}
-  positionBottom: {x: -61, y: 35, z: 0}
-  positionRight: {x: -54, y: 41, z: 0}
-  positionLeft: {x: -68, y: 41, z: 0}
+  positionTop: {x: -62, y: 47, z: 0}
+  positionBottom: {x: -62, y: 33, z: 0}
+  positionRight: {x: -55, y: 41, z: 0}
+  positionLeft: {x: -69, y: 41, z: 0}
   positionChangeBaseTime: 10
   rockThrowTimer: 0
   stalagmiteSpawnTimer: 0
   enemySpawnTimer: 0
   positionChangeTimer: 0
+--- !u!114 &2729232660580561206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699003815475913398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd9b52e3181b5647a3f5e1af6d4ac30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponsDrop:
+  - {fileID: 8256077553287885047, guid: b8d5e5df62c7a54408a432e08eb6d2dd, type: 3}
+  - {fileID: 3590006991846360811, guid: f61d9337f4f4530479accbcc43eea492, type: 3}
+  portal: {fileID: 6202557103775462470, guid: 54a64a756be8cc14b884655180b6de4a, type: 3}
+  portalSpawnPosition: {x: -62, y: 40, z: 0}
 --- !u!95 &1699003815475913399
 Animator:
   serializedVersion: 5
