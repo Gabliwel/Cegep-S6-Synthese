@@ -105,20 +105,21 @@ public class Player : MonoBehaviour
         baseWeaponStat.DoubleBaseAttack();
     }
 
+    // For beta
+    /*
     public void GainBloodSuck()
     {
         //bloodSuck = true;
     }
-
     public void HealBloodSuck(int amount)
     {
-        /*
         if (bloodSuck)
         {
             Heal(amount);
         }
-        */
+        
     }
+    */
 
     public void GainXp(int amount)
     {
@@ -161,7 +162,7 @@ public class Player : MonoBehaviour
 
     public void GainDrops(int health, int xp, int gold)
     {
-        HealBloodSuck(health);
+        //HealBloodSuck(health);
         GainXp(xp);
         GainGold(gold);
     }
