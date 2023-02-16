@@ -28,11 +28,11 @@ public class Player : MonoBehaviour
     [ReadOnlyAttribute, SerializeField] private int gold = 0;
     [ReadOnlyAttribute, SerializeField] private float levelUpAugmentationRate = 1.4f;
     [ReadOnlyAttribute, SerializeField] private int neededXp = 100;
-    [ReadOnlyAttribute, SerializeField] private int currentXp = 0;
+    [ReadOnlyAttribute, SerializeField] private int currentXp = 10;
     [ReadOnlyAttribute, SerializeField] private int level = 1;
 
-    public int Gold { get; set; }
-    public int CurrentXp { get; set; }
+    public int Gold { get => gold; }
+    public int CurrentXp { get => currentXp; }
     public float Health { get => health.CurrentHealth; }
 
     private void Awake()
@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
     public void Heal(float healingAmount)
     {
         health.Heal(healingAmount);
-        //GameManager.instance.UpdateHUD();
+        GameManager.instance.UpdateHUD();
     }
 
     public void GainArmor(float value)
@@ -178,7 +178,7 @@ public class Player : MonoBehaviour
         if(iframesTimer <= 0)
         {
             health.Harm(ammount);
-            //GameManager.instance.UpdateHUD();
+            GameManager.instance.UpdateHUD();
             return true;
         }
         return false;
@@ -272,4 +272,11 @@ public class Player : MonoBehaviour
     {
         GameManager.instance.GetBackToMainStageAndStart();
     }
+
+    [ContextMenu("KevLevel")]
+    public void KevLevel()
+    {
+        GameManager.instance.StartNextlevel(0,Scene.KevenLevel);
+    }
+
 }
