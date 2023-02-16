@@ -23,7 +23,7 @@ public abstract class Weapon : MonoBehaviour
     private Coroutine attack = null;
     protected PlayerBaseWeaponStat playerBaseWeaponStat = null;
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
         SetDefault();
     }
@@ -96,6 +96,9 @@ public abstract class Weapon : MonoBehaviour
         int speedLevel = playerBaseWeaponStat.GetBaseSpeedLevel();
         startup = defaultStartup * (1 - speedLevel * 0.05f);
         recovery = defaultRecovery * (1 - speedLevel * 0.05f);
+
+        if (startup < 0.01f) startup = 0.01f;
+        if (recovery < 0.01f) recovery = 0.01f;
     }
 
     protected abstract IEnumerator Attack();

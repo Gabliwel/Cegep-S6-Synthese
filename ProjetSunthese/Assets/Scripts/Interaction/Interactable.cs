@@ -8,6 +8,9 @@ public class Interactable : MonoBehaviour
     [SerializeField] protected Material defaultMaterial;
     [SerializeField] protected Material selectedMaterial;
 
+    [Header("Only if used in shop")]
+    [SerializeField] protected int basePrice = 0;
+
     protected SpriteRenderer sprite;
 
     private void Awake()
@@ -28,4 +31,9 @@ public class Interactable : MonoBehaviour
     }
 
     public virtual void Interact(Player player) { }
+
+    public int GetPrice()
+    {
+        return basePrice;
+    }
 }

@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
 
     private const float maxLives = 100;
 
-    [SerializeField]
     private GameObject player;
     private Player playerInfo;
 
@@ -41,8 +40,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<Scene> levelsDone;// = new List<Scene>();
     List<BossAttack> bofrerStolenAttacks = new List<BossAttack>();
 
-    private float lives = maxLives;
-
+    private float currentLife = maxLives;
     private int gold;
     private int currentXp;
 
@@ -66,13 +64,21 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-
+        player = GameObject.FindGameObjectWithTag("Player");
         playerInfo = player.GetComponent<Player>();
+    }
+
+    private void Start()
+    {
+        currentXp = playerInfo.CurrentXp;
+        gold = playerInfo.Gold;
+        currentLife = playerInfo.Health;
     }
 
     void Update()
     {
         linkTexts();
+
     }
 
     public List<Scene> GetLevelsDone()
@@ -100,7 +106,6 @@ public class GameManager : MonoBehaviour
         if (textsNotLinked)
         {
             textsNotLinked = false;
-            if (actualLevel == 0) return;
 
             if (actualLevel == Scene.GameOver)
             {
@@ -110,25 +115,27 @@ public class GameManager : MonoBehaviour
             }
 
             playerLivesText = GameObject.FindGameObjectWithTag("Life").GetComponent<Text>();
-            playerLivesText.text = lives.ToString();
+            playerLivesText.text = currentLife.ToString();
 
             playerGoldText = GameObject.FindGameObjectWithTag("Gold").GetComponent<Text>();
             playerGoldText.text = gold.ToString();
 
             playerXPText = GameObject.FindGameObjectWithTag("CurrentXP").GetComponent<Text>();
             playerXPText.text = currentXp.ToString();
+
+            UpdateHUD();
         }
     }
 
     public void UpdateHUD()
     {
-        lives = playerInfo.Health;
+        currentLife = playerInfo.Health;
         gold = playerInfo.Gold;
         currentXp = playerInfo.CurrentXp;
 
-        playerXPText.text = currentXp.ToString();
-        playerGoldText.text = gold.ToString();
-        playerLivesText.text = lives.ToString();
+        playerXPText.text = "Xp : " + currentXp.ToString();
+        playerGoldText.text = "Gold : " + gold.ToString();
+        playerLivesText.text = "Life : " + currentLife.ToString();
     }
 
     public void GetRandomNextLevelAndStart()
@@ -208,8 +215,8 @@ public class GameManager : MonoBehaviour
 
     public void StartNextlevel(float delay, Scene chosenLevel)
     {
+        textsNotLinked = true;
         if (scenesAreInTransition) return;
-
         scenesAreInTransition = true;
 
         StartCoroutine(RestartLevelDelay(delay, chosenLevel));
@@ -255,15 +262,15 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        lives = maxLives;
+        currentLife = maxLives;
         actualLevel = Scene.Tutoriel;
         SceneManager.LoadScene("Tutoriel");
     }
 
     public void PlayerDie()
     {
-        lives--;
-        playerLivesText.text = lives.ToString();
+        currentLife--;
+        playerLivesText.text = currentLife.ToString();
     }
 
     public void SetGameOver()

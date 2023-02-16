@@ -62,6 +62,6 @@ public class LavaBossController : Enemy
  
     protected override void Drop()
     {
-        Debug.Log("Je drop");
+        GetComponent<BossDrops>().BossDrop(transform.position);
     }
 }

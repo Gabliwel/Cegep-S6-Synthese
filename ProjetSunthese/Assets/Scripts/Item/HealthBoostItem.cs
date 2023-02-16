@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthBoostItem : GeneralItem
+public class HealthBoostItem : GenericItem
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void AddToPlayer(Player player)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            collision.GetComponent<Player>().MaxHealthBoost(10f);
-            gameObject.SetActive(false);
-        }
+        player.MaxHealthBoost(10f);
     }
 }
