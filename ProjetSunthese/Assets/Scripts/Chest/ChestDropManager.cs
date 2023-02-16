@@ -6,11 +6,12 @@ public class ChestDropManager : MonoBehaviour
 {
     [SerializeField] GameObject[] itemDrop;
     private GameObject[] availableDrop;
-    void Start()
+    void Awake()
     {
         availableDrop = new GameObject[itemDrop.Length * 5];
         for (int i = 0; i < itemDrop.Length; i++)
         {
+            // Instantiate each possible drop 5 times
             availableDrop[(i * 5)] = Instantiate(itemDrop[i]);
             availableDrop[(i * 5)].SetActive(false);
             availableDrop[1 + (i * 5)] = Instantiate(itemDrop[i]);
@@ -22,13 +23,12 @@ public class ChestDropManager : MonoBehaviour
             availableDrop[4 + (i * 5)] = Instantiate(itemDrop[i]);
             availableDrop[4 + (i * 5)].SetActive(false);
         }
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        foreach (GameObject g in availableDrop)
+        {
+            g.SetActive(false);
+        }
+
     }
 
     public GameObject SendRandomItem()
@@ -43,7 +43,7 @@ public class ChestDropManager : MonoBehaviour
             }
             safeStateMax++;
 
-            if(safeStateMax >= 25)
+            if(safeStateMax >= availableDrop.Length -1)
             {
                 return Instantiate(itemDrop[Random.Range(0, itemDrop.Length)]);
             }
