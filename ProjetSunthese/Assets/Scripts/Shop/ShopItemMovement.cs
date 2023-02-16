@@ -18,13 +18,13 @@ public class ShopItemMovement : MonoBehaviour
         }
     }
 
-    public void IsNowSold()
+    public void IsNowSold(SpriteRenderer sprite)
     {
         sold = true;
-        StartCoroutine(IsNowSoldMove());
+        StartCoroutine(IsNowSoldMove(sprite));
     }
 
-    private IEnumerator IsNowSoldMove()
+    private IEnumerator IsNowSoldMove(SpriteRenderer sprite)
     {
         float speed = 7;
         for (float time = 0; time < 1; time += Time.deltaTime)
@@ -33,6 +33,7 @@ public class ShopItemMovement : MonoBehaviour
             transform.Translate(Vector2.up * speed * Time.deltaTime, Space.World);
             yield return null;
         }
+        sprite.sortingOrder = 3;
         gameObject.GetComponent<Interactable>().enabled = true;
         gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Layer 1"; //Layer du shop
         gameObject.transform.GetChild(0).gameObject.SetActive(true);

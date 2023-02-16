@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackSpeed : GeneralItem
+public class AttackSpeed : GenericItem
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void AddToPlayer(Player player)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            collision.GetComponent<Player>().IncreaseAttackSpeed(1);
-            gameObject.SetActive(false);
-        }
+        player.IncreaseAttackSpeed(1);
     }
 }

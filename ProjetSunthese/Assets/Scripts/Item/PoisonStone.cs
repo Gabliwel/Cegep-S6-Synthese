@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoisonStone : GeneralItem
+public class PoisonStone : GenericItem
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void AddToPlayer(Player player)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            collision.GetComponent<Player>().AddPoison(1);
-            gameObject.SetActive(false);
-        }
+        player.AddPoison(1);
     }
 }

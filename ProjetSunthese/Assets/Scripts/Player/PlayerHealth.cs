@@ -11,23 +11,24 @@ public class PlayerHealth : MonoBehaviour
     [Header("Health")]
     [SerializeField] private float maxHealth;
 
-    [Header("Info for debug")]
+    [Header("Info for debug - base")]
     [ReadOnlyAttribute, SerializeField] private float currentMax = 0;
     [ReadOnlyAttribute, SerializeField] private float currentHealth = 0;
     [ReadOnlyAttribute, SerializeField] private float armor = 0;
 
     public float CurrentHealth { get => currentHealth;}
 
+    [Header("Info for debug - bonus")]
     // ------------- Health bonus --------------------
     // if currentHealth is 15% of max, regen health to 80% of max
-    private int secondChance = 0;
+    [ReadOnlyAttribute, SerializeField]  private int secondChance = 0;
     // if currentHealth is equivalent to dead, rest alive with 1 hp
-    private int deathContract = 0;
+    [ReadOnlyAttribute, SerializeField]  private int deathContract = 0;
     // double the amount of lives and gain 10 armor, but cant regen
-    private bool stoneHeart = false;
+    [ReadOnlyAttribute, SerializeField]  private bool stoneHeart = false;
 
     // for player bonus that is independant health
-    private int receiveDamageMultiplicator = 1;
+    [ReadOnlyAttribute, SerializeField]  private int receiveDamageMultiplicator = 1;
 
     private void Awake()
     {
@@ -75,11 +76,11 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void Heal(float value)
+    public void HealPercent(float decimalPercent)
     {
         if (!stoneHeart)
         {
-            currentHealth += value;
+            currentHealth += currentMax * decimalPercent;
             if (currentHealth > currentMax)
             {
                 currentHealth = currentMax;

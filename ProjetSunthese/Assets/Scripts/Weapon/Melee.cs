@@ -13,9 +13,9 @@ public class Melee : Weapon
     private Sensor sensor;
     private ISensor<Enemy> enemySensor;
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
         sensor = GetComponentInChildren<Sensor>();
         enemySensor = sensor.For<Enemy>();
         enemySensor.OnSensedObject += OnEnemySense;
