@@ -27,7 +27,6 @@ public class ChestGameObject : Interactable
             Debug.Log("Give item");
             GameObject drop = chestDropManager.SendRandomItem();
             drop.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, 0);
-            drop.GetComponent<Collider2D>().enabled = false;
             drop.SetActive(true);
             hasBeenOpened = false;
         }
