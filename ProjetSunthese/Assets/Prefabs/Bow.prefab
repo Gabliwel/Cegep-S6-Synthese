@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8402220814431009428
 SpriteRenderer:
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1553068103
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 9
   m_Sprite: {fileID: 21300000, guid: 71c8ed4c81d029e4a913b72852d53de7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -100,13 +100,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ROTATION_OFFSET: 0
   orbit: 1
-  damage: 6
+  baseDamage: 5
   startup: 0.2
   recovery: 0.1
   cooldown: 0.1
   cooldownTimer: 0
-  projectileNb: 20
-  projectilePrefab: {fileID: 3630941139613100801, guid: 41a2a77a76ef08a489731d1ae71f3398, type: 3}
 --- !u!95 &3884402696250763032
 Animator:
   serializedVersion: 5
