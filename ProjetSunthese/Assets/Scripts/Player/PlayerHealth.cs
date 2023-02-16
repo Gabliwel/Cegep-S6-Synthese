@@ -16,6 +16,8 @@ public class PlayerHealth : MonoBehaviour
     [ReadOnlyAttribute, SerializeField] private float currentHealth = 0;
     [ReadOnlyAttribute, SerializeField] private float armor = 0;
 
+    public float CurrentHealth { get => currentHealth;}
+
     [Header("Info for debug - bonus")]
     // ------------- Health bonus --------------------
     // if currentHealth is 15% of max, regen health to 80% of max

@@ -32,6 +32,10 @@ public class Player : MonoBehaviour
     [ReadOnlyAttribute, SerializeField] private int currentXp = 0;
     [ReadOnlyAttribute, SerializeField] private int level = 1;
 
+    public int Gold { get => gold; }
+    public int CurrentXp { get => currentXp; }
+    public float Health { get => health.CurrentHealth; }
+
     private void Awake()
     {
         if (instance == null)
@@ -47,10 +51,10 @@ public class Player : MonoBehaviour
         weapon = GetComponentInChildren<Weapon>();
         weaponInfo = weapon.gameObject.GetComponent<WeaponInformations>();
         playerLight = GetComponentInChildren<PlayerLight>();
-        sprite = GetComponent<SpriteRenderer>();
         health = GetComponent<PlayerHealth>();
         baseWeaponStat = GetComponent<PlayerBaseWeaponStat>();
         playerInteractables = GetComponent<PlayerInteractables>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -130,6 +134,7 @@ public class Player : MonoBehaviour
             level++;
             BoostDamage();
             MaxHealthBoost(10);
+            GameManager.instance.UpdateHUD();
         }
     }
 
@@ -157,6 +162,7 @@ public class Player : MonoBehaviour
     public void GainGold(int amount)
     {
         gold += amount;
+        GameManager.instance.UpdateHUD();
     }
 
     public void GainDrops(int health, int xp, int gold)
@@ -164,6 +170,7 @@ public class Player : MonoBehaviour
         HealBloodSuck(health);
         GainXp(xp);
         GainGold(gold);
+        GameManager.instance.UpdateHUD();
     }
 
     public bool BuyItem(int price)
@@ -181,6 +188,7 @@ public class Player : MonoBehaviour
         if(iframesTimer <= 0)
         {
             health.Harm(ammount);
+            GameManager.instance.UpdateHUD();
             return true;
         }
         return false;
@@ -275,4 +283,11 @@ public class Player : MonoBehaviour
     {
         GameManager.instance.GetBackToMainStageAndStart();
     }
+
+    [ContextMenu("KevLevel")]
+    public void KevLevel()
+    {
+        GameManager.instance.StartNextlevel(0,Scene.KevenLevel);
+    }
+
 }
