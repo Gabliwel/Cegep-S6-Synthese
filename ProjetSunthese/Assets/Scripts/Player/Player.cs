@@ -31,9 +31,9 @@ public class Player : MonoBehaviour
     [ReadOnlyAttribute, SerializeField] private int currentXp = 0;
     [ReadOnlyAttribute, SerializeField] private int level = 1;
 
-    //public int Gold{get;set;}
-    //public int CurrentXp { get; set; }
-    //public float Health { get => health.CurrentHealth;}
+    public int Gold { get; set; }
+    public int CurrentXp { get; set; }
+    public float Health { get => health.CurrentHealth; }
 
     private void Awake()
     {
@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
             level++;
             BoostDamage();
             MaxHealthBoost(10);
-            //GameManager.instance.UpdateHUD();
+            GameManager.instance.UpdateHUD();
         }
     }
 
@@ -152,7 +152,7 @@ public class Player : MonoBehaviour
     public void GainGold(int amount)
     {
         gold += amount;
-        //GameManager.instance.UpdateHUD();
+        GameManager.instance.UpdateHUD();
     }
 
     public void GainDrops(int health, int xp, int gold)
@@ -160,7 +160,7 @@ public class Player : MonoBehaviour
         HealBloodSuck(health);
         GainXp(xp);
         GainGold(gold);
-        //GameManager.instance.UpdateHUD();
+        GameManager.instance.UpdateHUD();
     }
 
     public bool BuyItem(int price)

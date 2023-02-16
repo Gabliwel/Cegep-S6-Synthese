@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     private const int firstGamingLevel = 1;
     private const int lastGamingLevel = 3;
-    private const int maxLives = 3;
+    private const float maxLives = 100;
 
     [SerializeField]
     private GameObject player;
@@ -41,8 +41,9 @@ public class GameManager : MonoBehaviour
     };
     [SerializeField] List<Scene> levelsDone;// = new List<Scene>();
     List<BossAttack> bofrerStolenAttacks = new List<BossAttack>();
-    
-    private float lives;
+
+    private float lives = maxLives;
+
     private int gold;
     private int currentXp;
 
@@ -64,8 +65,7 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        //playerInfo = player.GetComponent<Player>();
-
+        playerInfo = player.GetComponent<Player>();
     }
 
     void Update()
@@ -111,16 +111,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //public void UpdateHUD()
-    //{
-    //    lives = playerInfo.Health;
-    //    gold = playerInfo.Gold;
-    //    currentXp = playerInfo.CurrentXp;
+    public void UpdateHUD()
+    {
+        lives = playerInfo.Health;
+        gold = playerInfo.Gold;
+        currentXp = playerInfo.CurrentXp;
 
-    //    playerXPText.text = currentXp.ToString();
-    //    playerGoldText.text = gold.ToString();
-    //    playerLivesText.text = lives.ToString();
-    //}
+        playerXPText.text = currentXp.ToString();
+        playerGoldText.text = gold.ToString();
+        playerLivesText.text = lives.ToString();
+    }
 
     public void GetRandomNextLevelAndStart()
     {
