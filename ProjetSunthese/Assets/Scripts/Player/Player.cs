@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject sensor;
 
     [Header("Ressources")]
-    [ReadOnlyAttribute, SerializeField] private int gold = 0;
+    [SerializeField] private int gold = 0;
     [ReadOnlyAttribute, SerializeField] private float levelUpAugmentationRate = 1.4f;
     [ReadOnlyAttribute, SerializeField] private int neededXp = 100;
     [ReadOnlyAttribute, SerializeField] private int currentXp = 0;

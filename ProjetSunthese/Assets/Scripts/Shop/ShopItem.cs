@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ShopItem : Interactable
 {
     private GameObject item;
     private SpriteRenderer itemSprite;
+
+    private TMP_Text text;
     private int price;
 
-    public void SetItem(GameObject newItem)
+    public void SetItem(GameObject newItem, int newPrice)
     {
+        price = newPrice;
         item = newItem;
+
         itemSprite = item.GetComponent<SpriteRenderer>();
+        text = GetComponentInChildren<TMP_Text>();
         itemSprite.sortingOrder = 5;
+        text.text = newPrice.ToString();
     }
 
     public override void ChangeSelectedState(bool selected)

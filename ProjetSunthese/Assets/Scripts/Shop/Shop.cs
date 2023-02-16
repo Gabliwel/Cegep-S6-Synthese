@@ -17,11 +17,13 @@ public class Shop : MonoBehaviour
 
             item.transform.position = stands[i].transform.position + (Vector3.up * 2);
 
-            item.GetComponent<Interactable>().enabled = false;
+            Interactable itemInt = item.GetComponent<Interactable>();
+            int basePrice = itemInt.GetPrice();
+            itemInt.enabled = false;
             item.transform.GetChild(0).gameObject.SetActive(false);
             item.AddComponent<ShopItemMovement>();
 
-            stands[i].GetComponent<ShopItem>().SetItem(item);
+            stands[i].GetComponent<ShopItem>().SetItem(item, basePrice);
 
 
             item.SetActive(true);

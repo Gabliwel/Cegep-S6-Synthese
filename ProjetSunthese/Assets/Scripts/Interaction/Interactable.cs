@@ -31,4 +31,9 @@ public class Interactable : MonoBehaviour
     }
 
     public virtual void Interact(Player player) { }
+
+    public int GetPrice()
+    {
+        return basePrice;
+    }
 }

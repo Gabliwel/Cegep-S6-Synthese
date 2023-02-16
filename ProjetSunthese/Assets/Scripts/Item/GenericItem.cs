@@ -35,6 +35,7 @@ public abstract class GenericItem : Interactable
 
     private void Collected(Player player)
     {
-
+        player.UpdateInteractables(this);
+        gameObject.SetActive(false);
     }
 }
