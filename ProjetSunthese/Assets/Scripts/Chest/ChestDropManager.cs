@@ -13,10 +13,15 @@ public class ChestDropManager : MonoBehaviour
         {
             // Instantiate each possible drop 5 times
             availableDrop[(i * 5)] = Instantiate(itemDrop[i]);
+            availableDrop[(i * 5)].SetActive(false);
             availableDrop[1 + (i * 5)] = Instantiate(itemDrop[i]);
+            availableDrop[1 +(i * 5)].SetActive(false);
             availableDrop[2 + (i * 5)] = Instantiate(itemDrop[i]);
+            availableDrop[2 + (i * 5)].SetActive(false);
             availableDrop[3 + (i * 5)] = Instantiate(itemDrop[i]);
+            availableDrop[3 + (i * 5)].SetActive(false);
             availableDrop[4 + (i * 5)] = Instantiate(itemDrop[i]);
+            availableDrop[4 + (i * 5)].SetActive(false);
         }
 
         foreach (GameObject g in availableDrop)

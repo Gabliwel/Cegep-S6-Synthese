@@ -14,14 +14,9 @@ public class MichaelFight : Enemy
     private string currentAttack;
     private int attackNb = 0;
 
-    private float fadeAmount = 1f;
-    private SpriteRenderer sprite;
     private bool attackInProgress = false;
 
-    private bool fadeInProgress = true;
-
     private float attackDelay = 3f;
-    private float reactionTime = 1.5f;
 
     private Animator animator;
 
@@ -31,7 +26,6 @@ public class MichaelFight : Enemy
         goldDropped = 50;
 
         animator = GetComponent<Animator>();
-        sprite = GetComponent<SpriteRenderer>();
         dangerRectangle.transform.localScale = new Vector3(10, 1.5f, 1);
         Attacks[0] = "CHARGE";
         Attacks[1] = "TELEPORT";

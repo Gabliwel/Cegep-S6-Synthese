@@ -20,6 +20,9 @@ TagManager:
   - ArenaLimitBottomRight
   - FollowingBoss
   - Portal
+  - CurrentXP
+  - Gold
+  - GameOver
   layers:
   - Default
   - TransparentFX
