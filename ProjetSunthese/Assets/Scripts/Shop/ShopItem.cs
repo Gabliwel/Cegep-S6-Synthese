@@ -6,12 +6,13 @@ public class ShopItem : Interactable
 {
     private GameObject item;
     private SpriteRenderer itemSprite;
-    [SerializeField] private int price;
+    private int price;
 
     public void SetItem(GameObject newItem)
     {
         item = newItem;
         itemSprite = item.GetComponent<SpriteRenderer>();
+        itemSprite.sortingOrder = 5;
     }
 
     public override void ChangeSelectedState(bool selected)
@@ -35,8 +36,9 @@ public class ShopItem : Interactable
         if (bought)
         {
             item.transform.parent = null;
-            item.GetComponent<ShopItemMovement>().IsNowSold();
+            item.GetComponent<ShopItemMovement>().IsNowSold(itemSprite);
             gameObject.SetActive(false);
+            player.UpdateInteractables(this);
         }
     }
 }

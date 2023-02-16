@@ -7,7 +7,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject[] stands;
     [SerializeField] private List<GameObject> possibleItems;
 
-    void Start()
+    void Awake()
     {
         for (int i = 0; i < stands.Length; i++)
         {

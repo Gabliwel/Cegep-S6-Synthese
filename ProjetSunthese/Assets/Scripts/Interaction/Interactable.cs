@@ -8,6 +8,9 @@ public class Interactable : MonoBehaviour
     [SerializeField] protected Material defaultMaterial;
     [SerializeField] protected Material selectedMaterial;
 
+    [Header("Only if used in shop")]
+    [SerializeField] protected int basePrice = 0;
+
     protected SpriteRenderer sprite;
 
     private void Awake()

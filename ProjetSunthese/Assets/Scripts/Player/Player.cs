@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private PlayerHealth health;
     private PlayerBaseWeaponStat baseWeaponStat;
     private SpriteRenderer sprite;
+    private PlayerInteractables playerInteractables;
     private float iframesTimer;
 
     [Header("Link")]
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
         playerLight = GetComponentInChildren<PlayerLight>();
         health = GetComponent<PlayerHealth>();
         baseWeaponStat = GetComponent<PlayerBaseWeaponStat>();
+        playerInteractables = GetComponent<PlayerInteractables>();
     }
 
     private void Start()
@@ -55,6 +57,11 @@ public class Player : MonoBehaviour
             iframesTimer -= Time.deltaTime;
     }
 
+    public void UpdateInteractables(Interactable interectable)
+    {
+        playerInteractables.SearchNewInterac(interectable);
+    }
+
     public void AddIframes(float ammount)
     {
         iframesTimer += ammount;
@@ -67,9 +74,9 @@ public class Player : MonoBehaviour
         health.AddMaxHp(value);
     }
 
-    public void Heal(float healingAmount)
+    public void HealPercent(float healingPercent)
     {
-        health.Heal(healingAmount);
+        health.HealPercent(healingPercent);
     }
 
     public void GainArmor(float value)
@@ -228,6 +235,7 @@ public class Player : MonoBehaviour
         newWeaponInfo.SwitchToWeapon();
         weapon.SetPlayerBaseWeaponStat(baseWeaponStat);
         weapon.SetDefault();
+        weapon.CalculateNewSpeed();
 
         //change anim et autre...
         animationController.ChangeOnWeaponType(weaponInfo.GetWeaponType());

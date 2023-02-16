@@ -177,9 +177,4 @@ public class PlayerMovement : MonoBehaviour
     {
         return isRolling;
     }
-
-    public void SpeedItemPickup()
-    {
-        BASE_SPEED += 1;
-    }
 }

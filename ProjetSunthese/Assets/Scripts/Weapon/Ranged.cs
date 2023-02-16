@@ -8,9 +8,9 @@ public class Ranged : Weapon
 
     private Animator animator;
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
         animator = GetComponent<Animator>();
     }
 
