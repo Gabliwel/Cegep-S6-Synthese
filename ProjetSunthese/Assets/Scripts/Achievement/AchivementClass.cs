@@ -13,6 +13,7 @@ public class AchivementClass
     public bool beatTheGame;
 
 
+
     public int nbChestOpened;
 
     public AchivementClass(bool lotsChestOpened, int nbChestOpened, bool rageQuit, bool beatBob, bool beatGontrand, bool beatMichael, bool beatJeanGuy, bool beatTheGame)

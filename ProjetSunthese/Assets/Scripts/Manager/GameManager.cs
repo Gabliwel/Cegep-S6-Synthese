@@ -15,15 +15,14 @@ public enum Scene
     GabShop,
     KevenLevel,
     MarcAntoine,
-    EarlyCentralBoss
+    EarlyCentralBoss,
+    GameOver
 }
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private const int firstGamingLevel = 1;
-    private const int lastGamingLevel = 3;
     private const float maxLives = 100;
 
     [SerializeField]
@@ -54,6 +53,9 @@ public class GameManager : MonoBehaviour
     Text playerGoldText;
     Text playerXPText;
     Text playerLivesText;
+    Text gameOverText;
+
+    private string gameOverInfo = "";
 
     void Awake()
     {
@@ -99,6 +101,13 @@ public class GameManager : MonoBehaviour
         {
             textsNotLinked = false;
             if (actualLevel == 0) return;
+
+            if (actualLevel == Scene.GameOver)
+            {
+                gameOverText = GameObject.FindGameObjectWithTag("GameOver").GetComponent<Text>();
+                gameOverText.text = gameOverInfo;
+                return;
+            }
 
             playerLivesText = GameObject.FindGameObjectWithTag("Life").GetComponent<Text>();
             playerLivesText.text = lives.ToString();
@@ -180,6 +189,9 @@ public class GameManager : MonoBehaviour
     public void LoadEndScene()
     {
         Debug.Log("AHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAH END");
+        actualLevel = Scene.GameOver;
+        gameOverInfo = "Victory";
+        StartCoroutine(RestartLevelDelay(0, actualLevel));
     }
 
     public void GetBackToMainStageAndStart()
@@ -219,7 +231,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         textsNotLinked = true;
 
-        if (lives == 0)
+        if (level.Equals(Scene.Tutoriel))
             SceneManager.LoadScene("Tutoriel");
         else if (level.Equals(Scene.KevenLevel))
             SceneManager.LoadScene("KevenNiveau");
@@ -233,8 +245,10 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("CentralBoss");
         else if (level.Equals(Scene.EarlyCentralBoss))
             SceneManager.LoadScene("EarlyCentralBoss");
-        else
+        else if (level.Equals(Scene.GabShop))
             SceneManager.LoadScene("GabShop");
+        else
+            SceneManager.LoadScene("GameOver");
 
         scenesAreInTransition = false;
     }
@@ -254,6 +268,8 @@ public class GameManager : MonoBehaviour
 
     public void SetGameOver()
     {
-
+        actualLevel = Scene.GameOver;
+        gameOverInfo = "Game Over";
+        StartCoroutine(RestartLevelDelay(0, actualLevel));
     }
 }

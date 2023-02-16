@@ -71,6 +71,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             // call to player for anim and gamemanager
+            GameManager.instance.SetGameOver();
             Debug.Log("I am dead");
         }
     }
