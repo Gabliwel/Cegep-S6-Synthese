@@ -12,10 +12,15 @@ public class ChestDropManager : MonoBehaviour
         for (int i = 0; i < itemDrop.Length; i++)
         {
             availableDrop[(i * 5)] = Instantiate(itemDrop[i]);
+            availableDrop[(i * 5)].SetActive(false);
             availableDrop[1 + (i * 5)] = Instantiate(itemDrop[i]);
+            availableDrop[1 +(i * 5)].SetActive(false);
             availableDrop[2 + (i * 5)] = Instantiate(itemDrop[i]);
+            availableDrop[2 + (i * 5)].SetActive(false);
             availableDrop[3 + (i * 5)] = Instantiate(itemDrop[i]);
+            availableDrop[3 + (i * 5)].SetActive(false);
             availableDrop[4 + (i * 5)] = Instantiate(itemDrop[i]);
+            availableDrop[4 + (i * 5)].SetActive(false);
         }
         
     }
