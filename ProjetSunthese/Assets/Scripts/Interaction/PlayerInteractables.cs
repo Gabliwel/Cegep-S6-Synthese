@@ -78,4 +78,11 @@ public class PlayerInteractables : MonoBehaviour
         currentSelected = closest;
         currentSelected.ChangeSelectedState(true);
     }
+
+    internal void SearchNewInterac(Interactable interectable)
+    {
+        closeInteractables.Remove(interectable);
+        currentSelected = null;
+        SearchNewClosestInteractable();
+    }
 }

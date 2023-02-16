@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageItem : GeneralItem
+public class DamageItem : GenericItem
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void AddToPlayer(Player player)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            collision.GetComponent<Player>().BoostDamage();
-            gameObject.SetActive(false);
-        }
+        player.BoostDamage();
     }
 }

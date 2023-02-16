@@ -2,15 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealingPlayer : GeneralItem
+public class HealingPlayer : GenericItem
 {
-    [SerializeField] int healAmount;
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void AddToPlayer(Player player)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            collision.GetComponent<Player>().Heal(healAmount);
-            gameObject.SetActive(false);
-        }
-    }
+        player.HealPercent(0.10f);
+    }   
 }
