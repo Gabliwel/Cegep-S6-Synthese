@@ -36,6 +36,8 @@ public class BossMountain : Enemy
     private BossMountainStalagmiteSpawner stalagmiteSpawner;
     private BossMountainRock rock;
 
+    private HPBar hpBar;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -48,6 +50,7 @@ public class BossMountain : Enemy
         stalagmiteSpawner.transform.parent = transform;
         rock = Instantiate(rockAttackPrefab);
         rock.transform.parent = transform;
+        hpBar = GetComponentInChildren<HPBar>();
     }
 
     private void OnEnable()
@@ -56,10 +59,24 @@ public class BossMountain : Enemy
         stalagmiteSpawnTimer = Random.Range(stalagmiteSpawnMinTime, stalagmiteSpawnMaxTime);
         rockThrowTimer = Random.Range(rockThrowMinTime, rockThrowMaxTime);
         positionChangeTimer = positionChangeBaseTime;
+        hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
+        damageDealt = Scaling.instance.CalculateDamageOnScaling(baseDamageDealt);
     }
 
     protected override void Drop()
     {
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        GetComponent<BossDrops>().BossDrop(transform.position);
+    }
+
+    public override void Harm(float ammount, float poison)
+    {
+        base.Harm(ammount, poison);
+        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
     }
 
     private void Update()

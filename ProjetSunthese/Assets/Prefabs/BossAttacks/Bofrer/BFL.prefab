@@ -623,7 +623,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7899d0b601720a44db1e093949cb7a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 7
+  type: 4
+  damage: 3
   tickRate: 0.1
   ttl: 3
 --- !u!1 &7638210630424768056

@@ -18,6 +18,7 @@ public class BossBofrerHomingBoltProjectile : Projectile
         playerSensor.OnSensedObject += OnPlayerSense;
         playerSensor.OnUnsensedObject += OnPlayerUnSense;
         parentBolt = GetComponentInParent<BossBofrerHomingBolt>();
+        damage = Scaling.instance.CalculateDamageOnScaling(damage);
     }
 
     private void OnPlayerSense(Player player)

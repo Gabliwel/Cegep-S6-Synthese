@@ -23,6 +23,7 @@ public class ParticleManager : MonoBehaviour
         for(int i = 0; i < deathParticlesNb; i++)
         {
             particles[i] = Instantiate<ParticleSystem>(deathParticlesPrefab);
+            particles[i].transform.parent = transform;
             particles[i].gameObject.SetActive(false);
         }
     }

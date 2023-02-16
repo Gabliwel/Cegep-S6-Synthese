@@ -6,11 +6,11 @@ using UnityEngine.UI;
 using System;
 using System.Linq;
 
-public enum Scene  
+public enum Scene
 {
     Tutoriel,
     CentralBoss,
-    Charles,
+    CharlesLevel,
     GabLevel,
     GabShop,
     KevenLevel,
@@ -26,17 +26,21 @@ public class GameManager : MonoBehaviour
     private const int lastGamingLevel = 3;
     private const int maxLives = 3;
 
+    [SerializeField]
+    private GameObject player;
+
     private Scene actualLevel = 0;
     List<Scene> levelSceneList = new List<Scene>
     {
-    Scene.Charles,
+    Scene.CharlesLevel,
     Scene.GabLevel,
     Scene.GabShop,
     Scene.KevenLevel,
-    Scene.MarcAntoine,
-    Scene.EarlyCentralBoss
+    Scene.MarcAntoine
     };
-    
+    [SerializeField] List<Scene> levelsDone;// = new List<Scene>();
+    List<BossAttack> bofrerStolenAttacks = new List<BossAttack>();
+
 
     private int lives = maxLives;
 
@@ -57,12 +61,34 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+
     }
 
     void Update()
     {
         linkTexts();
     }
+
+    public List<Scene> GetLevelsDone()
+    {
+        return levelsDone;
+    }
+
+    public List<BossAttack> GetStoredBofrerStolenAttacks()
+    {
+        return bofrerStolenAttacks;
+    }
+
+    public void StoreBofrerStolenAttacks(List<BossAttack> newAttacks)
+    {
+        bofrerStolenAttacks = newAttacks;
+    }
+
+    public void ClearBofrerStolenAttack()
+    {
+        bofrerStolenAttacks.Clear();
+    }
+
 
     private void linkTexts()
     {
@@ -73,6 +99,7 @@ public class GameManager : MonoBehaviour
 
             playerLivesText = GameObject.FindGameObjectWithTag("Life").GetComponent<Text>();
             playerLivesText.text = lives.ToString();
+
         }
     }
 
@@ -80,15 +107,54 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Before : " + levelSceneList.Count);
         int nbSceneAccessible = levelSceneList.Count;
-        if(nbSceneAccessible > 0)
+        if (nbSceneAccessible > 0)
         {
             int randomChoice = UnityEngine.Random.Range(0, nbSceneAccessible);
             Debug.Log(randomChoice);
-            StartNextlevel(0, (levelSceneList.ElementAt(randomChoice)));
+            actualLevel = levelSceneList.ElementAt(randomChoice);
+            StartNextlevel(0, actualLevel);
         }
         else
         {
             LoadEndScene();
+        }
+    }
+
+    [ContextMenu("Early wood")]
+    public void GoToEarlyBofrer()
+    {
+        Debug.Log("leaving to early");
+        int nbSceneAccessible = levelSceneList.Count;
+        if (nbSceneAccessible > 0)
+        {
+            actualLevel = Scene.EarlyCentralBoss;
+            StartNextlevel(0, actualLevel);
+        }
+        else
+        {
+            LoadEndScene();
+        }
+    }
+
+    public void SetNextLevel()
+    {
+        switch (actualLevel)
+        {
+            case Scene.Tutoriel:
+                GoToEarlyBofrer();
+                break;
+            case Scene.CentralBoss:
+                GetRandomNextLevelAndStart();
+                break;
+            case Scene.GabShop:
+                GetRandomNextLevelAndStart();
+                break;
+            case Scene.EarlyCentralBoss:
+                GetRandomNextLevelAndStart();
+                break;
+            default:
+                GetBackToMainStageAndStart();
+                break;
         }
     }
 
@@ -97,19 +163,22 @@ public class GameManager : MonoBehaviour
         Debug.Log("AHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAH END");
     }
 
+
     public void GetBackToMainStageAndStart()
     {
-        StartCoroutine(RestartLevelDelay(0, Scene.CentralBoss)); 
+        actualLevel = Scene.CentralBoss;
+        StartCoroutine(RestartLevelDelay(0, Scene.CentralBoss));
     }
 
     public void RemoveSceneFromSceneList(Scene sceneToRemove)
     {
+        levelsDone.Add(sceneToRemove);
         levelSceneList.Remove(sceneToRemove);
     }
-    
+
     public void StartNextlevel(float delay, Scene chosenLevel)
     {
-        if (scenesAreInTransition) return;  
+        if (scenesAreInTransition) return;
 
         scenesAreInTransition = true;
 
@@ -136,17 +205,17 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Tutoriel");
         else if (level.Equals(Scene.KevenLevel))
             SceneManager.LoadScene("KevenNiveau");
-        else if (level.Equals(Scene.Charles))
-            SceneManager.LoadScene("Charles");
-        else if(level.Equals(Scene.GabLevel))
-            SceneManager.LoadScene("Charles");
+        else if (level.Equals(Scene.CharlesLevel))
+            SceneManager.LoadScene("CharlesLevel");
+        else if (level.Equals(Scene.GabLevel))
+            SceneManager.LoadScene("GabLevel");
         else if (level.Equals(Scene.MarcAntoine))
             SceneManager.LoadScene("MarcAntoine");
         else if (level.Equals(Scene.CentralBoss))
             SceneManager.LoadScene("CentralBoss");
         else if (level.Equals(Scene.EarlyCentralBoss))
             SceneManager.LoadScene("EarlyCentralBoss");
-        else 
+        else
             SceneManager.LoadScene("GabShop");
 
         scenesAreInTransition = false;
@@ -170,5 +239,4 @@ public class GameManager : MonoBehaviour
     {
 
     }
-
 }

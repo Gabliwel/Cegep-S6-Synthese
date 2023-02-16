@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSO : ScriptableObject
+public enum BossAttackType
 {
-    private Player player;
-
-    
+    Mountain,
+    Bob,
+    Michael,
+    Lava,
+    Bofrer
 }

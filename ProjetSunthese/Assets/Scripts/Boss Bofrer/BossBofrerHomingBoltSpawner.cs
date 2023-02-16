@@ -22,6 +22,7 @@ public class BossBofrerHomingBoltSpawner : BossAttack
             bolts[i] = GameObject.Instantiate<BossBofrerHomingBolt>(boltPrefab);
             bolts[i].gameObject.SetActive(false);
         }
+        type = BossAttackType.Bofrer;
     }
 
     public override void Launch()
@@ -43,7 +44,7 @@ public class BossBofrerHomingBoltSpawner : BossAttack
 
     IEnumerator SpawnBolts()
     {
-        int ammount = Random.Range(minBoltNb, maxBoltNb);
+        int ammount = Random.Range(minBoltNb, maxBoltNb)  * Scaling.instance.SendScaling();
         float rotation = 0;
         float step = 360 / ammount;
         float timePerBolt = totalTimeToSpawn / ammount;

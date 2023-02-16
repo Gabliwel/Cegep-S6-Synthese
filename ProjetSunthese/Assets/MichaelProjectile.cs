@@ -34,6 +34,7 @@ public class MichaelProjectile : BossAttack
         bossSprite = boss.GetComponent<SpriteRenderer>();
         projectile = Instantiate(projectile);
         projectile.SetActive(false);
+        type = BossAttackType.Michael;
     }
 
     // Update is called once per frame

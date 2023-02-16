@@ -19,6 +19,7 @@ TagManager:
   - ArenaLimitTopLeft
   - ArenaLimitBottomRight
   - FollowingBoss
+  - Portal
   layers:
   - Default
   - TransparentFX

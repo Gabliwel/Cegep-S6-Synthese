@@ -26,6 +26,8 @@ public class BossMountainRock : BossAttack
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         gameObject.SetActive(false);
+        type = BossAttackType.Mountain;
+        damage = Scaling.instance.CalculateDamageOnScaling(damage);
     }
     private void OnEnable()
     {

@@ -23,11 +23,12 @@ public class BossMountainEnemySpawner : BossAttack
 
         minSpawnRange = GameObject.FindGameObjectWithTag("ArenaLimitTopLeft").transform.position;
         maxSpawnRange = GameObject.FindGameObjectWithTag("ArenaLimitBottomRight").transform.position;
+        type = BossAttackType.Mountain;
     }
 
     public override void Launch()
     {
-        int ammount = Random.Range(minEnemySpawnNb, maxEnemySpawnNb);
+        int ammount = Random.Range(minEnemySpawnNb, maxEnemySpawnNb) * Scaling.instance.SendScaling();
 
         for (int i = 0; i < ammount; i++)
         {

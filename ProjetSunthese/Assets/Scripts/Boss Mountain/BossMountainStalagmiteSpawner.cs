@@ -24,6 +24,7 @@ public class BossMountainStalagmiteSpawner : BossAttack
         }
         minSpawnRange = GameObject.FindGameObjectWithTag("ArenaLimitTopLeft").transform.position;
         maxSpawnRange = GameObject.FindGameObjectWithTag("ArenaLimitBottomRight").transform.position;
+        type = BossAttackType.Mountain;
     }
     public override void Launch()
     {
@@ -31,7 +32,7 @@ public class BossMountainStalagmiteSpawner : BossAttack
         trackingStalagmite.transform.position = player.transform.position;
         trackingStalagmite.gameObject.SetActive(true);
 
-        int ammount = Random.Range(minStalagmiteSpawnNb, maxStalagmiteSpawnNb);
+        int ammount = Random.Range(minStalagmiteSpawnNb, maxStalagmiteSpawnNb) * Scaling.instance.SendScaling();
 
         for (int i = 0; i < ammount; i++)
         {

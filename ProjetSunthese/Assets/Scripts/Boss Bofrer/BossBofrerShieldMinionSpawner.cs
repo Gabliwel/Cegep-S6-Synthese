@@ -11,7 +11,7 @@ public class BossBofrerShieldMinionSpawner : BossAttack
     private BossBofrerShieldMinion[] enemies;
     public override void Launch()
     {
-        int ammount = Random.Range(minEnemySpawnNb, maxEnemySpawnNb);
+        int ammount = Random.Range(minEnemySpawnNb, maxEnemySpawnNb) * Scaling.instance.SendScaling();
 
         for (int i = 0; i < ammount; i++)
         {
@@ -19,6 +19,7 @@ public class BossBofrerShieldMinionSpawner : BossAttack
             enemy.gameObject.SetActive(true);
             enemy.SetRotation(GetRandomRotation());
         }
+        type = BossAttackType.Bofrer;
     }
 
     private void Awake()
