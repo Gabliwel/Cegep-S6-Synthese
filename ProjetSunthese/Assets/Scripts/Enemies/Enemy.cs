@@ -10,28 +10,28 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float particleScale = 1;
     [SerializeField] protected float baseDamageDealt;
     [SerializeField] protected float damageDealt;
+    [SerializeField] protected int goldDropped;
+    [SerializeField] protected int xpGiven;
     protected float overtime = 0;
     protected float overtimeTimer = 1f;
     protected int scalingLevel;
-    protected int xpGiven;
-    protected int goldDropped = 0;
 
     protected float poisonDuration = 5f;
     protected float poisonDamage = 0f;
 
     private void Update()
     {
-        if(overtime > 0)
+        if (overtime > 0)
         {
             overtimeTimer -= Time.deltaTime;
 
-            if(overtimeTimer <= 0)
+            if (overtimeTimer <= 0)
             {
                 overtimeTimer = 1f;
                 hp -= 1;
                 overtime -= 1;
 
-                if(hp <= 0)
+                if (hp <= 0)
                 {
                     Die();
                 }
@@ -50,7 +50,7 @@ public abstract class Enemy : MonoBehaviour
         Debug.Log(name + " ouched for " + ammount + " damage.");
         hp -= ammount;
 
-        if(poison > 0)
+        if (poison > 0)
         {
             poisonDamage = poison;
             overtime = poisonDuration;

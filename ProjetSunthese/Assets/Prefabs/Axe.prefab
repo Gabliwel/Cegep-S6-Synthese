@@ -122,7 +122,7 @@ Transform:
   m_Children:
   - {fileID: 5357660325874072487}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8440970176616341702
 SpriteRenderer:
@@ -190,15 +190,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ROTATION_OFFSET: 45
   orbit: 1
-  damage: 15
+  baseDamage: 15
   startup: 0.35
   recovery: 1
   cooldown: 0.1
   cooldownTimer: 0
-  poisonDamage: 0
-  sword: {fileID: 0}
-  axe: {fileID: 0}
-  dagger: {fileID: 0}
   duration: 0.07
   windUpDistance: 45
   recoilDistance: 45

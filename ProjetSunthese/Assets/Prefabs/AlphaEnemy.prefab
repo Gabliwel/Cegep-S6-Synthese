@@ -189,6 +189,8 @@ MonoBehaviour:
   particleScale: 1
   baseDamageDealt: 3
   damageDealt: 0
+  goldDropped: 2
+  xpGiven: 15
   speed: 3
 --- !u!95 &2923368848914482681
 Animator:

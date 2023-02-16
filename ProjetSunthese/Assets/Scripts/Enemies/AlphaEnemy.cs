@@ -58,6 +58,7 @@ public class AlphaEnemy : Enemy
 
     protected override void Drop()
     {
+        Player.instance.GainDrops(0, xpGiven, goldDropped);
     }
 
 }
