@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmorBoost : GeneralItem
+public class ArmorBoost : GenericItem
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void AddToPlayer(Player player)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            collision.GetComponent<Player>().GainArmor(1f);
-            gameObject.SetActive(false);
-        }
+        player.GainArmor(1f);
     }
 }

@@ -122,6 +122,10 @@ public class PlayerMovement : MonoBehaviour
         animationController.SetRoll(false);
     }
 
+    public void IncreaseBaseSpeed()
+    {
+        BASE_SPEED += 1;
+    }
 
     public void AddKnockBack(Vector2 difference, float force)
     {
@@ -176,10 +180,5 @@ public class PlayerMovement : MonoBehaviour
     public bool IsRolling()
     {
         return isRolling;
-    }
-
-    public void SpeedItemPickup()
-    {
-        BASE_SPEED += 1;
     }
 }

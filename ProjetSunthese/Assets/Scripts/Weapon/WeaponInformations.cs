@@ -39,6 +39,7 @@ public class WeaponInformations : MonoBehaviour
         if(isCurrentWeapon)
         {
             interactStimuli.SetActive(false);
+            gameObject.transform.localScale = new Vector3(1, 1 ,1);
         }
         else
         {
@@ -72,6 +73,7 @@ public class WeaponInformations : MonoBehaviour
         if (weaponSensor != null) weaponSensor.SetActive(false);
         weapon.enabled = false;
         interactStimuli.SetActive(true);
+        sprite.sortingOrder = 3;
     }
 
     public void SwitchToWeapon()
@@ -80,6 +82,7 @@ public class WeaponInformations : MonoBehaviour
         weapon.enabled = true;
         if (weaponSensor != null) weaponSensor.SetActive(true);
         isCurrentWeapon = true;
+        sprite.sortingOrder = 9;
     }
 
     public void ChangeLayer(string layer, string sortingLayer)

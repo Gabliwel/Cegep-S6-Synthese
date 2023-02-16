@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EarlyCentralBoss.unity
     guid: 5ef841867927c604a8bcb4da8e8f5f48
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 367b3622a7510d54bb5065ebb623bcea
   m_configObjects: {}

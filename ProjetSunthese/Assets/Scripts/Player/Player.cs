@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private PlayerHealth health;
     private PlayerBaseWeaponStat baseWeaponStat;
     private SpriteRenderer sprite;
+    private PlayerInteractables playerInteractables;
     private float iframesTimer;
 
     [Header("Link")]
@@ -25,11 +26,15 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject sensor;
 
     [Header("Ressources")]
-    [ReadOnlyAttribute, SerializeField] private int gold = 0;
+    [SerializeField] private int gold = 0;
     [ReadOnlyAttribute, SerializeField] private float levelUpAugmentationRate = 1.4f;
     [ReadOnlyAttribute, SerializeField] private int neededXp = 100;
     [ReadOnlyAttribute, SerializeField] private int currentXp = 0;
     [ReadOnlyAttribute, SerializeField] private int level = 1;
+
+    public int Gold { get => gold; }
+    public int CurrentXp { get => currentXp; }
+    public float Health { get => health.CurrentHealth; }
 
     private void Awake()
     {
@@ -41,15 +46,15 @@ public class Player : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        //switchWeapon = GameObject.FindGameObjectWithTag("WeaponSwitch").GetComponent<WeaponSwitchManager>();
         animationController = GetComponent<PlayerAnimationController>();
         playerMovement = GetComponent<PlayerMovement>();
         weapon = GetComponentInChildren<Weapon>();
         weaponInfo = weapon.gameObject.GetComponent<WeaponInformations>();
         playerLight = GetComponentInChildren<PlayerLight>();
-        sprite = GetComponent<SpriteRenderer>();
         health = GetComponent<PlayerHealth>();
         baseWeaponStat = GetComponent<PlayerBaseWeaponStat>();
+        playerInteractables = GetComponent<PlayerInteractables>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -65,6 +70,11 @@ public class Player : MonoBehaviour
             iframesTimer -= Time.deltaTime;
     }
 
+    public void UpdateInteractables(Interactable interectable)
+    {
+        playerInteractables.SearchNewInterac(interectable);
+    }
+
     public void AddIframes(float ammount)
     {
         iframesTimer += ammount;
@@ -77,9 +87,9 @@ public class Player : MonoBehaviour
         health.AddMaxHp(value);
     }
 
-    public void Heal(float healingAmount)
+    public void HealPercent(float healingPercent)
     {
-        health.Heal(healingAmount);
+        health.HealPercent(healingPercent);
     }
 
     public void GainArmor(float value)
@@ -124,12 +134,18 @@ public class Player : MonoBehaviour
             level++;
             BoostDamage();
             MaxHealthBoost(10);
+            GameManager.instance.UpdateHUD();
         }
     }
 
     public void BoostDamage()
     {
         baseWeaponStat.IncreaseBaseAttack();
+    }
+
+    public void BoostPlayerSpeed()
+    {
+        playerMovement.IncreaseBaseSpeed();
     }
 
     public void IncreaseAttackSpeed(int lvl)
@@ -146,6 +162,7 @@ public class Player : MonoBehaviour
     public void GainGold(int amount)
     {
         gold += amount;
+        GameManager.instance.UpdateHUD();
     }
 
     public void GainDrops(int health, int xp, int gold)
@@ -153,6 +170,7 @@ public class Player : MonoBehaviour
         HealBloodSuck(health);
         GainXp(xp);
         GainGold(gold);
+        GameManager.instance.UpdateHUD();
     }
 
     public bool BuyItem(int price)
@@ -170,6 +188,7 @@ public class Player : MonoBehaviour
         if(iframesTimer <= 0)
         {
             health.Harm(ammount);
+            GameManager.instance.UpdateHUD();
             return true;
         }
         return false;
@@ -238,6 +257,7 @@ public class Player : MonoBehaviour
         newWeaponInfo.SwitchToWeapon();
         weapon.SetPlayerBaseWeaponStat(baseWeaponStat);
         weapon.SetDefault();
+        weapon.CalculateNewSpeed();
 
         //change anim et autre...
         animationController.ChangeOnWeaponType(weaponInfo.GetWeaponType());
@@ -263,4 +283,11 @@ public class Player : MonoBehaviour
     {
         GameManager.instance.GetBackToMainStageAndStart();
     }
+
+    [ContextMenu("KevLevel")]
+    public void KevLevel()
+    {
+        GameManager.instance.StartNextlevel(0,Scene.KevenLevel);
+    }
+
 }
