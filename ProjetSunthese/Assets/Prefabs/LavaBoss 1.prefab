@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 7918460414793181123}
   - component: {fileID: 7918460414793181122}
   - component: {fileID: 2283797116805318618}
+  - component: {fileID: 8115836555274567688}
   m_Layer: 0
   m_Name: LavaBoss 1
   m_TagString: Player
@@ -215,6 +216,8 @@ MonoBehaviour:
   particleScale: 1
   baseDamageDealt: 0
   damageDealt: 0
+  goldDropped: 0
+  xpGiven: 0
   trail: {fileID: 7903956196021880511, guid: 039c57c16f2fb4a4b9c9c2ef977328c5, type: 3}
   trailListSize: 50
   lavaAuraChild: {fileID: 7918460415357103839}
@@ -253,6 +256,23 @@ CircleCollider2D:
   m_Offset: {x: -0.039, y: -0.054}
   serializedVersion: 2
   m_Radius: 0.41
+--- !u!114 &8115836555274567688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7918460414793181125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd9b52e3181b5647a3f5e1af6d4ac30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponsDrop:
+  - {fileID: 8256077553287885047, guid: b8d5e5df62c7a54408a432e08eb6d2dd, type: 3}
+  - {fileID: 3590006991846360811, guid: f61d9337f4f4530479accbcc43eea492, type: 3}
+  portal: {fileID: 6202557103775462470, guid: 54a64a756be8cc14b884655180b6de4a, type: 3}
+  portalSpawnPosition: {x: 99, y: 52, z: 0}
 --- !u!1001 &1606056622886637699
 PrefabInstance:
   m_ObjectHideFlags: 0
