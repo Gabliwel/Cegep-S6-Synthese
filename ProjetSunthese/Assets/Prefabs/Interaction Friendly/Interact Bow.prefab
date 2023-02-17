@@ -124,10 +124,10 @@ MonoBehaviour:
   ROTATION_OFFSET: 0
   orbit: 1
   baseDamage: 6
-  startup: 0.2
-  recovery: 0.1
+  defaultStartup: 0.2
+  defaultRecovery: 0.1
   cooldown: 0.1
-  cooldownTimer: 0
+  cooldownTimer: 0.1
 --- !u!114 &459978937407105301
 MonoBehaviour:
   m_ObjectHideFlags: 0

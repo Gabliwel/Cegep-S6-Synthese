@@ -14,9 +14,12 @@ public class LavaBossController : Enemy
     private LavaShockWaveController lavaShockWave;
     private GameObject player;
     private int speed =3 ;
+    private Animator animator;
+    private HPBar hpBar;
 
     void Awake()
     {
+        animator = GetComponentInChildren<Animator>();
         lavaShockWave = GetComponentInChildren<LavaShockWaveController>(true);
         lavaAura = GetComponentInChildren<LavaAura>(true);
         trailArray = new GameObject[trailListSize];
@@ -26,6 +29,7 @@ public class LavaBossController : Enemy
             trailArray[i].SetActive(false);
         }
         player =GameObject.FindGameObjectWithTag("Player");
+        hpBar = GetComponentInChildren<HPBar>();
     }
 
     void Update()
@@ -38,6 +42,9 @@ public class LavaBossController : Enemy
             lavaShockWave.Launch();
             attackTimer = 0;
         }
+        animator.SetBool("Move", true);
+        animator.SetFloat("Move X", player.transform.position.x - transform.position.x);
+        animator.SetFloat("Move Y", player.transform.position.y - transform.position.y);
         gameObject.transform.position = Vector2.MoveTowards(transform.position,player.transform.position, speed * Time.deltaTime);
         LeaveTrail();
     }
@@ -63,5 +70,17 @@ public class LavaBossController : Enemy
     protected override void Drop()
     {
         GetComponent<BossDrops>().BossDrop(transform.position);
+    }
+
+    public override void Harm(float ammount, float poison)
+    {
+        base.Harm(ammount, poison);
+        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+    }
+
+    public override void Die()
+    {
+        Scaling.instance.ScalingIncrease();
+        base.Die();
     }
 }
