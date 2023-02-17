@@ -14,9 +14,13 @@ public class LavaPoint : MonoBehaviour
     [Header("Stats")]
     [SerializeField] private float activeTime;
     [SerializeField] private float fadeOutSpeed;
+    [SerializeField] private float damage = 2;
+    [SerializeField] private float rate = 0.25f;
 
     private Tilemap lavaGridTilemap;
     private ISensor<Player> playerSensor;
+
+    private Coroutine coroutine;
 
     private void Awake()
     {
@@ -71,7 +75,6 @@ public class LavaPoint : MonoBehaviour
 
     private IEnumerator WaitAndFadeOut()
     {
-
         ActivateSensor();
         yield return new WaitForSeconds(activeTime);
         DeactivateSensor();
@@ -84,14 +87,23 @@ public class LavaPoint : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnPlayerSense(Player otherObject)
+    private void OnPlayerSense(Player player)
     {
-        Debug.Log("in");
+        coroutine = StartCoroutine(Tick(player));
     }
 
-    private void OnPlayerUnsense(Player otherObject)
+    private void OnPlayerUnsense(Player player)
     {
-        Debug.Log("out");
+        StopCoroutine(coroutine);
+    }
+
+    IEnumerator Tick(Player player)
+    {
+        while (isActiveAndEnabled)
+        {
+            player.Harm(damage);
+            yield return new WaitForSeconds(rate);
+        }
     }
 
     void ActivateSensor()

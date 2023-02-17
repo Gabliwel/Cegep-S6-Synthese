@@ -14,6 +14,10 @@ public class LaserPoint : MonoBehaviour
     [Header("Stats")]
     [SerializeField] private Vector3 smallScale;
     [SerializeField] private Vector3 bigScale;
+    [SerializeField] private float damage = 3;
+    [SerializeField] private float rate = 0.2f;
+
+    private Coroutine coroutine;
 
     private ISensor<Player> playerSensor;
     private bool isActive = false;
@@ -87,14 +91,23 @@ public class LaserPoint : MonoBehaviour
         StartCoroutine(ScaleChanger(unChargeTime, bigScale, smallScale));
     }
 
-    private void OnPlayerSense(Player otherObject)
+    private void OnPlayerSense(Player player)
     {
-        Debug.Log("in");
+        coroutine = StartCoroutine(Tick(player));
     }
 
-    private void OnPlayerUnsense(Player otherObject)
+    private void OnPlayerUnsense(Player player)
     {
-        Debug.Log("out");
+        StopCoroutine(coroutine);
+    }
+
+    IEnumerator Tick(Player player)
+    {
+        while (isActiveAndEnabled)
+        {
+            player.Harm(damage);
+            yield return new WaitForSeconds(rate);
+        }
     }
 
     void ActivateSensor()

@@ -10,6 +10,7 @@ public class GrowingAttackZone : BossAttack
     [Header("Base stats")]
     [SerializeField] private float knockBackForce = 2f;
     [SerializeField] private float speedInSec;
+    [SerializeField] private float damage = 7;
     [SerializeField] private Vector3 smallScale;
     [SerializeField] private Vector3 bigScale;
 
@@ -75,12 +76,14 @@ public class GrowingAttackZone : BossAttack
     {
         Vector2 difference = (player.gameObject.transform.position - transform.position).normalized;
         player.KnockBack(difference, knockBackForce);
+        player.Harm(damage);
     }
 
     private void OnPlayerUnsense(Player player)
     {
         Vector2 difference = (transform.position - player.gameObject.transform.position).normalized;
         player.KnockBack(difference, knockBackForce);
+        player.Harm(damage);
     }
 
     private void SetChildState(bool state)

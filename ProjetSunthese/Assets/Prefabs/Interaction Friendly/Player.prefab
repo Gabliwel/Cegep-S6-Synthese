@@ -980,9 +980,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ROTATION_OFFSET: 0
   orbit: 1
-  baseDamage: 0
-  startup: 0.2
-  recovery: 0.1
+  baseDamage: 6
+  defaultStartup: 0
+  defaultRecovery: 0
   cooldown: 0.1
   cooldownTimer: 0
 --- !u!114 &5159121863067644497

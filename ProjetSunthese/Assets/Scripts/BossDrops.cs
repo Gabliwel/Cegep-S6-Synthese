@@ -22,18 +22,30 @@ public class BossDrops : MonoBehaviour
     public void BossDrop(Vector3 bossPosition)
     {
         string layerName = GetComponent<SpriteRenderer>().sortingLayerName;
+        FinishDrop(bossPosition, layerName);
+    }
 
+    public void BossDrop(Vector3 bossPosition, GameObject spiteObj)
+    {
+        string layerName = spiteObj.GetComponent<SpriteRenderer>().sortingLayerName;
+        FinishDrop(bossPosition, layerName);
+    }
+
+    private void FinishDrop(Vector3 bossPosition, string layerName)
+    {
         if (weaponsDrop.Count > 0)
         {
             GameObject weapon = weaponsDrop[Random.Range(0, weaponsDrop.Count)];
             weapon.transform.position = bossPosition;
             weapon.layer = LayerMask.NameToLayer(layerName);
+            weapon.GetComponent<SpriteRenderer>().sortingLayerName = layerName;
             weapon.transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer(layerName);
             weapon.SetActive(true);
         }
 
         portal.transform.position = portalSpawnPosition;
         portal.layer = LayerMask.NameToLayer(layerName);
+        portal.GetComponent<SpriteRenderer>().sortingLayerName = layerName;
         portal.transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer(layerName);
         portal.SetActive(true);
     }
