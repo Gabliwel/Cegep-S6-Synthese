@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Billy.Utils;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -12,23 +11,23 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float maxHealth;
 
     [Header("Info for debug - base")]
-    [ReadOnlyAttribute, SerializeField] private float currentMax = 0;
-    [ReadOnlyAttribute, SerializeField] private float currentHealth = 0;
-    [ReadOnlyAttribute, SerializeField] private float armor = 0;
+    [SerializeField] private float currentMax = 0;
+    [SerializeField] private float currentHealth = 0;
+    [SerializeField] private float armor = 0;
 
     public float CurrentHealth { get => currentHealth;}
 
     [Header("Info for debug - bonus")]
     // ------------- Health bonus --------------------
     // if currentHealth is 15% of max, regen health to 80% of max
-    [ReadOnlyAttribute, SerializeField]  private int secondChance = 0;
+    [SerializeField]  private int secondChance = 0;
     // if currentHealth is equivalent to dead, rest alive with 1 hp
-    [ReadOnlyAttribute, SerializeField]  private int deathContract = 0;
+    [SerializeField]  private int deathContract = 0;
     // double the amount of lives and gain 10 armor, but cant regen
-    [ReadOnlyAttribute, SerializeField]  private bool stoneHeart = false;
+    [SerializeField]  private bool stoneHeart = false;
 
     // for player bonus that is independant health
-    [ReadOnlyAttribute, SerializeField]  private int receiveDamageMultiplicator = 1;
+    [SerializeField]  private int receiveDamageMultiplicator = 1;
 
     private void Awake()
     {

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Billy.Weapons;
-using Billy.Utils;
 
 public class Player : MonoBehaviour
 {
@@ -27,10 +26,10 @@ public class Player : MonoBehaviour
 
     [Header("Ressources")]
     [SerializeField] private int gold = 0;
-    [ReadOnlyAttribute, SerializeField] private float levelUpAugmentationRate = 1.4f;
-    [ReadOnlyAttribute, SerializeField] private int neededXp = 100;
-    [ReadOnlyAttribute, SerializeField] private int currentXp = 0;
-    [ReadOnlyAttribute, SerializeField] private int level = 1;
+    [SerializeField] private float levelUpAugmentationRate = 1.4f;
+    [SerializeField] private int neededXp = 100;
+    [SerializeField] private int currentXp = 0;
+    [SerializeField] private int level = 1;
 
     public int Gold { get => gold; }
     public int CurrentXp { get => currentXp; }
