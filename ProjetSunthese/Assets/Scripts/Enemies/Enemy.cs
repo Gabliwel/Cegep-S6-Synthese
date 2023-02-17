@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Billy.Utils;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -13,7 +12,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float damageDealt;
     [SerializeField] protected int goldDropped;
     [SerializeField] protected int xpGiven;
-    [ReadOnlyAttribute, SerializeField] protected float overtime = 0;
+    [SerializeField] protected float overtime = 0;
     protected float overtimeTimer = 1f;
     protected int scalingLevel;
 

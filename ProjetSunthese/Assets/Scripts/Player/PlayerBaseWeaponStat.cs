@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Billy.Utils;
 
 public class PlayerBaseWeaponStat : MonoBehaviour
 {
     [Header("Base readable stats")]
-    [ReadOnlyAttribute, SerializeField] private float baseAttackMultiplicator = 1;
-    [ReadOnlyAttribute, SerializeField] private int baseSpeedLevel = 1;
+    [SerializeField] private float baseAttackMultiplicator = 1;
+    [SerializeField] private int baseSpeedLevel = 1;
     [SerializeField] private int poisonLevel = 2;
 
     #region Set
