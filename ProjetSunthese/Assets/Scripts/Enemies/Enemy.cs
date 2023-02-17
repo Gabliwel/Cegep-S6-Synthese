@@ -12,28 +12,30 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float damageDealt;
     [SerializeField] protected int goldDropped;
     [SerializeField] protected int xpGiven;
-    protected float overtime = 0;
+    [SerializeField] protected float overtime = 0;
     protected float overtimeTimer = 1f;
     protected int scalingLevel;
 
     protected float poisonDuration = 5f;
     protected float poisonDamage = 0f;
 
-    private void Update()
+    protected void Update()
     {
         if (overtime > 0)
         {
             overtimeTimer -= Time.deltaTime;
-
             if (overtimeTimer <= 0)
             {
                 overtimeTimer = 1f;
-                hp -= 1;
+                hp -= poisonDamage;
                 overtime -= 1;
-
                 if (hp <= 0)
                 {
                     Die();
+                }
+                else
+                {
+                    WasPoisonHurt();
                 }
             }
         }
@@ -64,11 +66,12 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Die()
     {
-        Debug.Log(name + " deathed forever");
         Drop();
         gameObject.SetActive(false);
         ParticleManager.instance.CallParticles(transform.position, particleScale, particleColor);
     }
 
     protected abstract void Drop();
+
+    protected virtual void WasPoisonHurt() { }
 }

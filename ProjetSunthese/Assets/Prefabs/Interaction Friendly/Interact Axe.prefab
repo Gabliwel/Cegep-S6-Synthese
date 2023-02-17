@@ -303,11 +303,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ROTATION_OFFSET: 45
   orbit: 1
-  baseDamage: 0
-  startup: 0.35
-  recovery: 1
+  baseDamage: 16
+  defaultStartup: 0.35
+  defaultRecovery: 1
   cooldown: 0.1
-  cooldownTimer: 0
+  cooldownTimer: 0.1
   duration: 0.07
   windUpDistance: 45
   recoilDistance: 45

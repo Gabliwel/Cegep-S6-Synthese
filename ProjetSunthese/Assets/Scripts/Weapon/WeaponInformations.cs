@@ -92,4 +92,12 @@ public class WeaponInformations : MonoBehaviour
         if (weaponSensor != null) weaponSensor.gameObject.layer = LayerMask.NameToLayer(layer);
         interactStimuli.gameObject.layer = LayerMask.NameToLayer(layer);
     }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        if(!isCurrentWeapon)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

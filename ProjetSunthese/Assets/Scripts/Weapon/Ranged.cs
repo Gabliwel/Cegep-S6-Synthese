@@ -49,7 +49,6 @@ public class Ranged : Weapon
         Projectile projectile = GetAvailableProjectile();
         projectile.transform.SetPositionAndRotation(transform.position, transform.rotation);
         projectile.gameObject.SetActive(true);
-
         projectile.SetDamage(baseDamage * playerBaseWeaponStat.GetBaseAttackMultiplicator(), playerBaseWeaponStat.GetPoisonLevel());
     }
 
