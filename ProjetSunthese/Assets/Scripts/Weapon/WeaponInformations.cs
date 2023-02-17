@@ -95,7 +95,11 @@ public class WeaponInformations : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        if(!isCurrentWeapon)
+        /*if(!isCurrentWeapon)
+        {
+            Destroy(this.gameObject);
+        }*/
+        if (transform.parent == null)
         {
             Destroy(this.gameObject);
         }
