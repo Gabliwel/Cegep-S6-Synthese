@@ -2,24 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BofrerStolenAttackManager : MonoBehaviour
+public class BofrerRevisitsManger : MonoBehaviour
 {
     [SerializeField] private List<BossAttack> mountainBossAttackPrefabs;
     [SerializeField] private List<BossAttack> lavaBossAttackPrefabs;
     [SerializeField] private List<BossAttack> bobBossAttackPrefabs;
     [SerializeField] private List<BossAttack> michaelBossAttackPrefabs;
-
-
-    private List<BossAttack> stolenAttacks;
+    private List<BossAttack> stolenAttacks = new List<BossAttack>();
+    private List<BossAttack> chosenAttacks;
 
     private void Awake()
-    { // TODO: implement game manager
-        stolenAttacks = GameManager.instance.GetStoredBofrerStolenAttacks();
+    {
+        chosenAttacks = GameManager.instance.GetStoredBofrerStolenAttacks();
         UpdateStolenAttackList();
     }
 
+    private void InitStolenAttacks()
+    {
+        foreach (var attack in chosenAttacks)
+        {
+            stolenAttacks.Add(Instantiate(attack));
+            stolenAttacks[stolenAttacks.Count - 1].transform.position = transform.position;
+            stolenAttacks[stolenAttacks.Count - 1].gameObject.SetActive(false);
+        }
+    }
+
     private void UpdateStolenAttackList()
-    { // TODO: implement game manager
+    {
         List<Scene> levelsDone = GameManager.instance.GetLevelsDone();
         foreach (var item in levelsDone)
         {
@@ -45,11 +54,13 @@ public class BofrerStolenAttackManager : MonoBehaviour
                     break;
             }
         }
+
+        InitStolenAttacks();
     }
 
     bool HasAttackTypeOf(BossAttackType type)
     {
-        foreach (var attack in stolenAttacks)
+        foreach (var attack in chosenAttacks)
         {
             if (attack.GetBossAttackType() == type)
                 return true;
@@ -64,42 +75,34 @@ public class BofrerStolenAttackManager : MonoBehaviour
 
     public void StoreAttacks()
     {
-        GameManager.instance.StoreBofrerStolenAttacks(stolenAttacks);
+        GameManager.instance.StoreBofrerStolenAttacks(chosenAttacks);
     }
 
     void StealRandomMountainAttack()
     {
         int num = Random.Range(0, mountainBossAttackPrefabs.Count);
-        stolenAttacks.Add(Instantiate(mountainBossAttackPrefabs[num]));
-        stolenAttacks[stolenAttacks.Count - 1].transform.position = transform.position;
-        stolenAttacks[stolenAttacks.Count - 1].gameObject.SetActive(false);
+        chosenAttacks.Add(mountainBossAttackPrefabs[num]);
         Debug.Log("stole " + mountainBossAttackPrefabs[num].name + " number " + num);
     }
 
     void StealRandomLavaAttack()
     {
         int num = Random.Range(0, lavaBossAttackPrefabs.Count);
-        stolenAttacks.Add(Instantiate(lavaBossAttackPrefabs[num]));
-        stolenAttacks[stolenAttacks.Count - 1].transform.position = transform.position;
-        stolenAttacks[stolenAttacks.Count - 1].gameObject.SetActive(false);
+        chosenAttacks.Add(lavaBossAttackPrefabs[num]);
         Debug.Log("stole " + lavaBossAttackPrefabs[num].name + " number " + num);
     }
 
     void StealRandomBobAttack()
     {
         int num = Random.Range(0, bobBossAttackPrefabs.Count);
-        stolenAttacks.Add(Instantiate(bobBossAttackPrefabs[num]));
-        stolenAttacks[stolenAttacks.Count - 1].transform.position = transform.position;
-        stolenAttacks[stolenAttacks.Count - 1].gameObject.SetActive(false);
+        chosenAttacks.Add(bobBossAttackPrefabs[num]);
         Debug.Log("stole " + bobBossAttackPrefabs[num].name + " number " + num);
     }
 
     void StealRandomMichaelAttack()
     {
         int num = Random.Range(0, michaelBossAttackPrefabs.Count);
-        stolenAttacks.Add(Instantiate(michaelBossAttackPrefabs[num]));
-        stolenAttacks[stolenAttacks.Count - 1].transform.position = transform.position;
-        stolenAttacks[stolenAttacks.Count - 1].gameObject.SetActive(false);
+        chosenAttacks.Add(michaelBossAttackPrefabs[num]);
         Debug.Log("stole " + michaelBossAttackPrefabs[num].name + " number " + num);
     }
 }
