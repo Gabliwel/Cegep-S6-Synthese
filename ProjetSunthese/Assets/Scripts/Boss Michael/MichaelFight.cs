@@ -20,22 +20,25 @@ public class MichaelFight : Enemy
 
     private Animator animator;
 
+    private HPBar hpBar;
+
     void Start()
     {
-        xpGiven = 110;
-        goldDropped = 50;
-
         animator = GetComponent<Animator>();
-        dangerRectangle.transform.localScale = new Vector3(10, 1.5f, 1);
         Attacks[0] = "CHARGE";
         Attacks[1] = "TELEPORT";
         Attacks[2] = "PROJECTILE";
         player = GameObject.FindGameObjectWithTag("Player");
 
-        for(int i = 0; i < michaelAttacks.Count; i++)
+        hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
+        damageDealt = Scaling.instance.CalculateDamageOnScaling(baseDamageDealt);
+
+        for (int i = 0; i < michaelAttacks.Count; i++)
         {
             michaelAttacks[i] = Instantiate(michaelAttacks[i]);
         }
+
+        hpBar = GetComponentInChildren<HPBar>();
     }
 
     // Update is called once per frame
@@ -75,8 +78,8 @@ public class MichaelFight : Enemy
             switch (currentAttack)
             {
                 case "CHARGE":
-                StartFadedCharge();
-                break;
+                    StartFadedCharge();
+                    break;
                 case "TELEPORT":
                     StartTeleportUnder();
                     break;
@@ -113,6 +116,18 @@ public class MichaelFight : Enemy
         player.GetComponent<Player>().GainDrops(2, xpGiven, goldDropped);
 
         GetComponent<BossDrops>().BossDrop(transform.position);
+    }
+
+    public override void Die()
+    {
+        Scaling.instance.ScalingIncrease();
+        base.Die();
+    }
+
+    public override void Harm(float ammount, float poison)
+    {
+        base.Harm(ammount, poison);
+        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
