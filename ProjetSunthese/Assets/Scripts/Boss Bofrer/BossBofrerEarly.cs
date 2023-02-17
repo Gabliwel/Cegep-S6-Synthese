@@ -10,6 +10,7 @@ public class BossBofrerEarly : Enemy
     private Animator animator;
     private Sensor sensor;
     private ISensor<Player> playerSensor;
+    private HPBar hpBar;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class BossBofrerEarly : Enemy
         playerSensor = sensor.For<Player>();
         playerSensor.OnSensedObject += OnPlayerSense;
         playerSensor.OnUnsensedObject += OnPlayerUnSense;
+        hpBar = GetComponentInChildren<HPBar>();
     }
     protected override void Drop()
     {
@@ -38,6 +40,7 @@ public class BossBofrerEarly : Enemy
     public override void Harm(float ammount, float overtimeDamage)
     {
         base.Harm(ammount, overtimeDamage);
+        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
         CheckHPForTeleport();
     }
 

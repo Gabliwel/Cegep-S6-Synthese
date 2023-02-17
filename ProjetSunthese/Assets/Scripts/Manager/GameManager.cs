@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     public void StoreBofrerStolenAttacks(List<BossAttack> newAttacks)
     {
-        bofrerStolenAttacks = newAttacks;
+        bofrerStolenAttacks = new List<BossAttack>(newAttacks);
     }
 
     public void ClearBofrerStolenAttack()
