@@ -50,6 +50,7 @@ public class AlphaEnemy : Enemy
 
     void Update()
     {
+        base.Update();
         if(player != null)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);

@@ -12,13 +12,13 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected bool orbit = true;
     [Header("Parameters")]
     [SerializeField] protected float baseDamage;
-    [SerializeField] protected float startup;
-    [SerializeField] protected float recovery;
+    [SerializeField] protected float defaultStartup;
+    [SerializeField] protected float defaultRecovery;
     [SerializeField] protected float cooldown;
     [SerializeField] protected float cooldownTimer;
 
-    protected float defaultStartup;
-    protected float defaultRecovery;
+    protected float startup;
+    protected float recovery;
 
     private Coroutine attack = null;
     protected PlayerBaseWeaponStat playerBaseWeaponStat = null;

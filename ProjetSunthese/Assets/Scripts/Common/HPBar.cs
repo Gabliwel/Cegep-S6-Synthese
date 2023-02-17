@@ -12,6 +12,7 @@ public class HPBar : MonoBehaviour
     }
     public void UpdateHp(float amount, float maxHp = 100)
     {
+        if (amount <= 0) return;
         green.transform.localScale = new Vector3(amount / maxHp, green.localScale.y, green.localScale.z);
     }
 }
