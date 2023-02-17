@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BossBofrer : Enemy
 {
-    private const int ACTIVE_BFL_SCALE = 1;
+    private const int HP_THRESHOLD_SCALING_CUTOFF = 5;
+    private const int ACTIVE_BFL_SCALE = 0;
     private const int ACTIVE_SHIELD_MINION_SCALE = 2;
     private const int ACTIVE_BOLT_SCALE = 3;
     private const int ACTIVE_BALL_SCALE = 4;
@@ -31,15 +32,17 @@ public class BossBofrer : Enemy
     private bool ballActive;
     private bool shieldMinionsActive;
     private bool stolenActive;
+    private bool hasRespawned = false;
+    private bool routinesStarted;
 
     private BossBofrerHomingBoltSpawner boltSpawner;
     private BossBofrerShieldMinionSpawner minionSpawner;
     private BossBofrerBFL bfl;
     private BossBofrerBall ball;
-    private BofrerStolenAttackManager stealManager;
+    private BofrerRevisitsManger revisitsManager;
     private Animator animator;
     private GameObject shield;
-    private bool routinesStarted;
+    private HPBar hpBar;
 
     private void Awake()
     {
@@ -60,15 +63,18 @@ public class BossBofrer : Enemy
         shield.SetActive(false);
 
         animator = GetComponent<Animator>();
-        stealManager = GetComponent<BofrerStolenAttackManager>();
+        revisitsManager = GetComponent<BofrerRevisitsManger>();
+        hpBar = GetComponentInChildren<HPBar>();
     }
 
     private void Start()
     {
-        stolenAttacks = stealManager.GetStolenAttacks();
+        stolenAttacks = revisitsManager.GetStolenAttacks();
         ActivateAttacks();
         EnsureRoutinesStarted();
-        HPTreshold = hp / Scaling.instance.SendScaling();
+        HPTreshold = CalculateHpThreshold();
+        hp -= CalculateHpAtThreshold();
+        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
     }
 
     void ActivateAttacks()
@@ -110,23 +116,55 @@ public class BossBofrer : Enemy
     {
     }
 
+    private float CalculateHpThreshold()
+    {
+        float scaling = Scaling.instance.SendScaling();
+
+        float cutoff = scaling / HP_THRESHOLD_SCALING_CUTOFF;
+        return hp - (hp * cutoff);
+    }
+
+    private float CalculateHpAtThreshold()
+    {
+        float scaling = Scaling.instance.SendScaling();
+        return HP_THRESHOLD_SCALING_CUTOFF - (scaling - 1 / HP_THRESHOLD_SCALING_CUTOFF);
+    }
+
     public override void Harm(float ammount, float overtime)
     {
         if (!shieldActive)
         {
             base.Harm(ammount, overtime);
             CheckHPForTeleport();
+            hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
         }
     }
 
     private void CheckHPForTeleport()
     {
-        if (hp < HPTreshold)
+        if (hp < HPTreshold && !IsFinalFight())
         {
             GameManager.instance.SetNextLevel();
         }
     }
 
+    public override void Die()
+    {
+        if (hasRespawned)
+        {
+            base.Die();
+        }
+        else
+        {
+            hasRespawned = true;
+            hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
+        }
+    }
+
+    private bool IsFinalFight()
+    {
+        return Scaling.instance.SendScaling() > HP_THRESHOLD_SCALING_CUTOFF + 1;
+    }
 
     IEnumerator BFLTimerRoutine()
     {

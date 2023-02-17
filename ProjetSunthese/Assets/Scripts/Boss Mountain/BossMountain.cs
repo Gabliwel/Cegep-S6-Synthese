@@ -65,12 +65,13 @@ public class BossMountain : Enemy
 
     protected override void Drop()
     {
+        GetComponent<BossDrops>().BossDrop(transform.position);
     }
 
     public override void Die()
     {
+        Scaling.instance.ScalingIncrease();
         base.Die();
-        GetComponent<BossDrops>().BossDrop(transform.position);
     }
 
     public override void Harm(float ammount, float poison)

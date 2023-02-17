@@ -91,6 +91,11 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        orbit = true;
+    }
+
     public void CalculateNewSpeed()
     {
         int speedLevel = playerBaseWeaponStat.GetBaseSpeedLevel();
