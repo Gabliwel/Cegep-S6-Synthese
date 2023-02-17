@@ -77,4 +77,10 @@ public class LavaBossController : Enemy
         base.Harm(ammount, poison);
         hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
     }
+
+    public override void Die()
+    {
+        Scaling.instance.ScalingIncrease();
+        base.Die();
+    }
 }
