@@ -84,11 +84,13 @@ public class Player : MonoBehaviour
     public void MaxHealthBoost(float value)
     {
         health.AddMaxHp(value);
+        GameManager.instance.UpdateHUD();
     }
 
     public void HealPercent(float healingPercent)
     {
         health.HealPercent(healingPercent);
+        GameManager.instance.UpdateHUD();
     }
 
     public void GainArmor(float value)
@@ -178,6 +180,7 @@ public class Player : MonoBehaviour
         if (gold >= price)
         {
             gold -= price;
+            GameManager.instance.UpdateHUD();
             return true;
         }
         return false;
