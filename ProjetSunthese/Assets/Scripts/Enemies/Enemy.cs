@@ -19,6 +19,9 @@ public abstract class Enemy : MonoBehaviour
     protected float poisonDuration = 5f;
     protected float poisonDamage = 0f;
 
+    /// <summary>
+    /// TODO: FIXME: this is bad; no time for fix in alpha
+    /// </summary>
     protected void Update()
     {
         if (overtime > 0)
@@ -73,5 +76,8 @@ public abstract class Enemy : MonoBehaviour
 
     protected abstract void Drop();
 
+    /// <summary>
+    /// TODO: FIXME: this is bad; no time for fix in alpha
+    /// </summary>
     protected virtual void WasPoisonHurt() { }
 }

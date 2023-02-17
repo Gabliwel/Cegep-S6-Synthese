@@ -61234,7 +61234,7 @@ GameObject:
   - component: {fileID: 1400694739}
   - component: {fileID: 1400694738}
   - component: {fileID: 1400694736}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: MountainBossFollow
   m_TagString: FollowingBoss
   m_Icon: {fileID: 0}
@@ -65701,7 +65701,7 @@ GameObject:
   - component: {fileID: 1858818635}
   - component: {fileID: 1858818637}
   - component: {fileID: 1858818636}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
