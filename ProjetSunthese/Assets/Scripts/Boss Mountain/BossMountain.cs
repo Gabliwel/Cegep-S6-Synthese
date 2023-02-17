@@ -80,8 +80,15 @@ public class BossMountain : Enemy
         hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
     }
 
-    private void Update()
+    protected override void WasPoisonHurt()
     {
+        base.WasPoisonHurt();
+        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+    }
+
+    protected void Update()
+    {
+        base.Update();
         //debug
         if (Input.GetKeyDown(KeyCode.F))
             StartRockThrow();
