@@ -13,10 +13,6 @@ public class ShopLevelManager : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-    }
-
-    void Start()
-    {
         player.ChangeLayer(layer, layer);
         player.gameObject.transform.position = startingPosTrans.position;
     }

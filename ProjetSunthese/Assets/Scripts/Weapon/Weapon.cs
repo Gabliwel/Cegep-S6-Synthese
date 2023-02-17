@@ -31,8 +31,8 @@ public abstract class Weapon : MonoBehaviour
     public void SetDefault()
     {
         rotationPoint = transform.parent;
-        defaultStartup = startup;
-        defaultRecovery = recovery;
+        startup = defaultStartup;
+        recovery = defaultRecovery;
     }
 
     public void SetPlayerBaseWeaponStat(PlayerBaseWeaponStat playerBaseWeaponStat)
@@ -89,6 +89,11 @@ public abstract class Weapon : MonoBehaviour
             EndAttackSpecifics();
             orbit = true;
         }
+    }
+
+    private void OnEnable()
+    {
+        orbit = true;
     }
 
     public void CalculateNewSpeed()
