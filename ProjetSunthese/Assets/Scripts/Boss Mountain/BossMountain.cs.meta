@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ee3aebaa8bcd71143960759b29ea3386
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rockPrefab: {instanceID: 0}
+  - stalagmitePrefab: {instanceID: 0}
+  - enemyPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

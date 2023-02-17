@@ -3,7 +3,7 @@ guid: 638b68534b27c0d49b00427c98a8f80e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -36674,9 +36677,8 @@ TextureImporter:
       u_fd_grasslands_1083: -1656845957
       u_fd_grasslands_1282: 867566101
       u_fd_grasslands_13: -797193437
-      u_fd_grasslands_245: 1157265659
-      u_fd_grasslands_1114: -1738548772
       u_fd_grasslands_785: -721885559
+      u_fd_grasslands_1114: -1738548772
       u_fd_grasslands_360: 1008134154
       u_fd_grasslands_594: -1782522610
       u_fd_grasslands_1224: 469433127
@@ -36688,6 +36690,7 @@ TextureImporter:
       u_fd_grasslands_84: -48557109
       u_fd_grasslands_1370: -688830920
       u_fd_grasslands_105: 439956224
+      u_fd_grasslands_245: 1157265659
       u_fd_grasslands_1311: -1639919736
       u_fd_grasslands_78: -486745568
       u_fd_grasslands_1345: 1334974363
@@ -36756,15 +36759,15 @@ TextureImporter:
       u_fd_grasslands_683: 1034000720
       u_fd_grasslands_780: -1978985415
       u_fd_grasslands_1650: 1202171100
-      u_fd_grasslands_1327: -1024000886
       u_fd_grasslands_1402: 1625949642
       u_fd_grasslands_845: -1277140787
       u_fd_grasslands_1100: 432872407
       u_fd_grasslands_258: 853048689
       u_fd_grasslands_1292: -1802554074
       u_fd_grasslands_1273: 1673247309
-      u_fd_grasslands_767: 306629118
+      u_fd_grasslands_1327: -1024000886
       u_fd_grasslands_48: 344868627
+      u_fd_grasslands_767: 306629118
       u_fd_grasslands_712: -214050966
       u_fd_grasslands_1343: -1148827213
       u_fd_grasslands_23: 1661391679
@@ -36778,14 +36781,14 @@ TextureImporter:
       u_fd_grasslands_129: -1950070467
       u_fd_grasslands_538: 1828485508
       u_fd_grasslands_555: 151744080
-      u_fd_grasslands_880: 151668510
+      u_fd_grasslands_1228: -995412620
       u_fd_grasslands_682: 213509373
       u_fd_grasslands_875: -2043520799
-      u_fd_grasslands_926: 909027819
+      u_fd_grasslands_880: 151668510
       u_fd_grasslands_1719: -1674631309
       u_fd_grasslands_870: -1182851437
+      u_fd_grasslands_926: 909027819
       u_fd_grasslands_522: 1933698809
-      u_fd_grasslands_1228: -995412620
       u_fd_grasslands_1339: -614229209
       u_fd_grasslands_630: -1964831909
       u_fd_grasslands_1081: 1266057610
@@ -36824,8 +36827,8 @@ TextureImporter:
       u_fd_grasslands_1545: 118684053
       u_fd_grasslands_16: 172936747
       u_fd_grasslands_269: -137908794
-      u_fd_grasslands_1663: -1334878618
       u_fd_grasslands_1678: 645798115
+      u_fd_grasslands_1663: -1334878618
       u_fd_grasslands_1615: 1674462121
       u_fd_grasslands_605: 1305289415
       u_fd_grasslands_1051: 1837370663
@@ -37108,12 +37111,12 @@ TextureImporter:
       u_fd_grasslands_1451: 639303568
       u_fd_grasslands_1416: -949118292
       u_fd_grasslands_715: 843156522
+      u_fd_grasslands_830: -344495541
       u_fd_grasslands_30: -1348280014
       u_fd_grasslands_933: 371380401
-      u_fd_grasslands_830: -344495541
-      u_fd_grasslands_1131: 1340087607
       u_fd_grasslands_974: -1928501313
       u_fd_grasslands_1611: 1963867202
+      u_fd_grasslands_1131: 1340087607
       u_fd_grasslands_609: 575297858
       u_fd_grasslands_798: 297784466
       u_fd_grasslands_95: 1962609169
@@ -37126,10 +37129,10 @@ TextureImporter:
       u_fd_grasslands_231: 1784215337
       u_fd_grasslands_554: 844601015
       u_fd_grasslands_207: -848697686
-      u_fd_grasslands_634: -1035826538
       u_fd_grasslands_985: -303164464
-      u_fd_grasslands_657: -837066298
+      u_fd_grasslands_634: -1035826538
       u_fd_grasslands_1001: -575561482
+      u_fd_grasslands_657: -837066298
       u_fd_grasslands_776: -589003747
       u_fd_grasslands_856: 835845894
       u_fd_grasslands_924: -147397772
@@ -37169,8 +37172,8 @@ TextureImporter:
       u_fd_grasslands_520: 1180407172
       u_fd_grasslands_140: -1860340766
       u_fd_grasslands_43: 1659066841
-      u_fd_grasslands_736: 1173675073
       u_fd_grasslands_1371: 1834753815
+      u_fd_grasslands_736: 1173675073
       u_fd_grasslands_1694: 1236166940
       u_fd_grasslands_1628: 1261088430
       u_fd_grasslands_295: -687533419
@@ -37188,10 +37191,10 @@ TextureImporter:
       u_fd_grasslands_1717: -169733708
       u_fd_grasslands_148: 770654342
       u_fd_grasslands_1205: 1831929333
-      u_fd_grasslands_1310: 1275970121
+      u_fd_grasslands_1589: -579847184
       u_fd_grasslands_1257: -1768729756
       u_fd_grasslands_1477: 941083366
-      u_fd_grasslands_1589: -579847184
+      u_fd_grasslands_1310: 1275970121
       u_fd_grasslands_1306: -752099216
       u_fd_grasslands_1154: -870117663
       u_fd_grasslands_1614: 1821263054
@@ -37409,11 +37412,11 @@ TextureImporter:
       u_fd_grasslands_999: 1318818543
       u_fd_grasslands_421: 1633273578
       u_fd_grasslands_1038: 214713126
-      u_fd_grasslands_173: 523716130
-      u_fd_grasslands_270: -1992245032
       u_fd_grasslands_1453: 696236699
+      u_fd_grasslands_173: 523716130
       u_fd_grasslands_1096: 1626108255
       u_fd_grasslands_223: -537866944
+      u_fd_grasslands_270: -1992245032
       u_fd_grasslands_1673: 1534177738
       u_fd_grasslands_595: -942059185
       u_fd_grasslands_1369: 1620576975
@@ -37474,15 +37477,15 @@ TextureImporter:
       u_fd_grasslands_1231: -360218707
       u_fd_grasslands_225: 1784530127
       u_fd_grasslands_488: -1180511592
+      u_fd_grasslands_1375: 1297728160
       u_fd_grasslands_760: 1984865411
       u_fd_grasslands_1099: 1349221318
       u_fd_grasslands_194: -1735691580
       u_fd_grasslands_1070: -1844334986
-      u_fd_grasslands_1375: 1297728160
       u_fd_grasslands_77: 544671411
+      u_fd_grasslands_1438: 476728288
       u_fd_grasslands_1287: -518231527
       u_fd_grasslands_1392: -971867075
-      u_fd_grasslands_1438: 476728288
       u_fd_grasslands_118: -1753270780
       u_fd_grasslands_1639: -605376723
       u_fd_grasslands_1090: -1766651650
@@ -37493,21 +37496,21 @@ TextureImporter:
       u_fd_grasslands_1353: 1090627991
       u_fd_grasslands_425: -1688901958
       u_fd_grasslands_407: -590483177
-      u_fd_grasslands_1365: 1583478926
-      u_fd_grasslands_756: -1247174761
       u_fd_grasslands_1669: 173192163
+      u_fd_grasslands_756: -1247174761
       u_fd_grasslands_1010: -688701711
       u_fd_grasslands_832: 1699360967
       u_fd_grasslands_793: -1395959627
-      u_fd_grasslands_1481: -1529367863
-      u_fd_grasslands_551: 1748308120
-      u_fd_grasslands_1707: 1818041858
       u_fd_grasslands_1600: 1564999243
+      u_fd_grasslands_551: 1748308120
+      u_fd_grasslands_1481: -1529367863
       u_fd_grasslands_1137: -615316474
       u_fd_grasslands_1322: -467007890
       u_fd_grasslands_1351: -953099749
+      u_fd_grasslands_1365: 1583478926
       u_fd_grasslands_62: -1036501767
       u_fd_grasslands_1608: -1645864116
+      u_fd_grasslands_1707: 1818041858
       u_fd_grasslands_1225: 258014452
       u_fd_grasslands_1215: 1755010998
       u_fd_grasslands_861: 1041703666
@@ -37515,8 +37518,8 @@ TextureImporter:
       u_fd_grasslands_1430: -1867532566
       u_fd_grasslands_1701: -1955740332
       u_fd_grasslands_302: -720723724
-      u_fd_grasslands_753: 1568189929
       u_fd_grasslands_1212: -200633158
+      u_fd_grasslands_753: 1568189929
       u_fd_grasslands_927: 1073391433
       u_fd_grasslands_44: 1263492814
       u_fd_grasslands_1064: 524164272
@@ -37549,8 +37552,8 @@ TextureImporter:
       u_fd_grasslands_658: -2109483626
       u_fd_grasslands_462: -1558786375
       u_fd_grasslands_1171: 101140552
-      u_fd_grasslands_1298: 916496331
       u_fd_grasslands_1504: 1277007608
+      u_fd_grasslands_1298: 916496331
       u_fd_grasslands_1152: 2046868467
       u_fd_grasslands_1561: 615791559
       u_fd_grasslands_485: -2116056081
@@ -37565,20 +37568,20 @@ TextureImporter:
       u_fd_grasslands_369: 1389191942
       u_fd_grasslands_265: 998667559
       u_fd_grasslands_501: 992082510
-      u_fd_grasslands_68: 1371325485
-      u_fd_grasslands_489: -1847573671
-      u_fd_grasslands_1011: 1460144056
       u_fd_grasslands_1406: 1304092604
+      u_fd_grasslands_1011: 1460144056
+      u_fd_grasslands_68: 1371325485
       u_fd_grasslands_692: -1193372333
       u_fd_grasslands_292: -1450735530
       u_fd_grasslands_440: 1961640822
+      u_fd_grasslands_489: -1847573671
       u_fd_grasslands_296: -1460281085
       u_fd_grasslands_1486: -1883718191
       u_fd_grasslands_1516: -1412273944
       u_fd_grasslands_34: 889287788
       u_fd_grasslands_766: -2061080980
-      u_fd_grasslands_1134: 1843592489
       u_fd_grasslands_1596: 1613252106
+      u_fd_grasslands_1134: 1843592489
       u_fd_grasslands_901: -672384993
       u_fd_grasslands_571: -806773549
       u_fd_grasslands_1093: -334455012
@@ -37595,9 +37598,9 @@ TextureImporter:
       u_fd_grasslands_1307: 649399544
       u_fd_grasslands_1330: -1709632102
       u_fd_grasslands_1149: 80333027
+      u_fd_grasslands_1223: 1736486460
       u_fd_grasslands_186: -949463531
       u_fd_grasslands_528: -1406948078
-      u_fd_grasslands_1223: 1736486460
       u_fd_grasslands_394: -868151084
       u_fd_grasslands_1395: 197192291
       u_fd_grasslands_576: -598973725
@@ -37638,8 +37641,8 @@ TextureImporter:
       u_fd_grasslands_1565: -1313025384
       u_fd_grasslands_651: 1992272780
       u_fd_grasslands_1323: 1805545428
-      u_fd_grasslands_1400: 1423778951
       u_fd_grasslands_1538: -269373436
+      u_fd_grasslands_1400: 1423778951
       u_fd_grasslands_1359: 1355874565
       u_fd_grasslands_434: 521446069
       u_fd_grasslands_356: -1998677244
@@ -37686,9 +37689,9 @@ TextureImporter:
       u_fd_grasslands_955: -1980553623
       u_fd_grasslands_6: -43819162
       u_fd_grasslands_335: -468826607
-      u_fd_grasslands_1183: 1951796559
-      u_fd_grasslands_821: -1801270211
       u_fd_grasslands_1697: -1458434835
+      u_fd_grasslands_821: -1801270211
+      u_fd_grasslands_1183: 1951796559
       u_fd_grasslands_233: -1997552851
       u_fd_grasslands_1249: -1683179102
       u_fd_grasslands_1126: 1919796215
@@ -37719,13 +37722,13 @@ TextureImporter:
       u_fd_grasslands_885: 1680572127
       u_fd_grasslands_878: 761928475
       u_fd_grasslands_218: 1097294884
-      u_fd_grasslands_948: 533622247
-      u_fd_grasslands_1130: -1650750816
       u_fd_grasslands_778: 1936353814
+      u_fd_grasslands_948: 533622247
       u_fd_grasslands_913: -1618982808
-      u_fd_grasslands_1721: -1363355797
+      u_fd_grasslands_1130: -1650750816
       u_fd_grasslands_217: 1146226363
       u_fd_grasslands_907: 1328674850
+      u_fd_grasslands_1721: -1363355797
       u_fd_grasslands_1016: 1190416884
       u_fd_grasslands_1007: 1043551816
       u_fd_grasslands_655: -665265699
@@ -37848,9 +37851,9 @@ TextureImporter:
       u_fd_grasslands_1599: 118580535
       u_fd_grasslands_593: -1568967457
       u_fd_grasslands_87: 516461107
-      u_fd_grasslands_304: -205246629
-      u_fd_grasslands_779: -871216840
       u_fd_grasslands_1161: 67541419
+      u_fd_grasslands_779: -871216840
+      u_fd_grasslands_304: -205246629
       u_fd_grasslands_925: 302968864
       u_fd_grasslands_1009: 596817121
       u_fd_grasslands_617: -1190774105
@@ -38252,9 +38255,8 @@ TextureImporter:
       u_fd_grasslands_1658: -1505936808
       u_fd_grasslands_1274: 425699391
       u_fd_grasslands_1478: 753215320
-  spritePackingTag: 
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

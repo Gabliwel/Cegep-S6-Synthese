@@ -3,7 +3,26 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Chest
+  - Ranged
+  - Melee
+  - Scaling
+  - Life
+  - LavaEnemy
+  - Achivement
+  - Item
+  - Navmesh
+  - WeaponSwitch
+  - Boss
+  - Life
+  - ArenaLimitTopLeft
+  - ArenaLimitBottomRight
+  - FollowingBoss
+  - Portal
+  - CurrentXP
+  - Gold
+  - GameOver
   layers:
   - Default
   - TransparentFX
@@ -25,19 +44,34 @@ TagManager:
   - 
   - 
   - 
+  - Layer 1
+  - Layer 2
+  - Layer 3
+  - Layer 4
+  - Layer 5
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Projectile
   - 
   - 
   - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Layer 1
+    uniqueID: 359206789
+    locked: 0
+  - name: Layer 2
+    uniqueID: 3054880305
+    locked: 0
+  - name: Layer 3
+    uniqueID: 2439142265
+    locked: 0
+  - name: Layer 4
+    uniqueID: 2507371687
+    locked: 0
+  - name: Layer 5
+    uniqueID: 3139167887
     locked: 0
