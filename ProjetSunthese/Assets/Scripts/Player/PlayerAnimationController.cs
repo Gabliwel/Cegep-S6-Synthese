@@ -6,6 +6,7 @@ public class PlayerAnimationController : MonoBehaviour
 {
     [SerializeField] RuntimeAnimatorController warrior;
     [SerializeField] RuntimeAnimatorController archer;
+    [SerializeField] RuntimeAnimatorController warlock;
     private Animator animator;
     private bool rollAnim = false;
 
@@ -33,6 +34,7 @@ public class PlayerAnimationController : MonoBehaviour
             case WeaponsType.STAFF:
                 break;
             case WeaponsType.WARLORCK_STAFF:
+                animator.runtimeAnimatorController = warlock;
                 break;
         }
     }
