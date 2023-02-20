@@ -40,9 +40,16 @@ public class MichaelProjectile : BossAttack
     // Update is called once per frame
     void Update()
     {
-        if (attackInProgress)
+        if (transform.root.gameObject.activeSelf)
         {
-            ShootProjectile();
+            if (attackInProgress)
+            {
+                ShootProjectile();
+            }
+        }
+        else
+        {
+            projectile.SetActive(false);
         }
     }
 
