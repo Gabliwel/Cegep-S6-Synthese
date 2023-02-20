@@ -304,11 +304,11 @@ MonoBehaviour:
   ROTATION_OFFSET: 45
   orbit: 1
   baseDamage: 8
-  defaultStartup: 0.15
+  defaultStartup: 0.1
   defaultRecovery: 0.3
   cooldown: 0.1
   cooldownTimer: 0.1
-  duration: 0.04
+  duration: 0.05
   windUpDistance: 45
   recoilDistance: 45
 --- !u!114 &8256077553287885045
