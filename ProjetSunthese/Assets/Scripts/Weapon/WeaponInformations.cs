@@ -10,7 +10,9 @@ namespace Billy.Weapons
         AXE,
         BOW,
         SWORD,
-        DAGUER
+        DAGGER,
+        STAFF,
+        WARLORCK_STAFF
     }
 }
 

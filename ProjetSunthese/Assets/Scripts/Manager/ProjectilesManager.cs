@@ -8,6 +8,11 @@ public class ProjectilesManager : MonoBehaviour
     [SerializeField] private int arrowNb = 20;
     [SerializeField] private GameObject arrowPrefab;
     private Projectile[] arrows;
+    [Header("Warlock")]
+    [SerializeField] private int warlockProjectileNb = 20;
+    [SerializeField] private GameObject warlockProjectileHolderPrefab;
+    private WarlockProjectileHolder[] warlockProjectiles;
+
     private ProjectilesManager instance;
 
     private void Awake()
@@ -26,15 +31,27 @@ public class ProjectilesManager : MonoBehaviour
             arrows[i] = Instantiate(arrowPrefab).GetComponent<Arrow>();
             arrows[i].gameObject.SetActive(false);
         }
+
+        warlockProjectiles = new WarlockProjectileHolder[warlockProjectileNb];
+        for (int i = 0; i < warlockProjectileNb; i++)
+        {
+            warlockProjectiles[i] = Instantiate(warlockProjectileHolderPrefab).GetComponent<WarlockProjectileHolder>();
+            warlockProjectiles[i].gameObject.SetActive(false);
+        }
     }
 
     private void Start()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().SetProjectilesManager(this);
+        Player.instance.SetProjectilesManager(this);
     }
 
     public Projectile[] GetArrows()
     {
         return arrows;
+    }
+
+    public WarlockProjectileHolder[] GetWarlockProjectiles()
+    {
+        return warlockProjectiles;
     }
 }
