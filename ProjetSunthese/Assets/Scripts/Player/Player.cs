@@ -188,7 +188,7 @@ public class Player : MonoBehaviour
 
     public bool Harm(float ammount)
     {
-        if(iframesTimer <= 0)
+        if (iframesTimer <= 0)
         {
             health.Harm(ammount);
             GameManager.instance.UpdateHUD();
@@ -209,7 +209,7 @@ public class Player : MonoBehaviour
 
     public void BlocMovement(bool state)
     {
-        if(state) playerMovement.DisableMovement();
+        if (state) playerMovement.DisableMovement();
         else playerMovement.EnableMovement();
     }
 
@@ -226,10 +226,11 @@ public class Player : MonoBehaviour
 
     private void SetCurrentWeapon()
     {
-        if(weaponInfo.GetWeaponType() == WeaponsType.BOW)
-        {
-            weapon.gameObject.GetComponent<Ranged>().SetProjectiles(projectilesManager.GetArrows());
-        }
+        if (weaponInfo.GetWeaponType() == WeaponsType.BOW)
+            weapon.gameObject.GetComponent<Bow>().SetProjectiles(projectilesManager.GetArrows());
+
+        if (weaponInfo.GetWeaponType() == WeaponsType.WARLORCK_STAFF)
+            weapon.gameObject.GetComponent<WarlorckStaff>().SetProjectiles(projectilesManager.GetWarlockProjectiles());
     }
 
     public void SwitchWeapon(GameObject newWeapon)
@@ -290,7 +291,7 @@ public class Player : MonoBehaviour
     [ContextMenu("KevLevel")]
     public void KevLevel()
     {
-        GameManager.instance.StartNextlevel(0,Scene.KevenLevel);
+        GameManager.instance.StartNextlevel(0, Scene.KevenLevel);
     }
 
 }

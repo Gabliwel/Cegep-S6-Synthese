@@ -5,14 +5,12 @@ using UnityEngine;
 public class BossBofrerHomingBoltProjectile : Projectile
 {
     [SerializeField] private float rotationSpeed;
-    private Player player;
     private Sensor sensor;
     private ISensor<Player> playerSensor;
     private BossBofrerHomingBolt parentBolt;
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         sensor = GetComponentInChildren<Sensor>();
         playerSensor = sensor.For<Player>();
         playerSensor.OnSensedObject += OnPlayerSense;
@@ -44,7 +42,7 @@ public class BossBofrerHomingBoltProjectile : Projectile
 
     private void AdjustRotation()
     {
-        Vector2 targetDirection = player.transform.position - transform.position;
+        Vector2 targetDirection = Player.instance.transform.position - transform.position;
 
         targetDirection.Normalize();
 

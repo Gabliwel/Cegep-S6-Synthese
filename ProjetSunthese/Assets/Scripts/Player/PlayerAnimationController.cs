@@ -24,11 +24,15 @@ public class PlayerAnimationController : MonoBehaviour
             case WeaponsType.BOW:
                 animator.runtimeAnimatorController = archer;
                 break;
-            case WeaponsType.DAGUER:
+            case WeaponsType.DAGGER:
                 // impossible pour le moment
                 break;
             case WeaponsType.SWORD:
                 // impossible pour le moment
+                break;
+            case WeaponsType.STAFF:
+                break;
+            case WeaponsType.WARLORCK_STAFF:
                 break;
         }
     }
