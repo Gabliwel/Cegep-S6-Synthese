@@ -44,8 +44,16 @@ public class BossBofrerEarly : Enemy
         CheckHPForTeleport();
     }
 
+    protected override void WasPoisonHurt()
+    {
+        base.WasPoisonHurt();
+        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        CheckHPForTeleport();
+    }
+
     private void Update()
     {
+        base.Update();
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
         animator.SetFloat("MoveX", player.transform.position.x - transform.position.x);
         animator.SetFloat("MoveY", player.transform.position.y - transform.position.y);
@@ -53,7 +61,7 @@ public class BossBofrerEarly : Enemy
 
     private void CheckHPForTeleport()
     {
-        if(hp < HPTreshold)
+        if (hp < HPTreshold)
         {
             GameManager.instance.SetNextLevel();
         }

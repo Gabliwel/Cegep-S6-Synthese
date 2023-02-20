@@ -28,6 +28,7 @@ public class WeaponInformations : MonoBehaviour
     [SerializeField] private GameObject interactStimuli;
     [SerializeField] private GameObject weaponSensor;
     private SpriteRenderer sprite;
+    private bool hasInteracted = false;
 
     private void Awake()
     {
@@ -74,6 +75,7 @@ public class WeaponInformations : MonoBehaviour
         weapon.enabled = false;
         interactStimuli.SetActive(true);
         sprite.sortingOrder = 3;
+        hasInteracted = true;
     }
 
     public void SwitchToWeapon()
@@ -83,6 +85,7 @@ public class WeaponInformations : MonoBehaviour
         if (weaponSensor != null) weaponSensor.SetActive(true);
         isCurrentWeapon = true;
         sprite.sortingOrder = 9;
+        hasInteracted = true;
     }
 
     public void ChangeLayer(string layer, string sortingLayer)
@@ -95,11 +98,8 @@ public class WeaponInformations : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        /*if(!isCurrentWeapon)
-        {
-            Destroy(this.gameObject);
-        }*/
-        if (transform.parent == null)
+        //if (transform.parent == null)
+        if(!isCurrentWeapon && hasInteracted)
         {
             Destroy(this.gameObject);
         }

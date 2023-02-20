@@ -31,9 +31,16 @@ public class FadedCharge : BossAttack
 
     void Update()
     {
-        if (attackInProgress)
+        if (transform.root.gameObject.activeSelf)
         {
-            FadedChargeAttack();
+            if (attackInProgress)
+            {
+                FadedChargeAttack();
+            }
+        }
+        else
+        {
+            dangerRectangle.SetActive(false);
         }
     }
 

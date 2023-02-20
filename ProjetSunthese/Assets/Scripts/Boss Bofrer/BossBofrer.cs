@@ -108,6 +108,7 @@ public class BossBofrer : Enemy
 
     private void Update()
     {
+        base.Update();
         shieldActive = minionSpawner.AnyMinionActive();
         shield.SetActive(shieldActive);
     }
@@ -135,6 +136,16 @@ public class BossBofrer : Enemy
         if (!shieldActive)
         {
             base.Harm(ammount, overtime);
+            CheckHPForTeleport();
+            hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        }
+    }
+
+    protected override void WasPoisonHurt()
+    {
+        base.WasPoisonHurt();
+        if (!shieldActive)
+        {
             CheckHPForTeleport();
             hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
         }

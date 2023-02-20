@@ -38,9 +38,16 @@ public class FadedTeleport : BossAttack
     // Update is called once per frame
     void Update()
     {
-        if (attackInProgress)
+        if (transform.root.gameObject.activeSelf)
         {
-            TeleportUnder();
+            if (attackInProgress)
+            {
+                TeleportUnder();
+            }
+        }
+        else
+        {
+            dangerCircle.SetActive(false);
         }
     }
 

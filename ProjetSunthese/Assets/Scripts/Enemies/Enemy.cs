@@ -17,28 +17,16 @@ public abstract class Enemy : MonoBehaviour
     protected int scalingLevel;
 
     protected float poisonDuration = 5f;
-    protected float poisonDamage = 0f;
+    protected float playerPoisonDamage = 0f;
+    protected float currentPoison = 0f;
+    protected bool poisonCoroutine = false;
 
+    /// <summary>
+    /// TODO: FIXME: this is bad; no time for fix in alpha
+    /// </summary>
     protected void Update()
     {
-        if (overtime > 0)
-        {
-            overtimeTimer -= Time.deltaTime;
-            if (overtimeTimer <= 0)
-            {
-                overtimeTimer = 1f;
-                hp -= poisonDamage;
-                overtime -= 1;
-                if (hp <= 0)
-                {
-                    Die();
-                }
-                else
-                {
-                    WasPoisonHurt();
-                }
-            }
-        }
+
     }
 
     private void OnEnable()
@@ -50,13 +38,24 @@ public abstract class Enemy : MonoBehaviour
     public virtual void Harm(float ammount, float poison)
     {
         Debug.Log(name + " ouched for " + ammount + " damage.");
-        hp -= ammount;
+        ReduceHp(ammount);
 
         if (poison > 0)
         {
-            poisonDamage = poison;
-            overtime = poisonDuration;
+            playerPoisonDamage = poison;
+            currentPoison += poison;
+
+            if (!poisonCoroutine)
+            {
+                poisonCoroutine = true;
+                StartCoroutine(DealPoisonDamage());
+            }
         }
+    }
+
+    public void ReduceHp(float hpLost)
+    {
+        hp -= hpLost;
 
         if (hp <= 0)
         {
@@ -64,8 +63,25 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
+    private IEnumerator DealPoisonDamage()
+    {
+        while (currentPoison > 0)
+        {
+            yield return new WaitForSeconds(3f);
+
+            float damage = playerPoisonDamage;
+
+            currentPoison -= damage;
+
+            ReduceHp(damage);
+            WasPoisonHurt();
+        }
+        poisonCoroutine = false;
+    }
+
     public virtual void Die()
     {
+        StopCoroutine(DealPoisonDamage());
         Drop();
         gameObject.SetActive(false);
         ParticleManager.instance.CallParticles(transform.position, particleScale, particleColor);
@@ -73,5 +89,8 @@ public abstract class Enemy : MonoBehaviour
 
     protected abstract void Drop();
 
+    /// <summary>
+    /// TODO: FIXME: this is bad; no time for fix in alpha
+    /// </summary>
     protected virtual void WasPoisonHurt() { }
 }
