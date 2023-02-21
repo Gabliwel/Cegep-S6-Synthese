@@ -38,9 +38,12 @@ public class EnemySpawningManager : MonoBehaviour
                 if (!enemy.activeSelf)
                 {
                     MakeListOfAvailableSpawner();
-                    currentSpawner = availableSpawners[Random.Range(0, availableSpawners.Count)];
-                    enemy.transform.position = currentSpawner.transform.position;
-                    enemy.SetActive(true);
+                    if(availableSpawners.Count > 0)
+                    {
+                        currentSpawner = availableSpawners[Random.Range(0, availableSpawners.Count)];
+                        enemy.transform.position = currentSpawner.transform.position;
+                        enemy.SetActive(true);
+                    }
                     break;
                 }
             }

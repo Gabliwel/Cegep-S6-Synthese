@@ -32,7 +32,7 @@ Transform:
   - {fileID: 2946591188213389264}
   - {fileID: 33074856744953928}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &33074856052722196
 MonoBehaviour:
@@ -547,7 +547,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 359206789
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: -459687032, guid: 3e64b164a4f38b2498b79a2ea1ffb89a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -643,7 +643,7 @@ MonoBehaviour:
   xpGiven: 3
   overtime: 3
   speed: 1
-  useNavMesh: 1
+  useNavMesh: 0
 --- !u!95 &33074857127715284
 Animator:
   serializedVersion: 5
