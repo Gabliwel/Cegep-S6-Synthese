@@ -14,27 +14,37 @@ public class PlayerInteractables : MonoBehaviour
     private Player player;
     private DescriptionBox descBox;
 
-    void Awake()
+    private bool textsNotLinked = true;
+
+    private void Start()
     {
         interactablesSensor = sensor.For<Interactable>();
         interactablesSensor.OnSensedObject += OnInteractableSense;
         interactablesSensor.OnUnsensedObject += OnInteractableUnsense;
-
-        descBox = GameObject.FindGameObjectWithTag("DescriptionBox").GetComponent<DescriptionBox>();
         player = GetComponent<Player>();
-    }
-
-    private void Start()
-    {
         closeInteractables = new List<Interactable>();
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && currentSelected != null)
+        Link();
+
+        if (Input.GetKeyDown(KeyCode.E) && currentSelected != null)
         {
             currentSelected.Interact(player);
         }
+    }
+
+    private void Link()
+    {
+        if (!textsNotLinked) return;
+        textsNotLinked = false;
+        descBox = GameObject.FindGameObjectWithTag("DescriptionBox").GetComponent<DescriptionBox>();
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        textsNotLinked = true;
     }
 
     private void OnInteractableSense(Interactable interectable)
