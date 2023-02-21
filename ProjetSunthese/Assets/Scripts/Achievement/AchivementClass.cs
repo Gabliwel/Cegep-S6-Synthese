@@ -11,10 +11,11 @@ public class AchivementClass
     public bool beatMichael;
     public bool beatJeanGuy;
     public bool beatTheGame;
-
+    public bool nbEnemyKilled;
 
 
     public int nbChestOpened;
+    public int nbKilledTotal;
 
     public AchivementClass(bool lotsChestOpened, int nbChestOpened, bool rageQuit, bool beatBob, bool beatGontrand, bool beatMichael, bool beatJeanGuy, bool beatTheGame)
     {

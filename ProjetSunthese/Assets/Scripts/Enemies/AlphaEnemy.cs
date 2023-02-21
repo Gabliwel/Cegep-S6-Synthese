@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AlphaEnemy : Enemy
 {
     [SerializeField] private float speed = 5;
+
+    [SerializeField] bool useNavMesh;
 
     private Sensor damageSensor;
     private Sensor rangeSensor;
@@ -12,6 +15,9 @@ public class AlphaEnemy : Enemy
     private ISensor<Player> playerRangeSensor;
 
     private Player player;
+
+    private NavMeshAgent agent;
+    private Animator animator;
 
     void Awake()
     {
@@ -26,6 +32,15 @@ public class AlphaEnemy : Enemy
 
         playerDamageSensor.OnSensedObject += OnPlayerDamageSense;
         playerDamageSensor.OnSensedObject += OnPlayerDamageUnsense;
+
+        if (useNavMesh)
+        {
+            agent = GetComponent<NavMeshAgent>();
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
+            agent.speed = speed;
+        }
+        animator = GetComponent<Animator>();
     }
 
     void OnPlayerRangeSense(Player player)
@@ -40,7 +55,7 @@ public class AlphaEnemy : Enemy
 
     void OnPlayerDamageSense(Player player)
     {
-        player.Harm(10);
+        player.Harm(damageDealt);
     }
 
     void OnPlayerDamageUnsense(Player player)
@@ -50,10 +65,18 @@ public class AlphaEnemy : Enemy
 
     void Update()
     {
-        base.Update();
-        if(player != null)
+        if (player != null)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+            animator.SetFloat("Move X", player.transform.position.x - transform.position.x);
+            animator.SetFloat("Move Y", player.transform.position.y - transform.position.y);
+            if (useNavMesh)
+            {
+                agent.SetDestination(player.transform.position);
+            }
+            else
+            {
+                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+            }
         }
     }
 

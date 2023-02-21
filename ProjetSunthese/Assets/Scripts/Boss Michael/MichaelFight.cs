@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class MichaelFight : Enemy
 {
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject dangerCircle;
-    [SerializeField] GameObject dangerRectangle;
-    [SerializeField] GameObject projectile;
+    [SerializeField] GameObject player; 
     [SerializeField] private List<BossAttack> michaelAttacks;
 
     private string[] Attacks = new string[3];
@@ -36,6 +33,7 @@ public class MichaelFight : Enemy
         for (int i = 0; i < michaelAttacks.Count; i++)
         {
             michaelAttacks[i] = Instantiate(michaelAttacks[i]);
+            michaelAttacks[i].transform.SetParent(gameObject.transform);
         }
 
         hpBar = GetComponentInChildren<HPBar>();
