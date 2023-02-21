@@ -5405,6 +5405,7 @@ MonoBehaviour:
   warlock: {fileID: 9100000, guid: 6fab2d56e7117a142ada038ca56cb150, type: 2}
   knight: {fileID: 9100000, guid: 52a20048695b4214cb80fbf76e35217a, type: 2}
   thief: {fileID: 9100000, guid: c88675d9261ff924eb8dec820d27c018, type: 2}
+  wizard: {fileID: 9100000, guid: efa876d486548dc40a3d37a20073b7bc, type: 2}
 --- !u!114 &1268080196
 MonoBehaviour:
   m_ObjectHideFlags: 0
