@@ -105,7 +105,7 @@ MonoBehaviour:
   scaleWithPlayer: {x: 1, y: 1, z: 1}
   scaleNotWithPlayer: {x: 6, y: 6, z: 1}
   positionWithPlayer: {x: 0.08, y: 0, z: 0}
-  isCurrentWeapon: 0
+  isCurrentWeapon: 1
   weapon: {fileID: 0}
   interactStimuli: {fileID: 8130493802473667748}
   weaponSensor: {fileID: 0}
