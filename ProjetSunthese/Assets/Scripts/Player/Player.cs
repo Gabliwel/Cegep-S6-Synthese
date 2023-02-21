@@ -18,11 +18,13 @@ public class Player : MonoBehaviour
     private PlayerBaseWeaponStat baseWeaponStat;
     private SpriteRenderer sprite;
     private PlayerInteractables playerInteractables;
+    private ParticleSystem particleSystem;
     private float iframesTimer;
 
     [Header("Link")]
     [SerializeField] private GameObject stimuli;
     [SerializeField] private GameObject sensor;
+    [SerializeField] private GameObject particuleGameObj;
 
     [Header("Ressources")]
     [SerializeField] private int gold = 0;
@@ -45,15 +47,16 @@ public class Player : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
+        health = GetComponent<PlayerHealth>();
         animationController = GetComponent<PlayerAnimationController>();
         playerMovement = GetComponent<PlayerMovement>();
         weapon = GetComponentInChildren<Weapon>();
         weaponInfo = weapon.gameObject.GetComponent<WeaponInformations>();
         playerLight = GetComponentInChildren<PlayerLight>();
-        health = GetComponent<PlayerHealth>();
         baseWeaponStat = GetComponent<PlayerBaseWeaponStat>();
         playerInteractables = GetComponent<PlayerInteractables>();
         sprite = GetComponent<SpriteRenderer>();
+        particleSystem = particuleGameObj.GetComponent<ParticleSystem>();
     }
 
     private void Start()
@@ -197,6 +200,12 @@ public class Player : MonoBehaviour
         return false;
     }
 
+    public void HarmIgnoreIFrame(float ammount)
+    {
+        health.Harm(ammount);
+        GameManager.instance.UpdateHUD();
+    }
+
     public void ChangeLayer(string layer, string sortingLayer)
     {
         gameObject.layer = LayerMask.NameToLayer(layer);
@@ -205,6 +214,7 @@ public class Player : MonoBehaviour
         sprite.sortingLayerName = sortingLayer;
         weaponInfo.ChangeLayer(layer, sortingLayer);
         playerLight.UpdateLightUsage(sortingLayer);
+        particleSystem.gameObject.GetComponent<ParticleSystemRenderer>().sortingLayerName = sortingLayer;
     }
 
     public void BlocMovement(bool state)
@@ -273,6 +283,18 @@ public class Player : MonoBehaviour
         {
             playerMovement.AddKnockBack(difference, force);
         }
+    }
+
+    public void IsInLava(float speedReducer)
+    {
+        particleSystem.Play();
+        playerMovement.SetSpeedReducer(speedReducer);
+    }
+
+    public void IsNotInLava()
+    {
+        particleSystem.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+        playerMovement.SetSpeedReducer(1);
     }
 
     [ContextMenu("NextLevel")]

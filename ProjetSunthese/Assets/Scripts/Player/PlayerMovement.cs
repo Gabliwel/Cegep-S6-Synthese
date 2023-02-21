@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private const float STOP_TRESHOLD = 0.2f;
     [Header("Speed")]
     [SerializeField] private float BASE_SPEED = 4;
+    [SerializeField] private float speedReducer = 1;
     [SerializeField] private Vector2 currentVelocity;
     [Header("Roll")]
     [SerializeField] private float rollSpeed = 2.2f;
@@ -82,8 +83,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void BuildMovement()
     {
-        currentVelocity.x = movementInput.x * BASE_SPEED;
-        currentVelocity.y = movementInput.y * BASE_SPEED;
+        currentVelocity.x = movementInput.x * (BASE_SPEED * speedReducer);
+        currentVelocity.y = movementInput.y * (BASE_SPEED * speedReducer);
 
         if (Mathf.Abs(movementInput.x) < STOP_TRESHOLD)
             currentVelocity.x = 0;
@@ -112,8 +113,8 @@ public class PlayerMovement : MonoBehaviour
         rollCooldownTimer = ROLL_COOLDOWN + rollSpeedupTime + rollSlowdownTime;
         // TODO: add sound
         currentVelocity = Vector2.zero;
-        currentVelocity.x += direction.x * (BASE_SPEED * rollSpeed);
-        currentVelocity.y += direction.y * (BASE_SPEED * rollSpeed);
+        currentVelocity.x += direction.x * ((BASE_SPEED * speedReducer) * rollSpeed);
+        currentVelocity.y += direction.y * ((BASE_SPEED * speedReducer) * rollSpeed);
         AdjustRotation();
         yield return new WaitForSeconds(rollSpeedupTime);
         currentVelocity /= 2;
@@ -180,5 +181,10 @@ public class PlayerMovement : MonoBehaviour
     public bool IsRolling()
     {
         return isRolling;
+    }
+
+    public void SetSpeedReducer(float newReducer)
+    {
+        speedReducer = newReducer;
     }
 }
