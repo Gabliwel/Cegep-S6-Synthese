@@ -12,6 +12,10 @@ public class ProjectilesManager : MonoBehaviour
     [SerializeField] private int warlockProjectileNb = 20;
     [SerializeField] private GameObject warlockProjectileHolderPrefab;
     private WarlockProjectileHolder[] warlockProjectiles;
+    [Header("Wizard")]
+    [SerializeField] private int wizardProjectileNb = 20;
+    [SerializeField] private GameObject wizardProjectileHolderPrefab;
+    private WizardProjectile[] wizardProjectiles;
 
     private ProjectilesManager instance;
 
@@ -38,6 +42,13 @@ public class ProjectilesManager : MonoBehaviour
             warlockProjectiles[i] = Instantiate(warlockProjectileHolderPrefab).GetComponent<WarlockProjectileHolder>();
             warlockProjectiles[i].gameObject.SetActive(false);
         }
+
+        wizardProjectiles = new WizardProjectile[wizardProjectileNb];
+        for (int i = 0; i < wizardProjectileNb; i++)
+        {
+            wizardProjectiles[i] = Instantiate(wizardProjectileHolderPrefab).GetComponent<WizardProjectile>();
+            wizardProjectiles[i].gameObject.SetActive(false);
+        }
     }
 
     private void Start()
@@ -53,5 +64,10 @@ public class ProjectilesManager : MonoBehaviour
     public WarlockProjectileHolder[] GetWarlockProjectiles()
     {
         return warlockProjectiles;
+    }
+
+    public WizardProjectile[] GetWizardProjectiles()
+    {
+        return wizardProjectiles;
     }
 }
