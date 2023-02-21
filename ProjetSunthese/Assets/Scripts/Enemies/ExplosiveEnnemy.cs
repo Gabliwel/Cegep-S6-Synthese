@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ExplosiveEnnemy : Enemy
 {
     [SerializeField] private float speed = 3;
+
+    [SerializeField] bool useNavMesh;
 
     private Sensor damageSensor;
     private Sensor rangeSensor;
@@ -13,6 +16,9 @@ public class ExplosiveEnnemy : Enemy
 
     private Player player;
     private ExplosiveEnnemyHolder parentHolder;
+
+    private NavMeshAgent agent;
+    private Animator animator;
 
     void Awake()
     {
@@ -28,6 +34,15 @@ public class ExplosiveEnnemy : Enemy
 
         playerDamageSensor.OnSensedObject += OnPlayerDamageSense;
         playerDamageSensor.OnSensedObject += OnPlayerDamageUnsense;
+
+        if (useNavMesh)
+        {
+            agent = GetComponent<NavMeshAgent>();
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
+            agent.speed = speed;
+        }
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -57,7 +72,17 @@ public class ExplosiveEnnemy : Enemy
 
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        animator.SetFloat("Move X", player.transform.position.x - transform.position.x);
+        animator.SetFloat("Move Y", player.transform.position.y - transform.position.y);
+
+        if (useNavMesh)
+        {
+            agent.SetDestination(player.transform.position);
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        }
     }
 
     protected override void Drop()

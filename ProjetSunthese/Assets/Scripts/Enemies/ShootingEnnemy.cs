@@ -17,6 +17,8 @@ public class ShootingEnnemy : Enemy
 
     private GameObject projectile;
 
+    private Animator animator;
+
     void Awake()
     {
         rangeSensor = transform.Find("RangeSensor").GetComponent<Sensor>();
@@ -31,6 +33,8 @@ public class ShootingEnnemy : Enemy
 
         playerDamageSensor.OnSensedObject += OnPlayerDamageSense;
         playerDamageSensor.OnSensedObject += OnPlayerDamageUnsense;
+
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -60,6 +64,9 @@ public class ShootingEnnemy : Enemy
 
     void Update()
     {
+        animator.SetFloat("Move X", player.transform.position.x - transform.position.x);
+        animator.SetFloat("Move Y", player.transform.position.y - transform.position.y);
+
         if (!shootingRange)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
