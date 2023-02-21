@@ -55,7 +55,7 @@ public class EnemySpawningManager : MonoBehaviour
 
     void MakeListOfAvailableSpawner()
     {
-        availableSpawners = new List<SpawnerController>();
+        availableSpawners.Clear();
         foreach( SpawnerController spawner in allSpawners)
         {
             if (!CheckIfSpawnerIsAvailable(spawner))
