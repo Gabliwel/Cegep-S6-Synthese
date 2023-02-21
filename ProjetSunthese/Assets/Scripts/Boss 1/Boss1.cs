@@ -98,17 +98,6 @@ public class Boss1 : Enemy
 
     private IEnumerator Pattern2()
     {
-        growingZoneAttack.Launch();
-        rangedCircleAttack.Launch();
-        while (!growingZoneAttack.IsAvailable()) { yield return null; }
-        growingZoneAttack.Launch();
-        while (!growingZoneAttack.IsAvailable() || !rangedCircleAttack.IsAvailable()) { yield return null; }
-        yield return new WaitForSeconds(0.7f);
-        isAttacking = false;
-    }
-
-    private IEnumerator Pattern3()
-    {
         lavaThrowAttack.Launch();
         lavaThrowAttack.Launch();
         growingZoneAttack.Launch();
@@ -119,7 +108,7 @@ public class Boss1 : Enemy
         isAttacking = false;
     }
 
-    private IEnumerator Pattern4()
+    private IEnumerator Pattern3()
     {
         rangedCircleAttack.Launch();
         lavaThrowAttack.Launch();
@@ -132,10 +121,18 @@ public class Boss1 : Enemy
         isAttacking = false;
     }
 
-    private IEnumerator Pattern5()
+    private IEnumerator Pattern4()
     {
         growingZoneAttack.Launch();
         while (!growingZoneAttack.IsAvailable()) { yield return null; }
+        yield return new WaitForSeconds(0.7f);
+        isAttacking = false;
+    }
+
+    private IEnumerator Pattern5()
+    {
+        rangedCircleAttack.Launch();
+        while (!rangedCircleAttack.IsAvailable()) { yield return null; }
         yield return new WaitForSeconds(0.7f);
         isAttacking = false;
     }

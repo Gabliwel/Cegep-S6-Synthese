@@ -7,8 +7,8 @@ public class ShopItem : Interactable
 {
     private GameObject item;
     private SpriteRenderer itemSprite;
-
     private TMP_Text text;
+
     private int price;
 
     public void SetItem(GameObject newItem, int newPrice)
@@ -22,16 +22,14 @@ public class ShopItem : Interactable
         text.text = newPrice.ToString();
     }
 
-    public override void ChangeSelectedState(bool selected)
+    public override void ChangeSelectedState(bool selected, DescriptionBox descBox)
     {
         if (selected)
         {
-            //sprite.material = selectedMaterial;
             itemSprite.material = selectedMaterial;
         }
         else
         {
-            //sprite.material = defaultMaterial;
             itemSprite.material = defaultMaterial;
         }
     }
