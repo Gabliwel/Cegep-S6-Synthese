@@ -107,6 +107,7 @@ public class Player : MonoBehaviour
     public void GainStoneHeart()
     {
         health.GainStoneHeart();
+        GameManager.instance.UpdateHUD();
     }
     #endregion
 
