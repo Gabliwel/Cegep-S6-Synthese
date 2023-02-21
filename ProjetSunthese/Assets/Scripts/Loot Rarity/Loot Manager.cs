@@ -3,18 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Billy.Rarity;
 
-namespace Billy.Rarity
-{
-    public enum ItemRarity
-    {
-        COMMUN,
-        RARE,
-        EPIC,
-        LEGENDARY//,
-        //UNIQUE // unique wont change value
-    }
-}
-
 public class LootManager : MonoBehaviour
 {
     [Header("Rarety max rate (order: commun - rare - epic - legendary)")]
@@ -23,8 +11,7 @@ public class LootManager : MonoBehaviour
     [SerializeField] private float maxEpic = 85;
 
     [Header("Items")]
-    [SerializeField] private GameObject[] possibleItems;
-    [SerializeField] private ItemRarity[] itemsbaseRarity;
+    [SerializeField] private ItemWithBaseRarity[] possibleItems;
 
     // Start is called before the first frame update
     void Start()
