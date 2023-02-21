@@ -43,7 +43,10 @@ public class Player : MonoBehaviour
             instance = this;
 
         else if (instance != this)
+        {
             Destroy(gameObject);
+            return;
+        }
 
         DontDestroyOnLoad(gameObject);
 

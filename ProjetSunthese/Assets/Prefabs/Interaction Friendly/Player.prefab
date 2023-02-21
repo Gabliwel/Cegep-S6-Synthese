@@ -5386,7 +5386,7 @@ Transform:
   - {fileID: 4086347055166615789}
   - {fileID: 2050886842}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4354586378036888147
 MonoBehaviour:
@@ -5403,6 +5403,8 @@ MonoBehaviour:
   warrior: {fileID: 9100000, guid: 21039bf0f50c7294699760e4ff488fab, type: 2}
   archer: {fileID: 9100000, guid: e67fa8213824e26498f5fdb8297d20aa, type: 2}
   warlock: {fileID: 9100000, guid: 6fab2d56e7117a142ada038ca56cb150, type: 2}
+  knight: {fileID: 9100000, guid: 52a20048695b4214cb80fbf76e35217a, type: 2}
+  thief: {fileID: 9100000, guid: c88675d9261ff924eb8dec820d27c018, type: 2}
 --- !u!114 &1268080196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5639,6 +5641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e682a19d2b6f34eb65dc6ab11dff74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sensor: {fileID: 4086347055166615791}
   closeInteractables: []
 --- !u!1 &7095158222791125730
 GameObject:
@@ -5831,6 +5834,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   selectedMaterial: {fileID: 2100000, guid: 65bb25d58066acf44975f496fb328fae, type: 2}
+  useTextBox: 0
+  desc: 
   basePrice: 20
 --- !u!95 &5159121863067644496
 Animator:

@@ -35,7 +35,7 @@ public abstract class Weapon : MonoBehaviour
         recovery = defaultRecovery;
     }
 
-    public void SetPlayerBaseWeaponStat(PlayerBaseWeaponStat playerBaseWeaponStat)
+    public virtual void SetPlayerBaseWeaponStat(PlayerBaseWeaponStat playerBaseWeaponStat)
     {
         this.playerBaseWeaponStat = playerBaseWeaponStat;
     }
@@ -74,7 +74,7 @@ public abstract class Weapon : MonoBehaviour
         rotationPoint.rotation = Quaternion.Euler(axis);
     }
 
-    protected void StartAttack()
+    public virtual void StartAttack()
     {
         if (cooldownTimer <= 0)
         {
@@ -99,7 +99,7 @@ public abstract class Weapon : MonoBehaviour
         orbit = true;
     }
 
-    public void CalculateNewSpeed()
+    public virtual void CalculateNewSpeed()
     {
         int speedLevel = playerBaseWeaponStat.GetBaseSpeedLevel();
         startup = defaultStartup * (1 - speedLevel * 0.05f);
