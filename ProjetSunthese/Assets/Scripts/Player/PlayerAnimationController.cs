@@ -8,6 +8,7 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField] RuntimeAnimatorController archer;
     [SerializeField] RuntimeAnimatorController warlock;
     [SerializeField] RuntimeAnimatorController knight;
+    [SerializeField] RuntimeAnimatorController thief;
     private Animator animator;
     private bool rollAnim = false;
 
@@ -27,7 +28,7 @@ public class PlayerAnimationController : MonoBehaviour
                 animator.runtimeAnimatorController = archer;
                 break;
             case WeaponsType.DAGGER:
-                // impossible pour le moment
+                animator.runtimeAnimatorController = thief;
                 break;
             case WeaponsType.SWORD:
                 animator.runtimeAnimatorController = knight;
