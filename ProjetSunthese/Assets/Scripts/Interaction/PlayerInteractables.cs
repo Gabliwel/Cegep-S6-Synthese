@@ -5,21 +5,22 @@ using UnityEngine;
 
 public class PlayerInteractables : MonoBehaviour
 {
-    private Sensor sensor;
+    [SerializeField] private Sensor sensor;
     private ISensor<Interactable> interactablesSensor;
 
     [SerializeField] private List<Interactable> closeInteractables;
     private Interactable currentSelected = null;
 
     private Player player;
+    private DescriptionBox descBox;
 
     void Awake()
     {
-        sensor = GetComponentInChildren<Sensor>();
         interactablesSensor = sensor.For<Interactable>();
         interactablesSensor.OnSensedObject += OnInteractableSense;
         interactablesSensor.OnUnsensedObject += OnInteractableUnsense;
 
+        descBox = GameObject.FindGameObjectWithTag("DescriptionBox").GetComponent<DescriptionBox>();
         player = GetComponent<Player>();
     }
 
@@ -41,17 +42,17 @@ public class PlayerInteractables : MonoBehaviour
         Debug.Log("Sense");
         if(currentSelected != null)
         {
-            currentSelected.ChangeSelectedState(false);
+            currentSelected.ChangeSelectedState(false, descBox);
         }
 
         currentSelected = interectable;
         closeInteractables.Add(interectable);
-        interectable.ChangeSelectedState(true);
+        interectable.ChangeSelectedState(true, descBox);
     }
 
     private void OnInteractableUnsense(Interactable interectable)
     {
-        interectable.ChangeSelectedState(false);
+        interectable.ChangeSelectedState(false, descBox);
         closeInteractables.Remove(interectable);
         currentSelected = null;
 
@@ -76,13 +77,14 @@ public class PlayerInteractables : MonoBehaviour
             }
         }
         currentSelected = closest;
-        currentSelected.ChangeSelectedState(true);
+        currentSelected.ChangeSelectedState(true, descBox);
     }
 
-    internal void SearchNewInterac(Interactable interectable)
+    public void SearchNewInterac(Interactable interectable)
     {
         closeInteractables.Remove(interectable);
         currentSelected = null;
+        descBox.Close();
         SearchNewClosestInteractable();
     }
 }
