@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ranged : Weapon
+public class Bow : Weapon
 {
-    private Projectile[] projectiles = null;
+    protected Projectile[] projectiles = null;
 
-    private Animator animator;
+    protected Animator animator;
 
     protected override void Start()
     {
