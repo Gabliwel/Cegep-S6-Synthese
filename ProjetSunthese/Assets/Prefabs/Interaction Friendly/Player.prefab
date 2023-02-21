@@ -5402,6 +5402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   warrior: {fileID: 9100000, guid: 21039bf0f50c7294699760e4ff488fab, type: 2}
   archer: {fileID: 9100000, guid: e67fa8213824e26498f5fdb8297d20aa, type: 2}
+  warlock: {fileID: 9100000, guid: 6fab2d56e7117a142ada038ca56cb150, type: 2}
 --- !u!114 &1268080196
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] protected int ROTATION_OFFSET = 45;
     protected Vector3 axis;
-    protected Vector3 mousePosition;
+    protected Vector3 mouseRelativeToPlayer;
     protected Vector3 objectWorldPosition;
     protected Transform rotationPoint;
     [SerializeField] protected bool orbit = true;
@@ -45,9 +45,9 @@ public abstract class Weapon : MonoBehaviour
         return playerBaseWeaponStat;
     }
 
-    void Update()
+    protected virtual void Update()
     {
-        mousePosition = Input.mousePosition;
+        CalculateMouseRelativeToPlayer();
         objectWorldPosition = Camera.main.WorldToScreenPoint(rotationPoint.position);
         if (orbit)
             OrbitClosestToMouse();
@@ -59,14 +59,17 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
+    void CalculateMouseRelativeToPlayer()
+    {
+        mouseRelativeToPlayer = Input.mousePosition;
+        mouseRelativeToPlayer.x -= objectWorldPosition.x;
+        mouseRelativeToPlayer.y -= objectWorldPosition.y;
+        mouseRelativeToPlayer.z = 0;
+    }
+
     void OrbitClosestToMouse()
     {
-        Vector3 newMousePosition = mousePosition;
-        newMousePosition.x -= objectWorldPosition.x;
-        newMousePosition.y -= objectWorldPosition.y;
-        newMousePosition.z = 0;
-
-        float angle = Mathf.Atan2(newMousePosition.y, newMousePosition.x) * Mathf.Rad2Deg - ROTATION_OFFSET;
+        float angle = Mathf.Atan2(mouseRelativeToPlayer.y, mouseRelativeToPlayer.x) * Mathf.Rad2Deg - ROTATION_OFFSET;
         axis.z = angle;
         rotationPoint.rotation = Quaternion.Euler(axis);
     }
