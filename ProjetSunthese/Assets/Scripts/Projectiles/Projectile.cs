@@ -29,7 +29,7 @@ public abstract class Projectile : MonoBehaviour
             DestinationReached();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         ttlTimer = ttl;
     }

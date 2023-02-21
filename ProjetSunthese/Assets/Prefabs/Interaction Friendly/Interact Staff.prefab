@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7516091745516996769}
   - component: {fileID: 5120778128626218136}
   - component: {fileID: 459978937407105302}
-  - component: {fileID: 9181708155317459556}
   - component: {fileID: 459978937407105301}
   - component: {fileID: 459978937407105300}
+  - component: {fileID: 8545016103202463161}
   m_Layer: 0
   m_Name: Interact Staff
   m_TagString: Untagged
@@ -35,7 +35,7 @@ Transform:
   m_Children:
   - {fileID: 8130493802473667749}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5120778128626218136
 SpriteRenderer:
@@ -106,28 +106,9 @@ MonoBehaviour:
   scaleNotWithPlayer: {x: 6, y: 6, z: 1}
   positionWithPlayer: {x: 0.08, y: 0, z: 0}
   isCurrentWeapon: 0
-  weapon: {fileID: 9181708155317459556}
+  weapon: {fileID: 0}
   interactStimuli: {fileID: 8130493802473667748}
   weaponSensor: {fileID: 0}
---- !u!114 &9181708155317459556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3590006991846360811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79707091d29215a4e98d66fc6c5fc155, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ROTATION_OFFSET: 0
-  orbit: 1
-  baseDamage: 69
-  defaultStartup: 1
-  defaultRecovery: 2
-  cooldown: 0.1
-  cooldownTimer: 0
 --- !u!114 &459978937407105301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +146,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &8545016103202463161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590006991846360811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e52c2f126785dc4383af6119d2abd45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ROTATION_OFFSET: 0
+  orbit: 1
+  baseDamage: 2
+  defaultStartup: 1
+  defaultRecovery: 2
+  cooldown: 0.1
+  cooldownTimer: 0
 --- !u!1 &8130493802473667748
 GameObject:
   m_ObjectHideFlags: 0

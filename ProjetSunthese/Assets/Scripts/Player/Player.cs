@@ -244,6 +244,8 @@ public class Player : MonoBehaviour
 
         if (weaponInfo.GetWeaponType() == WeaponsType.WARLORCK_STAFF)
             weapon.gameObject.GetComponent<WarlorckStaff>().SetProjectiles(projectilesManager.GetWarlockProjectiles());
+        if (weaponInfo.GetWeaponType() == WeaponsType.STAFF)
+            weapon.gameObject.GetComponent<Staff>().SetProjectiles(projectilesManager.GetWizardProjectiles());
     }
 
     public void SwitchWeapon(GameObject newWeapon)
