@@ -23,6 +23,7 @@ TagManager:
   - CurrentXP
   - Gold
   - GameOver
+  - DescriptionBox
   layers:
   - Default
   - TransparentFX
