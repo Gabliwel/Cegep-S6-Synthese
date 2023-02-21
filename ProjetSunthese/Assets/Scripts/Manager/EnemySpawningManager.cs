@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemySpawningManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemyChoice;
-    [SerializeField] private GameObject[] spawners;
+    [SerializeField] private SpawnerController[] allSpawners;
+    [SerializeField] private List<SpawnerController> availableSpawners;
     [SerializeField] private int enemyListSize;
-    [SerializeField] private int spawnerListSize;
     [SerializeField] private GameObject[] spawnableEnemies;
     void Awake()
     {
@@ -30,17 +30,39 @@ public class EnemySpawningManager : MonoBehaviour
 
     private IEnumerator Spawn()
     {
+        SpawnerController currentSpawner;
         while (true)
         {
             foreach(GameObject enemy in spawnableEnemies)
             {
                 if (!enemy.activeSelf)
                 {
-                    enemy.transform.position = spawners[Random.Range(0, spawnerListSize)].transform.position;
+                    MakeListOfAvailableSpawner();
+                    currentSpawner = availableSpawners[Random.Range(0, availableSpawners.Count)];
+                    enemy.transform.position = currentSpawner.transform.position;
                     enemy.SetActive(true);
-                   yield return new WaitForSeconds(10);
+                    break;
                 }
+            }
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+    bool CheckIfSpawnerIsAvailable(SpawnerController spawner)
+    {
+        return spawner.isOccupied;
+    }
+
+    void MakeListOfAvailableSpawner()
+    {
+        availableSpawners = new List<SpawnerController>();
+        foreach( SpawnerController spawner in allSpawners)
+        {
+            if (!CheckIfSpawnerIsAvailable(spawner))
+            {
+                availableSpawners.Add(spawner);
             }
         }
     }
+
 }
