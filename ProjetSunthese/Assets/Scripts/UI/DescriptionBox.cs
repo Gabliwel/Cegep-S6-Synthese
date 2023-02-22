@@ -8,7 +8,7 @@ public class DescriptionBox : MonoBehaviour
     private TMP_Text msg;
     private Animator animator;
 
-    private void Awake()
+    private void Start()
     {
         msg = GetComponentInChildren<TMP_Text>();
         animator = GetComponent<Animator>();
@@ -16,6 +16,7 @@ public class DescriptionBox : MonoBehaviour
 
     public void PopUp(string txt)
     {
+        if(animator == null) animator = GetComponent<Animator>();
         msg.text = txt;
         animator.SetBool("open", true);
     }

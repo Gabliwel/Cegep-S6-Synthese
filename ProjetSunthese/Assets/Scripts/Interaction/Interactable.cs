@@ -10,7 +10,7 @@ public class Interactable : MonoBehaviour
 
     [Header("Description box")]
     [SerializeField] protected bool useTextBox = false;
-    [SerializeField] protected string desc = "";
+    [SerializeField, TextAreaAttribute] protected string desc = "";
 
     [Header("Only if used in shop")]
     [SerializeField] protected int basePrice = 0;

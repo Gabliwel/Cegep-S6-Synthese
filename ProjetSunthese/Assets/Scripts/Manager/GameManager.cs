@@ -127,6 +127,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool NeedLinkWithActivePlayer()
+    {
+        if (actualLevel == Scene.GameOver) return false;
+        return true;
+    }
+
     public void UpdateHUD()
     {
         currentLife = playerInfo.Health;

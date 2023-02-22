@@ -4,10 +4,40 @@ using UnityEngine;
 
 public class Dagger : Melee
 {
+    bool shouldFlip;
+    int savedRotationOffset;
+    protected override void Start()
+    {
+        base.Start();
+        savedRotationOffset = ROTATION_OFFSET;
+    }
     public void Slash()
     {
-        if (cooldownTimer <= 0)
-            StartCoroutine(Attack());
+        StartCoroutine(Attack());
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        ManageFlip();
+    }
+
+    void ManageFlip()
+    {
+        if (orbit)
+        {
+            shouldFlip = Mathf.Abs(Mathf.Atan2(mouseRelativeToPlayer.y, mouseRelativeToPlayer.x) * Mathf.Rad2Deg) > 90;
+            if (shouldFlip)
+            {
+                ROTATION_OFFSET = -savedRotationOffset;
+            }
+            else ROTATION_OFFSET = savedRotationOffset;
+        }
+    }
+
+    public void StartOrbit()
+    {
+        orbit = true;
     }
 
     public void StopOrbit()
@@ -17,10 +47,11 @@ public class Dagger : Melee
     //prevent left click from attacking
     public override void StartAttack()
     {
+        flipped = (Mathf.Abs(Mathf.Atan2(mouseRelativeToPlayer.y, mouseRelativeToPlayer.x) * Mathf.Rad2Deg)) < 90;
     }
 
-    public void SetStats()
+    public bool GetShouldFlip()
     {
-
+        return shouldFlip;
     }
 }
