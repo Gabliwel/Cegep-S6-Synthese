@@ -16,6 +16,8 @@ public class ShopItem : Interactable
         price = newPrice;
         item = newItem;
 
+        desc = newItem.GetComponent<Interactable>().Desc;
+
         itemSprite = item.GetComponent<SpriteRenderer>();
         text = GetComponentInChildren<TMP_Text>();
         itemSprite.sortingOrder = 5;
@@ -27,10 +29,12 @@ public class ShopItem : Interactable
         if (selected)
         {
             itemSprite.material = selectedMaterial;
+            if (UseTextBox) descBox.PopUp(desc);
         }
         else
         {
             itemSprite.material = defaultMaterial;
+            if (UseTextBox) descBox.Close();
         }
     }
 

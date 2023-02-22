@@ -42,7 +42,6 @@ public class MichaelFight : Enemy
     // Update is called once per frame
     void Update()
     {
-        base.Update();
         if (!attackInProgress)
         {
             attackDelay -= Time.deltaTime;
@@ -120,6 +119,7 @@ public class MichaelFight : Enemy
     public override void Die()
     {
         Scaling.instance.ScalingIncrease();
+        AchivementManager.instance.KilledMichael();
         base.Die();
     }
 

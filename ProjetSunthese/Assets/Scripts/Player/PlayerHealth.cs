@@ -50,7 +50,7 @@ public class PlayerHealth : MonoBehaviour
     {
         float dammage = (damageValue * receiveDamageMultiplicator) - armor;
         Debug.Log("oof ouch ive been hit for " + (dammage) + " damage");
-        if (damageValue < 1) dammage = 1; 
+        if (dammage < 1) dammage = 1; 
         currentHealth -= dammage;
 
         if (currentHealth <= 0 && deathContract > 0)

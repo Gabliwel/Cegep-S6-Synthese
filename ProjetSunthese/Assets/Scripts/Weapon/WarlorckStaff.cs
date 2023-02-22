@@ -49,7 +49,7 @@ public class WarlorckStaff : Weapon
 
     protected override void EndAttackSpecifics()
     {
-        animator.SetBool("Pull", false);
+        animator.SetBool("Charge", false);
         animator.Play("warlock-staff-idle");
         cooldownTimer = 0;
 

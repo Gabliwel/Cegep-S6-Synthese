@@ -10,6 +10,7 @@ public class Melee : Weapon
     [SerializeField] private float windUpDistance;
     [Range(0, 45)]
     [SerializeField] private float recoilDistance;
+    protected bool flipped;
     private Sensor sensor;
     private ISensor<Enemy> enemySensor;
 
@@ -41,10 +42,14 @@ public class Melee : Weapon
         sensor.gameObject.SetActive(false);
     }
 
+    public override void StartAttack()
+    {
+        base.StartAttack();
+        flipped = (Mathf.Abs(Mathf.Atan2(mouseRelativeToPlayer.y, mouseRelativeToPlayer.x) * Mathf.Rad2Deg)) < 90;
+    }
+
     protected override IEnumerator Attack()
     {
-        bool flipped = (Mathf.Abs(Mathf.Atan2(mouseRelativeToPlayer.y, mouseRelativeToPlayer.x) * Mathf.Rad2Deg)) < 90;
-
         cooldownTimer = cooldown + duration + startup + recovery;
         orbit = false;
         Quaternion target;

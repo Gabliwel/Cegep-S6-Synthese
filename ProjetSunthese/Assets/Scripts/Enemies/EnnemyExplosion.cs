@@ -19,7 +19,6 @@ public class EnnemyExplosion : Explosion
         else
         {
             gameObject.SetActive(false);
-            parentHolder.ExplosionFinished();
         }
     }
 }

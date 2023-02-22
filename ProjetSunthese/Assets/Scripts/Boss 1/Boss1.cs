@@ -50,7 +50,6 @@ public class Boss1 : Enemy
 
     void Update()
     {
-        base.Update();
         if (isProtected) return;
 
         if(hp <= hpToWatch && hp > 0)
