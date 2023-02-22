@@ -34,8 +34,9 @@ public class Boss1 : Enemy
         HPbar = GetComponentInChildren<HPBar>();
     }
 
-    void Start()
+   protected override void Start()
     {
+        base.Start();
         Debug.Log("maxHp: "+ baseHP);
         hp = baseHP;
         hpToWatch = baseHP * (shieldLifeFraction * shieldLeft);

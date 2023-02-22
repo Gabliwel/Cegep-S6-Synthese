@@ -16,8 +16,6 @@ public class ExplosiveEnnemy : Enemy
 
     private bool exploding = false;
 
-    private Player player;
-
     private NavMeshAgent agent;
     private Animator animator;
 
@@ -48,11 +46,6 @@ public class ExplosiveEnnemy : Enemy
         animator = GetComponent<Animator>();
     }
 
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-    }
-
     void OnPlayerRangeSense(Player player)
     {
         if (!exploding)
@@ -79,16 +72,16 @@ public class ExplosiveEnnemy : Enemy
 
     void Update()
     {
-        animator.SetFloat("Move X", player.transform.position.x - transform.position.x);
-        animator.SetFloat("Move Y", player.transform.position.y - transform.position.y);
+        animator.SetFloat("Move X", Player.instance.transform.position.x - transform.position.x);
+        animator.SetFloat("Move Y", Player.instance.transform.position.y - transform.position.y);
 
         if (useNavMesh)
         {
-            agent.SetDestination(player.transform.position);
+            agent.SetDestination(Player.instance.transform.position);
         }
         else
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, Player.instance.transform.position, speed * Time.deltaTime);
         }
     }
 
