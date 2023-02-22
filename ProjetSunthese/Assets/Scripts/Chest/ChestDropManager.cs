@@ -33,6 +33,7 @@ public class ChestDropManager : MonoBehaviour
 
     public GameObject SendRandomItem()
     {
+        AchivementManager.instance.OpenedChest();
         int safeStateMax = 0;
         while (true)
         {

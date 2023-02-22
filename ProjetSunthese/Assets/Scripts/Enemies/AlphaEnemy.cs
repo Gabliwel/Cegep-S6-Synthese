@@ -13,6 +13,8 @@ public class AlphaEnemy : Enemy
     private Sensor rangeSensor;
     private ISensor<Player> playerDamageSensor;
     private ISensor<Player> playerRangeSensor;
+    private bool canDamage = true;
+    private bool tickGoing = false;
 
     private Player player;
 
@@ -31,7 +33,7 @@ public class AlphaEnemy : Enemy
         playerRangeSensor.OnUnsensedObject += OnPlayerRangeUnsense;
 
         playerDamageSensor.OnSensedObject += OnPlayerDamageSense;
-        playerDamageSensor.OnSensedObject += OnPlayerDamageUnsense;
+        playerDamageSensor.OnUnsensedObject += OnPlayerDamageUnsense;
 
         if (useNavMesh)
         {
@@ -55,12 +57,19 @@ public class AlphaEnemy : Enemy
 
     void OnPlayerDamageSense(Player player)
     {
-        player.Harm(damageDealt);
+        if (canDamage)
+        {
+            canDamage = false;
+            player.Harm(damageDealt);
+        }
     }
 
     void OnPlayerDamageUnsense(Player player)
     {
-
+        if (!tickGoing)
+        {
+            StartCoroutine(TickDelay());
+        }
     }
 
     void Update()
@@ -85,4 +94,12 @@ public class AlphaEnemy : Enemy
         Player.instance.GainDrops(0, xpGiven, goldDropped);
     }
 
+    private IEnumerator TickDelay()
+    {
+        tickGoing = true;
+        Debug.Log("Tick");
+        yield return new WaitForSeconds(1f);
+        canDamage = true;
+        tickGoing = false;
+    }
 }

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class ExplosiveEnnemy : Enemy
 {
     [SerializeField] private float speed = 3;
-
+    [SerializeField] private GameObject explosion;
     [SerializeField] bool useNavMesh;
 
     private Sensor damageSensor;
@@ -14,8 +14,9 @@ public class ExplosiveEnnemy : Enemy
     private ISensor<Player> playerDamageSensor;
     private ISensor<Player> playerRangeSensor;
 
+    private bool exploding = false;
+
     private Player player;
-    private ExplosiveEnnemyHolder parentHolder;
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -24,7 +25,9 @@ public class ExplosiveEnnemy : Enemy
     {
         rangeSensor = transform.Find("RangeSensor").GetComponent<Sensor>();
         damageSensor = transform.Find("DamageSensor").GetComponent<Sensor>();
-        parentHolder = GetComponentInParent<ExplosiveEnnemyHolder>();
+
+        explosion = Instantiate(explosion);
+        explosion.SetActive(false);
 
         playerRangeSensor = rangeSensor.For<Player>();
         playerDamageSensor = damageSensor.For<Player>();
@@ -33,7 +36,7 @@ public class ExplosiveEnnemy : Enemy
         playerRangeSensor.OnUnsensedObject += OnPlayerRangeUnsense;
 
         playerDamageSensor.OnSensedObject += OnPlayerDamageSense;
-        playerDamageSensor.OnSensedObject += OnPlayerDamageUnsense;
+        playerDamageSensor.OnUnsensedObject += OnPlayerDamageUnsense;
 
         if (useNavMesh)
         {
@@ -52,7 +55,11 @@ public class ExplosiveEnnemy : Enemy
 
     void OnPlayerRangeSense(Player player)
     {
-        parentHolder.DestinationReached();
+        if (!exploding)
+        {
+            exploding = true;
+            StartCoroutine(ExplosionDelay());
+        }
     }
 
     void OnPlayerRangeUnsense(Player player)
@@ -62,7 +69,7 @@ public class ExplosiveEnnemy : Enemy
 
     void OnPlayerDamageSense(Player player)
     {
-        player.Harm(10);
+        player.Harm(damageDealt);
     }
 
     void OnPlayerDamageUnsense(Player player)
@@ -88,5 +95,15 @@ public class ExplosiveEnnemy : Enemy
     protected override void Drop()
     {
         Player.instance.GainDrops(0, xpGiven, goldDropped);
+    }
+
+    private IEnumerator ExplosionDelay()
+    {
+        GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(1f);
+        exploding = false;
+        explosion.transform.position = gameObject.transform.position;
+        explosion.SetActive(true);
+        gameObject.SetActive(false);
     }
 }
