@@ -25,7 +25,7 @@ public abstract class Enemy : MonoBehaviour
     private float flashTime = 0.1f;
     private bool flashing = false;
 
-    private void Awake()
+    protected virtual void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
     }
@@ -37,7 +37,8 @@ public abstract class Enemy : MonoBehaviour
     {
         hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
         damageDealt = Scaling.instance.CalculateDamageOnScaling(baseDamageDealt);
-        sprite.color = Color.white;
+        if (sprite != null)
+            sprite.color = Color.white;
         flashing = false;
         poisonCoroutine = false;
     }
