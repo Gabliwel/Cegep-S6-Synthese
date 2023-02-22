@@ -108,7 +108,6 @@ public class BossBofrer : Enemy
 
     private void Update()
     {
-        base.Update();
         shieldActive = minionSpawner.AnyMinionActive();
         shield.SetActive(shieldActive);
     }

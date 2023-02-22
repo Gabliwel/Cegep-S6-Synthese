@@ -88,7 +88,6 @@ public class BossMountain : Enemy
 
     protected void Update()
     {
-        base.Update();
         //debug
         if (Input.GetKeyDown(KeyCode.F))
             StartRockThrow();
