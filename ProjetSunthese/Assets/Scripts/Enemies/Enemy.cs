@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+    private Color harmColor = new Color(255, 0, 0, 100);
+    private Color poisonColor = new Color(0, 255, 0, 100);
     [SerializeField] protected float baseHP;
     [SerializeField] protected float hp;
     [SerializeField] protected Color particleColor = new Color(255, 0, 0);
@@ -15,12 +17,18 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float overtime = 0;
     protected float overtimeTimer = 1f;
     protected int scalingLevel;
-
     protected float poisonDuration = 5f;
     protected float playerPoisonDamage = 0f;
     protected float currentPoison = 0f;
     protected bool poisonCoroutine = false;
+    private SpriteRenderer sprite;
+    private float flashTime = 0.1f;
+    private bool flashing = false;
 
+    private void Awake()
+    {
+        sprite = GetComponent<SpriteRenderer>();
+    }
     /// <summary>
     /// TODO: FIXME: this is bad; no time for fix in alpha
     /// </summary>
@@ -33,6 +41,9 @@ public abstract class Enemy : MonoBehaviour
     {
         hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
         damageDealt = Scaling.instance.CalculateDamageOnScaling(baseDamageDealt);
+        sprite.color = Color.white;
+        flashing = false;
+        poisonCoroutine = false;
     }
 
     public virtual void Harm(float ammount, float poison)
@@ -55,7 +66,10 @@ public abstract class Enemy : MonoBehaviour
 
     public void ReduceHp(float hpLost)
     {
+        if (!flashing)
+            StartCoroutine(HarmFlash());
         hp -= hpLost;
+        DamageNumbersManager.instance.CallText(hpLost, transform.position, false);
 
         if (hp <= 0)
         {
@@ -77,6 +91,15 @@ public abstract class Enemy : MonoBehaviour
             WasPoisonHurt();
         }
         poisonCoroutine = false;
+    }
+
+    private IEnumerator HarmFlash()
+    {
+        flashing = true;
+        sprite.color = harmColor;
+        yield return new WaitForSeconds(flashTime);
+        sprite.color = Color.white;
+        flashing = false;
     }
 
     public virtual void Die()
