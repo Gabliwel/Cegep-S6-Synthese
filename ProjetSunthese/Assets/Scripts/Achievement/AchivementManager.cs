@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Billy.Weapons;
 
 public class AchivementManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class AchivementManager : MonoBehaviour
     private AchivementClass achivementData;
     private JSONSave save;
 
-    [SerializeField] bool dead;
+    private bool dead;
     private bool gotRageQuit;
     private float timeSinceDead = 3f;
     void Start()
@@ -53,14 +54,30 @@ public class AchivementManager : MonoBehaviour
         }
     }
 
+    public void Died()
+    {
+        dead = true;
+    }
+
     public void OpenedChest()
     {
         achivementData.nbChestOpened++;
-        if (achivementData.nbChestOpened == 2)
+        if (achivementData.nbChestOpened > 2)
         {
             achivementData.lotsChestOpened = true;
-            save.SaveData(achivementData);
         }
+        save.SaveData(achivementData);
+    }
+
+    public void KilledEnnemies()
+    {
+        achivementData.nbKilledTotal += 1;
+
+        if(achivementData.nbKilledTotal > 30)
+        {
+            achivementData.nbEnemyKilled = true;
+        }
+        save.SaveData(achivementData);
     }
 
     public void KilledGontrand()
@@ -91,6 +108,15 @@ public class AchivementManager : MonoBehaviour
     {
         achivementData.beatGontrand = true;
         save.SaveData(achivementData);
+    }
+
+    public void AddWeaponWonWith(WeaponsType type)
+    {
+        if (!achivementData.wonWith.Contains(type))
+        {
+            achivementData.wonWith.Add(type);
+            save.SaveData(achivementData);
+        }
     }
 
     public AchivementClass getAchivementData()

@@ -32,10 +32,6 @@ public abstract class Enemy : MonoBehaviour
     /// <summary>
     /// TODO: FIXME: this is bad; no time for fix in alpha
     /// </summary>
-    protected void Update()
-    {
-
-    }
 
     private void OnEnable()
     {
@@ -108,6 +104,7 @@ public abstract class Enemy : MonoBehaviour
         Drop();
         gameObject.SetActive(false);
         ParticleManager.instance.CallParticles(transform.position, particleScale, particleColor);
+        AchivementManager.instance.KilledEnnemies();
     }
 
     protected abstract void Drop();
