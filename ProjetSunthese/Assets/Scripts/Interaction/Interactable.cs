@@ -20,7 +20,7 @@ public class Interactable : MonoBehaviour
     public bool UseTextBox { get => useTextBox; }
     public string Desc { get => desc; }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
     }

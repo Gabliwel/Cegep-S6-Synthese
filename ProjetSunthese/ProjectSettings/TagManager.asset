@@ -24,6 +24,7 @@ TagManager:
   - Gold
   - GameOver
   - DescriptionBox
+  - LootManager
   layers:
   - Default
   - TransparentFX

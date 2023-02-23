@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private PlayerBaseWeaponStat baseWeaponStat;
     private SpriteRenderer sprite;
     private PlayerInteractables playerInteractables;
-    private ParticleSystem particleSystem;
+    private ParticleSystem fireParticle;
     private float iframesTimer;
 
     [Header("Link")]
@@ -32,10 +32,12 @@ public class Player : MonoBehaviour
     [SerializeField] private int neededXp = 100;
     [SerializeField] private int currentXp = 0;
     [SerializeField] private int level = 1;
+    [SerializeField] private int luck = 0;
 
     public int Gold { get => gold; }
     public int CurrentXp { get => currentXp; }
     public float Health { get => health.CurrentHealth; }
+    public int Luck { get => luck; }
 
     private void Awake()
     {
@@ -59,7 +61,7 @@ public class Player : MonoBehaviour
         baseWeaponStat = GetComponent<PlayerBaseWeaponStat>();
         playerInteractables = GetComponent<PlayerInteractables>();
         sprite = GetComponent<SpriteRenderer>();
-        particleSystem = particuleGameObj.GetComponent<ParticleSystem>();
+        fireParticle = particuleGameObj.GetComponent<ParticleSystem>();
     }
 
     private void Start()
@@ -218,7 +220,7 @@ public class Player : MonoBehaviour
         sprite.sortingLayerName = sortingLayer;
         weaponInfo.ChangeLayer(layer, sortingLayer);
         playerLight.UpdateLightUsage(sortingLayer);
-        particleSystem.gameObject.GetComponent<ParticleSystemRenderer>().sortingLayerName = sortingLayer;
+        fireParticle.gameObject.GetComponent<ParticleSystemRenderer>().sortingLayerName = sortingLayer;
     }
 
     public void BlocMovement(bool state)
@@ -294,13 +296,13 @@ public class Player : MonoBehaviour
 
     public void IsInLava(float speedReducer)
     {
-        particleSystem.Play();
+        fireParticle.Play();
         playerMovement.SetSpeedReducer(speedReducer);
     }
 
     public void IsNotInLava()
     {
-        particleSystem.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+        fireParticle.Stop(false, ParticleSystemStopBehavior.StopEmitting);
         playerMovement.SetSpeedReducer(1);
     }
 
