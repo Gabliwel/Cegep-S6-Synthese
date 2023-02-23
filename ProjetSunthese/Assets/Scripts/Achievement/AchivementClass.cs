@@ -21,13 +21,15 @@ public class AchivementClass
     public int nbKilledTotal;
     public List<WeaponsType> wonWith;
     public int nbDeath;
+    public bool rageQuitFirst;
 
-    public AchivementClass(bool lotsChestOpened, int nbChestOpened, bool rageQuit, bool beatBob, bool beatGontrand, bool beatMichael, 
+    public AchivementClass(bool lotsChestOpened, int nbChestOpened, bool rageQuit, bool rageQuitFirst, bool beatBob, bool beatGontrand, bool beatMichael, 
         bool beatJeanGuy, bool beatTheGame, bool nbEnemyKilled, int nbKilledTotal, bool weaponMaster, List<WeaponsType> wonWith, bool skillIssue, int nbDeath)
     {
         this.lotsChestOpened = lotsChestOpened;
         this.nbChestOpened = nbChestOpened;
         this.rageQuit = rageQuit;
+        this.rageQuitFirst = rageQuitFirst;
         this.beatBob = beatBob;
         this.beatGontrand = beatGontrand;
         this.beatMichael = beatMichael;
@@ -46,6 +48,7 @@ public class AchivementClass
         this.lotsChestOpened = false;
         this.nbChestOpened = 0;
         this.rageQuit = false;
+        this.rageQuitFirst = true;
         this.beatBob = false;
         this.beatGontrand = false;
         this.beatMichael = false;
