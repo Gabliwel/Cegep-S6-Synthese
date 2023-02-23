@@ -14,14 +14,16 @@ public class AchivementClass
     public bool beatTheGame;
     public bool nbEnemyKilled;
     public bool weaponMaster;
+    public bool skillIssue;
 
 
     public int nbChestOpened;
     public int nbKilledTotal;
     public List<WeaponsType> wonWith;
+    public int nbDeath;
 
     public AchivementClass(bool lotsChestOpened, int nbChestOpened, bool rageQuit, bool beatBob, bool beatGontrand, bool beatMichael, 
-        bool beatJeanGuy, bool beatTheGame, bool nbEnemyKilled, int nbKilledTotal, bool weaponMaster, List<WeaponsType> wonWith)
+        bool beatJeanGuy, bool beatTheGame, bool nbEnemyKilled, int nbKilledTotal, bool weaponMaster, List<WeaponsType> wonWith, bool skillIssue, int nbDeath)
     {
         this.lotsChestOpened = lotsChestOpened;
         this.nbChestOpened = nbChestOpened;
@@ -35,6 +37,8 @@ public class AchivementClass
         this.nbKilledTotal = nbKilledTotal;
         this.weaponMaster = weaponMaster;
         this.wonWith = wonWith;
+        this.skillIssue = skillIssue;
+        this.nbDeath = nbDeath;
     }
 
     public AchivementClass()
@@ -51,5 +55,7 @@ public class AchivementClass
         this.nbKilledTotal = 0;
         this.weaponMaster = false;
         this.wonWith = new List<WeaponsType>();
+        this.skillIssue = false;
+        this.nbDeath = 0;
     }
 }
