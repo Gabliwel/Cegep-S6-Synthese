@@ -39237,6 +39237,52 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!1 &1009775781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1009775783}
+  - component: {fileID: 1009775782}
+  m_Layer: 0
+  m_Name: CaveRoomKillReward
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1009775782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009775781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 957487554caab284f9cf7ebc90c6d5e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewardPrefab: {fileID: 5775122186133570121, guid: 3ab7181af160b0f47a2b71d4b8ed20db, type: 3}
+  rewardLocation: {x: -1, y: 106, z: 0}
+--- !u!4 &1009775783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009775781}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1015372159
 GameObject:
   m_ObjectHideFlags: 0
@@ -63988,7 +64034,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5190004353726405865, guid: 81c8d1de6e55dec4f87b299b1fa7a5e9, type: 3}
       propertyPath: spawningInterval
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5190004353726405865, guid: 81c8d1de6e55dec4f87b299b1fa7a5e9, type: 3}
       propertyPath: allSpawners.Array.size
