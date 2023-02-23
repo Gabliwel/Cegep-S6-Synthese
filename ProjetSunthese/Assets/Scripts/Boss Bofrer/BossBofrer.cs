@@ -67,8 +67,9 @@ public class BossBofrer : Enemy
         hpBar = GetComponentInChildren<HPBar>();
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         stolenAttacks = revisitsManager.GetStolenAttacks();
         ActivateAttacks();
         EnsureRoutinesStarted();
