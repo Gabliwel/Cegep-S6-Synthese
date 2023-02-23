@@ -10,27 +10,20 @@ public class AlphaEnemy : Enemy
     [SerializeField] bool useNavMesh;
 
     private Sensor damageSensor;
-    private Sensor rangeSensor;
     private ISensor<Player> playerDamageSensor;
-    private ISensor<Player> playerRangeSensor;
     private bool canDamage = true;
     private bool tickGoing = false;
 
-    private Player player;
-
     private NavMeshAgent agent;
     private Animator animator;
-
-    void Awake()
+    private PlayerProximitySensor proximitySensor;
+    protected override void Awake()
     {
-        rangeSensor = transform.Find("RangeSensor").GetComponent<Sensor>();
+        base.Awake();
         damageSensor = transform.Find("DamageSensor").GetComponent<Sensor>();
+        proximitySensor = GetComponent<PlayerProximitySensor>();
 
-        playerRangeSensor = rangeSensor.For<Player>();
         playerDamageSensor = damageSensor.For<Player>();
-
-        playerRangeSensor.OnSensedObject += OnPlayerRangeSense;
-        playerRangeSensor.OnUnsensedObject += OnPlayerRangeUnsense;
 
         playerDamageSensor.OnSensedObject += OnPlayerDamageSense;
         playerDamageSensor.OnUnsensedObject += OnPlayerDamageUnsense;
@@ -43,16 +36,6 @@ public class AlphaEnemy : Enemy
             agent.speed = speed;
         }
         animator = GetComponent<Animator>();
-    }
-
-    void OnPlayerRangeSense(Player player)
-    {
-        this.player = player;
-    }
-
-    void OnPlayerRangeUnsense(Player player)
-    {
-        this.player = null;
     }
 
     void OnPlayerDamageSense(Player player)
@@ -74,17 +57,17 @@ public class AlphaEnemy : Enemy
 
     void Update()
     {
-        if (player != null)
+        if (proximitySensor.IsClose())
         {
-            animator.SetFloat("Move X", player.transform.position.x - transform.position.x);
-            animator.SetFloat("Move Y", player.transform.position.y - transform.position.y);
+            animator.SetFloat("Move X", Player.instance.transform.position.x - transform.position.x);
+            animator.SetFloat("Move Y", Player.instance.transform.position.y - transform.position.y);
             if (useNavMesh)
             {
-                agent.SetDestination(player.transform.position);
+                agent.SetDestination(Player.instance.transform.position);
             }
             else
             {
-                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, Player.instance.transform.position, speed * Time.deltaTime);
             }
         }
     }

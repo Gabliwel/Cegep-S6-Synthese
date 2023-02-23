@@ -16,8 +16,9 @@ public class RareBoy : Enemy
 
     private Animator animator;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         rangeSensor = transform.Find("RangeSensor").GetComponent<Sensor>();
         catchSensor = transform.Find("CatchSensor").GetComponent<Sensor>();
 
