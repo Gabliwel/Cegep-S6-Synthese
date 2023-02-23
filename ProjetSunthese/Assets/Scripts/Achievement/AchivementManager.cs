@@ -16,6 +16,13 @@ public class AchivementManager : MonoBehaviour
     private float timeSinceDead = 3f;
 
     private string ENEMIES = "You killed 30 enemies!";
+    private string CHEST = "You opened 30 chests";
+    private string BOB = "You defeated Bob for the first time!";
+    private string MICHAEL = "You defeated Michael for the first time!";
+    private string JEANGUY = "You defeated Jean Guy for the first time!";
+    private string GONTRAND = "You defeated Gontrand for the first time!";
+    private string GAMEDONE = "You beated the game for the first time!";
+    private string RAGEQUIT = "You didnt take that lost so well...";
     void Start()
     {
         if (instance == null)
@@ -33,7 +40,15 @@ public class AchivementManager : MonoBehaviour
             achivementData = new AchivementClass();
         }
         gotRageQuit = achivementData.rageQuit;
-        achivementPop = GameObject.FindGameObjectWithTag("DescriptionBox").GetComponent<DescriptionBox>();
+
+        achivementPop = GameObject.FindGameObjectWithTag("AchivementPopup").GetComponent<DescriptionBox>();
+
+        if (achivementData.rageQuitFirst && achivementData.rageQuit)
+        {
+            StartCoroutine(ShowAchivementGot(RAGEQUIT));
+            achivementData.rageQuitFirst = false;
+            save.SaveData(achivementData);
+        }
     }
 
     // Update is called once per frame
@@ -71,6 +86,7 @@ public class AchivementManager : MonoBehaviour
         if (achivementData.nbChestOpened > 2)
         {
             achivementData.lotsChestOpened = true;
+            StartCoroutine(ShowAchivementGot(CHEST));
         }
         save.SaveData(achivementData);
     }
@@ -90,30 +106,35 @@ public class AchivementManager : MonoBehaviour
     public void KilledGontrand()
     {
         achivementData.beatGontrand = true;
+        StartCoroutine(ShowAchivementGot(GONTRAND));
         save.SaveData(achivementData);
     }
 
     public void KilledMichael()
     {
         achivementData.beatMichael = true;
+        StartCoroutine(ShowAchivementGot(MICHAEL));
         save.SaveData(achivementData);
     }
 
     public void KilledBob()
     {
         achivementData.beatBob = true;
+        StartCoroutine(ShowAchivementGot(BOB));
         save.SaveData(achivementData);
     }
 
     public void KilledJeanGuy()
     {
         achivementData.beatJeanGuy = true;
+        StartCoroutine(ShowAchivementGot(JEANGUY));
         save.SaveData(achivementData);
     }
 
     public void BeatTheGame()
     {
         achivementData.beatGontrand = true;
+        StartCoroutine(ShowAchivementGot(GAMEDONE));
         save.SaveData(achivementData);
     }
 
@@ -128,7 +149,7 @@ public class AchivementManager : MonoBehaviour
     private IEnumerator ShowAchivementGot(string description)
     {
         achivementPop.PopUp(description);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         achivementPop.Close();
     }
 
