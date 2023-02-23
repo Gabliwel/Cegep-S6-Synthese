@@ -9,6 +9,7 @@ public class EnemySpawningManager : MonoBehaviour
     [SerializeField] private List<SpawnerController> availableSpawners;
     [SerializeField] private int enemyListSize;
     [SerializeField] private Enemy[] spawnableEnemies;
+    [SerializeField] private int spawningInterval = 5;
     void Awake()
     {
         spawnableEnemies = new Enemy[enemyListSize];
@@ -48,7 +49,7 @@ public class EnemySpawningManager : MonoBehaviour
                     break;
                 }
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(spawningInterval);
         }
     }
 
