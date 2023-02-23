@@ -8,7 +8,7 @@ stages:
 # - UNITY_LICENSE : Content of the Unity_v20XX.X.ulf file. See https://game.ci/docs/gitlab/activation
 variables:
   BUILD_NAME: BillyNightmare     # Name of the Unity Build. Should be the name of the project. Careful not to include spaces. CamelCase only.
-  UNITY_DIR: $CI_PROJECT_DIR         # Absolute path to the project. See https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
+  UNITY_DIR: $CI_PROJECT_DIR/ProjetSunthese         # Absolute path to the project. See https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
   BUILD_TARGET: StandaloneWindows64  # Unity build target. See https://docs.unity3d.com/ScriptReference/BuildTarget.StandaloneWindows64.html
   IMAGE_TARGET: windows-mono         # Unity build target name for the docker image. See https://hub.docker.com/r/unityci/editor
   IMAGE_NAME: unityci/editor         # Name of the docker image to build the project. See https://hub.docker.com/r/unityci/editor
@@ -46,11 +46,11 @@ build:
     - ./.gitlab-build.sh                                          # Stage script.
   artifacts:
     paths:
-      - ./Builds/                                                 # Keep the Unity project build in the artifacts.
-      - ./build.log                                               # Unity build log is very large, so it's kept in a separate file.
+      - $UNITY_DIR/Builds/                                                 # Keep the Unity project build in the artifacts.
+      - $UNITY_DIR/build.log                                               # Unity build log is very large, so it's kept in a separate file.
     when: always                                                  # Always upload artifacts, especialy the log.
     expire_in: 1 week                                             # Last build is always kept, but older ones should be deleted after one week.
   cache:
     key: $CI_COMMIT_REF_SLUG
     paths:
-      - ./Library/                                                # Keep the "Library" folder for faster subsequent builds.
+      - $UNITY_DIR/Library/                                                # Keep the "Library" folder for faster subsequent builds.
