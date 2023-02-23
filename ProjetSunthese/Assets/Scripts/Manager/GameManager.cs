@@ -33,9 +33,9 @@ public class GameManager : MonoBehaviour
     {
     Scene.CharlesLevel,
     Scene.GabLevel,
-    Scene.GabShop,
     Scene.KevenLevel,
-    Scene.MarcAntoine
+    Scene.MarcAntoine,
+    Scene.GabShop
     };
     [SerializeField] List<Scene> levelsDone;// = new List<Scene>();
     List<BossAttack> bofrerStolenAttacks = new List<BossAttack>();
@@ -78,7 +78,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         linkTexts();
-
     }
 
     public List<Scene> GetLevelsDone()
@@ -148,8 +147,20 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Before : " + levelSceneList.Count);
         int nbSceneAccessible = levelSceneList.Count;
+
         if (nbSceneAccessible > 0)
         {
+            if(nbSceneAccessible == 5)
+            {
+                nbSceneAccessible -= 1;
+            }
+
+            if (nbSceneAccessible == 1 && levelSceneList.ElementAt(0) == Scene.GabShop)
+            {
+                LoadEndScene();
+                return;
+            }
+
             int randomChoice = UnityEngine.Random.Range(0, nbSceneAccessible);
             Debug.Log(randomChoice);
             actualLevel = levelSceneList.ElementAt(randomChoice);

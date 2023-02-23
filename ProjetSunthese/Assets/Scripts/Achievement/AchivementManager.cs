@@ -9,10 +9,13 @@ public class AchivementManager : MonoBehaviour
 
     private AchivementClass achivementData;
     private JSONSave save;
+    private DescriptionBox achivementPop;
 
     private bool dead;
     private bool gotRageQuit;
     private float timeSinceDead = 3f;
+
+    private string ENEMIES = "You killed 30 enemies!";
     void Start()
     {
         if (instance == null)
@@ -30,6 +33,7 @@ public class AchivementManager : MonoBehaviour
             achivementData = new AchivementClass();
         }
         gotRageQuit = achivementData.rageQuit;
+        achivementPop = GameObject.FindGameObjectWithTag("DescriptionBox").GetComponent<DescriptionBox>();
     }
 
     // Update is called once per frame
@@ -57,6 +61,8 @@ public class AchivementManager : MonoBehaviour
     public void Died()
     {
         dead = true;
+        achivementData.nbDeath++;
+        save.SaveData(achivementData);
     }
 
     public void OpenedChest()
@@ -73,9 +79,10 @@ public class AchivementManager : MonoBehaviour
     {
         achivementData.nbKilledTotal += 1;
 
-        if(achivementData.nbKilledTotal > 30)
+        if(!achivementData.nbEnemyKilled && achivementData.nbKilledTotal > 1)
         {
             achivementData.nbEnemyKilled = true;
+            StartCoroutine(ShowAchivementGot(ENEMIES));
         }
         save.SaveData(achivementData);
     }
@@ -117,6 +124,12 @@ public class AchivementManager : MonoBehaviour
             achivementData.wonWith.Add(type);
             save.SaveData(achivementData);
         }
+    }
+    private IEnumerator ShowAchivementGot(string description)
+    {
+        achivementPop.PopUp(description);
+        yield return new WaitForSeconds(3f);
+        achivementPop.Close();
     }
 
     public AchivementClass getAchivementData()

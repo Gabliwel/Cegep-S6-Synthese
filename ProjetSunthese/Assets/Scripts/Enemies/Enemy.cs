@@ -53,7 +53,7 @@ public abstract class Enemy : MonoBehaviour
             playerPoisonDamage = poison;
             currentPoison += poison;
 
-            if (!poisonCoroutine)
+            if (!poisonCoroutine && gameObject.activeSelf)
             {
                 poisonCoroutine = true;
                 StartCoroutine(DealPoisonDamage());
