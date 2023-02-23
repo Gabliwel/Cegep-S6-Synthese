@@ -22,8 +22,9 @@ public class ShootingEnnemy : Enemy
 
     private Animator animator;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         rangeSensor = transform.Find("RangeSensor").GetComponent<Sensor>();
         damageSensor = transform.Find("DamageSensor").GetComponent<Sensor>();
         visionSensor = transform.Find("VisionSensor").GetComponent<Sensor>();

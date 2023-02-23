@@ -25,7 +25,7 @@ public abstract class Enemy : MonoBehaviour
     private float flashTime = 0.1f;
     private bool flashing = false;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
     }
@@ -106,6 +106,12 @@ public abstract class Enemy : MonoBehaviour
         gameObject.SetActive(false);
         ParticleManager.instance.CallParticles(transform.position, particleScale, particleColor);
         AchivementManager.instance.KilledEnnemies();
+    }
+
+    public virtual void ChangeLayer(int layer)
+    {
+        gameObject.layer = layer;
+        sprite.sortingLayerName = LayerMask.LayerToName(layer);
     }
 
     protected abstract void Drop();

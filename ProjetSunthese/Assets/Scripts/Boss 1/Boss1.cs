@@ -29,14 +29,14 @@ public class Boss1 : Enemy
 
     private HPBar HPbar;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         HPbar = GetComponentInChildren<HPBar>();
     }
 
-   protected override void Start()
+    void Start()
     {
-        base.Start();
         Debug.Log("maxHp: "+ baseHP);
         hp = baseHP;
         hpToWatch = baseHP * (shieldLifeFraction * shieldLeft);

@@ -8,14 +8,14 @@ public class EnemySpawningManager : MonoBehaviour
     [SerializeField] private SpawnerController[] allSpawners;
     [SerializeField] private List<SpawnerController> availableSpawners;
     [SerializeField] private int enemyListSize;
-    [SerializeField] private GameObject[] spawnableEnemies;
+    [SerializeField] private Enemy[] spawnableEnemies;
     void Awake()
     {
-        spawnableEnemies = new GameObject[enemyListSize];
+        spawnableEnemies = new Enemy[enemyListSize];
         for (int i = 0; i < enemyListSize; i++)
         {
-            spawnableEnemies[i] = Instantiate(enemyChoice[Random.Range(0,enemyChoice.Length)]);
-            spawnableEnemies[i].SetActive(false);
+            spawnableEnemies[i] = Instantiate(enemyChoice[Random.Range(0,enemyChoice.Length)]).GetComponent<Enemy>();
+            spawnableEnemies[i].gameObject.SetActive(false);
         }
     }
     private void Start()
@@ -33,16 +33,17 @@ public class EnemySpawningManager : MonoBehaviour
         SpawnerController currentSpawner;
         while (true)
         {
-            foreach(GameObject enemy in spawnableEnemies)
+            foreach(Enemy enemy in spawnableEnemies)
             {
-                if (!enemy.activeSelf)
+                if (!enemy.gameObject.activeSelf)
                 {
                     MakeListOfAvailableSpawner();
                     if(availableSpawners.Count > 0)
                     {
                         currentSpawner = availableSpawners[Random.Range(0, availableSpawners.Count)];
                         enemy.transform.position = currentSpawner.transform.position;
-                        enemy.SetActive(true);
+                        enemy.gameObject.SetActive(true);
+                        enemy.ChangeLayer(currentSpawner.gameObject.layer);
                     }
                     break;
                 }

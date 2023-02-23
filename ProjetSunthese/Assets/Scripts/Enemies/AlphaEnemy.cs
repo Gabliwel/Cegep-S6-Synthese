@@ -17,8 +17,9 @@ public class AlphaEnemy : Enemy
     private NavMeshAgent agent;
     private Animator animator;
     private PlayerProximitySensor proximitySensor;
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         damageSensor = transform.Find("DamageSensor").GetComponent<Sensor>();
         proximitySensor = GetComponent<PlayerProximitySensor>();
 
