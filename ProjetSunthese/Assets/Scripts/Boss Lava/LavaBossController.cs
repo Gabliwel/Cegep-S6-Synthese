@@ -18,8 +18,9 @@ public class LavaBossController : Enemy
     private HPBar hpBar;
     private BoxCollider2D bossCollider;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         bossCollider = GetComponent<BoxCollider2D>();
         animator = GetComponentInChildren<Animator>();
         lavaShockWave = GetComponentInChildren<LavaShockWaveController>(true);

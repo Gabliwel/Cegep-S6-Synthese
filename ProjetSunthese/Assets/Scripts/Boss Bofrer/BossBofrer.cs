@@ -44,8 +44,9 @@ public class BossBofrer : Enemy
     private GameObject shield;
     private HPBar hpBar;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         bfl = Instantiate(bflPrefab);
         bfl.transform.position = transform.position;
         bfl.gameObject.SetActive(false);
@@ -67,9 +68,8 @@ public class BossBofrer : Enemy
         hpBar = GetComponentInChildren<HPBar>();
     }
 
-    protected override void Start()
+     void Start()
     {
-        base.Start();
         stolenAttacks = revisitsManager.GetStolenAttacks();
         ActivateAttacks();
         EnsureRoutinesStarted();

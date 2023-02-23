@@ -19,8 +19,9 @@ public class ExplosiveEnnemy : Enemy
     private NavMeshAgent agent;
     private Animator animator;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         rangeSensor = transform.Find("RangeSensor").GetComponent<Sensor>();
         damageSensor = transform.Find("DamageSensor").GetComponent<Sensor>();
 
