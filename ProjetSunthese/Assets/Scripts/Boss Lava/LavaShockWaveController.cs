@@ -38,6 +38,7 @@ public class LavaShockWaveController : BossAttack
         playerSensor.OnSensedObject += OnPlayerSense;
         playerSensor.OnUnsensedObject += OnPlayerUnsense;
 
+        sensor.enabled = false;
         shockWaveCollider.enabled = false;
         shockWaveMaskCollider.enabled = false;
         type = BossAttackType.Lava;
@@ -91,6 +92,7 @@ public class LavaShockWaveController : BossAttack
 
     private void ReactivateColliderAndSprite()
     {
+        sensor.enabled = true;
         shockWaveSpriteMask.enabled = true;
         shockWaveMaskCollider.enabled = true;
         shockWaveSpriteRenderer.enabled = true;

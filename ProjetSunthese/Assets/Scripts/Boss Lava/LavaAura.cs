@@ -28,8 +28,7 @@ public class LavaAura : BossAttack
         enemySensor.OnSensedObject += OnEnemySense;
         enemySensor.OnSensedObject += OnEnemyUnsense;
         particleSystem = GetComponentInChildren<ParticleSystem>();
-        auraCollider = sensor.GetComponent<Collider2D>();
-        auraCollider.enabled = false;
+        sensor.enabled = false;
         type = BossAttackType.Lava;
     }
 
@@ -44,15 +43,14 @@ public class LavaAura : BossAttack
 
     public void DespawnAura()
     {
-        auraCollider.enabled = false;
+        sensor.enabled = false;
         particleSystem.Stop();
     }
 
     private void ActivateAura()
     {
-        
+        sensor.enabled = true;
         particleSystem.Play();
-        auraCollider.enabled = true;
     }
 
     public override void Launch()
