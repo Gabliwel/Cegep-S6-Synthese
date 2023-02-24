@@ -15,8 +15,9 @@ public class BossMountainEnemy : Enemy
     private Sensor sensor;
     private ISensor<Player> playerSensor;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         animator = GetComponent<Animator>();
         sensor = GetComponentInChildren<Sensor>();

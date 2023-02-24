@@ -38,8 +38,9 @@ public class BossMountain : Enemy
 
     private HPBar hpBar;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         animator = GetComponent<Animator>();
         childLight = transform.Find("Light 2D");
@@ -88,7 +89,6 @@ public class BossMountain : Enemy
 
     protected void Update()
     {
-        base.Update();
         //debug
         if (Input.GetKeyDown(KeyCode.F))
             StartRockThrow();

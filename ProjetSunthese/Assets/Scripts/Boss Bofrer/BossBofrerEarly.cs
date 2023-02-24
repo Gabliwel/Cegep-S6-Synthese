@@ -5,15 +5,17 @@ using UnityEngine;
 public class BossBofrerEarly : Enemy
 {
     [SerializeField] private float speed;
-    [SerializeField] private float HPTreshold;
+    private float hpThreshold;
+    private const float SCALING_CUTOFF = 0.2f;
     private Player player;
     private Animator animator;
     private Sensor sensor;
     private ISensor<Player> playerSensor;
     private HPBar hpBar;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         animator = GetComponent<Animator>();
         animator.SetTrigger("Early");
@@ -22,6 +24,11 @@ public class BossBofrerEarly : Enemy
         playerSensor.OnSensedObject += OnPlayerSense;
         playerSensor.OnUnsensedObject += OnPlayerUnSense;
         hpBar = GetComponentInChildren<HPBar>();
+    }
+
+    private void Start()
+    {
+        hpThreshold = CalculateHpThreshold();
     }
     protected override void Drop()
     {
@@ -53,7 +60,6 @@ public class BossBofrerEarly : Enemy
 
     private void Update()
     {
-        base.Update();
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
         animator.SetFloat("MoveX", player.transform.position.x - transform.position.x);
         animator.SetFloat("MoveY", player.transform.position.y - transform.position.y);
@@ -61,10 +67,15 @@ public class BossBofrerEarly : Enemy
 
     private void CheckHPForTeleport()
     {
-        if (hp < HPTreshold)
+        if (hp < hpThreshold)
         {
             GameManager.instance.SetNextLevel();
         }
+    }
+
+    private float CalculateHpThreshold()
+    {
+        return hp - (hp * SCALING_CUTOFF);
     }
 
 }

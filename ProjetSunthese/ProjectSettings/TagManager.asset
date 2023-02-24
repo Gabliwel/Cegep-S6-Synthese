@@ -25,6 +25,7 @@ TagManager:
   - GameOver
   - DescriptionBox
   - LootManager
+  - AchivementPopup
   layers:
   - Default
   - TransparentFX

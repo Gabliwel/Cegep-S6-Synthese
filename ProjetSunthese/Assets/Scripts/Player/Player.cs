@@ -229,6 +229,7 @@ public class Player : MonoBehaviour
         {
             health.Harm(ammount);
             GameManager.instance.UpdateHUD();
+            DamageNumbersManager.instance.CallText(ammount, transform.position, true);
             return true;
         }
         return false;

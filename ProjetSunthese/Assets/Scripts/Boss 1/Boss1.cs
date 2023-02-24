@@ -29,8 +29,9 @@ public class Boss1 : Enemy
 
     private HPBar HPbar;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         HPbar = GetComponentInChildren<HPBar>();
     }
 
@@ -50,7 +51,6 @@ public class Boss1 : Enemy
 
     void Update()
     {
-        base.Update();
         if (isProtected) return;
 
         if(hp <= hpToWatch && hp > 0)

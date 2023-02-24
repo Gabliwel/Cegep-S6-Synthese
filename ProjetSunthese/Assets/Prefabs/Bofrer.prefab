@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c8a89a51a8bd2644ada469703517a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHP: 100
+  baseHP: 1000
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 10
@@ -249,6 +249,7 @@ MonoBehaviour:
   damageDealt: 0
   goldDropped: 0
   xpGiven: 0
+  overtime: 0
   HPTreshold: 0
   stolenAttacks: []
   stolenMinTimer: 10
