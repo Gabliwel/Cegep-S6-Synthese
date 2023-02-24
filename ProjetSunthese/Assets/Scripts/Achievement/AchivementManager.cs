@@ -7,6 +7,16 @@ public class AchivementManager : MonoBehaviour
 {
     public static AchivementManager instance;
 
+    public struct Achievements
+    {
+        public string Title;
+        public string Description;
+        public Sprite Image;
+        public bool IsCompleted;
+    }
+
+    public Achievements[] achievements;
+
     private AchivementClass achivementData;
     private JSONSave save;
     private DescriptionBox achivementPop;
@@ -15,14 +25,14 @@ public class AchivementManager : MonoBehaviour
     private bool gotRageQuit;
     private float timeSinceDead = 3f;
 
-    private string ENEMIES = "You killed 30 enemies!";
-    private string CHEST = "You opened 30 chests";
-    private string BOB = "You defeated Bob for the first time!";
-    private string MICHAEL = "You defeated Michael for the first time!";
-    private string JEANGUY = "You defeated Jean Guy for the first time!";
-    private string GONTRAND = "You defeated Gontrand for the first time!";
-    private string GAMEDONE = "You beated the game for the first time!";
-    private string RAGEQUIT = "You didnt take that lost so well...";
+    private const string ENEMIES = "You killed 30 enemies!";
+    private const string CHEST = "You opened 30 chests";
+    private const string BOB = "You defeated Bob for the first time!";
+    private const string MICHAEL = "You defeated Michael for the first time!";
+    private const string JEANGUY = "You defeated Jean Guy for the first time!";
+    private const string GONTRAND = "You defeated Gontrand for the first time!";
+    private const string GAMEDONE = "You beated the game for the first time!";
+    private const string RAGEQUIT = "You didnt take that lost so well...";
     void Start()
     {
         if (instance == null)
@@ -49,6 +59,7 @@ public class AchivementManager : MonoBehaviour
             achivementData.rageQuitFirst = false;
             save.SaveData(achivementData);
         }
+
     }
 
     // Update is called once per frame
