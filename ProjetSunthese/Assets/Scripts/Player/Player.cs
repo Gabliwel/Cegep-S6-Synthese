@@ -271,13 +271,15 @@ public class Player : MonoBehaviour
 
     private void SetCurrentWeapon()
     {
-        if (weaponInfo.GetWeaponType() == WeaponsType.BOW)
+        WeaponsType type = weaponInfo.GetWeaponType();
+        if (type == WeaponsType.BOW)
             weapon.gameObject.GetComponent<Bow>().SetProjectiles(projectilesManager.GetArrows());
-
-        if (weaponInfo.GetWeaponType() == WeaponsType.WARLORCK_STAFF)
+        else if (type == WeaponsType.WARLORCK_STAFF)
             weapon.gameObject.GetComponent<WarlorckStaff>().SetProjectiles(projectilesManager.GetWarlockProjectiles());
-        if (weaponInfo.GetWeaponType() == WeaponsType.STAFF)
+        else if (type == WeaponsType.STAFF)
             weapon.gameObject.GetComponent<Staff>().SetProjectiles(projectilesManager.GetWizardProjectiles());
+        else if(type == WeaponsType.SWORD)
+            weapon.gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
     }
 
     public void SwitchWeapon(GameObject newWeapon)
