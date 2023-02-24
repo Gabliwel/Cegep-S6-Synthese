@@ -6,23 +6,23 @@ public class PlayerBaseWeaponStat : MonoBehaviour
 {
     [Header("Base readable stats")]
     [SerializeField] private float baseAttackMultiplicator = 1;
-    [SerializeField] private int baseSpeedLevel = 1;
+    [SerializeField] private float baseSpeedLevel = 1;
     [SerializeField] private int poisonLevel = 2;
 
     #region Set
-    public void DoubleBaseAttack()
+    public void MultiplyBaseAttack(float value)
     {
         // for special item
-        baseAttackMultiplicator *= 2;
+        baseAttackMultiplicator *= value;
     }
 
-    public void IncreaseBaseAttack()
+    public void IncreaseBaseAttack(float value)
     {
-        // so, we increase the base attack at a stable 15%
-        baseAttackMultiplicator += 0.15f;
+        // so, we increase the base attack with decimal percent
+        baseAttackMultiplicator += value;
     }
 
-    public void IncreaseSpeedLevel(int increaseValue)
+    public void IncreaseSpeedLevel(float increaseValue)
     {
         baseSpeedLevel += increaseValue;
     }
@@ -39,7 +39,7 @@ public class PlayerBaseWeaponStat : MonoBehaviour
         return baseAttackMultiplicator;
     }
 
-    public int GetBaseSpeedLevel()
+    public float GetBaseSpeedLevel()
     {
         return baseSpeedLevel;
     }

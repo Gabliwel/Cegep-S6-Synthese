@@ -25,11 +25,11 @@ public class ChestOpen : MonoBehaviour
             tilemap.SetTile(tilemap.WorldToCell(transform.position), coffreOuvert);
             chestClosed = false;
             Debug.Log("Give item");
-            GameObject drop = chestDropManager.SendRandomItem();
+            /*GameObject drop = chestDropManager.SendRandomItem();
             drop.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, 0);
             drop.GetComponent<Collider2D>().enabled = false;
             drop.SetActive(true);
-            achivement.OpenedChest();
+            achivement.OpenedChest();*/
         }
     }
 }

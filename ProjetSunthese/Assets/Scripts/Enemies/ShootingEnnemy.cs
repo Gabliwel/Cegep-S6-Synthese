@@ -104,6 +104,6 @@ public class ShootingEnnemy : Enemy
 
     protected override void Drop()
     {
-        Player.instance.GainDrops(0, xpGiven, goldDropped);
+        Player.instance.GainDrops(xpGiven, goldDropped);
     }
 }
