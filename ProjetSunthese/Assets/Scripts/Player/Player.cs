@@ -32,12 +32,17 @@ public class Player : MonoBehaviour
     [SerializeField] private int neededXp = 100;
     [SerializeField] private int currentXp = 0;
     [SerializeField] private int level = 1;
-    [SerializeField] private int luck = 0;
+    [SerializeField] private float luck = 0;
 
     public int Gold { get => gold; }
     public int CurrentXp { get => currentXp; }
     public float Health { get => health.CurrentHealth; }
-    public int Luck { get => luck; }
+    public float Luck { get => luck; }
+
+    private bool bloodSuck = false;
+    private float bloodSuckRate = 0;
+
+    private bool crazyHeart = false;
 
     private void Awake()
     {
@@ -111,29 +116,47 @@ public class Player : MonoBehaviour
         health.GainStoneHeart();
         GameManager.instance.UpdateHUD();
     }
+
+    public void GainSecondChance()
+    {
+        health.GainSecondChance();
+    }
+
+    public void GainDeathContract()
+    {
+        health.GainDeathContract();
+    }
+
     #endregion
 
     public void GetCrazyHalfHeart()
     {
+        if(!crazyHeart)
+        {
+            baseWeaponStat.MultiplyBaseAttack(1.5f);
+        }
+        else
+        {
+            crazyHeart = true;
+            baseWeaponStat.MultiplyBaseAttack(2f);
+        }
         health.IncreaseReceiveDamageMultiplicator();
-        baseWeaponStat.DoubleBaseAttack();
     }
 
-    // For beta
-    /*
     public void GainBloodSuck()
     {
-        //bloodSuck = true;
+        bloodSuck = true;
+        bloodSuckRate += 0.5f;
     }
-    public void HealBloodSuck(int amount)
+
+    public void HealBloodSuck()
     {
         if (bloodSuck)
         {
-            Heal(amount);
+            health.HealSpecific(bloodSuckRate);
         }
         
     }
-    */
 
     public void GainXp(int amount)
     {
@@ -143,23 +166,28 @@ public class Player : MonoBehaviour
             currentXp -= neededXp;
             neededXp = (int)Math.Round(neededXp * levelUpAugmentationRate);
             level++;
-            BoostDamage();
+            BoostDamage(0.15f);
             MaxHealthBoost(10);
             GameManager.instance.UpdateHUD();
         }
     }
 
-    public void BoostDamage()
+    public void BoostDamage(float value)
     {
-        baseWeaponStat.IncreaseBaseAttack();
+        baseWeaponStat.IncreaseBaseAttack(value);
     }
 
-    public void BoostPlayerSpeed()
+    public void BoostPlayerSpeed(float value)
     {
-        playerMovement.IncreaseBaseSpeed();
+        playerMovement.IncreaseBaseSpeed(value);
     }
 
-    public void IncreaseAttackSpeed(int lvl)
+    public void IncreasePlayerLuck(float value)
+    {
+        if (luck < 90) luck += value;
+    }
+
+    public void IncreaseAttackSpeed(float lvl)
     {
         baseWeaponStat.IncreaseSpeedLevel(lvl);
         weapon.CalculateNewSpeed();
@@ -176,9 +204,9 @@ public class Player : MonoBehaviour
         GameManager.instance.UpdateHUD();
     }
 
-    public void GainDrops(int health, int xp, int gold)
+    public void GainDrops(int xp, int gold)
     {
-        //HealBloodSuck(health);
+        HealBloodSuck();
         GainXp(xp);
         GainGold(gold);
         GameManager.instance.UpdateHUD();

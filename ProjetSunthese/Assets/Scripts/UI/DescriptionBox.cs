@@ -8,8 +8,11 @@ using Billy.Rarity;
 public class DescriptionBox : MonoBehaviour
 {
     private Image back;
-    private TMP_Text msg;
     private Animator animator;
+
+    [Header("Link")]
+    [SerializeField] private TMP_Text title;
+    [SerializeField] private TMP_Text msg;
 
     [Header("Default mats")]
     [SerializeField] private Material defaultMat;
@@ -26,21 +29,21 @@ public class DescriptionBox : MonoBehaviour
     private void Start()
     {
         back = GetComponent<Image>();
-        msg = GetComponentInChildren<TMP_Text>();
         animator = GetComponent<Animator>();
 
         back.material = defaultMat;
     }
 
-    public void PopUp(string txt)
+    public void PopUp(string title, string desc)
     {
         if(animator == null) animator = GetComponent<Animator>();
         back.material = defaultMat;
-        msg.text = txt;
+        this.title.text = title;
+        msg.text = desc;
         animator.SetBool("open", true);
     }
 
-    public void PopUp(string txt, ItemRarity rarity)
+    public void PopUp(string title, string desc, ItemRarity rarity)
     {
         if (animator == null) animator = GetComponent<Animator>();
 
@@ -63,7 +66,8 @@ public class DescriptionBox : MonoBehaviour
                 break;
         }
 
-        msg.text = txt;
+        this.title.text = title;
+        msg.text = desc;
         animator.SetBool("open", true);
     }
 

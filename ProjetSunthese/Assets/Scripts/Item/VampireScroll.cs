@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoisonStone : GenericItem
+public class VampireScroll : GenericItem
 {
     protected override void AddToPlayer(Player player)
     {
-        player.AddPoison(1);
+        player.GainBloodSuck();
     }
 }

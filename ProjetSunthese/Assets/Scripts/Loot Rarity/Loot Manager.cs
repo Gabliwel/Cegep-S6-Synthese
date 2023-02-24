@@ -37,26 +37,23 @@ public class LootManager : MonoBehaviour
     [ContextMenu("Test rarity")]
     public void TestRarity()
     {
-        int luck = Player.instance.Luck;
+        float luck = Player.instance.Luck;
         
         float prob = Random.Range(luck, maxLegendary);
-        Debug.Log(prob);
 
         ItemRarity rarity = GetRarityByValue(prob);
-        Debug.Log(rarity.ToString());
 
         ItemWithRarity itemWithRarity = RandItemByRarity(rarity);
-        Debug.Log(itemWithRarity.item.ToString() + " was chosen");
     }
 
-    private ItemRarity GetRandRarity(int luck)
+    private ItemRarity GetRandRarity(float luck)
     {
-        return GetRarityByValue(Random.Range(luck, maxLegendary));
+        return GetRarityByValue(Random.Range((int)luck, maxLegendary));
     }
 
-    private ItemRarity GetRandRarityWithUnique(int luck)
+    private ItemRarity GetRandRarityWithUnique(float luck)
     {
-        return GetRarityByValue(Random.Range(luck, maxUnique));
+        return GetRarityByValue(Random.Range((int)luck, maxUnique));
     }
 
     private ItemRarity GetRarityByValue(float value)
@@ -70,18 +67,17 @@ public class LootManager : MonoBehaviour
 
     private ItemWithRarity RandItemByRarity(ItemRarity baseRarity)
     {
+        Debug.Log(baseRarity);
         List<ItemWithRarity> temp = new List<ItemWithRarity>();
         foreach(ItemWithRarity item in items)
         {
             if(baseRarity != ItemRarity.UNIQUE && item.baseRarity <= baseRarity)
             {
                 temp.Add(item);
-                Debug.Log(item.item.ToString() + " was added to temp");
             }
             else if(baseRarity == ItemRarity.UNIQUE && item.baseRarity == ItemRarity.UNIQUE)
             {
                 temp.Add(item);
-                Debug.Log(item.item.ToString() + " was added to temp");
             }
         }
 
@@ -100,12 +96,10 @@ public class LootManager : MonoBehaviour
             if (baseRarity != ItemRarity.UNIQUE && item.baseRarity <= baseRarity)
             {
                 temp2.Add(item);
-                Debug.Log(item.item.ToString() + " was added to temp");
             }
             else if (baseRarity == ItemRarity.UNIQUE && item.baseRarity == ItemRarity.UNIQUE)
             {
                 temp2.Add(item);
-                Debug.Log(item.item.ToString() + " was added to temp");
             }
         }
         int rand2 = Random.Range(0, temp2.Count);

@@ -192,8 +192,13 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   selectedMaterial: {fileID: 2100000, guid: 65bb25d58066acf44975f496fb328fae, type: 2}
   useTextBox: 1
-  desc: Speeeeeeed attack
+  title: Speed gloves
+  desc: Increment the speed attack of each weapon
   basePrice: 10
+  communGain: 0.05
+  rareGain: 0.2
+  epicGain: 0.4
+  legendaryGain: 0.7
 --- !u!1001 &4545819784966432861
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -192,7 +192,9 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   selectedMaterial: {fileID: 2100000, guid: 65bb25d58066acf44975f496fb328fae, type: 2}
   useTextBox: 1
-  desc: cursed shield
+  title: Random pill
+  desc: Doubles the current health and enormously decrease received damage, but ignore
+    any healing
   basePrice: 15
 --- !u!1001 &5937247518038971536
 PrefabInstance:

@@ -192,8 +192,12 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   selectedMaterial: {fileID: 2100000, guid: 65bb25d58066acf44975f496fb328fae, type: 2}
   useTextBox: 1
-  desc: a bit of heal?
+  title: Small healing potion
+  desc: Heal a portion of the current health
   basePrice: 10
+  rareGain: 0.05
+  epicGain: 0.15
+  legendaryGain: 0.25
 --- !u!1001 &1133044977994985509
 PrefabInstance:
   m_ObjectHideFlags: 0

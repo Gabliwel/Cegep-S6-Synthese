@@ -102,8 +102,11 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   selectedMaterial: {fileID: 2100000, guid: 65bb25d58066acf44975f496fb328fae, type: 2}
   useTextBox: 1
-  desc: a bit of max heal?
+  title: Big healing potion
+  desc: Heal a portion of the current health abd increase the max health
   basePrice: 15
+  epicGain: 15
+  legendaryGain: 25
 --- !u!1 &1401539237983016500
 GameObject:
   m_ObjectHideFlags: 0

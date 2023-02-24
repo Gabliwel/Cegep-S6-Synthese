@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoisonStone : GenericItem
+public class SecondChance : GenericItem
 {
     protected override void AddToPlayer(Player player)
     {
-        player.AddPoison(1);
+        //Only unique
+        player.GainSecondChance();
     }
 }

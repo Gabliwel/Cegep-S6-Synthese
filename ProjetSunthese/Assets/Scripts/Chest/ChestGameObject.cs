@@ -13,9 +13,11 @@ public class ChestGameObject : Interactable
     {
         ItemWithRarity item = chestDropManager.SendRandomItem();
         GameObject drop = item.item;
-        drop.GetComponent<GenericItem>().SetItem(chestLayer, item.currentRarity);
+        Debug.Log(item.currentRarity);
         drop.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        drop.GetComponent<GenericItem>().SetItem(chestLayer, item.currentRarity);
         drop.SetActive(true);
+
         gameObject.SetActive(false);
     }
 

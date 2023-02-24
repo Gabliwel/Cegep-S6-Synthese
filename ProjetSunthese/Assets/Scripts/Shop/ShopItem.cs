@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Billy.Rarity;
+using System;
 
 public class ShopItem : Interactable
 {
@@ -10,13 +12,24 @@ public class ShopItem : Interactable
     private TMP_Text text;
 
     private int price;
+    private bool boxHasOutline = false;
+    private ItemRarity rarity;
+
+    // prices for item with rairty
+    private const int priceCommun = 10;
+    private const int priceRare = 15;
+    private const int priceEpic = 25;
+    private const int priceLegendary = 35;
+    private const int priceUnique = 50;
 
     public void SetItem(GameObject newItem, int newPrice)
     {
         price = newPrice;
         item = newItem;
+        Interactable interactable = newItem.GetComponent<Interactable>();
 
-        desc = newItem.GetComponent<Interactable>().Desc;
+        title = interactable.Title;
+        desc = interactable.Desc;
 
         itemSprite = item.GetComponent<SpriteRenderer>();
         text = GetComponentInChildren<TMP_Text>();
@@ -24,12 +37,43 @@ public class ShopItem : Interactable
         text.text = newPrice.ToString();
     }
 
+    public void SetItem(GameObject item, int price, ItemRarity newRarity)
+    {
+        SetItem(item, price);
+        boxHasOutline = true;
+        rarity = newRarity;
+
+        switch (rarity)
+        {
+            case ItemRarity.COMMUN:
+                this.price = priceCommun;
+                break;
+            case ItemRarity.RARE:
+                this.price = priceRare;
+                break;
+            case ItemRarity.EPIC:
+                this.price = priceEpic;
+                break;
+            case ItemRarity.LEGENDARY:
+                this.price = priceLegendary;
+                break;
+            case ItemRarity.UNIQUE:
+                this.price = priceUnique;
+                break;
+        }
+        text.text = this.price.ToString();
+    }
+
     public override void ChangeSelectedState(bool selected, DescriptionBox descBox)
     {
         if (selected)
         {
             itemSprite.material = selectedMaterial;
-            if (UseTextBox) descBox.PopUp(desc);
+            if (UseTextBox)
+            {
+                if (boxHasOutline) descBox.PopUp(title, desc, rarity);
+                else descBox.PopUp(title, desc);
+            }
         }
         else
         {
