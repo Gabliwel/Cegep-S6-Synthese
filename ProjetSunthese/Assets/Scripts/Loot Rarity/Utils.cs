@@ -10,21 +10,36 @@ namespace Billy.Rarity
         COMMUN,
         RARE,
         EPIC,
-        LEGENDARY//,
-        //UNIQUE // unique wont change value
+        LEGENDARY,
+        UNIQUE // unique wont change value (no scale)
     }
 
     [System.Serializable]
-    public class ItemWithBaseRarity
+    public class ItemWithBaseRarityForInspector
     {
 
         public GameObject item;
         public ItemRarity baseRarity;
 
-        public ItemWithBaseRarity(GameObject item, ItemRarity baseRarity)
+        public ItemWithBaseRarityForInspector(GameObject item, ItemRarity baseRarity)
         {
             this.item = item;
             this.baseRarity = baseRarity;
+        }
+    }
+    
+    public class ItemWithRarity
+    {
+
+        public GameObject item;
+        public ItemRarity baseRarity;
+        public ItemRarity currentRarity;
+
+        public ItemWithRarity(GameObject item, ItemRarity baseRarity, ItemRarity currentRarity)
+        {
+            this.item = item;
+            this.baseRarity = baseRarity;
+            this.currentRarity = currentRarity;
         }
     }
 }

@@ -148,7 +148,7 @@ public class AchivementManager : MonoBehaviour
     }
     private IEnumerator ShowAchivementGot(string description)
     {
-        achivementPop.PopUp(description);
+        achivementPop.PopUp("achievement", description);
         yield return new WaitForSeconds(5f);
         achivementPop.Close();
     }
