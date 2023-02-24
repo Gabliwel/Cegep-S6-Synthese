@@ -105,7 +105,7 @@ public abstract class Enemy : MonoBehaviour
         Drop();
         gameObject.SetActive(false);
         ParticleManager.instance.CallParticles(transform.position, particleScale, particleColor);
-        AchivementManager.instance.KilledEnnemies();
+        //AchievementManager.instance.KilledEnnemies();
     }
 
     public virtual void ChangeLayer(int layer)

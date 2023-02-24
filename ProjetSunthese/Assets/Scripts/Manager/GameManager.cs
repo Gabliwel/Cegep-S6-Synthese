@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadEndScene()
     {
-        AchivementManager.instance.AddWeaponWonWith(Player.instance.GetComponentInChildren<WeaponInformations>().GetWeaponType());
+        //AchivementManager.instance.AddWeaponWonWith(Player.instance.GetComponentInChildren<WeaponInformations>().GetWeaponType());
         Debug.Log("AHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAH END");
         actualLevel = Scene.GameOver;
         gameOverInfo = "Victory";
@@ -296,6 +296,6 @@ public class GameManager : MonoBehaviour
         actualLevel = Scene.GameOver;
         gameOverInfo = "Game Over";
         StartCoroutine(RestartLevelDelay(0, actualLevel));
-        AchivementManager.instance.Died();
+        //AchivementManager.instance.Died();
     }
 }

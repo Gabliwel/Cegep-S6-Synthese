@@ -7,7 +7,7 @@ public class JSONSave : MonoBehaviour
 {
     private string path = "";
     private string persitentPath = "";
-    private AchivementManager manager;
+    private AchievementManager manager;
 
     private void Awake()
     {
@@ -15,7 +15,7 @@ public class JSONSave : MonoBehaviour
     }
     void Start()
     {
-        manager = GetComponent<AchivementManager>();
+        manager = GetComponent<AchievementManager>();
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class JSONSave : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        SaveData(manager.getAchivementData());
+        SaveData(manager.GetAchievementData());
     }
 
     private void SetPaths()
@@ -35,23 +35,33 @@ public class JSONSave : MonoBehaviour
         persitentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveAchivement.json";
     }
 
-    public void SaveData(AchivementClass achives)
+    public void SaveData(AchievementsList archives)
     {
-        string savePath = path;
+        string savePath = persitentPath;
 
-        string json = JsonUtility.ToJson(achives);
+        string json = JsonUtility.ToJson(archives);
 
         using StreamWriter writer = new StreamWriter(savePath);
 
         writer.Write(json);
     }
 
-    public AchivementClass LoadData()
+    public AchievementsList LoadData()
     {
-        using StreamReader reader = new StreamReader(path);
-        string json = reader.ReadToEnd();
+        string json;
+        if (File.Exists(persitentPath))
+        {
+            using StreamReader reader = new StreamReader(persitentPath);
+            json = reader.ReadToEnd();
+        }
+        else
+        {
+            File.Create(persitentPath);
+            using StreamReader reader = new StreamReader(persitentPath);
+            json = reader.ReadToEnd();
+        }
 
-        AchivementClass data = JsonUtility.FromJson<AchivementClass>(json);
+        AchievementsList data = JsonUtility.FromJson<AchievementsList>(json);
 
         return data;
     }
