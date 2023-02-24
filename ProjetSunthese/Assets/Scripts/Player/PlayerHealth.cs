@@ -89,15 +89,28 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void HealSpecific(float value)
+    {
+        if (!stoneHeart)
+        {
+            currentHealth += value;
+            if (currentHealth > currentMax)
+            {
+                currentHealth = currentMax;
+            }
+        }
+    }
+
     #region For bonus
     public void GainStoneHeart()
     {
         if(!stoneHeart)
         {
             stoneHeart = true;
-            armor += 10;
             currentHealth *= 2;
+            currentMax = currentHealth;
         }
+        armor += 5;
     }
 
     public void GainDeathContract()

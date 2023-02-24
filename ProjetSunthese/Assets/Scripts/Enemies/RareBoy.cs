@@ -73,7 +73,7 @@ public class RareBoy : Enemy
 
     protected override void Drop()
     {
-        Player.instance.GainDrops(0, xpGiven, goldDropped);
+        Player.instance.GainDrops(xpGiven, goldDropped);
         GameObject item = Instantiate(itemDrop[Random.Range(0, itemDrop.Length)]);
         item.transform.position = transform.position;
     }

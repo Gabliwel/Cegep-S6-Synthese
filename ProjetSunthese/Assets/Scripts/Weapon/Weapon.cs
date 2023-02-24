@@ -101,7 +101,7 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void CalculateNewSpeed()
     {
-        int speedLevel = playerBaseWeaponStat.GetBaseSpeedLevel();
+        float speedLevel = playerBaseWeaponStat.GetBaseSpeedLevel();
         startup = defaultStartup * (1 - speedLevel * 0.05f);
         recovery = defaultRecovery * (1 - speedLevel * 0.05f);
 

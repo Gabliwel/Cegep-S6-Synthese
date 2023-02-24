@@ -111,7 +111,7 @@ public class MichaelFight : Enemy
 
     protected override void Drop()
     {
-        player.GetComponent<Player>().GainDrops(2, xpGiven, goldDropped);
+        player.GetComponent<Player>().GainDrops(xpGiven, goldDropped);
 
         GetComponent<BossDrops>().BossDrop(transform.position);
     }
