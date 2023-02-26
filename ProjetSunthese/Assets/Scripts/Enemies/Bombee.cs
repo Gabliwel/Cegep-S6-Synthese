@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bombee : Enemy
 {
+    private const float OFFSET_MIN_MAX = 0.5f;
     [SerializeField] private float speed = 3;
     [SerializeField] private BombHolder bombPrefab;
 
@@ -58,7 +59,16 @@ public class Bombee : Enemy
     {
         base.Die();
         deathBomb.transform.position = transform.position;
-        deathBomb.SetDestination(transform.position);
+        deathBomb.SetDestination(transform.position + GetRandomOffset());
         deathBomb.gameObject.SetActive(true);
+    }
+
+    private Vector3 GetRandomOffset()
+    {
+        Vector3 offset = Vector3.zero;
+        offset.x = Random.Range(-OFFSET_MIN_MAX, OFFSET_MIN_MAX);
+        offset.y = Random.Range(-OFFSET_MIN_MAX, OFFSET_MIN_MAX);
+
+        return offset;
     }
 }
