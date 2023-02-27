@@ -30,7 +30,6 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
-        soundMaker = GameObject.FindGameObjectWithTag("SoundMaker").GetComponent<SoundMaker>();
     }
     /// <summary>
     /// TODO: FIXME: this is bad; no time for fix in alpha
@@ -109,7 +108,7 @@ public abstract class Enemy : MonoBehaviour
         gameObject.SetActive(false);
         ParticleManager.instance.CallParticles(transform.position, particleScale, particleColor);
         AchivementManager.instance.KilledEnnemies();
-        soundMaker.EnemyDeathSound(gameObject.transform.position);
+        SoundMaker.instance.EnemyDeathSound(gameObject.transform.position);
     }
 
     public virtual void ChangeLayer(int layer)

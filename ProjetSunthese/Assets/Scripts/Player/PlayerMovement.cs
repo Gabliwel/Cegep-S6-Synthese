@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
         animationController = GetComponent<PlayerAnimationController>();
         sprite = GetComponent<SpriteRenderer>();
         player = GetComponent<Player>();
-        soundMaker = GameObject.FindGameObjectWithTag("SoundMaker").GetComponent<SoundMaker>();
     }
 
     private void Update()
@@ -94,11 +93,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (currentVelocity.x != 0 || currentVelocity.y != 0)
         {
-            soundMaker.PlayerWalkSound(gameObject.transform.position);
+            SoundMaker.instance.PlayerWalkSound(gameObject.transform.position);
         }
         else
         {
-            soundMaker.StopPlayerWalkSound();
+            SoundMaker.instance.StopPlayerWalkSound();
         }
     }
 
@@ -196,4 +195,10 @@ public class PlayerMovement : MonoBehaviour
     {
         speedReducer = newReducer;
     }
+
+    public void SetSoundMaker()
+    {
+        soundMaker = SoundMaker.instance;
+    }
+
 }
