@@ -94,7 +94,7 @@ public class ShopItem : Interactable
 
         if (bought)
         {
-            soundMaker.BuyItemSound(transform.position);
+            SoundMaker.instance.BuyItemSound(transform.position);
             item.transform.parent = null;
             item.GetComponent<ShopItemMovement>().IsNowSold(itemSprite);
             gameObject.SetActive(false);
@@ -102,7 +102,7 @@ public class ShopItem : Interactable
         }
         else
         {
-            soundMaker.DenyBuyItemSound(transform.position);
+            SoundMaker.instance.DenyBuyItemSound(transform.position);
         }
     }
 }
