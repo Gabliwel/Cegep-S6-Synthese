@@ -331,22 +331,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3aebaa8bcd71143960759b29ea3386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHP: 100
-  hp: 50
+  baseHP: 350
+  hp: 350
   particleColor: {r: 0.3679245, g: 0.13016197, b: 0.13016197, a: 1}
   particleScale: 7
   baseDamageDealt: 0
   damageDealt: 0
-  goldDropped: 0
-  xpGiven: 0
+  goldDropped: 12
+  xpGiven: 55
+  overtime: 0
   rockAttackPrefab: {fileID: 4161923199008325614, guid: 88bea44d72ed8f6479f8a77110013113, type: 3}
-  rockThrowMinTime: 4
-  rockThrowMaxTime: 5
+  rockThrowMinTime: 6
+  rockThrowMaxTime: 9
   stalagmiteAttackPrefab: {fileID: 7427832919542837346, guid: a9559a804b00792468d2e7e050e11dbc, type: 3}
-  stalagmiteSpawnMinTime: 2
-  stalagmiteSpawnMaxTime: 5
+  stalagmiteSpawnMinTime: 4
+  stalagmiteSpawnMaxTime: 7
   enemyAttackPrefab: {fileID: 3278353848727762761, guid: 000663b9708efef46861b2f0b6f01ca2, type: 3}
-  enemySpawnMinTime: 3
+  enemySpawnMinTime: 5
   enemySpawnMaxTime: 10
   positionTop: {x: -62, y: 47, z: 0}
   positionBottom: {x: -62, y: 33, z: 0}
@@ -372,6 +373,10 @@ MonoBehaviour:
   weaponsDrop:
   - {fileID: 8256077553287885047, guid: b8d5e5df62c7a54408a432e08eb6d2dd, type: 3}
   - {fileID: 3590006991846360811, guid: f61d9337f4f4530479accbcc43eea492, type: 3}
+  - {fileID: 3517278699109352328, guid: 74214f754865224489a835506c31c176, type: 3}
+  - {fileID: 3590006991846360811, guid: c0c950faa4f7ed746b3b9f7f056dc4bc, type: 3}
+  - {fileID: 8256077553287885047, guid: 67cbe2809fcfcc945a308bee3d654d24, type: 3}
+  - {fileID: 3590006991846360811, guid: 2572bcd5a3ceb6748ab4d15e25f8cdf0, type: 3}
   portal: {fileID: 6202557103775462470, guid: 54a64a756be8cc14b884655180b6de4a, type: 3}
   portalSpawnPosition: {x: -62, y: 40, z: 0}
 --- !u!95 &1699003815475913399

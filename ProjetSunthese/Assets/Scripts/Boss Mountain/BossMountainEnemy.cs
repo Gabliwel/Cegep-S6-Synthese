@@ -65,7 +65,7 @@ public class BossMountainEnemy : Enemy
     private void Update()
     {
         if (isMoving)
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed);
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
 
         if (shakeTimer > 0)
             shakeTimer -= Time.deltaTime;

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyKillCondition : MonoBehaviour
 {
-    [SerializeField] private GameObject rewardPrefab;
+    [SerializeField] private GenericItem rewardPrefab;
     [SerializeField] private Vector3 rewardLocation;
-    private GameObject reward;
+    private GenericItem reward;
     private Enemy[] enemies;
     bool rewardSpawned = false;
 
@@ -15,7 +15,8 @@ public class EnemyKillCondition : MonoBehaviour
         enemies = GetComponentsInChildren<Enemy>();
         reward = Instantiate(rewardPrefab);
         reward.transform.parent = transform;
-        reward.SetActive(false);
+        reward.SetItem(LayerMask.LayerToName(gameObject.layer), Billy.Rarity.ItemRarity.LEGENDARY);
+        reward.gameObject.SetActive(false);
     }
 
 
@@ -38,7 +39,7 @@ public class EnemyKillCondition : MonoBehaviour
     {
         if (rewardSpawned) return;
         rewardSpawned = true;
-        reward.SetActive(true);
+        reward.gameObject.SetActive(true);
         reward.transform.position = rewardLocation;
     }
 }

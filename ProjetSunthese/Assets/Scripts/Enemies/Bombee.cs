@@ -60,6 +60,7 @@ public class Bombee : Enemy
         base.Die();
         deathBomb.transform.position = transform.position;
         deathBomb.SetDestination(transform.position + GetRandomOffset());
+        deathBomb.SetFuse(0);
         deathBomb.gameObject.SetActive(true);
     }
 

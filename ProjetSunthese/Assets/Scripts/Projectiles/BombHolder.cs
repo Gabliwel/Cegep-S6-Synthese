@@ -27,6 +27,11 @@ public class BombHolder : MonoBehaviour
         explosion.SetDamage(playerDamage);
     }
 
+    public void SetFuse(float timer)
+    {
+        projectile.SetFuse(timer);
+    }
+
     public void SetDestination(Vector2 position)
     {
         projectile.SetDestination(position);
