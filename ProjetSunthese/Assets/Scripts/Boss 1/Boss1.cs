@@ -25,7 +25,6 @@ public class Boss1 : Enemy
     private float hpToWatch;
     [SerializeField] private float shieldLeft = 3;
     [SerializeField] private float shieldLifeFraction = 0.25f;
-    [SerializeField] private float bossSpeed = 3;
 
     private HPBar HPbar;
 

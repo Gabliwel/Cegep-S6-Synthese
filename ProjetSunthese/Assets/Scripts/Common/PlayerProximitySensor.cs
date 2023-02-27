@@ -6,11 +6,11 @@ public class PlayerProximitySensor : MonoBehaviour
 {
     [SerializeField] private float minDistance;
     [SerializeField] private bool checkLayer;
-    private bool isClose;
+    [SerializeField] private bool isClose;
     private void FixedUpdate()
     {
         bool sameLayer = true;
-        if(checkLayer)
+        if (checkLayer)
         {
             sameLayer = gameObject.layer == Player.instance.gameObject.layer;
         }

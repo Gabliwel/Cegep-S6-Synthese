@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerAnimationController animationController;
     private SpriteRenderer sprite;
     private Player player;
-
+    private SoundMaker soundMaker;
 
     private void Awake()
     {
@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         animationController = GetComponent<PlayerAnimationController>();
         sprite = GetComponent<SpriteRenderer>();
         player = GetComponent<Player>();
+        soundMaker = GameObject.FindGameObjectWithTag("SoundMaker").GetComponent<SoundMaker>();
     }
 
     private void Update()
@@ -91,6 +92,14 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(movementInput.y) < STOP_TRESHOLD)
             currentVelocity.y = 0;
 
+        if (currentVelocity.x != 0 || currentVelocity.y != 0)
+        {
+            soundMaker.PlayerWalkSound(gameObject.transform.position);
+        }
+        else
+        {
+            soundMaker.StopPlayerWalkSound();
+        }
     }
 
     private void AdjustRotation()

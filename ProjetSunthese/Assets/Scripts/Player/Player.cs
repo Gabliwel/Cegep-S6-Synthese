@@ -19,12 +19,14 @@ public class Player : MonoBehaviour
     private SpriteRenderer sprite;
     private PlayerInteractables playerInteractables;
     private ParticleSystem fireParticle;
+    private Animator lvlUpAnim;
     private float iframesTimer;
 
     [Header("Link")]
     [SerializeField] private GameObject stimuli;
     [SerializeField] private GameObject sensor;
     [SerializeField] private GameObject particuleGameObj;
+    [SerializeField] private GameObject lvIUpGameObj;
 
     [Header("Ressources")]
     [SerializeField] private int gold = 0;
@@ -36,7 +38,9 @@ public class Player : MonoBehaviour
 
     public int Gold { get => gold; }
     public int CurrentXp { get => currentXp; }
-    public float Health { get => health.CurrentHealth; }
+    public int NeededXp { get => neededXp; }
+    public int Level { get => level; }
+    public PlayerHealth Health { get => health; }
     public float Luck { get => luck; }
 
     private bool bloodSuck = false;
@@ -67,6 +71,7 @@ public class Player : MonoBehaviour
         playerInteractables = GetComponent<PlayerInteractables>();
         sprite = GetComponent<SpriteRenderer>();
         fireParticle = particuleGameObj.GetComponent<ParticleSystem>();
+        lvlUpAnim = lvIUpGameObj.GetComponent<Animator>();
     }
 
     private void Start()
@@ -97,13 +102,13 @@ public class Player : MonoBehaviour
     public void MaxHealthBoost(float value)
     {
         health.AddMaxHp(value);
-        GameManager.instance.UpdateHUD();
+        GameManager.instance.UpdateHealth();
     }
 
     public void HealPercent(float healingPercent)
     {
         health.HealPercent(healingPercent);
-        GameManager.instance.UpdateHUD();
+        GameManager.instance.UpdateHealth();
     }
 
     public void GainArmor(float value)
@@ -114,7 +119,7 @@ public class Player : MonoBehaviour
     public void GainStoneHeart()
     {
         health.GainStoneHeart();
-        GameManager.instance.UpdateHUD();
+        GameManager.instance.UpdateHealth();
     }
 
     public void GainSecondChance()
@@ -154,22 +159,23 @@ public class Player : MonoBehaviour
         if (bloodSuck)
         {
             health.HealSpecific(bloodSuckRate);
+            GameManager.instance.UpdateHealth();
         }
-        
     }
 
     public void GainXp(int amount)
     {
         currentXp += amount;
-        if (currentXp >= neededXp)
+        while (currentXp >= neededXp)
         {
             currentXp -= neededXp;
             neededXp = (int)Math.Round(neededXp * levelUpAugmentationRate);
             level++;
             BoostDamage(0.15f);
             MaxHealthBoost(10);
-            GameManager.instance.UpdateHUD();
+            lvlUpAnim.SetTrigger("Fire");
         }
+        GameManager.instance.UpdateXp();
     }
 
     public void BoostDamage(float value)
@@ -201,7 +207,7 @@ public class Player : MonoBehaviour
     public void GainGold(int amount)
     {
         gold += amount;
-        GameManager.instance.UpdateHUD();
+        GameManager.instance.UpdateGold();
     }
 
     public void GainDrops(int xp, int gold)
@@ -209,7 +215,6 @@ public class Player : MonoBehaviour
         HealBloodSuck();
         GainXp(xp);
         GainGold(gold);
-        GameManager.instance.UpdateHUD();
     }
 
     public bool BuyItem(int price)
@@ -217,7 +222,7 @@ public class Player : MonoBehaviour
         if (gold >= price)
         {
             gold -= price;
-            GameManager.instance.UpdateHUD();
+            GameManager.instance.UpdateGold();
             return true;
         }
         return false;
@@ -228,7 +233,7 @@ public class Player : MonoBehaviour
         if (iframesTimer <= 0)
         {
             health.Harm(ammount);
-            GameManager.instance.UpdateHUD();
+            GameManager.instance.UpdateHealth();
             DamageNumbersManager.instance.CallText(ammount, transform.position, true);
             return true;
         }
@@ -238,7 +243,7 @@ public class Player : MonoBehaviour
     public void HarmIgnoreIFrame(float ammount)
     {
         health.Harm(ammount);
-        GameManager.instance.UpdateHUD();
+        GameManager.instance.UpdateHealth();
     }
 
     public void ChangeLayer(string layer, string sortingLayer)
@@ -250,6 +255,7 @@ public class Player : MonoBehaviour
         weaponInfo.ChangeLayer(layer, sortingLayer);
         playerLight.UpdateLightUsage(sortingLayer);
         fireParticle.gameObject.GetComponent<ParticleSystemRenderer>().sortingLayerName = sortingLayer;
+        lvlUpAnim.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = sortingLayer;
     }
 
     public void BlocMovement(bool state)
@@ -271,13 +277,15 @@ public class Player : MonoBehaviour
 
     private void SetCurrentWeapon()
     {
-        if (weaponInfo.GetWeaponType() == WeaponsType.BOW)
+        WeaponsType type = weaponInfo.GetWeaponType();
+        if (type == WeaponsType.BOW)
             weapon.gameObject.GetComponent<Bow>().SetProjectiles(projectilesManager.GetArrows());
-
-        if (weaponInfo.GetWeaponType() == WeaponsType.WARLORCK_STAFF)
+        else if (type == WeaponsType.WARLORCK_STAFF)
             weapon.gameObject.GetComponent<WarlorckStaff>().SetProjectiles(projectilesManager.GetWarlockProjectiles());
-        if (weaponInfo.GetWeaponType() == WeaponsType.STAFF)
+        else if (type == WeaponsType.STAFF)
             weapon.gameObject.GetComponent<Staff>().SetProjectiles(projectilesManager.GetWizardProjectiles());
+        else if(type == WeaponsType.SWORD)
+            weapon.gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
     }
 
     public void SwitchWeapon(GameObject newWeapon)

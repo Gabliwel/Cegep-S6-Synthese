@@ -26,6 +26,8 @@ TagManager:
   - DescriptionBox
   - LootManager
   - AchivementPopup
+  - SoundMaker
+  - SoundManager
   - GameManager
   - PauseUI
   layers:

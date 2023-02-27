@@ -6,9 +6,11 @@ public class SoundMaker : MonoBehaviour
 {
     [SerializeField] private static int arrayLenght = 15;
     [SerializeField] private GameObject individualSoundMaker;
+    [SerializeField] private float testVolume;
 
     private GameObject[] soundMakerArray = new GameObject[arrayLenght];
     private SoundManager soundManager;
+    private GameObject walkingMaker;
 
     void Start()
     {
@@ -77,12 +79,20 @@ public class SoundMaker : MonoBehaviour
 
     public void PlayerWalkSound(Vector2 position)
     {
-        RequestSound(position, soundManager.PlayerWalk);
+        RequestInfiniteSound(position, soundManager.PlayerWalk, testVolume);
+    }
+
+    public void StopPlayerWalkSound()
+    {
+        if (walkingMaker != null)
+        {
+            walkingMaker.SetActive(false);
+        }
     }
 
     public void PlayerTakeDamageSound(Vector2 position)
     {
-        RequestSound(position, soundManager.PlayerTakeDamage);
+        RequestSound(position, soundManager.PlayerTakeDamage, 0.2f);
     }
 
     public void GontrandShockWaveSound(Vector2 position)
@@ -200,17 +210,59 @@ public class SoundMaker : MonoBehaviour
         RequestSound(position, soundManager.GameOver);
     }
 
+    public void EnemyDeathSound(Vector2 position)
+    {
+        RequestSound(position, soundManager.EnemyDeath, 0.15f);
+    }
+
     private void RequestSound(Vector2 position, AudioClip audioClip)
     {
         foreach (GameObject individual in soundMakerArray)
         {
-            if (!individual.activeSelf)
+            if (!individual.activeSelf && individual != walkingMaker)
             {
                 individual.SetActive(true);
                 individual.GetComponent<IndividualSoundMaker>().PlayAtPoint(audioClip, position);
 
                 return;
             }
+        }
+    }
+
+    private void RequestSound(Vector2 position, AudioClip audioClip, float volume)
+    {
+        foreach (GameObject individual in soundMakerArray)
+        {
+            if (!individual.activeSelf && individual != walkingMaker)
+            {
+                individual.SetActive(true);
+                individual.GetComponent<IndividualSoundMaker>().PlayAtPoint(audioClip, position, volume);
+
+                return;
+            }
+        }
+    }
+
+    private void RequestInfiniteSound(Vector2 position, AudioClip audioClip, float volume)
+    {
+        if (walkingMaker == null)
+        {
+            foreach (GameObject individual in soundMakerArray)
+            {
+                if (!individual.activeSelf)
+                {
+                    walkingMaker = individual;
+                    individual.SetActive(true);
+                    individual.GetComponent<IndividualSoundMaker>().InfinitePlayAtPoint(audioClip, position, volume);
+
+                    return;
+                }
+            }
+        }
+        else
+        {
+            walkingMaker.SetActive(true);
+            walkingMaker.GetComponent<IndividualSoundMaker>().InfinitePlayAtPoint(audioClip, position, volume);
         }
     }
 }
