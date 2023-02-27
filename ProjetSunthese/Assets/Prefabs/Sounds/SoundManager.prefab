@@ -57,7 +57,7 @@ MonoBehaviour:
   playerDie: {fileID: 0}
   playerWalk: {fileID: 8300000, guid: d66ac31218dd04a4e8a254059e11eb62, type: 3}
   playerTakeDamage: {fileID: 8300000, guid: fcc43038d0f14e3488f6aa3d3868426b, type: 3}
-  gontrandShockWave: {fileID: 0}
+  gontrandShockWave: {fileID: 8300000, guid: 341ea3363c31ada4782b27cc1c971e5d, type: 3}
   gontrandAura: {fileID: 0}
   gontrandDie: {fileID: 0}
   michealTP: {fileID: 0}
@@ -73,7 +73,7 @@ MonoBehaviour:
   bobDie: {fileID: 0}
   bofrerBFL: {fileID: 0}
   bofrerRockets: {fileID: 0}
-  bofrerShieldHitSound: {fileID: 0}
+  bofrerShieldHitSound: {fileID: 8300000, guid: 057849ce23ec2204f8bef04d3f6101d9, type: 3}
   heal: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   equipBoots: {fileID: 0}
   equipGloves: {fileID: 0}

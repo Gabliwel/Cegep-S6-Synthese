@@ -43,6 +43,7 @@ public class Staff : Weapon
         orbit = false;
         animator.SetBool("Charge", false);
         SpawnProjectile();
+        SoundMaker.instance.PlayerStaffAttackSound(gameObject.transform.position);
         yield return new WaitForSeconds(recovery);
         orbit = true;
     }

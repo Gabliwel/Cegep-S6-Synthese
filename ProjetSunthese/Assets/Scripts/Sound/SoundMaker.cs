@@ -108,7 +108,7 @@ public class SoundMaker : MonoBehaviour
 
     public void GontrandShockWaveSound(Vector2 position)
     {
-        RequestSound(position, soundManager.GontrandShockWave);
+        RequestSound(position, soundManager.GontrandShockWave, 0.075f);
     }
 
     public void GontrandAuraSound(Vector2 position)
@@ -188,7 +188,7 @@ public class SoundMaker : MonoBehaviour
 
     public void BofrerShieldHitSound(Vector2 position)
     {
-        RequestSound(position, soundManager.BofrerShieldHitSound);
+        RequestSound(position, soundManager.BofrerShieldHitSound, 0.2f);
     }
 
     public void HealSound(Vector2 position)
