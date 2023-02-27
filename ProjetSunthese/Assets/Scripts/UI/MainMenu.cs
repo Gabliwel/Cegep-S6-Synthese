@@ -10,8 +10,23 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Tutoriel");
     }
 
+    private void OnEnable()
+    {
+        if(GameManager.instance != null)
+        {
+            Player.instance = null;
+            ProjectilesManager.instance = null;
+            Scaling.instance = null;
+            ParticleManager.instance = null;
+            DamageNumbersManager.instance = null; ;
+            GameManager.instance = null;
+        }
+    }
+
     public void QuitGame()
     {
-        Application.Quit();
+        //Application.Quit();
+        Destroy(GameManager.instance);
+        Debug.Log(GameManager.instance);
     }
 }

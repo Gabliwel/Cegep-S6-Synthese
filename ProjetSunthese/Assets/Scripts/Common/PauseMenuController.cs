@@ -9,7 +9,7 @@ public class PauseMenuController : MonoBehaviour
     {
         SceneManager.LoadScene("StartingMenu");
     }
-
+    
     public void Resume()
     {
         GameManager.instance.ChangeState();
