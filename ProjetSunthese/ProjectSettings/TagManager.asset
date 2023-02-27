@@ -26,6 +26,8 @@ TagManager:
   - DescriptionBox
   - LootManager
   - AchivementPopup
+  - GameManager
+  - PauseUI
   layers:
   - Default
   - TransparentFX

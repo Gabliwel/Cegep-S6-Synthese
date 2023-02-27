@@ -7,7 +7,7 @@ public class JSONSave : MonoBehaviour
 {
     private string path = "";
     private string persitentPath = "";
-    private AchievementManager manager;
+    private AchivementManager manager;
 
     private void Awake()
     {
@@ -15,7 +15,7 @@ public class JSONSave : MonoBehaviour
     }
     void Start()
     {
-        manager = GetComponent<AchievementManager>();
+        manager = GetComponent<AchivementManager>();
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class JSONSave : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        SaveData(manager.GetAchievementData());
+        SaveData(manager.getAchivementData());
     }
 
     private void SetPaths()
@@ -35,33 +35,23 @@ public class JSONSave : MonoBehaviour
         persitentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveAchivement.json";
     }
 
-    public void SaveData(AchievementsList archives)
+    public void SaveData(AchivementClass achives)
     {
         string savePath = persitentPath;
 
-        string json = JsonUtility.ToJson(archives);
+        string json = JsonUtility.ToJson(achives);
 
         using StreamWriter writer = new StreamWriter(savePath);
 
         writer.Write(json);
     }
 
-    public AchievementsList LoadData()
+    public AchivementClass LoadData()
     {
-        string json;
-        if (File.Exists(persitentPath))
-        {
-            using StreamReader reader = new StreamReader(persitentPath);
-            json = reader.ReadToEnd();
-        }
-        else
-        {
-            File.Create(persitentPath);
-            using StreamReader reader = new StreamReader(persitentPath);
-            json = reader.ReadToEnd();
-        }
+        using StreamReader reader = new StreamReader(persitentPath);
+        string json = reader.ReadToEnd();
 
-        AchievementsList data = JsonUtility.FromJson<AchievementsList>(json);
+        AchivementClass data = JsonUtility.FromJson<AchivementClass>(json);
 
         return data;
     }

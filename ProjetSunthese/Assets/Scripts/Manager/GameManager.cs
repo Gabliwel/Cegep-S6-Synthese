@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private Player playerInfo;
 
+    private GameObject pauseUI;
+
     private Scene actualLevel = 0;
     List<Scene> levelSceneList = new List<Scene>
     {
@@ -43,6 +45,8 @@ public class GameManager : MonoBehaviour
     private float currentLife = maxLives;
     private int gold;
     private int currentXp;
+
+    private PauseMenu pauseMenuController;
 
     bool scenesAreInTransition = false;
 
@@ -73,6 +77,7 @@ public class GameManager : MonoBehaviour
         currentXp = playerInfo.CurrentXp;
         gold = playerInfo.Gold;
         currentLife = playerInfo.Health;
+        pauseMenuController = GetComponent<PauseMenu>();
     }
 
     void Update()
@@ -105,13 +110,15 @@ public class GameManager : MonoBehaviour
         if (textsNotLinked)
         {
             textsNotLinked = false;
-
+            pauseUI = GameObject.FindGameObjectWithTag("PauseUI");
+            pauseUI.SetActive(false);
             if (actualLevel == Scene.GameOver)
             {
                 gameOverText = GameObject.FindGameObjectWithTag("GameOver").GetComponent<Text>();
                 gameOverText.text = gameOverInfo;
                 return;
             }
+
 
             playerLivesText = GameObject.FindGameObjectWithTag("Life").GetComponent<Text>();
             playerLivesText.text = currentLife.ToString();
@@ -297,5 +304,15 @@ public class GameManager : MonoBehaviour
         gameOverInfo = "Game Over";
         StartCoroutine(RestartLevelDelay(0, actualLevel));
         //AchivementManager.instance.Died();
+    }
+
+    public void PauseUI(bool state)
+    {
+        pauseUI.SetActive(state);
+    }
+
+    public void ChangeState()
+    {
+        pauseMenuController.ChangeState();
     }
 }
