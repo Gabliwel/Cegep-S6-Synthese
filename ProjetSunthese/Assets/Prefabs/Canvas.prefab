@@ -1624,8 +1624,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Achivement :)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e9f63c55b1d23c7459c6daba62a89d8e, type: 2}
+  m_sharedMaterial: {fileID: -8413375481815767472, guid: e9f63c55b1d23c7459c6daba62a89d8e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1759,8 +1759,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: WOW! A TITLE!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e9f63c55b1d23c7459c6daba62a89d8e, type: 2}
+  m_sharedMaterial: {fileID: -8413375481815767472, guid: e9f63c55b1d23c7459c6daba62a89d8e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1840,7 +1840,7 @@ GameObject:
   - component: {fileID: 6666449115051410798}
   m_Layer: 0
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: AchivementPopup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1863,7 +1863,7 @@ RectTransform:
   - {fileID: 1039397350}
   - {fileID: 1595572997953568401}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1889,8 +1889,8 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -1155799409
-  m_SortingOrder: 5
+  m_SortingLayerID: 359206789
+  m_SortingOrder: 255
   m_TargetDisplay: 0
 --- !u!114 &6666449115051410801
 MonoBehaviour:

@@ -104,8 +104,6 @@ public class GameManager : MonoBehaviour
         if (textsNotLinked)
         {
             textsNotLinked = false;
-            pauseUI = GameObject.FindGameObjectWithTag("PauseUI");
-            pauseUI.SetActive(false);
             if (actualLevel == Scene.GameOver)
             {
                 gameOverText = GameObject.FindGameObjectWithTag("GameOver").GetComponent<Text>();
@@ -122,6 +120,9 @@ public class GameManager : MonoBehaviour
 
             playerXpBar = GameObject.FindGameObjectWithTag("CurrentXP").GetComponent<XpBar>();
             playerXpBar.UpdateBar(playerInfo.CurrentXp, playerInfo.NeededXp, playerInfo.Level);
+
+            pauseUI = GameObject.FindGameObjectWithTag("PauseUI");
+            pauseUI.SetActive(false);
         }
     }
 
