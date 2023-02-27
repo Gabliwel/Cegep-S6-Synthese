@@ -40,7 +40,7 @@ public class PlayerInteractables : MonoBehaviour
     {
         if (!textsNotLinked) return;
         textsNotLinked = false;
-        //if (GameManager.instance.NeedLinkWithActivePlayer()) descBox = GameObject.FindGameObjectWithTag("DescriptionBox").GetComponent<DescriptionBox>();
+        if (GameManager.instance.NeedLinkWithActivePlayer()) descBox = GameObject.FindGameObjectWithTag("DescriptionBox").GetComponent<DescriptionBox>();
     }
 
     private void OnLevelWasLoaded(int level)
