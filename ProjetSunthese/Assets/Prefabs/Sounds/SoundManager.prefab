@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6234817679028413333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2500462490718178883}
+  - component: {fileID: 5168739177200681804}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2500462490718178883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6234817679028413333}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5461061, y: -2.2647295, z: -0.07651196}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5168739177200681804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6234817679028413333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 669329a36d7ca4f44806e38043916eb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelPopUp: {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
+  buyItem: {fileID: 8300000, guid: abdbbfd33a46f4549987385f85c536b5, type: 3}
+  denyBuyItem: {fileID: 8300000, guid: 1ed8fb76fc64e4e46847348138782234, type: 3}
+  playerRoll: {fileID: 0}
+  playerBowAttack: {fileID: 0}
+  playerAxeAttack: {fileID: 0}
+  playerWandAttack: {fileID: 0}
+  playerStaffAttack: {fileID: 8300000, guid: a652877b012108e41871f867ada9f176, type: 3}
+  playerDaggerAttack: {fileID: 0}
+  playerSwordAttack: {fileID: 8300000, guid: f11db4559b3ffff45b62e9327fc5535d, type: 3}
+  playerDie: {fileID: 0}
+  playerWalk: {fileID: 8300000, guid: d66ac31218dd04a4e8a254059e11eb62, type: 3}
+  playerTakeDamage: {fileID: 8300000, guid: fcc43038d0f14e3488f6aa3d3868426b, type: 3}
+  gontrandShockWave: {fileID: 0}
+  gontrandAura: {fileID: 0}
+  gontrandDie: {fileID: 0}
+  michealTP: {fileID: 0}
+  michealThrow: {fileID: 0}
+  michealDie: {fileID: 0}
+  jgRockThrow: {fileID: 0}
+  jgSpawnStalagmites: {fileID: 0}
+  jgSpawnMobs: {fileID: 0}
+  jgDie: {fileID: 0}
+  bobAura: {fileID: 0}
+  bobLaser: {fileID: 0}
+  bobInvincibility: {fileID: 0}
+  bobDie: {fileID: 0}
+  bofrerBFL: {fileID: 0}
+  bofrerRockets: {fileID: 0}
+  bofrerShieldHitSound: {fileID: 0}
+  heal: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
+  equipBoots: {fileID: 0}
+  equipGloves: {fileID: 0}
+  levelUp: {fileID: 0}
+  victory: {fileID: 0}
+  gameOver: {fileID: 0}
+  enemyDeath: {fileID: 8300000, guid: 974faf8e51e2cce42b06084d886f6af1, type: 3}
