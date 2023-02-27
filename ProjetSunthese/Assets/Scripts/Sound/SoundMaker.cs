@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SoundMaker : MonoBehaviour
 {
+    private static SoundMaker instance = null;
+
     [SerializeField] private static int arrayLenght = 15;
     [SerializeField] private GameObject individualSoundMaker;
     [SerializeField] private float testVolume;
@@ -14,6 +16,14 @@ public class SoundMaker : MonoBehaviour
 
     void Start()
     {
+        if (instance == null)
+            instance = this;
+
+        else if (instance != this)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
         for (int i = 0; i < arrayLenght; i++)
         {
@@ -79,7 +89,7 @@ public class SoundMaker : MonoBehaviour
 
     public void PlayerWalkSound(Vector2 position)
     {
-        RequestInfiniteSound(position, soundManager.PlayerWalk, testVolume);
+        RequestInfiniteSound(position, soundManager.PlayerWalk, 0.05f);
     }
 
     public void StopPlayerWalkSound()

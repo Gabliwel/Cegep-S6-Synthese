@@ -207,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDistance: 1
   checkLayer: 0
+  isClose: 0
 --- !u!1 &287249596
 GameObject:
   m_ObjectHideFlags: 0
