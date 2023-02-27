@@ -1,85 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9060655637748586456
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9060655637748586457}
-  - component: {fileID: 9060655637748586459}
-  - component: {fileID: 9060655637748586458}
-  m_Layer: 20
-  m_Name: RangeSensor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9060655637748586457
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9060655637748586456}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9060655637983149429}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9060655637748586459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9060655637748586456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 359664420b41d91469a3dba82f1f1188, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!58 &9060655637748586458
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9060655637748586456}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.27}
-  serializedVersion: 2
-  m_Radius: 5
 --- !u!1 &9060655637983149426
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +14,7 @@ GameObject:
   - component: {fileID: 9060655637983149430}
   - component: {fileID: 9060655637983149431}
   - component: {fileID: 1499945852222735301}
+  - component: {fileID: 4331148293165356807}
   m_Layer: 20
   m_Name: BaseEnemy
   m_TagString: Untagged
@@ -115,9 +36,8 @@ Transform:
   m_Children:
   - {fileID: 9060655638609233306}
   - {fileID: 9060655639560624525}
-  - {fileID: 9060655637748586457}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9060655637983149428
 SpriteRenderer:
@@ -276,6 +196,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.27}
   serializedVersion: 2
   m_Radius: 0.22
+--- !u!114 &4331148293165356807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9060655637983149426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea33360b70dba1d4db5ef92f5fb2749c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistance: 0
+  checkLayer: 0
 --- !u!1 &9060655638609233305
 GameObject:
   m_ObjectHideFlags: 0

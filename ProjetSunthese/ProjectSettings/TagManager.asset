@@ -25,6 +25,8 @@ TagManager:
   - GameOver
   - DescriptionBox
   - AchivementPopup
+  - SoundMaker
+  - SoundManager
   layers:
   - Default
   - TransparentFX
