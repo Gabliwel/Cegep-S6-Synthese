@@ -80,4 +80,9 @@ public class Bomb : Projectile
         parentHolder.ProjectileReached();
         base.DestinationReached();
     }
+
+    public void SetFuse(float timer)
+    {
+        fuse = timer;
+    }
 }
