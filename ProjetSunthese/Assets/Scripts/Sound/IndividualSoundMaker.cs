@@ -63,9 +63,4 @@ public class IndividualSoundMaker : MonoBehaviour
             yield return new WaitForSeconds(clip.length / 2);
         }
     }
-
-    /*private void OnDisable()
-    {
-        StopAllCoroutines();
-    }*/
 }
