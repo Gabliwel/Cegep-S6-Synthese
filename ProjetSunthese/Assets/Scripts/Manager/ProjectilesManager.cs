@@ -17,7 +17,7 @@ public class ProjectilesManager : MonoBehaviour
     [SerializeField] private GameObject wizardProjectileHolderPrefab;
     private WizardProjectile[] wizardProjectiles;
 
-    private ProjectilesManager instance;
+    public static ProjectilesManager instance;
 
     private void Awake()
     {

@@ -28,6 +28,8 @@ TagManager:
   - AchivementPopup
   - SoundMaker
   - SoundManager
+  - GameManager
+  - PauseUI
   layers:
   - Default
   - TransparentFX
