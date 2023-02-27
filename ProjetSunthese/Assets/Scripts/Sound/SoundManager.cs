@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    private static SoundManager instance = null;
+    public static SoundManager instance = null;
     [Header("Tuto panel")]
     [SerializeField] private AudioClip panelPopUp;
 

@@ -119,7 +119,7 @@ public class MichaelFight : Enemy
     public override void Die()
     {
         Scaling.instance.ScalingIncrease();
-        AchivementManager.instance.KilledMichael();
+        //AchivementManager.instance.KilledMichael();
         base.Die();
     }
 
