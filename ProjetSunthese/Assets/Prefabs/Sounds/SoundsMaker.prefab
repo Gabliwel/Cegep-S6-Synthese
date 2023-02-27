@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c59a3e9c3d79514789e259f47919460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  individualSoundMaker: {fileID: 0}
+  individualSoundMaker: {fileID: 1518213913606312182, guid: f7af1ae12647837449433cfdc158db8c, type: 3}
   testVolume: 0

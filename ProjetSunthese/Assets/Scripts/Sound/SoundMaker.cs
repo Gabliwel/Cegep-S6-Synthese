@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundMaker : MonoBehaviour
 {
-    private static SoundMaker instance = null;
+    public static SoundMaker instance = null;
 
     [SerializeField] private static int arrayLenght = 15;
     [SerializeField] private GameObject individualSoundMaker;
@@ -29,6 +29,7 @@ public class SoundMaker : MonoBehaviour
         {
             soundMakerArray[i] = Instantiate(individualSoundMaker);
             soundMakerArray[i].SetActive(false);
+            soundMakerArray[i].transform.parent = gameObject.transform;
         }
     }
 
