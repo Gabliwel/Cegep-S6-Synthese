@@ -68,13 +68,13 @@ public class BossBofrer : Enemy
         hpBar = GetComponentInChildren<HPBar>();
     }
 
-     void Start()
+    void Start()
     {
         stolenAttacks = revisitsManager.GetStolenAttacks();
         ActivateAttacks();
         EnsureRoutinesStarted();
         HPTreshold = CalculateHpThreshold();
-        hp -= CalculateHpAtThreshold();
+        hp -= GetRevisitHealthReduction();
         hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
     }
 
@@ -125,10 +125,12 @@ public class BossBofrer : Enemy
         return hp - (hp * cutoff);
     }
 
-    private float CalculateHpAtThreshold()
+    private float GetRevisitHealthReduction()
     {
-        float scaling = Scaling.instance.SendScaling();
-        return HP_THRESHOLD_SCALING_CUTOFF - (scaling - 1 / HP_THRESHOLD_SCALING_CUTOFF);
+        float scaling = Scaling.instance.SendScaling() - 1;
+
+        float cutoff = scaling / HP_THRESHOLD_SCALING_CUTOFF;
+        return hp * cutoff;
     }
 
     public override void Harm(float ammount, float overtime)
@@ -161,20 +163,28 @@ public class BossBofrer : Enemy
 
     public override void Die()
     {
-        if (hasRespawned)
+        if (IsFinalFight())
         {
-            base.Die();
+            if (hasRespawned)
+            {
+                base.Die();
+                GameManager.instance.SetNextLevel();
+            }
+            else
+            {
+                hasRespawned = true;
+                hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
+            }
         }
         else
         {
-            hasRespawned = true;
-            hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
+            hp = GetRevisitHealthReduction() - 1;
         }
     }
 
     private bool IsFinalFight()
     {
-        return Scaling.instance.SendScaling() > HP_THRESHOLD_SCALING_CUTOFF + 1;
+        return Scaling.instance.SendScaling() >= HP_THRESHOLD_SCALING_CUTOFF;
     }
 
     IEnumerator BFLTimerRoutine()

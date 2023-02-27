@@ -88,7 +88,7 @@ public class ShieldEnemy : Enemy
 
     protected override void Drop()
     {
-        Player.instance.GainDrops(0, xpGiven, goldDropped);
+        Player.instance.GainDrops(xpGiven, goldDropped);
     }
 
     public override void Harm(float ammount, float poison)

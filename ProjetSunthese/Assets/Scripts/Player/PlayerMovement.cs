@@ -132,9 +132,9 @@ public class PlayerMovement : MonoBehaviour
         animationController.SetRoll(false);
     }
 
-    public void IncreaseBaseSpeed()
+    public void IncreaseBaseSpeed(float value)
     {
-        BASE_SPEED += 1;
+        BASE_SPEED += value;
     }
 
     public void AddKnockBack(Vector2 difference, float force)

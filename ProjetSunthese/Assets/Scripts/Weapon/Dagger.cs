@@ -13,6 +13,7 @@ public class Dagger : Melee
     }
     public void Slash()
     {
+        flipped = (Mathf.Abs(Mathf.Atan2(mouseRelativeToPlayer.y, mouseRelativeToPlayer.x) * Mathf.Rad2Deg)) < 90;
         StartCoroutine(Attack());
     }
 

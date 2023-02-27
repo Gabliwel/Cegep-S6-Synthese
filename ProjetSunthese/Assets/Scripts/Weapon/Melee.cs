@@ -44,8 +44,8 @@ public class Melee : Weapon
 
     public override void StartAttack()
     {
-        base.StartAttack();
         flipped = (Mathf.Abs(Mathf.Atan2(mouseRelativeToPlayer.y, mouseRelativeToPlayer.x) * Mathf.Rad2Deg)) < 90;
+        base.StartAttack();
     }
 
     protected override IEnumerator Attack()
