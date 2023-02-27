@@ -3,7 +3,7 @@ guid: 1f09404747a8c424db59e9fb54272fd6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -47,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 15
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -63,6 +64,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -34016,9 +34019,9 @@ TextureImporter:
       u_fd_dungeon_1328: 733899834
       u_fd_dungeon_241: 714154776
       u_fd_dungeon_142: 707516721
-      u_fd_dungeon_1418: -536177659
       u_fd_dungeon_1588: -633157210
       u_fd_dungeon_162: -501535408
+      u_fd_dungeon_1418: -536177659
       u_fd_dungeon_3: 1176186651
       u_fd_dungeon_4: -1719005096
       u_fd_dungeon_1317: 812275630
@@ -34100,11 +34103,11 @@ TextureImporter:
       u_fd_dungeon_1108: -339849269
       u_fd_dungeon_1162: -1008592836
       u_fd_dungeon_914: -130870796
-      u_fd_dungeon_920: -1543410134
       u_fd_dungeon_1152: 1963605335
-      u_fd_dungeon_1144: -732900150
       u_fd_dungeon_1610: 1425210433
+      u_fd_dungeon_920: -1543410134
       u_fd_dungeon_1522: -973646956
+      u_fd_dungeon_1144: -732900150
       u_fd_dungeon_1138: -699952398
       u_fd_dungeon_1009: 1448018414
       u_fd_dungeon_1462: 639976969
@@ -34251,10 +34254,10 @@ TextureImporter:
       u_fd_dungeon_1483: -1825280836
       u_fd_dungeon_21: -1315492843
       u_fd_dungeon_30: -324224733
-      u_fd_dungeon_612: 113946171
+      u_fd_dungeon_1537: 1096621658
       u_fd_dungeon_915: -1847909803
       u_fd_dungeon_951: -585136627
-      u_fd_dungeon_1537: 1096621658
+      u_fd_dungeon_612: 113946171
       u_fd_dungeon_1105: 1786811700
       u_fd_dungeon_1173: 1169489749
       u_fd_dungeon_595: -766963820
@@ -34278,9 +34281,9 @@ TextureImporter:
       u_fd_dungeon_880: 264902403
       u_fd_dungeon_1199: 2040296474
       u_fd_dungeon_830: -1037977737
-      u_fd_dungeon_1378: 260045216
       u_fd_dungeon_1408: -280231305
       u_fd_dungeon_302: 459055379
+      u_fd_dungeon_1378: 260045216
       u_fd_dungeon_1398: -1936368084
       u_fd_dungeon_1406: -1001591261
       u_fd_dungeon_568: -138843320
@@ -34417,8 +34420,8 @@ TextureImporter:
       u_fd_dungeon_773: -380264365
       u_fd_dungeon_993: -430551434
       u_fd_dungeon_439: 1775342873
-      u_fd_dungeon_792: 839738446
       u_fd_dungeon_1350: -609245905
+      u_fd_dungeon_792: 839738446
       u_fd_dungeon_605: 1819009607
       u_fd_dungeon_1265: 1993213583
       u_fd_dungeon_571: 1676861132
@@ -34460,14 +34463,14 @@ TextureImporter:
       u_fd_dungeon_823: -416348574
       u_fd_dungeon_364: -1663591095
       u_fd_dungeon_588: 1547990890
-      u_fd_dungeon_751: -984437251
-      u_fd_dungeon_1299: -1960879237
-      u_fd_dungeon_381: -202168541
       u_fd_dungeon_1079: -1770462050
-      u_fd_dungeon_866: 1891735705
-      u_fd_dungeon_1525: -721865641
-      u_fd_dungeon_1073: 1031613853
+      u_fd_dungeon_1299: -1960879237
       u_fd_dungeon_1439: 1607384717
+      u_fd_dungeon_381: -202168541
+      u_fd_dungeon_1525: -721865641
+      u_fd_dungeon_751: -984437251
+      u_fd_dungeon_866: 1891735705
+      u_fd_dungeon_1073: 1031613853
       u_fd_dungeon_1245: -692640874
       u_fd_dungeon_202: 878898732
       u_fd_dungeon_1136: 1064980175
@@ -34503,14 +34506,14 @@ TextureImporter:
       u_fd_dungeon_1544: 1552877039
       u_fd_dungeon_887: -222311530
       u_fd_dungeon_581: 744558719
-      u_fd_dungeon_1279: -1664757955
       u_fd_dungeon_1419: -149017205
+      u_fd_dungeon_1279: -1664757955
       u_fd_dungeon_1216: 773453331
       u_fd_dungeon_1187: -1944042234
       u_fd_dungeon_598: 972267679
+      u_fd_dungeon_1230: -275328335
       u_fd_dungeon_787: -822320479
       u_fd_dungeon_111: 141545219
-      u_fd_dungeon_1230: -275328335
       u_fd_dungeon_1422: -950230963
       u_fd_dungeon_996: 880704432
       u_fd_dungeon_1495: -1550699560
@@ -34551,22 +34554,22 @@ TextureImporter:
       u_fd_dungeon_366: 756611555
       u_fd_dungeon_129: 206533820
       u_fd_dungeon_796: 1799558313
-      u_fd_dungeon_839: 1361764289
+      u_fd_dungeon_1583: 798190236
       u_fd_dungeon_1527: 1513804394
       u_fd_dungeon_301: -1047485203
       u_fd_dungeon_1307: 1898665029
-      u_fd_dungeon_1583: 798190236
+      u_fd_dungeon_839: 1361764289
       u_fd_dungeon_1166: 1838918014
       u_fd_dungeon_256: -1010927568
       u_fd_dungeon_1149: -1371716539
       u_fd_dungeon_1596: 991560483
       u_fd_dungeon_234: 156184715
       u_fd_dungeon_186: -1413597963
-      u_fd_dungeon_426: 2081152269
+      u_fd_dungeon_1597: 1597051454
       u_fd_dungeon_1381: -2125209884
+      u_fd_dungeon_426: 2081152269
       u_fd_dungeon_1372: 1345499183
       u_fd_dungeon_1518: -2105895901
-      u_fd_dungeon_1597: 1597051454
       u_fd_dungeon_753: -881828790
       u_fd_dungeon_1261: -843645733
       u_fd_dungeon_408: -1742168747
@@ -34646,12 +34649,12 @@ TextureImporter:
       u_fd_dungeon_967: 675184513
       u_fd_dungeon_55: 840788305
       u_fd_dungeon_1099: -1768359620
-      u_fd_dungeon_277: 1416881054
+      u_fd_dungeon_509: -1946479042
       u_fd_dungeon_1586: 14155887
       u_fd_dungeon_191: 601686616
-      u_fd_dungeon_797: -951763392
+      u_fd_dungeon_277: 1416881054
       u_fd_dungeon_1176: -992873803
-      u_fd_dungeon_509: -1946479042
+      u_fd_dungeon_797: -951763392
       u_fd_dungeon_346: 1034347054
       u_fd_dungeon_255: 1807464978
       u_fd_dungeon_15: 759186070
@@ -34822,20 +34825,20 @@ TextureImporter:
       u_fd_dungeon_986: 718552837
       u_fd_dungeon_1281: -520475253
       u_fd_dungeon_77: -986204631
-      u_fd_dungeon_712: -355923359
-      u_fd_dungeon_86: 2129512700
-      u_fd_dungeon_1386: -455074344
       u_fd_dungeon_468: -310183475
+      u_fd_dungeon_86: 2129512700
+      u_fd_dungeon_712: -355923359
       u_fd_dungeon_881: -1530479819
+      u_fd_dungeon_1474: -729551313
+      u_fd_dungeon_1386: -455074344
       u_fd_dungeon_1164: 1881097718
       u_fd_dungeon_432: 1854517977
-      u_fd_dungeon_1474: -729551313
+      u_fd_dungeon_1601: 1966167016
       u_fd_dungeon_338: 1704655664
       u_fd_dungeon_231: -738634589
       u_fd_dungeon_1220: -823040698
       u_fd_dungeon_1046: -1884771628
       u_fd_dungeon_1179: -854408583
-      u_fd_dungeon_1601: 1966167016
       u_fd_dungeon_1153: 1098766353
       u_fd_dungeon_994: 173881793
       u_fd_dungeon_85: -1836027993
@@ -34858,11 +34861,11 @@ TextureImporter:
       u_fd_dungeon_1576: -87336392
       u_fd_dungeon_131: -903384204
       u_fd_dungeon_1077: 213418337
-      u_fd_dungeon_1134: 1751266511
       u_fd_dungeon_1592: -17627776
       u_fd_dungeon_125: 416554957
-      u_fd_dungeon_347: -2079168441
       u_fd_dungeon_425: 2056057472
+      u_fd_dungeon_347: -2079168441
+      u_fd_dungeon_1134: 1751266511
       u_fd_dungeon_1193: 298102848
       u_fd_dungeon_1403: -1704232288
       u_fd_dungeon_1535: 41725759
@@ -34893,13 +34896,13 @@ TextureImporter:
       u_fd_dungeon_630: -522140463
       u_fd_dungeon_220: -1541181774
       u_fd_dungeon_661: 731181094
-      u_fd_dungeon_1014: 1091527960
       u_fd_dungeon_1313: 1653119651
       u_fd_dungeon_1116: -1775348647
       u_fd_dungeon_592: -169215019
       u_fd_dungeon_1064: -1267713959
       u_fd_dungeon_332: 1495429003
       u_fd_dungeon_569: 166396035
+      u_fd_dungeon_1014: 1091527960
       u_fd_dungeon_476: 286675416
       u_fd_dungeon_627: -1307820650
       u_fd_dungeon_233: 1330021570
@@ -35016,9 +35019,9 @@ TextureImporter:
       u_fd_dungeon_293: 1175808881
       u_fd_dungeon_472: 1849638575
       u_fd_dungeon_339: -1842975828
+      u_fd_dungeon_669: 2026783755
       u_fd_dungeon_542: -2116278082
       u_fd_dungeon_798: 1603651368
-      u_fd_dungeon_669: 2026783755
       u_fd_dungeon_1276: -1332046170
       u_fd_dungeon_113: -569800172
       u_fd_dungeon_1343: -717779219
@@ -35045,9 +35048,8 @@ TextureImporter:
       u_fd_dungeon_1473: -751034607
       u_fd_dungeon_538: -1823305993
       u_fd_dungeon_139: 1976918538
-      u_fd_dungeon_361: -1347627564
-      u_fd_dungeon_817: -1443121635
       u_fd_dungeon_145: -585985876
+      u_fd_dungeon_361: -1347627564
       u_fd_dungeon_484: 311596891
       u_fd_dungeon_1078: -73267349
       u_fd_dungeon_506: 1453814598
@@ -35055,15 +35057,16 @@ TextureImporter:
       u_fd_dungeon_1451: -130564156
       u_fd_dungeon_997: 1304661512
       u_fd_dungeon_1053: 1773586675
-      u_fd_dungeon_1353: -1800007472
+      u_fd_dungeon_817: -1443121635
       u_fd_dungeon_1167: -192378206
-      u_fd_dungeon_189: -105381350
+      u_fd_dungeon_1353: -1800007472
       u_fd_dungeon_985: 701193019
-      u_fd_dungeon_1361: 459567092
+      u_fd_dungeon_189: -105381350
       u_fd_dungeon_226: 1116769465
       u_fd_dungeon_174: 358768846
-      u_fd_dungeon_1045: -1045987097
+      u_fd_dungeon_1361: 459567092
       u_fd_dungeon_257: 502836673
+      u_fd_dungeon_1045: -1045987097
       u_fd_dungeon_182: 1084489133
       u_fd_dungeon_1323: 774449195
       u_fd_dungeon_1599: -985471419
@@ -35110,13 +35113,13 @@ TextureImporter:
       u_fd_dungeon_936: 1343723115
       u_fd_dungeon_704: 1766435929
       u_fd_dungeon_279: -1440624978
-      u_fd_dungeon_1095: 209691941
+      u_fd_dungeon_1538: -17477555
       u_fd_dungeon_982: -559067561
       u_fd_dungeon_973: -942028891
-      u_fd_dungeon_1538: -17477555
-      u_fd_dungeon_1334: 1091016585
+      u_fd_dungeon_1095: 209691941
       u_fd_dungeon_520: 1568374648
       u_fd_dungeon_1031: -1631140758
+      u_fd_dungeon_1334: 1091016585
       u_fd_dungeon_1332: -1103455962
       u_fd_dungeon_560: 1194903392
       u_fd_dungeon_754: -1827675189
@@ -35135,17 +35138,17 @@ TextureImporter:
       u_fd_dungeon_1202: -1470609566
       u_fd_dungeon_31: 1538137685
       u_fd_dungeon_24: -418661811
-      u_fd_dungeon_263: 1615580213
       u_fd_dungeon_794: -1085519226
       u_fd_dungeon_504: 456009568
+      u_fd_dungeon_263: 1615580213
       u_fd_dungeon_1481: 43427891
       u_fd_dungeon_1587: 486066812
       u_fd_dungeon_730: 2042459854
       u_fd_dungeon_18: 2060644826
-      u_fd_dungeon_137: 1401121465
       u_fd_dungeon_1531: 1169453290
-      u_fd_dungeon_995: 120143170
       u_fd_dungeon_1590: -67837663
+      u_fd_dungeon_137: 1401121465
+      u_fd_dungeon_995: 120143170
       u_fd_dungeon_1607: -373739833
       u_fd_dungeon_639: 1879427024
       u_fd_dungeon_876: 2072811099
@@ -35225,12 +35228,12 @@ TextureImporter:
       u_fd_dungeon_891: -1041851603
       u_fd_dungeon_1115: -2073958953
       u_fd_dungeon_502: -619655318
-      u_fd_dungeon_819: 552114739
       u_fd_dungeon_1026: 459765814
+      u_fd_dungeon_1217: 1948135847
       u_fd_dungeon_947: -13431132
       u_fd_dungeon_1215: 422796944
       u_fd_dungeon_656: 584961611
-      u_fd_dungeon_1217: 1948135847
+      u_fd_dungeon_819: 552114739
       u_fd_dungeon_1364: -491070842
       u_fd_dungeon_1504: 1804114469
       u_fd_dungeon_242: 105235532
@@ -35279,11 +35282,11 @@ TextureImporter:
       u_fd_dungeon_1438: -1044187536
       u_fd_dungeon_1511: 1195965569
       u_fd_dungeon_253: -1627507242
-      u_fd_dungeon_679: -848343169
+      u_fd_dungeon_1345: 113755740
       u_fd_dungeon_348: 1145744218
       u_fd_dungeon_1066: 584701040
+      u_fd_dungeon_679: -848343169
       u_fd_dungeon_1094: -1156538255
-      u_fd_dungeon_1345: 113755740
       u_fd_dungeon_149: -867452509
       u_fd_dungeon_748: -1826011101
       u_fd_dungeon_795: -590929482
@@ -35590,9 +35593,8 @@ TextureImporter:
       u_fd_dungeon_989: -912055393
       u_fd_dungeon_1121: 319896189
       u_fd_dungeon_367: -630397533
-  spritePackingTag: 
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
