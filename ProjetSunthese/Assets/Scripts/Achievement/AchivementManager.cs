@@ -6,6 +6,9 @@ using Billy.Weapons;
 public class AchivementManager : MonoBehaviour
 {
     public static AchivementManager instance;
+    
+
+    public List<Achievement> achievements = new List<Achievement>();
 
     private AchivementClass achivementData;
     private JSONSave save;
@@ -15,15 +18,15 @@ public class AchivementManager : MonoBehaviour
     private bool gotRageQuit;
     private float timeSinceDead = 3f;
 
-    private string ENEMIES = "You killed 30 enemies!";
-    private string CHEST = "You opened 30 chests";
-    private string BOB = "You defeated Bob for the first time!";
-    private string MICHAEL = "You defeated Michael for the first time!";
-    private string JEANGUY = "You defeated Jean Guy for the first time!";
-    private string GONTRAND = "You defeated Gontrand for the first time!";
-    private string GAMEDONE = "You beated the game for the first time!";
-    private string RAGEQUIT = "You didnt take that lost so well...";
-    void Start()
+    private const string ENEMIES = "You killed 30 enemies!";
+    private const string CHEST = "You opened 30 chests";
+    private const string BOB = "You defeated Bob for the first time!";
+    private const string MICHAEL = "You defeated Michael for the first time!";
+    private const string JEANGUY = "You defeated Jean Guy for the first time!";
+    private const string GONTRAND = "You defeated Gontrand for the first time!";
+    private const string GAMEDONE = "You beated the game for the first time!";
+    private const string RAGEQUIT = "You didnt take that lost so well...";
+    void Awake()
     {
         if (instance == null)
             instance = this;
@@ -49,6 +52,21 @@ public class AchivementManager : MonoBehaviour
             achivementData.rageQuitFirst = false;
             save.SaveData(achivementData);
         }
+
+        CreateListOfAchievementWithState();
+    }
+
+    void CreateListOfAchievementWithState()
+    {
+        achievements.Add(new Achievement("Test1", "Test1", achivementData.beatBob));
+        achievements.Add(new Achievement("Test2", "3", achivementData.beatGontrand));
+        achievements.Add(new Achievement("4", "5", achivementData.beatJeanGuy));
+        achievements.Add(new Achievement("5", "6", achivementData.beatMichael));
+        achievements.Add(new Achievement("7", "8", achivementData.skillIssue));
+        achievements.Add(new Achievement("fdsfds", "dsfdsfdsf", achivementData.weaponMaster));
+        achievements.Add(new Achievement("dsfsdf", "sdfsdf", achivementData.rageQuit));
+        achievements.Add(new Achievement("sfdf", "dsfds", achivementData.beatTheGame));
+
     }
 
     // Update is called once per frame
@@ -157,4 +175,19 @@ public class AchivementManager : MonoBehaviour
     {
         return this.achivementData;
     }
+}
+
+public class Achievement
+{
+    public Achievement(string title, string description, bool isCompleted)
+    {
+        Title = title;
+        Description = description;
+        IsCompleted = isCompleted;
+    }
+
+    public string Title { get; set; }
+    public string Description { get; set; }
+    [SerializeField]public Sprite Image { get; }
+    public bool IsCompleted { get; set; }
 }
