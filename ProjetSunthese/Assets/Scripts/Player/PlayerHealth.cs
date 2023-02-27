@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float armor = 0;
 
     public float CurrentHealth { get => currentHealth;}
+    public float CurrentMax { get => currentMax; }
 
     [Header("Info for debug - bonus")]
     // ------------- Health bonus --------------------

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 using System.Linq;
+using TMPro;
 
 public enum Scene
 {
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private const float maxLives = 100;
+    //private const float maxLives = 100;
 
     private GameObject player;
     private Player playerInfo;
@@ -40,17 +41,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<Scene> levelsDone;// = new List<Scene>();
     List<BossAttack> bofrerStolenAttacks = new List<BossAttack>();
 
-    private float currentLife = maxLives;
-    private int gold;
-    private int currentXp;
+    //private float currentLife = maxLives;
+    //private int gold;
+    //private int currentXp;
 
     bool scenesAreInTransition = false;
 
     private bool textsNotLinked = true;
 
-    Text playerGoldText;
-    Text playerXPText;
-    Text playerLivesText;
+    private TMP_Text playerGoldText;
+    private XpBar playerXpBar;
+    private LifeBar playerLifeBar;
     Text gameOverText;
 
     private string gameOverInfo = "";
@@ -66,13 +67,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         player = GameObject.FindGameObjectWithTag("Player");
         playerInfo = player.GetComponent<Player>();
-    }
-
-    private void Start()
-    {
-        currentXp = playerInfo.CurrentXp;
-        gold = playerInfo.Gold;
-        currentLife = playerInfo.Health;
     }
 
     void Update()
@@ -112,17 +106,16 @@ public class GameManager : MonoBehaviour
                 gameOverText.text = gameOverInfo;
                 return;
             }
+            Debug.Log(playerInfo);
+            Debug.Log(playerInfo.Health.CurrentMax);
+            playerLifeBar = GameObject.FindGameObjectWithTag("Life").GetComponent<LifeBar>();
+            playerLifeBar.SetDefault(playerInfo.Health);
 
-            playerLivesText = GameObject.FindGameObjectWithTag("Life").GetComponent<Text>();
-            playerLivesText.text = currentLife.ToString();
+            playerGoldText = GameObject.FindGameObjectWithTag("Gold").GetComponentInChildren<TMP_Text>();
+            playerGoldText.text = playerInfo.Gold.ToString("n0");
 
-            playerGoldText = GameObject.FindGameObjectWithTag("Gold").GetComponent<Text>();
-            playerGoldText.text = gold.ToString();
-
-            playerXPText = GameObject.FindGameObjectWithTag("CurrentXP").GetComponent<Text>();
-            playerXPText.text = currentXp.ToString();
-
-            UpdateHUD();
+            playerXpBar = GameObject.FindGameObjectWithTag("CurrentXP").GetComponent<XpBar>();
+            playerXpBar.UpdateBar(playerInfo.CurrentXp, playerInfo.NeededXp, playerInfo.Level);
         }
     }
 
@@ -132,15 +125,19 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    public void UpdateHUD()
+    public void UpdateGold()
     {
-        currentLife = playerInfo.Health;
-        gold = playerInfo.Gold;
-        currentXp = playerInfo.CurrentXp;
+        playerGoldText.text = playerInfo.Gold.ToString("n0");
+    }
 
-        playerXPText.text = "Xp : " + currentXp.ToString();
-        playerGoldText.text = "Gold : " + gold.ToString();
-        playerLivesText.text = "Life : " + currentLife.ToString();
+    public void UpdateXp()
+    {
+        playerXpBar.UpdateBar(playerInfo.CurrentXp, playerInfo.NeededXp, playerInfo.Level);
+    }
+
+    public void UpdateHealth()
+    {
+        playerLifeBar.UpdateHealth(playerInfo.Health);
     }
 
     public void GetRandomNextLevelAndStart()
@@ -278,17 +275,9 @@ public class GameManager : MonoBehaviour
         scenesAreInTransition = false;
     }
 
-    public void ResetGame()
-    {
-        currentLife = maxLives;
-        actualLevel = Scene.Tutoriel;
-        SceneManager.LoadScene("Tutoriel");
-    }
-
     public void PlayerDie()
     {
-        currentLife--;
-        playerLivesText.text = currentLife.ToString();
+        UpdateHealth();
     }
 
     public void SetGameOver()
