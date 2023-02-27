@@ -37,7 +37,7 @@ public class JSONSave : MonoBehaviour
 
     public void SaveData(AchivementClass achives)
     {
-        string savePath = path;
+        string savePath = persitentPath;
 
         string json = JsonUtility.ToJson(achives);
 
@@ -48,7 +48,7 @@ public class JSONSave : MonoBehaviour
 
     public AchivementClass LoadData()
     {
-        using StreamReader reader = new StreamReader(path);
+        using StreamReader reader = new StreamReader(persitentPath);
         string json = reader.ReadToEnd();
 
         AchivementClass data = JsonUtility.FromJson<AchivementClass>(json);
