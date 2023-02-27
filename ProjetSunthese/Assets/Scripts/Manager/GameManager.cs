@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         player = GameObject.FindGameObjectWithTag("Player");
         playerInfo = player.GetComponent<Player>();
+        pauseMenuController = GetComponent<PauseMenu>();
     }
 
     void Update()
