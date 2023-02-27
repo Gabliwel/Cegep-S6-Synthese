@@ -44,9 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5a107ec5305934588df8c82e34bae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minEnemySpawnNb: 4
-  maxEnemySpawnNb: 8
+  type: 0
+  minEnemySpawnNb: 2
+  maxEnemySpawnNb: 5
   enemyNb: 20
   enemyPrefab: {fileID: 1254572643622295535, guid: 001d2b890ac615c4782f23cb57df468b, type: 3}
-  minSpawnRange: {x: 0, y: 0}
-  maxSpawnRange: {x: 0, y: 0}
