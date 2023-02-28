@@ -52,6 +52,9 @@ public class GameManager : MonoBehaviour
     private TMP_Text playerGoldText;
     private XpBar playerXpBar;
     private LifeBar playerLifeBar;
+
+    private Animator sceneTransition = null;
+
     Text gameOverText;
 
     private string gameOverInfo = "";
@@ -116,6 +119,8 @@ public class GameManager : MonoBehaviour
 
             playerXpBar = GameObject.FindGameObjectWithTag("CurrentXP").GetComponent<XpBar>();
             playerXpBar.UpdateBar(playerInfo.CurrentXp, playerInfo.NeededXp, playerInfo.Level);
+
+            sceneTransition = GameObject.FindGameObjectWithTag("LevelFade").GetComponent<Animator>();
         }
     }
 
@@ -250,6 +255,12 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RestartLevelDelay(float delay, Scene level)
     {
+        if(sceneTransition != null)
+        {
+            sceneTransition.SetTrigger("Start");
+            yield return new WaitForSeconds(1);
+        }
+
         yield return new WaitForSeconds(delay);
         textsNotLinked = true;
 
