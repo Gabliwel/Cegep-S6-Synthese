@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class AchievementsPlacer : MonoBehaviour
 {
+    [SerializeField] private Sprite[] images;
     private void Start()
     {
         GameObject achievementTemplate = transform.GetChild(0).gameObject;
@@ -16,6 +17,7 @@ public class AchievementsPlacer : MonoBehaviour
 
             achievement.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = achievements[i].Title;
             achievement.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>().text = achievements[i].Description;
+            achievement.transform.GetChild(2).GetComponent<Image>().sprite = images[i];
             if (achievements[i].IsCompleted)
             {
                 achievement.GetComponent<Image>().color = new Color(0, 191, 47, 255);
