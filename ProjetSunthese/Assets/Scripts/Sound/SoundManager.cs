@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    private static SoundManager instance = null;
+    public static SoundManager instance = null;
     [Header("Tuto panel")]
     [SerializeField] private AudioClip panelPopUp;
 
@@ -58,6 +58,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip levelUp;
     [SerializeField] private AudioClip victory;
     [SerializeField] private AudioClip gameOver;
+    [SerializeField] private AudioClip enemyDeath;
 
     public static SoundManager Instance { get { return instance; } }
 
@@ -97,6 +98,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip LevelUp { get => levelUp; }
     public AudioClip Victory { get => victory; }
     public AudioClip GameOver { get => gameOver; }
+    public AudioClip EnemyDeath { get => enemyDeath; }
 
     void Awake()
     {

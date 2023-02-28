@@ -25,6 +25,8 @@ public abstract class Enemy : MonoBehaviour
     private float flashTime = 0.1f;
     private bool flashing = false;
 
+    private SoundMaker soundMaker;
+
     protected virtual void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
@@ -106,6 +108,7 @@ public abstract class Enemy : MonoBehaviour
         gameObject.SetActive(false);
         ParticleManager.instance.CallParticles(transform.position, particleScale, particleColor);
         AchivementManager.instance.KilledEnnemies();
+        SoundMaker.instance.EnemyDeathSound(gameObject.transform.position);
     }
 
     public virtual void ChangeLayer(int layer)

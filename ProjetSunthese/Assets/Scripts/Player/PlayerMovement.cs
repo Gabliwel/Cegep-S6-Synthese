@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerAnimationController animationController;
     private SpriteRenderer sprite;
     private Player player;
-
+    private SoundMaker soundMaker;
 
     private void Awake()
     {
@@ -91,6 +91,14 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(movementInput.y) < STOP_TRESHOLD)
             currentVelocity.y = 0;
 
+        if (currentVelocity.x != 0 || currentVelocity.y != 0)
+        {
+            SoundMaker.instance.PlayerWalkSound(gameObject.transform.position);
+        }
+        else
+        {
+            SoundMaker.instance.StopPlayerWalkSound();
+        }
     }
 
     private void AdjustRotation()
@@ -187,4 +195,10 @@ public class PlayerMovement : MonoBehaviour
     {
         speedReducer = newReducer;
     }
+
+    public void SetSoundMaker()
+    {
+        soundMaker = SoundMaker.instance;
+    }
+
 }

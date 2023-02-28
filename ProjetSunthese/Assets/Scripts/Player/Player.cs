@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
         weapon.SetPlayerBaseWeaponStat(baseWeaponStat);
         weapon.CalculateNewSpeed();
         animationController.ChangeOnWeaponType(weaponInfo.GetWeaponType());
+        playerMovement.SetSoundMaker();
     }
 
     private void Update()

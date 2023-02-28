@@ -68,6 +68,9 @@ public class Melee : Weapon
         float counter = 0;
         Quaternion current = rotationPoint.rotation;
         ActivateSensor();
+
+        SoundMaker.instance.PlayerSwordAttackSound(gameObject.transform.position);
+
         while (counter < duration)
         {
             counter += Time.deltaTime;

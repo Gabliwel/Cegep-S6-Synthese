@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private Player playerInfo;
 
+    private GameObject pauseUI;
+
     private Scene actualLevel = 0;
     List<Scene> levelSceneList = new List<Scene>
     {
@@ -44,6 +46,8 @@ public class GameManager : MonoBehaviour
     //private float currentLife = maxLives;
     //private int gold;
     //private int currentXp;
+
+    private PauseMenu pauseMenuController;
 
     bool scenesAreInTransition = false;
 
@@ -70,6 +74,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         player = GameObject.FindGameObjectWithTag("Player");
         playerInfo = player.GetComponent<Player>();
+        pauseMenuController = GetComponent<PauseMenu>();
     }
 
     void Update()
@@ -102,7 +107,8 @@ public class GameManager : MonoBehaviour
         if (textsNotLinked)
         {
             textsNotLinked = false;
-
+            /*pauseUI = GameObject.FindGameObjectWithTag("PauseUI");
+            pauseUI.SetActive(false);*/
             if (actualLevel == Scene.GameOver)
             {
                 gameOverText = GameObject.FindGameObjectWithTag("GameOver").GetComponent<Text>();
@@ -214,7 +220,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadEndScene()
     {
-        AchivementManager.instance.AddWeaponWonWith(Player.instance.GetComponentInChildren<WeaponInformations>().GetWeaponType());
+        //AchivementManager.instance.AddWeaponWonWith(Player.instance.GetComponentInChildren<WeaponInformations>().GetWeaponType());
         Debug.Log("AHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAH END");
         actualLevel = Scene.GameOver;
         gameOverInfo = "Victory";
@@ -296,6 +302,16 @@ public class GameManager : MonoBehaviour
         actualLevel = Scene.GameOver;
         gameOverInfo = "Game Over";
         StartCoroutine(RestartLevelDelay(0, actualLevel));
-        AchivementManager.instance.Died();
+        //AchivementManager.instance.Died();
+    }
+
+    public void PauseUI(bool state)
+    {
+        pauseUI.SetActive(state);
+    }
+
+    public void ChangeState()
+    {
+        pauseMenuController.ChangeState();
     }
 }

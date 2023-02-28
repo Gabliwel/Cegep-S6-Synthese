@@ -26,7 +26,12 @@ TagManager:
   - DescriptionBox
   - LootManager
   - AchivementPopup
+  - SoundMaker
+  - SoundManager
+  - GameManager
+  - PauseUI
   - LevelFade
+>>>>>>> a7976b726e9856602450ee4d342260f3188ef456
   layers:
   - Default
   - TransparentFX
