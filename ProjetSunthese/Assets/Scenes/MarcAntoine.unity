@@ -4332,7 +4332,7 @@ MonoBehaviour:
   secondPlayerTrans: {fileID: 1221593125}
   bossTrans: {fileID: 1699003814528641649}
   levelMusic: {fileID: 8300000, guid: 6770cc51472bbcd4eb2a9a69edf9c79b, type: 3}
-  bossMusic: {fileID: 8300000, guid: 6770cc51472bbcd4eb2a9a69edf9c79b, type: 3}
+  bossMusic: {fileID: 8300000, guid: d1d5247d6a6ba08418e483b2fd0b4dfa, type: 3}
 --- !u!4 &279554195
 Transform:
   m_ObjectHideFlags: 0
