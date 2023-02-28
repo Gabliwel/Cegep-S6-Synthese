@@ -55,7 +55,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("oof ouch ive been hit for " + (dammage) + " damage");
         if (dammage < 1) dammage = 1; 
         currentHealth -= dammage;
-        soundMaker.PlayerTakeDamageSound(gameObject.transform.position);
+        SoundMaker.instance.PlayerTakeDamageSound(gameObject.transform.position);
 
         if (currentHealth <= 0 && deathContract > 0)
         {

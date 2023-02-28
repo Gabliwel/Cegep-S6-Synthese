@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         player = GameObject.FindGameObjectWithTag("Player");
         //soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+        gameObject.SetActive(false);
     }
 
     private void Update()
@@ -34,6 +35,7 @@ public class PauseMenu : MonoBehaviour
         isPause = true;
         //player.GetComponent<PlayerController>().ChangePauseState(isPause);
         ManageSound();
+        gameObject.SetActive(true);
     }
 
     private void ManageSound()
@@ -61,6 +63,7 @@ public class PauseMenu : MonoBehaviour
         isPause = false;
         //player.GetComponent<PlayerController>().ChangePauseState(isPause);
         ManageSound();
+        gameObject.SetActive(false);
     }
 
     public void ChangeState()
@@ -69,6 +72,6 @@ public class PauseMenu : MonoBehaviour
             Resume();
         else
             Pause();
-        gameManager.PauseUI(isPause);
+        //gameManager.PauseUI(isPause);
     }
 }

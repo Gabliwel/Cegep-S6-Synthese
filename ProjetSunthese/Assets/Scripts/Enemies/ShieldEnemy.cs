@@ -97,6 +97,9 @@ public class ShieldEnemy : Enemy
         {
             base.Harm(ammount, poison);
         }
+        else{
+            SoundMaker.instance.BofrerShieldHitSound(gameObject.transform.position);
+        }
 
         if (hp <= (startingHp / 2) && !didShield)
         {
@@ -104,6 +107,7 @@ public class ShieldEnemy : Enemy
             shieldOn = true;
             shield.SetActive(true);
             StartCoroutine(ShieldTime());
+
         }
     }
 

@@ -8,40 +8,23 @@ public class RareBoy : Enemy
     [SerializeField] private GameObject[] itemDrop;
 
     private Sensor catchSensor;
-    private Sensor rangeSensor;
-    private ISensor<Player> playerRangeSensor;
+    private PlayerProximitySensor rangeSensor;
     private ISensor<Player> playerCatchingSensor;
-
-    private Player player;
 
     private Animator animator;
 
     protected override void Awake()
     {
         base.Awake();
-        rangeSensor = transform.Find("RangeSensor").GetComponent<Sensor>();
+        rangeSensor = transform.Find("RangeSensor").GetComponent<PlayerProximitySensor>();
         catchSensor = transform.Find("CatchSensor").GetComponent<Sensor>();
 
-        playerRangeSensor = rangeSensor.For<Player>();
         playerCatchingSensor = catchSensor.For<Player>();
-
-        playerRangeSensor.OnSensedObject += OnPlayerRangeSense;
-        playerRangeSensor.OnUnsensedObject += OnPlayerRangeUnsense;
 
         playerCatchingSensor.OnSensedObject += OnPlayerCatchSense;
         playerCatchingSensor.OnSensedObject += OnPlayerCatchUnsense;
 
         animator = GetComponent<Animator>();
-    }
-
-    void OnPlayerRangeSense(Player player)
-    {
-        this.player = player;
-    }
-
-    void OnPlayerRangeUnsense(Player player)
-    {
-        this.player = null;
     }
 
     void OnPlayerCatchSense(Player player)
@@ -63,11 +46,11 @@ public class RareBoy : Enemy
 
     void Update()
     {
-        if (player != null)
+        if (rangeSensor.IsClose())
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, -1 * speed * Time.deltaTime);
-            animator.SetFloat("Move X", transform.position.x - player.transform.position.x);
-            animator.SetFloat("Move Y", transform.position.y - player.transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, Player.instance.transform.position, -1 * speed * Time.deltaTime);
+            animator.SetFloat("Move X", transform.position.x - Player.instance.transform.position.x);
+            animator.SetFloat("Move Y", transform.position.y - Player.instance.transform.position.y);
         }
     }
 

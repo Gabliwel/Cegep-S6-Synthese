@@ -26,6 +26,7 @@ public class Bow : Weapon
         animator.SetBool("Recoil", true);
         animator.SetBool("Pull", false);
         SpawnProjectile();
+        SoundMaker.instance.PlayerSwordAttackSound(gameObject.transform.position);
         yield return new WaitForSeconds(recovery);
         animator.SetBool("Recoil", false);
         orbit = true;
