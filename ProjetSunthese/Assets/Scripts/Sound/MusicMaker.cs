@@ -49,9 +49,9 @@ public class MusicMaker : MonoBehaviour
     private IEnumerator FadeMusic(AudioClip clip)
     {
         float counter = 0;
-        float tick = audioSource.volume / fadeDuration ;
+        float tick = audioSource.volume / fadeDuration;
 
-        while(counter < fadeDuration)
+        while (counter < fadeDuration)
         {
             counter += Time.deltaTime;
             audioSource.volume -= tick * Time.deltaTime;
