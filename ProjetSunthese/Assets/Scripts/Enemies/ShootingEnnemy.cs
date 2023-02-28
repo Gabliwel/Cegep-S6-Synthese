@@ -8,53 +8,34 @@ public class ShootingEnnemy : Enemy
     [SerializeField] private GameObject fireBall;
 
     private Sensor damageSensor;
-    private Sensor rangeSensor;
-    private Sensor visionSensor;
+    private PlayerProximitySensor rangeSensor;
+    private PlayerProximitySensor visionSensor;
+
     private ISensor<Player> playerDamageSensor;
-    private ISensor<Player> playerRangeSensor;
-    private ISensor<Player> playerVisionSensor;
 
-    private Player player;
-
-    private bool shootingRange = false;
+    private bool shootingDelayGoing = false;
 
     private GameObject projectile;
 
     private Animator animator;
 
+    private float SHOOTING_WAIT = 1.5f;
+
     protected override void Awake()
     {
         base.Awake();
-        rangeSensor = transform.Find("RangeSensor").GetComponent<Sensor>();
+        rangeSensor = transform.Find("RangeSensor").GetComponent<PlayerProximitySensor>();
         damageSensor = transform.Find("DamageSensor").GetComponent<Sensor>();
-        visionSensor = transform.Find("VisionSensor").GetComponent<Sensor>();
+        visionSensor = transform.Find("VisionSensor").GetComponent<PlayerProximitySensor>();
         projectile = Instantiate(fireBall);
         projectile.SetActive(false);
 
-        playerRangeSensor = rangeSensor.For<Player>();
         playerDamageSensor = damageSensor.For<Player>();
-        playerVisionSensor = visionSensor.For<Player>();
-
-        playerRangeSensor.OnSensedObject += OnPlayerRangeSense;
-        playerRangeSensor.OnUnsensedObject += OnPlayerRangeUnsense;
 
         playerDamageSensor.OnSensedObject += OnPlayerDamageSense;
         playerDamageSensor.OnUnsensedObject += OnPlayerDamageUnsense;
 
-        playerVisionSensor.OnSensedObject += OnPlayerVisionSense;
-        playerVisionSensor.OnUnsensedObject += OnPlayerVisionUnsense;
-
         animator = GetComponent<Animator>();
-    }
-
-    void OnPlayerRangeSense(Player player)
-    {
-        shootingRange = true;
-    }
-
-    void OnPlayerRangeUnsense(Player player)
-    {
-        shootingRange = false;
     }
 
     void OnPlayerDamageSense(Player player)
@@ -67,36 +48,28 @@ public class ShootingEnnemy : Enemy
 
     }
 
-    void OnPlayerVisionSense(Player player)
-    {
-        this.player = player;
-    }
-
-    void OnPlayerVisionUnsense(Player player)
-    {
-        this.player = null;
-    }
-
     void Update()
     {
-        if (player != null)
+        if (visionSensor.IsClose())
         {
-            animator.SetFloat("Move X", player.transform.position.x - transform.position.x);
-            animator.SetFloat("Move Y", player.transform.position.y - transform.position.y);
+            animator.SetFloat("Move X", Player.instance.transform.position.x - transform.position.x);
+            animator.SetFloat("Move Y", Player.instance.transform.position.y - transform.position.y);
 
-            if (!shootingRange)
+            if (!rangeSensor.IsClose())
             {
-                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, Player.instance.transform.position, speed * Time.deltaTime);
             }
             else
             {
-                if (!projectile.activeSelf)
+                if (!projectile.activeSelf && !shootingDelayGoing)
                 {
+                    StartCoroutine(ShootingDelay());
+                    SoundMaker.instance.GontrandShockWaveSound(gameObject.transform.position);
                     Projectile fireBall = projectile.GetComponent<Projectile>();
                     projectile.transform.position = transform.position;
                     projectile.SetActive(true);
                     fireBall.SetDamage(damageDealt, 0);
-                    fireBall.SetDestination(player.transform.position);
+                    fireBall.SetDestination(Player.instance.transform.position);
                 }
             }
         }
@@ -105,5 +78,12 @@ public class ShootingEnnemy : Enemy
     protected override void Drop()
     {
         Player.instance.GainDrops(xpGiven, goldDropped);
+    }
+    private IEnumerator ShootingDelay()
+    {
+        shootingDelayGoing = true;
+        Debug.Log("Tick");
+        yield return new WaitForSeconds(SHOOTING_WAIT);
+        shootingDelayGoing = false;
     }
 }
