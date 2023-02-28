@@ -47,8 +47,6 @@ public class GameManager : MonoBehaviour
     //private int gold;
     //private int currentXp;
 
-    private PauseMenu pauseMenuController;
-
     bool scenesAreInTransition = false;
 
     private bool textsNotLinked = true;
@@ -71,7 +69,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         player = GameObject.FindGameObjectWithTag("Player");
         playerInfo = player.GetComponent<Player>();
-        pauseMenuController = GetComponent<PauseMenu>();
     }
 
     void Update()
@@ -122,9 +119,6 @@ public class GameManager : MonoBehaviour
 
             playerXpBar = GameObject.FindGameObjectWithTag("CurrentXP").GetComponent<XpBar>();
             playerXpBar.UpdateBar(playerInfo.CurrentXp, playerInfo.NeededXp, playerInfo.Level);
-
-            pauseUI = GameObject.FindGameObjectWithTag("PauseUI");
-            pauseUI.SetActive(false);
         }
     }
 
@@ -295,15 +289,5 @@ public class GameManager : MonoBehaviour
         gameOverInfo = "Game Over";
         StartCoroutine(RestartLevelDelay(0, actualLevel));
         //AchivementManager.instance.Died();
-    }
-
-    public void PauseUI(bool state)
-    {
-        pauseUI.SetActive(state);
-    }
-
-    public void ChangeState()
-    {
-        pauseMenuController.ChangeState();
     }
 }
