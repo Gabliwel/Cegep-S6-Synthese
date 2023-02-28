@@ -173,6 +173,7 @@ public class BasicLevelManager : MonoBehaviour
         playerScript.BlocMovement(true);
         playerScript.BlocAttack(true);
         yield return new WaitForSeconds(0.2f);
+        MusicMaker.instance.FadeTo(bossMusic, true);
         //do something (sound, anim...)
 
 
@@ -189,7 +190,6 @@ public class BasicLevelManager : MonoBehaviour
         //begin movement and attack
         playerScript.BlocMovement(false);
         playerScript.BlocAttack(false);
-        MusicMaker.instance.PlayMusic(bossMusic, true);
     }
 
     protected virtual void FirstSpawn()
