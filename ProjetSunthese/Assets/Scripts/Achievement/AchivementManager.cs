@@ -26,6 +26,8 @@ public class AchivementManager : MonoBehaviour
     private const string GONTRAND = "You defeated Gontrand for the first time!";
     private const string GAMEDONE = "You beated the game for the first time!";
     private const string RAGEQUIT = "You didnt take that lost so well...";
+    private const string DEATH = "You died... 30 times...";
+    private const string WEAPON_MASTER = "You won the game using every weapons!";
     void Awake()
     {
         if (instance == null)
@@ -58,15 +60,16 @@ public class AchivementManager : MonoBehaviour
 
     void CreateListOfAchievementWithState()
     {
-        achievements.Add(new Achievement("Test1", "Test1", achivementData.beatBob));
-        achievements.Add(new Achievement("Test2", "3", achivementData.beatGontrand));
-        achievements.Add(new Achievement("4", "5", achivementData.beatJeanGuy));
-        achievements.Add(new Achievement("5", "6", achivementData.beatMichael));
-        achievements.Add(new Achievement("7", "8", achivementData.skillIssue));
-        achievements.Add(new Achievement("fdsfds", "dsfdsfdsf", achivementData.weaponMaster));
-        achievements.Add(new Achievement("dsfsdf", "sdfsdf", achivementData.rageQuit));
-        achievements.Add(new Achievement("sfdf", "dsfds", achivementData.beatTheGame));
-
+        achievements.Add(new Achievement("My loot now!", CHEST, achivementData.lotsChestOpened));
+        achievements.Add(new Achievement("On a rampage", ENEMIES, achivementData.nbEnemyKilled));
+        achievements.Add(new Achievement("Dungeon escape", BOB, achivementData.beatBob));
+        achievements.Add(new Achievement("Extinguishing the flames", GONTRAND, achivementData.beatGontrand));
+        achievements.Add(new Achievement("Climbing the mountain", JEANGUY, achivementData.beatJeanGuy));
+        achievements.Add(new Achievement("Back to the grave", MICHAEL, achivementData.beatMichael));
+        achievements.Add(new Achievement("Learning in death", DEATH, achivementData.skillIssue));
+        achievements.Add(new Achievement("Rage quit", RAGEQUIT, achivementData.rageQuit));
+        achievements.Add(new Achievement("I did it!", GAMEDONE, achivementData.beatTheGame));
+        achievements.Add(new Achievement("Like the back of my hands", WEAPON_MASTER, achivementData.weaponMaster));
     }
 
     // Update is called once per frame

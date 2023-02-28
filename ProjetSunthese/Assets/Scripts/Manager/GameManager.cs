@@ -104,8 +104,8 @@ public class GameManager : MonoBehaviour
         if (textsNotLinked)
         {
             textsNotLinked = false;
-            pauseUI = GameObject.FindGameObjectWithTag("PauseUI");
-            pauseUI.SetActive(false);
+            /*pauseUI = GameObject.FindGameObjectWithTag("PauseUI");
+            pauseUI.SetActive(false);*/
             if (actualLevel == Scene.GameOver)
             {
                 gameOverText = GameObject.FindGameObjectWithTag("GameOver").GetComponent<Text>();
