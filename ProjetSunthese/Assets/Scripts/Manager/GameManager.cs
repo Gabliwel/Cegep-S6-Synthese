@@ -122,6 +122,9 @@ public class GameManager : MonoBehaviour
 
             playerXpBar = GameObject.FindGameObjectWithTag("CurrentXP").GetComponent<XpBar>();
             playerXpBar.UpdateBar(playerInfo.CurrentXp, playerInfo.NeededXp, playerInfo.Level);
+
+            pauseUI = GameObject.FindGameObjectWithTag("PauseUI");
+            pauseUI.SetActive(false);
         }
     }
 
