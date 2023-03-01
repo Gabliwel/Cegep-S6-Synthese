@@ -21,13 +21,13 @@ public class ProjectilesManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        //if (instance == null)
+        //    instance = this;
 
-        else if (instance != this)
-            Destroy(gameObject);
+        //else if (instance != this)
+        //    Destroy(gameObject);
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         arrows = new Projectile[arrowNb];
         for (int i = 0; i < arrowNb; i++)
