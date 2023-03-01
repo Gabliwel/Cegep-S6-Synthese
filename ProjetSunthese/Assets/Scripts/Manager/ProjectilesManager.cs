@@ -34,6 +34,7 @@ public class ProjectilesManager : MonoBehaviour
         {
             arrows[i] = Instantiate(arrowPrefab).GetComponent<Arrow>();
             arrows[i].gameObject.SetActive(false);
+            arrows[i].transform.parent = transform;
         }
 
         warlockProjectiles = new WarlockProjectileHolder[warlockProjectileNb];
@@ -41,6 +42,7 @@ public class ProjectilesManager : MonoBehaviour
         {
             warlockProjectiles[i] = Instantiate(warlockProjectileHolderPrefab).GetComponent<WarlockProjectileHolder>();
             warlockProjectiles[i].gameObject.SetActive(false);
+            warlockProjectiles[i].transform.parent = transform;
         }
 
         wizardProjectiles = new WizardProjectile[wizardProjectileNb];
@@ -48,6 +50,7 @@ public class ProjectilesManager : MonoBehaviour
         {
             wizardProjectiles[i] = Instantiate(wizardProjectileHolderPrefab).GetComponent<WizardProjectile>();
             wizardProjectiles[i].gameObject.SetActive(false);
+            wizardProjectiles[i].transform.parent = transform;
         }
     }
 
