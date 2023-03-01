@@ -15,6 +15,7 @@ public class SingletonCleaner : MonoBehaviour
             Destroy(DamageNumbersManager.instance.gameObject);
             Destroy(Scaling.instance.gameObject);
             Destroy(ParticleManager.instance.gameObject);
+            Destroy(MusicMaker.instance.gameObject);
         }
     }
 }
