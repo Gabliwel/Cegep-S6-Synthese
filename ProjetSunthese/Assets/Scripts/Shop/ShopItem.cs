@@ -41,6 +41,8 @@ public class ShopItem : Interactable
         text = GetComponentInChildren<TMP_Text>();
         itemSprite.sortingOrder = 5;
         text.text = newPrice.ToString();
+
+        gameObject.transform.localEulerAngles = Vector3.zero;
     }
 
     public void SetItem(GameObject item, int price, ItemRarity newRarity)
