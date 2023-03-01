@@ -197,14 +197,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10b53079aad67a409e440f1d42befa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHP: 15
+  baseHP: 23
   hp: 0
   particleColor: {r: 0.69803923, g: 0, b: 0.227451, a: 1}
   particleScale: 2
-  baseDamageDealt: 9
-  damageDealt: 0
-  goldDropped: 0
-  xpGiven: 0
+  baseDamageDealt: 25
+  damageDealt: 25
+  goldDropped: 5
+  xpGiven: 30
   overtime: 0
   speed: 3
   bombPrefab: {fileID: 2051212489966439589, guid: bf855ee8373beda4a83409bac573d94f, type: 3}
