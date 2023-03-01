@@ -36,6 +36,10 @@ public class BasicLevelManager : MonoBehaviour
     [SerializeField] private Transform secondPlayerTrans;
     [SerializeField] private Transform bossTrans;
 
+    [Header("Music")]
+    [SerializeField] private AudioClip levelMusic;
+    [SerializeField] private AudioClip bossMusic;
+
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -143,6 +147,7 @@ public class BasicLevelManager : MonoBehaviour
         followingBoss.GetComponent<AnimatedFollow>().StartChasing(player.transform, this);
         playerScript.BlocMovement(false);
         playerScript.BlocAttack(false);
+        MusicMaker.instance.PlayMusic(levelMusic, true);
     }
 
     // Status du "during" en param, et iverse pour le "after"
@@ -168,6 +173,7 @@ public class BasicLevelManager : MonoBehaviour
         playerScript.BlocMovement(true);
         playerScript.BlocAttack(true);
         yield return new WaitForSeconds(0.2f);
+        MusicMaker.instance.FadeTo(bossMusic, true);
         //do something (sound, anim...)
 
 

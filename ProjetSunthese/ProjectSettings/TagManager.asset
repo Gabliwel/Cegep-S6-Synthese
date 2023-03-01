@@ -32,6 +32,7 @@ TagManager:
   - PauseUI
   - LevelFade
   - DialogueBox
+  - BofrerSceneManager
   layers:
   - Default
   - TransparentFX
