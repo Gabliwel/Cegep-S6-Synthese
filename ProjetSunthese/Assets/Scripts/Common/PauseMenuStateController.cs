@@ -8,6 +8,7 @@ public class PauseMenuStateController : MonoBehaviour
     private void Awake()
     {
         pauseUI = GameObject.FindGameObjectWithTag("PauseUI");
+        pauseUI.SetActive(false);
     }
     private void Update()
     {
