@@ -20,7 +20,11 @@ public class SimpleBillyMovement : MonoBehaviour
 
     void Update()
     {
-        if (!canMove) return;
+        if (!canMove)
+        {
+            lastDir = Vector2.zero;
+            return;
+        }
 
         Vector2 movementInput = Vector2.zero;
         movementInput.x = Input.GetAxis("Horizontal");
@@ -44,5 +48,10 @@ public class SimpleBillyMovement : MonoBehaviour
 
         animator.SetFloat("Move X", lastDir.x);
         animator.SetFloat("Move Y", lastDir.y);
+    }
+
+    public void StopMove()
+    {
+        canMove = false;
     }
 }

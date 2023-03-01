@@ -17,7 +17,8 @@ public enum Scene
     KevenLevel,
     MarcAntoine,
     EarlyCentralBoss,
-    GameOver
+    GabGameOver,
+    GabVictory
 }
 
 public class GameManager : MonoBehaviour
@@ -58,10 +59,6 @@ public class GameManager : MonoBehaviour
     private LifeBar playerLifeBar;
 
     private Animator sceneTransition = null;
-
-    Text gameOverText;
-
-    private string gameOverInfo = "";
 
     void Awake()
     {
@@ -109,10 +106,8 @@ public class GameManager : MonoBehaviour
             textsNotLinked = false;
             /*pauseUI = GameObject.FindGameObjectWithTag("PauseUI");
             pauseUI.SetActive(false);*/
-            if (actualLevel == Scene.GameOver)
+            if (actualLevel == Scene.GabGameOver)
             {
-                gameOverText = GameObject.FindGameObjectWithTag("GameOver").GetComponent<Text>();
-                gameOverText.text = gameOverInfo;
                 return;
             }
             Debug.Log(playerInfo);
@@ -132,7 +127,7 @@ public class GameManager : MonoBehaviour
 
     public bool NeedLinkWithActivePlayer()
     {
-        if (actualLevel == Scene.GameOver) return false;
+        if (actualLevel == Scene.GabGameOver) return false;
         return true;
     }
 
@@ -222,8 +217,7 @@ public class GameManager : MonoBehaviour
     {
         //AchivementManager.instance.AddWeaponWonWith(Player.instance.GetComponentInChildren<WeaponInformations>().GetWeaponType());
         Debug.Log("AHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAH END");
-        actualLevel = Scene.GameOver;
-        gameOverInfo = "Victory";
+        actualLevel = Scene.GabVictory;
         StartCoroutine(RestartLevelDelay(0, actualLevel));
     }
 
@@ -286,8 +280,10 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("EarlyCentralBoss");
         else if (level.Equals(Scene.GabShop))
             SceneManager.LoadScene("GabShop");
+        else if (level.Equals(Scene.GabGameOver))
+            SceneManager.LoadScene("GabGameOver");
         else
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("GabVictory");
 
         scenesAreInTransition = false;
     }
@@ -299,8 +295,7 @@ public class GameManager : MonoBehaviour
 
     public void SetGameOver()
     {
-        actualLevel = Scene.GameOver;
-        gameOverInfo = "Game Over";
+        actualLevel = Scene.GabGameOver;
         StartCoroutine(RestartLevelDelay(0, actualLevel));
         //AchivementManager.instance.Died();
     }
