@@ -38,7 +38,7 @@ Transform:
   - {fileID: 9060655638609233306}
   - {fileID: 9060655639560624525}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9060655637983149428
 SpriteRenderer:
@@ -232,7 +232,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 0.3
   m_BaseOffset: 0.45
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 7
   m_ObstacleAvoidanceType: 4
 --- !u!1 &9060655638609233305
 GameObject:
