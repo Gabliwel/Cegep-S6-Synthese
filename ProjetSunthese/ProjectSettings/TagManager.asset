@@ -30,6 +30,7 @@ TagManager:
   - SoundManager
   - GameManager
   - PauseUI
+  - BofrerSceneManager
   layers:
   - Default
   - TransparentFX

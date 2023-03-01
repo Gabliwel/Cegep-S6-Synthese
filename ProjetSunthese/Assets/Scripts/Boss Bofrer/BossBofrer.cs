@@ -174,6 +174,7 @@ public class BossBofrer : Enemy
             {
                 hasRespawned = true;
                 hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
+                GameObject.FindGameObjectWithTag("BofrerSceneManager").GetComponent<BofrerSceneManager>().SwitchToPhase2();
             }
         }
         else
