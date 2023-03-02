@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7057483640575373477}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: LimitMin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7057483641724944356}
   - component: {fileID: 7057483641724944357}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: BobBossThrowAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7057483642069055742}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: LimitMax
   m_TagString: Untagged
   m_Icon: {fileID: 0}

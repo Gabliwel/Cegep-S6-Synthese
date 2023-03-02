@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8566137690466289897}
   - component: {fileID: 8566137690466289898}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: ShieldMinionSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}

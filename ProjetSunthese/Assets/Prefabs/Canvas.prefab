@@ -2438,7 +2438,7 @@ GameObject:
   - component: {fileID: 6666449115051410798}
   m_Layer: 0
   m_Name: Canvas
-  m_TagString: AchivementPopup
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2462,7 +2462,7 @@ RectTransform:
   - {fileID: 5554988}
   - {fileID: 1595572997953568401}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

@@ -38,8 +38,9 @@ public class BossMountainEnemy : Enemy
 
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         isMoving = false;
         animator.SetBool("Shake", true);
         shaking = true;

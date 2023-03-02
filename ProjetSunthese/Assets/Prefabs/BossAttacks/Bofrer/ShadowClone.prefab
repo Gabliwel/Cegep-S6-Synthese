@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2671165191672617806}
   - component: {fileID: 2671165191672617800}
   - component: {fileID: 2671165191672617803}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: ShadowClone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 2671165192110925840}
   - component: {fileID: 2671165192110925842}
   - component: {fileID: 2671165192110925843}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

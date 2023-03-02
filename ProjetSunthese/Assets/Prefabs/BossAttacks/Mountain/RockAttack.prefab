@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1616007489643449865}
   - component: {fileID: 5026212580568401188}
   - component: {fileID: 4161923199008325614}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: RockAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 5470186171984177599}
   - component: {fileID: 5315137508324825789}
   - component: {fileID: 5011713974733768897}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

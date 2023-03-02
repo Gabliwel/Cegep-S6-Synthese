@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd94ee65cb26a6d4f89287ca32443cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteInFirstChild: 0
   baseHP: 100
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
@@ -218,6 +219,7 @@ MonoBehaviour:
   damageDealt: 0
   goldDropped: 0
   xpGiven: 0
+  overtime: 0
   trail: {fileID: 7903956196021880511, guid: 039c57c16f2fb4a4b9c9c2ef977328c5, type: 3}
   trailListSize: 50
   lavaAuraChild: {fileID: 7918460415357103839}
@@ -271,8 +273,12 @@ MonoBehaviour:
   weaponsDrop:
   - {fileID: 8256077553287885047, guid: b8d5e5df62c7a54408a432e08eb6d2dd, type: 3}
   - {fileID: 3590006991846360811, guid: f61d9337f4f4530479accbcc43eea492, type: 3}
+  - {fileID: 3517278699109352328, guid: 74214f754865224489a835506c31c176, type: 3}
+  - {fileID: 3590006991846360811, guid: c0c950faa4f7ed746b3b9f7f056dc4bc, type: 3}
+  - {fileID: 8256077553287885047, guid: 67cbe2809fcfcc945a308bee3d654d24, type: 3}
+  - {fileID: 3590006991846360811, guid: 2572bcd5a3ceb6748ab4d15e25f8cdf0, type: 3}
   portal: {fileID: 6202557103775462470, guid: 54a64a756be8cc14b884655180b6de4a, type: 3}
-  portalSpawnPosition: {x: 99, y: 52, z: 0}
+  portalSpawnPosition: {x: 250, y: 30, z: 0}
 --- !u!1001 &1606056622886637699
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4203734232129174572}
   - component: {fileID: 4203734232129174575}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Bof_ShadowClone_Charge
   m_TagString: Untagged
   m_Icon: {fileID: 0}

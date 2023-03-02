@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1053107871101927476}
   - component: {fileID: 1053107871101927477}
   - component: {fileID: 1053107871101927478}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Stimuli
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 4956035096160595419}
   - component: {fileID: 8048311022803808209}
   - component: {fileID: 8540982835520369330}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 8256077553287885046}
   - component: {fileID: 4896106373343443002}
   - component: {fileID: 8256077553287885045}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Interact Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088ef9b221b386f46b5c6b9ceac10431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ROTATION_OFFSET: 90
+  ROTATION_OFFSET: 45
   orbit: 1
   baseDamage: 8
   defaultStartup: 0.1

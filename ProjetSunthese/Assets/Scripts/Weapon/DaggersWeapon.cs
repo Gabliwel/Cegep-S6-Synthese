@@ -22,6 +22,11 @@ public class Daggers : Weapon
         orbit = false;
     }
 
+    private void OnEnable()
+    {
+        orbit = false;
+    }
+
     protected override IEnumerator Attack()
     {
         cooldownTimer = cooldown + duration + startup + recovery + delay;

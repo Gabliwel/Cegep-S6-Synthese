@@ -246,12 +246,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48442538fc72e4947859dd1371a8f4fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteInFirstChild: 0
   baseHP: 20
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 1
   baseDamageDealt: 15
-  damageDealt: 0
+  damageDealt: 1
   goldDropped: 4
   xpGiven: 25
   overtime: 3

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6671509024396577499}
   - component: {fileID: 6671509024396577492}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Zone Attack Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6671509024512031499}
   - component: {fileID: 6671509024512031493}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Zone Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7317202516772109540}
   - component: {fileID: 7317202516772109539}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: BobBossGrowingAttackZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,6 +218,7 @@ MonoBehaviour:
   sensor: {fileID: 7317202517588566781}
   knockBackForce: 12
   speedInSec: 2
+  damage: 7
   smallScale: {x: 0.5, y: 0.5, z: 1}
   bigScale: {x: 8, y: 8, z: 1}
   reverseOrder: 0
@@ -234,7 +235,7 @@ GameObject:
   - component: {fileID: 7317202517588566783}
   - component: {fileID: 7317202517588566781}
   - component: {fileID: 7317202517588566782}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

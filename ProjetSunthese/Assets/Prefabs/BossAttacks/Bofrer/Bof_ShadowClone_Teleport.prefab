@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6606153650833549469}
   - component: {fileID: 6606153650833549468}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Bof_ShadowClone_Teleport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
