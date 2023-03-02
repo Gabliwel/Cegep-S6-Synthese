@@ -1,6 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+[Serializable]
+struct Dialogue
+{
+    [SerializeField] public string[] lines;
+}
 
 public class BofrerSceneManager : MonoBehaviour
 {
@@ -11,11 +18,11 @@ public class BofrerSceneManager : MonoBehaviour
     [SerializeField] private float barTime = 2;
     [SerializeField] private float barSpace = 300;
     [SerializeField] private float zoom = 2;
-    [SerializeField] private float unzoom = 4;
     [SerializeField] private float timeToBoss = 1.3f;
     [SerializeField] private float smooth = 2;
     [SerializeField] private float buffer = 0.1f;
     [SerializeField] private GameObject bofrer;
+    [SerializeField] private Dialogue[] possibleDialogues;
     private TalkingCharacter cutsceneInteractable;
 
     private void Start()
@@ -67,6 +74,7 @@ public class BofrerSceneManager : MonoBehaviour
             yield return null;
         }
         cutsceneInteractable.ActivateStimuli();
+        cutsceneInteractable.SetDialogues(GetRandomDialogue());
         cutsceneInteractable.Interact(Player.instance);
         while (!cutsceneInteractable.HasDialogueEnded())
             yield return null;
@@ -98,5 +106,11 @@ public class BofrerSceneManager : MonoBehaviour
         Player.instance.BlocMovement(false);
         Player.instance.BlocAttack(false);
         MusicMaker.instance.PlayMusic(normalSong, true);
+    }
+
+    private string[] GetRandomDialogue()
+    {
+        int dialogueChosen = UnityEngine.Random.Range(0, possibleDialogues.Length);
+        return possibleDialogues[dialogueChosen].lines;
     }
 }

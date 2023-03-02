@@ -264,6 +264,102 @@ PrefabInstance:
       propertyPath: playerSpawnPosition.y
       value: -16
       objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[0].lines.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[1].lines.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[2].lines.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[3].lines.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[0].lines.Array.data[0]
+      value: this
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[0].lines.Array.data[1]
+      value: is
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[0].lines.Array.data[2]
+      value: the
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[0].lines.Array.data[3]
+      value: painkiller
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[1].lines.Array.data[0]
+      value: you
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[1].lines.Array.data[1]
+      value: are
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[1].lines.Array.data[2]
+      value: an
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[1].lines.Array.data[3]
+      value: idiot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[1].lines.Array.data[4]
+      value: HAHAHAHAHAHA
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[2].lines.Array.data[0]
+      value: ASD
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[2].lines.Array.data[1]
+      value: ASD
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[2].lines.Array.data[2]
+      value: ASD
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[2].lines.Array.data[3]
+      value: ASD
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[2].lines.Array.data[4]
+      value: SD
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[3].lines.Array.data[0]
+      value: QWE
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[3].lines.Array.data[1]
+      value: QWE
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[3].lines.Array.data[2]
+      value: QWE
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[3].lines.Array.data[3]
+      value: QWE
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[3].lines.Array.data[4]
+      value: QWE
+      objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446590, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: m_Name
       value: BofrerSceneManager
@@ -737,6 +833,18 @@ PrefabInstance:
     - target: {fileID: 2957089320703888599, guid: 5532930371edbac4f918a43a8ad436f7, type: 3}
       propertyPath: m_Name
       value: Final Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232137628202580929, guid: 5532930371edbac4f918a43a8ad436f7, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[0].second.m_AnimationSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232137628202580929, guid: 5532930371edbac4f918a43a8ad436f7, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[1].second.m_AnimationSpeed
+      value: 5.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232137628202580929, guid: 5532930371edbac4f918a43a8ad436f7, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[2].second.m_AnimationSpeed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

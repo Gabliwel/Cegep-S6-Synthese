@@ -1270,11 +1270,83 @@ PrefabInstance:
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: bofrer
       value: 
-      objectReference: {fileID: 5013013055915108135}
+      objectReference: {fileID: 589754765}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: cinematicBars
       value: 
       objectReference: {fileID: 1401463463}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[0].lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[1].lines.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[2].lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[0].lines.Array.data[0]
+      value: PLACEHOLDER MOMENT
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[0].lines.Array.data[1]
+      value: :)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[1].lines.Array.data[0]
+      value: LET
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[1].lines.Array.data[1]
+      value: 'ME '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[1].lines.Array.data[2]
+      value: DO
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[1].lines.Array.data[3]
+      value: IT
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[1].lines.Array.data[4]
+      value: FOR
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[1].lines.Array.data[5]
+      value: YOU
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[2].lines.Array.data[0]
+      value: OH MY GOD
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[2].lines.Array.data[1]
+      value: WOW
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[2].lines.Array.data[2]
+      value: IT
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[2].lines.Array.data[3]
+      value: FOR
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[2].lines.Array.data[4]
+      value: YOU
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[2].lines.Array.data[5]
+      value: YOU
+      objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446590, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: m_Name
       value: BofrerSceneManager
@@ -1368,17 +1440,6 @@ PrefabInstance:
       insertIndex: 3
       addedObject: {fileID: 5013013055915108141}
   m_SourcePrefab: {fileID: 100100000, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
---- !u!114 &5013013055915108135 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-  m_PrefabInstance: {fileID: 5013013055915108134}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 589754765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c8a89a51a8bd2644ada469703517a34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5013013055915108141
 MonoBehaviour:
   m_ObjectHideFlags: 0
