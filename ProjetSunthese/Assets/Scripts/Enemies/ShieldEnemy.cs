@@ -9,10 +9,10 @@ public class ShieldEnemy : Enemy
 
     [SerializeField] bool useNavMesh;
 
+    [SerializeField] float attackSpeed;
+
     private Sensor damageSensor;
     private ISensor<Player> playerDamageSensor;
-    private bool canDamage = true;
-    private bool tickGoing = false;
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -46,6 +46,12 @@ public class ShieldEnemy : Enemy
         shield = transform.GetChild(0).gameObject;
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        StartCoroutine(AttackPlayerInRange());
+    }
+
     private void Start()
     {
         startingHp = hp;
@@ -53,20 +59,12 @@ public class ShieldEnemy : Enemy
 
     void OnPlayerDamageSense(Player player)
     {
-        if (canDamage)
-        {
-            canDamage = false;
-            player.Harm(damageDealt);
-        }
-        Debug.Log("Yes");
+
     }
 
     void OnPlayerDamageUnsense(Player player)
     {
-        if (!tickGoing)
-        {
-            StartCoroutine(TickDelay());
-        }
+
     }
 
     void Update()
@@ -75,13 +73,16 @@ public class ShieldEnemy : Enemy
         {
             animator.SetFloat("Move X", Player.instance.transform.position.x - transform.position.x);
             animator.SetFloat("Move Y", Player.instance.transform.position.y - transform.position.y);
-            if (useNavMesh)
+            if (!TouchingPlayer())
             {
-                agent.SetDestination(Player.instance.transform.position);
-            }
-            else
-            {
-                transform.position = Vector2.MoveTowards(transform.position, Player.instance.transform.position, speed * Time.deltaTime);
+                if (useNavMesh)
+                {
+                    agent.SetDestination(Player.instance.transform.position);
+                }
+                else
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, Player.instance.transform.position, speed * Time.deltaTime);
+                }
             }
         }
     }
@@ -97,7 +98,8 @@ public class ShieldEnemy : Enemy
         {
             base.Harm(ammount, poison);
         }
-        else{
+        else
+        {
             SoundMaker.instance.BofrerShieldHitSound(gameObject.transform.position);
         }
 
@@ -111,20 +113,30 @@ public class ShieldEnemy : Enemy
         }
     }
 
-    private IEnumerator TickDelay()
-    {
-        tickGoing = true;
-        Debug.Log("Tick");
-        yield return new WaitForSeconds(1f);
-        canDamage = true;
-        tickGoing = false;
-    }
-
     private IEnumerator ShieldTime()
     {
         Debug.Log("Shield");
         yield return new WaitForSeconds(3f);
         shield.SetActive(false);
         shieldOn = false;
+    }
+
+    private IEnumerator AttackPlayerInRange()
+    {
+        while (isActiveAndEnabled)
+        {
+            if (TouchingPlayer())
+            {
+                Player.instance.Harm(damageDealt);
+                yield return new WaitForSeconds(attackSpeed);
+            }
+            yield return null;
+        }
+    }
+
+    private bool TouchingPlayer()
+    {
+        Debug.Log(playerDamageSensor.SensedObjects.Count > 0);
+        return playerDamageSensor.SensedObjects.Count > 0;
     }
 }
