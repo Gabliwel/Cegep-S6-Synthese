@@ -46,6 +46,12 @@ public class AchivementManager : MonoBehaviour
         }
         gotRageQuit = achivementData.rageQuit;
 
+
+        if(transform.parent != null)
+        {
+            achivementPop = transform.parent.GetComponent<DescriptionBox>();
+        }
+
         if (achivementData.rageQuitFirst && achivementData.rageQuit)
         {
             StartCoroutine(ShowAchivementGot(RAGEQUIT));
@@ -136,6 +142,7 @@ public class AchivementManager : MonoBehaviour
         save.SaveData(achivementData);
     }
 
+    [ContextMenu("Test")]
     public void KilledMichael()
     {
         achivementData.beatMichael = true;
@@ -185,7 +192,11 @@ public class AchivementManager : MonoBehaviour
     }
     private IEnumerator ShowAchivementGot(string description)
     {
-        achivementPop = GameObject.FindGameObjectWithTag("AchivementPopup").GetComponent<DescriptionBox>();
+        if(achivementPop == null || transform.parent == null)
+        {
+            achivementPop = GameObject.FindGameObjectWithTag("AchivementPopup").GetComponent<DescriptionBox>();
+        }
+
         achivementPop.PopUp("achievement", description);
         yield return new WaitForSeconds(5f);
         achivementPop.Close();
