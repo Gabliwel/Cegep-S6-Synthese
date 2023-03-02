@@ -202,7 +202,7 @@ Transform:
   - {fileID: 2667284386169142949}
   - {fileID: 2667284385171170694}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2667284385821027672
 SpriteRenderer:
@@ -268,14 +268,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4afb310b125b54daffcdf384bdabb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHP: 20
+  baseHP: 30
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 1
-  baseDamageDealt: 0
+  baseDamageDealt: 2
   damageDealt: 0
-  goldDropped: 0
-  xpGiven: 0
+  goldDropped: 4
+  xpGiven: 40
   overtime: 0
   speed: 2.5
   useNavMesh: 0
@@ -293,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDistance: 10
   checkLayer: 0
+  isClose: 0
 --- !u!50 &2667284385821027687
 Rigidbody2D:
   serializedVersion: 4
