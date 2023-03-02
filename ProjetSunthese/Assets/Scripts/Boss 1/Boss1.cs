@@ -192,6 +192,7 @@ public class Boss1 : Enemy
     public override void Die()
     {
         base.Die();
+        AchivementManager.instance.KilledBob();
         Scaling.instance.ScalingIncrease();
         drops.BossDrop(transform.position, boss);
     }

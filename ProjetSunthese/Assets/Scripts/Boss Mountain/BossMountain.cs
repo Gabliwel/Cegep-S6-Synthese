@@ -72,6 +72,7 @@ public class BossMountain : Enemy
     public override void Die()
     {
         Scaling.instance.ScalingIncrease();
+        AchivementManager.instance.KilledJeanGuy();
         base.Die();
     }
 
