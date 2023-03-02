@@ -49,4 +49,23 @@ public class TalkingCharacter : Interactable
     {
         isDoingDialogue = false;
     }
+
+    public bool HasDialogueEnded()
+    {
+        return !isDoingDialogue;
+    }
+
+    public void SetDialogues(string[] newDialogues) 
+    {
+        dialogues = newDialogues;
+    }
+
+    public void ActivateStimuli()
+    {
+        transform.GetChild(0).gameObject.SetActive(true);
+    }
+    public void DeactivateStimuli()
+    {
+        transform.GetChild(0).gameObject.SetActive(false);
+    }
 }

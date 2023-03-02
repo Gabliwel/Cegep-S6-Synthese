@@ -43,7 +43,7 @@ public abstract class Enemy : MonoBehaviour
     /// TODO: FIXME: this is bad; no time for fix in alpha
     /// </summary>
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
         damageDealt = Scaling.instance.CalculateDamageOnScaling(baseDamageDealt);
