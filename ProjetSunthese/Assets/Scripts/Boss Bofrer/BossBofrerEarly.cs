@@ -18,12 +18,17 @@ public class BossBofrerEarly : Enemy
         base.Awake();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         animator = GetComponent<Animator>();
-        animator.SetTrigger("Early");
         sensor = GetComponentInChildren<Sensor>();
         playerSensor = sensor.For<Player>();
         playerSensor.OnSensedObject += OnPlayerSense;
         playerSensor.OnUnsensedObject += OnPlayerUnSense;
         hpBar = GetComponentInChildren<HPBar>();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        animator.SetTrigger("Early");
     }
 
     private void Start()

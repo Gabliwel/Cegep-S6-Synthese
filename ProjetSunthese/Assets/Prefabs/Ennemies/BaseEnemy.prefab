@@ -104,13 +104,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806375a646ae4504ab59f973c2759090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHP: 20
+  baseHP: 15
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 1
   baseDamageDealt: 3
   damageDealt: 0
-  goldDropped: 2
+  goldDropped: 1
   xpGiven: 15
   overtime: 0
   speed: 3

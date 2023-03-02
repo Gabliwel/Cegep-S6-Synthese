@@ -219,8 +219,8 @@ MonoBehaviour:
   particleScale: 1
   baseDamageDealt: 5
   damageDealt: 0
-  goldDropped: 5
-  xpGiven: 5
+  goldDropped: 3
+  xpGiven: 20
   overtime: 0
   speed: 3
   fireBall: {fileID: 3064224491589127201, guid: da3b129f26165c545b8e1893af57f80e, type: 3}

@@ -58,6 +58,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomb-Explosion
       objectReference: {fileID: 0}
+    - target: {fileID: 789609560142270941, guid: 5dee49bb9abdfa04cbd2f8ffeaff34cc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3106000087841300728, guid: 5dee49bb9abdfa04cbd2f8ffeaff34cc, type: 3}
       propertyPath: m_RootOrder
       value: -1
