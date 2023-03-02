@@ -28,6 +28,17 @@ public class AchivementManager : MonoBehaviour
     private const string RAGEQUIT = "You didnt take that lost so well...";
     private const string DEATH = "You died... 30 times...";
     private const string WEAPON_MASTER = "You won the game using every weapons!";
+
+    private const string ENEMIES_NAME = "On a rampage";
+    private const string CHEST_NAME = "My loot now!";
+    private const string BOB_NAME = "Dungeon escape";
+    private const string MICHAEL_NAME = "Back to the grave";
+    private const string JEANGUY_NAME = "Climbing the mountain";
+    private const string GONTRAND_NAME = "Extinguishing the flames";
+    private const string GAMEDONE_NAME = "I did it!";
+    private const string RAGEQUIT_NAME = "Rage quit";
+    private const string DEATH_NAME = "Learning in death";
+    private const string WEAPON_MASTER_NAME = "Like the back of my hands";
     void Awake()
     {
         if (instance == null)
@@ -54,7 +65,7 @@ public class AchivementManager : MonoBehaviour
 
         if (achivementData.rageQuitFirst && achivementData.rageQuit)
         {
-            StartCoroutine(ShowAchivementGot(RAGEQUIT));
+            StartCoroutine(ShowAchivementGot(RAGEQUIT_NAME, RAGEQUIT));
             achivementData.rageQuitFirst = false;
             save.SaveData(achivementData);
         }
@@ -111,7 +122,7 @@ public class AchivementManager : MonoBehaviour
         if (achivementData.nbDeath >= 30)
         {
             achivementData.skillIssue = true;
-            StartCoroutine(ShowAchivementGot(CHEST));
+            StartCoroutine(ShowAchivementGot(DEATH_NAME, DEATH));
         }
 
         save.SaveData(achivementData);
@@ -123,7 +134,7 @@ public class AchivementManager : MonoBehaviour
         if (achivementData.nbChestOpened >= 30)
         {
             achivementData.lotsChestOpened = true;
-            StartCoroutine(ShowAchivementGot(CHEST));
+            StartCoroutine(ShowAchivementGot(CHEST_NAME, CHEST));
         }
         save.SaveData(achivementData);
     }
@@ -135,7 +146,7 @@ public class AchivementManager : MonoBehaviour
         if(!achivementData.nbEnemyKilled && achivementData.nbKilledTotal >= 100)
         {
             achivementData.nbEnemyKilled = true;
-            StartCoroutine(ShowAchivementGot(ENEMIES));
+            StartCoroutine(ShowAchivementGot(ENEMIES_NAME, ENEMIES));
         }
         save.SaveData(achivementData);
     }
@@ -143,7 +154,7 @@ public class AchivementManager : MonoBehaviour
     public void KilledGontrand()
     {
         achivementData.beatGontrand = true;
-        StartCoroutine(ShowAchivementGot(GONTRAND));
+        StartCoroutine(ShowAchivementGot(GONTRAND_NAME, GONTRAND));
         save.SaveData(achivementData);
     }
 
@@ -151,21 +162,21 @@ public class AchivementManager : MonoBehaviour
     public void KilledMichael()
     {
         achivementData.beatMichael = true;
-        StartCoroutine(ShowAchivementGot(MICHAEL));
+        StartCoroutine(ShowAchivementGot(MICHAEL_NAME, MICHAEL));
         save.SaveData(achivementData);
     }
 
     public void KilledBob()
     {
         achivementData.beatBob = true;
-        StartCoroutine(ShowAchivementGot(BOB));
+        StartCoroutine(ShowAchivementGot(BOB_NAME, BOB));
         save.SaveData(achivementData);
     }
 
     public void KilledJeanGuy()
     {
         achivementData.beatJeanGuy = true;
-        StartCoroutine(ShowAchivementGot(JEANGUY));
+        StartCoroutine(ShowAchivementGot(JEANGUY_NAME, JEANGUY));
         save.SaveData(achivementData);
     }
 
@@ -195,14 +206,14 @@ public class AchivementManager : MonoBehaviour
             save.SaveData(achivementData);
         }
     }
-    private IEnumerator ShowAchivementGot(string description)
+    private IEnumerator ShowAchivementGot(string title, string description)
     {
         if(achivementPop == null || transform.parent == null)
         {
             achivementPop = GameObject.FindGameObjectWithTag("AchivementPopup").GetComponent<DescriptionBox>();
         }
 
-        achivementPop.PopUp("achievement", description);
+        achivementPop.PopUp(title, description);
         yield return new WaitForSeconds(5f);
         achivementPop.Close();
     }
