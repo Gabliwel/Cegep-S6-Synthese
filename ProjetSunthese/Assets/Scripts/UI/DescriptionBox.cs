@@ -73,6 +73,7 @@ public class DescriptionBox : MonoBehaviour
 
     public void Close()
     {
+        if (animator == null) return;
         animator.SetBool("open", false);
     }
 }

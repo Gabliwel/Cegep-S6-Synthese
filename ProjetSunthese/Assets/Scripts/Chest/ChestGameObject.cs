@@ -15,7 +15,9 @@ public class ChestGameObject : Interactable
         GameObject drop = item.item;
         Debug.Log(item.currentRarity);
         drop.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        drop.GetComponent<GenericItem>().SetItem(chestLayer, item.currentRarity);
+        GenericItem genItem = drop.GetComponent<GenericItem>();
+        genItem.SetItem(chestLayer, item.currentRarity);
+        genItem.DoDust();
         drop.SetActive(true);
 
         gameObject.SetActive(false);

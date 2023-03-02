@@ -6,6 +6,7 @@ public abstract class Enemy : MonoBehaviour
 {
     private Color harmColor = new Color(255, 0, 0, 100);
     private Color poisonColor = new Color(0, 255, 0, 100);
+    [SerializeField] private bool spriteInFirstChild = false;
     [SerializeField] protected float baseHP;
     [SerializeField] protected float hp;
     [SerializeField] protected Color particleColor = new Color(255, 0, 0);
@@ -29,7 +30,14 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Awake()
     {
-        sprite = GetComponent<SpriteRenderer>();
+        if(spriteInFirstChild)
+        {
+            sprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        }
+        else
+        {
+            sprite = GetComponent<SpriteRenderer>();
+        }
     }
     /// <summary>
     /// TODO: FIXME: this is bad; no time for fix in alpha

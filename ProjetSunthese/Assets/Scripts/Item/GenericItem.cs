@@ -9,6 +9,10 @@ public abstract class GenericItem : Interactable
     protected ItemRarity rarity;
     private SpriteRenderer rarityLight;
 
+    private bool doDust = false;
+    private Animator dust;
+    private float dustTime = 0.50f;
+
     // Colors for item light base on rarity
     private static Color commun = new Color(0.2f, 1, 0.29f, 1);
     private static Color rare = new Color(0.1f, 0.61f, 1, 1);
@@ -20,6 +24,8 @@ public abstract class GenericItem : Interactable
     {
         base.Awake();
         rarityLight = gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
+        dust = gameObject.transform.GetChild(2).GetComponent<Animator>();
+        dust.gameObject.SetActive(false);
     }
 
     public override void Interact(Player player) 
@@ -70,6 +76,32 @@ public abstract class GenericItem : Interactable
         rarityLight.sortingLayerName = chestLayer;
         gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         SetRarity(newRarity);
+    }
+
+    public void DoDust()
+    {
+        doDust = true;
+    }
+
+    private void OnEnable()
+    {
+        if (doDust)
+        {
+            dust.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = sprite.sortingLayerName;
+            dust.gameObject.SetActive(true);
+            dust.SetTrigger("Move");
+            StartCoroutine(WaitDust());
+        }
+        else
+        {
+            dust.gameObject.SetActive(false);
+        }
+    }
+
+    private IEnumerator WaitDust()
+    {
+        yield return new WaitForSeconds(dustTime);
+        dust.gameObject.SetActive(false);
     }
 
     protected void UpdateColorByRarity()

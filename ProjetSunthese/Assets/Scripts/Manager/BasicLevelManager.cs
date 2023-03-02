@@ -51,9 +51,6 @@ public class BasicLevelManager : MonoBehaviour
 
         ChangeListsActivation(true);
         SetStartPositions();
-
-        boss.SetActive(false);
-        followingBoss.SetActive(true);
     }
 
     protected virtual void SetStartPositions()
@@ -65,6 +62,8 @@ public class BasicLevelManager : MonoBehaviour
 
     private void Start()
     {
+        boss.SetActive(false);
+        followingBoss.SetActive(true);
         if (doCinematic)
         {
             StartCoroutine(Cinematic());
