@@ -191,6 +191,5 @@ public class Achievement
 
     public string Title { get; set; }
     public string Description { get; set; }
-    [SerializeField]public Sprite Image { get; }
     public bool IsCompleted { get; set; }
 }

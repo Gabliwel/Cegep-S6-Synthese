@@ -30,6 +30,8 @@ TagManager:
   - SoundManager
   - GameManager
   - PauseUI
+  - LevelFade
+  - DialogueBox
   - BofrerSceneManager
   layers:
   - Default

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9060655637983149430}
   - component: {fileID: 9060655637983149431}
   - component: {fileID: 1499945852222735301}
-  - component: {fileID: 4331148293165356807}
+  - component: {fileID: 6141571517999393378}
   m_Layer: 20
   m_Name: BaseEnemy
   m_TagString: Untagged
@@ -38,7 +38,7 @@ Transform:
   - {fileID: 9060655638609233306}
   - {fileID: 9060655639560624525}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9060655637983149428
 SpriteRenderer:
@@ -104,13 +104,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806375a646ae4504ab59f973c2759090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHP: 100
+  baseHP: 15
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 1
   baseDamageDealt: 3
   damageDealt: 0
-  goldDropped: 2
+  goldDropped: 1
   xpGiven: 15
   overtime: 0
   speed: 3
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDistance: 10
   checkLayer: 1
+  isClose: 0
 --- !u!95 &9060655637983149430
 Animator:
   serializedVersion: 5
@@ -231,7 +232,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 0.3
   m_BaseOffset: 0.45
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 7
   m_ObstacleAvoidanceType: 4
 --- !u!1 &9060655638609233305
 GameObject:

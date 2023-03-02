@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerInteractables : MonoBehaviour
 {
+    [SerializeField] private bool useComplexePlayerInteractable = true;
+
     [SerializeField] private Sensor sensor;
     private ISensor<Interactable> interactablesSensor;
 
@@ -21,14 +23,13 @@ public class PlayerInteractables : MonoBehaviour
         interactablesSensor = sensor.For<Interactable>();
         interactablesSensor.OnSensedObject += OnInteractableSense;
         interactablesSensor.OnUnsensedObject += OnInteractableUnsense;
-        player = GetComponent<Player>();
+        if(useComplexePlayerInteractable) player = GetComponent<Player>();
         closeInteractables = new List<Interactable>();
     }
 
     private void Update()
     {
         Link();
-
 
         if (Input.GetKeyDown(KeyCode.E) && currentSelected != null)
         {
@@ -40,6 +41,11 @@ public class PlayerInteractables : MonoBehaviour
     {
         if (!textsNotLinked) return;
         textsNotLinked = false;
+        if(!useComplexePlayerInteractable)
+        {
+            descBox = GameObject.FindGameObjectWithTag("DescriptionBox").GetComponent<DescriptionBox>();
+            return;
+        }
         if (GameManager.instance.NeedLinkWithActivePlayer()) descBox = GameObject.FindGameObjectWithTag("DescriptionBox").GetComponent<DescriptionBox>();
     }
 
@@ -50,7 +56,6 @@ public class PlayerInteractables : MonoBehaviour
 
     private void OnInteractableSense(Interactable interectable)
     {
-        Debug.Log("Sense");
         if(currentSelected != null)
         {
             currentSelected.ChangeSelectedState(false, descBox);
