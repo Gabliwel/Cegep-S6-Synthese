@@ -279,6 +279,7 @@ MonoBehaviour:
   overtime: 0
   speed: 2.5
   useNavMesh: 0
+  attackSpeed: 1
 --- !u!114 &2667284385821027685
 MonoBehaviour:
   m_ObjectHideFlags: 0
