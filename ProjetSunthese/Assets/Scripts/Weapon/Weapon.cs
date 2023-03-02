@@ -53,7 +53,7 @@ public abstract class Weapon : MonoBehaviour
             OrbitClosestToMouse();
         if (cooldownTimer > 0)
             cooldownTimer -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetButtonDown("Fire1"))
         {
             StartAttack();
         }
