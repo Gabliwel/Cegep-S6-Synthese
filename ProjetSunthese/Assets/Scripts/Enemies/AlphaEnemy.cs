@@ -9,10 +9,10 @@ public class AlphaEnemy : Enemy
 
     [SerializeField] bool useNavMesh;
 
+    [SerializeField] float attackSpeed;
+
     private Sensor damageSensor;
     private ISensor<Player> playerDamageSensor;
-    private bool canDamage = true;
-    private bool tickGoing = false;
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -38,21 +38,20 @@ public class AlphaEnemy : Enemy
         animator = GetComponent<Animator>();
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        StartCoroutine(AttackPlayerInRange());
+    }
+
     void OnPlayerDamageSense(Player player)
     {
-        if (canDamage)
-        {
-            canDamage = false;
-            player.Harm(damageDealt);
-        }
+
     }
 
     void OnPlayerDamageUnsense(Player player)
     {
-        if (!tickGoing)
-        {
-            StartCoroutine(TickDelay());
-        }
+
     }
 
     void Update()
@@ -61,14 +60,18 @@ public class AlphaEnemy : Enemy
         {
             animator.SetFloat("Move X", Player.instance.transform.position.x - transform.position.x);
             animator.SetFloat("Move Y", Player.instance.transform.position.y - transform.position.y);
-            if (useNavMesh)
+            if (!TouchingPlayer())
             {
-                agent.SetDestination(Player.instance.transform.position);
+                if (useNavMesh)
+                {
+                    agent.SetDestination(Player.instance.transform.position);
+                }
+                else
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, Player.instance.transform.position, speed * Time.deltaTime);
+                }
             }
-            else
-            {
-                transform.position = Vector2.MoveTowards(transform.position, Player.instance.transform.position, speed * Time.deltaTime);
-            }
+
         }
     }
 
@@ -77,12 +80,22 @@ public class AlphaEnemy : Enemy
         Player.instance.GainDrops(xpGiven, goldDropped);
     }
 
-    private IEnumerator TickDelay()
+    private IEnumerator AttackPlayerInRange()
     {
-        tickGoing = true;
-        Debug.Log("Tick");
-        yield return new WaitForSeconds(1f);
-        canDamage = true;
-        tickGoing = false;
+        while (isActiveAndEnabled)
+        {
+            if (TouchingPlayer())
+            {
+                Player.instance.Harm(damageDealt);
+                yield return new WaitForSeconds(attackSpeed);
+            }
+            yield return null;
+        }
+    }
+
+    private bool TouchingPlayer()
+    {
+        Debug.Log(playerDamageSensor.SensedObjects.Count > 0);
+        return playerDamageSensor.SensedObjects.Count > 0;
     }
 }

@@ -251,13 +251,13 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RestartLevelDelay(float delay, Scene level)
     {
-        if(sceneTransition != null)
+        yield return new WaitForSeconds(delay);
+        if (sceneTransition != null)
         {
             sceneTransition.SetTrigger("Start");
             yield return new WaitForSeconds(1);
         }
 
-        yield return new WaitForSeconds(delay);
         textsNotLinked = true;
 
         if (level.Equals(Scene.Tutoriel))
@@ -292,7 +292,7 @@ public class GameManager : MonoBehaviour
     public void SetGameOver()
     {
         actualLevel = Scene.GabGameOver;
-        StartCoroutine(RestartLevelDelay(0, actualLevel));
         AchivementManager.instance.Died();
+        StartCoroutine(RestartLevelDelay(3, actualLevel));
     }
 }

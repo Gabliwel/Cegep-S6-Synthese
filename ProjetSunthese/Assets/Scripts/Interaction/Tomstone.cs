@@ -16,7 +16,7 @@ public class Tomstone : Interactable
     private void Start()
     {
         sceneTransitor = GameObject.FindGameObjectWithTag("LevelFade").GetComponent<Animator>();
-        billy = GameObject.FindGameObjectWithTag("Player").GetComponent<SimpleBillyMovement>();
+        billy = GameObject.FindGameObjectWithTag("Billy").GetComponent<SimpleBillyMovement>();
     }
 
 

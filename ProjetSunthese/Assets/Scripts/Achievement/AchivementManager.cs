@@ -98,6 +98,11 @@ public class AchivementManager : MonoBehaviour
         }
     }
 
+    public int GetNumOfDeath()
+    {
+        return achivementData.nbDeath;
+    }
+
     public void Died()
     {
         dead = true;
