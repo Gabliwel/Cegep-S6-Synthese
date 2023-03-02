@@ -250,7 +250,7 @@ MonoBehaviour:
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 1
-  baseDamageDealt: 0
+  baseDamageDealt: 15
   damageDealt: 0
   goldDropped: 4
   xpGiven: 25

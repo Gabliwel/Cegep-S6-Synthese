@@ -34,6 +34,12 @@ public class DescriptionBox : MonoBehaviour
         back.material = defaultMat;
     }
 
+    private void Awake()
+    {
+        back = GetComponent<Image>();
+        back.material = defaultMat;
+    }
+
     public void PopUp(string title, string desc)
     {
         if(animator == null) animator = GetComponent<Animator>();

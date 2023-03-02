@@ -31,7 +31,7 @@ public class PlayerInteractables : MonoBehaviour
     {
         Link();
 
-        if (Input.GetKeyDown(KeyCode.E) && currentSelected != null)
+        if (Input.GetButtonDown("Interact") && currentSelected != null)
         {
             currentSelected.Interact(player);
         }

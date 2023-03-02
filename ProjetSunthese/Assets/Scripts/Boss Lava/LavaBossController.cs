@@ -86,6 +86,7 @@ public class LavaBossController : Enemy
     public override void Die()
     {
         Scaling.instance.ScalingIncrease();
+        AchivementManager.instance.KilledGontrand();
         base.Die();
     }
 

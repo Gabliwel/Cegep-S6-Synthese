@@ -368,7 +368,7 @@ public class Player : MonoBehaviour
     [ContextMenu("KevLevel")]
     public void KevLevel()
     {
-        GameManager.instance.StartNextlevel(0, Scene.KevenLevel);
+        GameManager.instance.StartNextlevel(0, Scene.CharlesLevel);
     }
 
 }

@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isKnockBack || isDead) return;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetAxis("Roll") != 0)
         {
             if (!RollOnCooldown() && !isRolling && DirectionHeld() && canMove)
             {
