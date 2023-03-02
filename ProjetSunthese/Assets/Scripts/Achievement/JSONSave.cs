@@ -34,6 +34,8 @@ public class JSONSave : MonoBehaviour
     {
         path = Application.dataPath + Path.AltDirectorySeparatorChar + "SaveAchivement.json";
         persitentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveAchivement.json";
+        Debug.Log(path);
+        Debug.Log(persitentPath);
     }
 
     public void SaveData(AchivementClass achives)
@@ -51,13 +53,18 @@ public class JSONSave : MonoBehaviour
     public AchivementClass LoadData()
     {
         SetPaths();
-        using StreamReader reader = new StreamReader(persitentPath);
-        string json = reader.ReadToEnd();
+        if(File.Exists(persitentPath))
+        {
+            using (StreamReader reader = new StreamReader(persitentPath))
+            {
+                string json = reader.ReadToEnd();
 
-        AchivementClass data = JsonUtility.FromJson<AchivementClass>(json);
+                AchivementClass data = JsonUtility.FromJson<AchivementClass>(json);
 
-        Debug.Log(persitentPath);
+                return data;
+            }
+        }
 
-        return data;
+        return null;
     }
 }

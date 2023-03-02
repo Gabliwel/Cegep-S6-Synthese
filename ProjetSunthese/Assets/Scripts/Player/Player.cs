@@ -245,6 +245,7 @@ public class Player : MonoBehaviour
     {
         health.Harm(ammount);
         GameManager.instance.UpdateHealth();
+        DamageNumbersManager.instance.CallText(ammount, transform.position, true);
     }
 
     public void ChangeLayer(string layer, string sortingLayer)
