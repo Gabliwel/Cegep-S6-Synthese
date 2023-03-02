@@ -20,10 +20,21 @@ public class LifeBar : MonoBehaviour
     [SerializeField] private Image back;
     [SerializeField] private TMP_Text tmp;
 
+    // playerHealth for player, specific value for boss, can change reaction
+
     public void SetDefault(PlayerHealth health)
     {
         currentHealth = health.CurrentHealth;
         maxHealth = health.CurrentMax;
+        front.fillAmount = currentHealth / maxHealth;
+        back.fillAmount = currentHealth / maxHealth;
+        UpdateText();
+    }
+
+    public void SetDefault(float cHealth, float mHealth)
+    {
+        currentHealth = cHealth;
+        maxHealth = mHealth;
         front.fillAmount = currentHealth / maxHealth;
         back.fillAmount = currentHealth / maxHealth;
         UpdateText();
@@ -42,6 +53,22 @@ public class LifeBar : MonoBehaviour
         UpdateText();
 
         if(takeDamage) coroutine = StartCoroutine(UpdateBarWhenDamaged());
+        else coroutine = StartCoroutine(UpdateBarWheHealed());
+    }
+
+    public void UpdateHealth(float cHealth, float mHealth)
+    {
+        UpdateText();
+        if (coroutine != null) StopCoroutine(coroutine);
+
+        bool takeDamage = false;
+        if (currentHealth > cHealth) takeDamage = true;
+
+        currentHealth = cHealth;
+        maxHealth = mHealth;
+        UpdateText();
+
+        if (takeDamage) coroutine = StartCoroutine(UpdateBarWhenDamaged());
         else coroutine = StartCoroutine(UpdateBarWheHealed());
     }
 

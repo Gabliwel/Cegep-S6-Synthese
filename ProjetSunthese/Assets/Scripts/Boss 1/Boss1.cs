@@ -26,12 +26,15 @@ public class Boss1 : Enemy
     [SerializeField] private float shieldLeft = 3;
     [SerializeField] private float shieldLifeFraction = 0.25f;
 
-    private HPBar HPbar;
+    private BossInfoController bossInfo;
+    private const string bossName = "Billy";
 
     protected override void Awake()
     {
         base.Awake();
-        HPbar = GetComponentInChildren<HPBar>();
+        bossInfo = GameObject.FindGameObjectWithTag("BossInfo").GetComponent<BossInfoController>();
+        bossInfo.SetName(bossName);
+        bossInfo.gameObject.SetActive(false);
     }
 
     void Start()
@@ -46,6 +49,9 @@ public class Boss1 : Enemy
         lavaThrowAttack = gameObject.GetComponentInChildren<LavaThrowAttack>();
         bossAnimator = boss.GetComponent<Animator>();
         shield.SetActive(false);
+
+        bossInfo.Bar.SetDefault(hp, baseHP);
+        bossInfo.gameObject.SetActive(true);
     }
 
     void Update()
@@ -186,12 +192,13 @@ public class Boss1 : Enemy
     {
         if (isProtected) return;
         base.Harm(ammount, overtimeDamage);
-        HPbar.UpdateHp(hp, baseHP);
+        bossInfo.Bar.UpdateHealth(hp, baseHP);
     }
 
     public override void Die()
     {
         base.Die();
+        bossInfo.gameObject.SetActive(false);
         Scaling.instance.ScalingIncrease();
         drops.BossDrop(transform.position, boss);
     }
@@ -214,6 +221,6 @@ public class Boss1 : Enemy
 
     protected override void WasPoisonHurt()
     {
-        HPbar.UpdateHp(hp, baseHP);
+        bossInfo.Bar.UpdateHealth(hp, baseHP);
     }
 }

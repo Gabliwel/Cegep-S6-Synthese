@@ -31,6 +31,8 @@ public class PlayerHealth : MonoBehaviour
     // for player bonus that is independant health
     [SerializeField]  private int receiveDamageMultiplicator = 1;
 
+    private bool isDead = false;
+
     private void Awake()
     {
         player = GetComponent<Player>();
@@ -51,6 +53,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void Harm(float damageValue)
     {
+        if (isDead) return;
+
         float dammage = (damageValue * receiveDamageMultiplicator) - armor;
         Debug.Log("oof ouch ive been hit for " + (dammage) + " damage");
         if (dammage < 1) dammage = 1; 
@@ -76,6 +80,8 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             // call to player for anim and gamemanager
+            isDead = true;
+            player.IsDead();
             GameManager.instance.SetGameOver();
             Debug.Log("I am dead");
         }
