@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea33360b70dba1d4db5ef92f5fb2749c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 3
+  minDistance: 5
   checkLayer: 0
   isClose: 0
 --- !u!1 &3215879996671579153
@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e8e98cdbea27b42a267d8694f24674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteInFirstChild: 0
   baseHP: 15
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
@@ -448,6 +449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea33360b70dba1d4db5ef92f5fb2749c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 6
+  minDistance: 8
   checkLayer: 0
   isClose: 0

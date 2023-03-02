@@ -6,7 +6,7 @@ using Billy.Weapons;
 public class AchivementManager : MonoBehaviour
 {
     public static AchivementManager instance;
-    
+
 
     public List<Achievement> achievements = new List<Achievement>();
 
@@ -51,14 +51,14 @@ public class AchivementManager : MonoBehaviour
 
         save = GetComponent<JSONSave>();
         achivementData = save.LoadData();
-        if(achivementData == null)
+        if (achivementData == null)
         {
             achivementData = new AchivementClass();
         }
         gotRageQuit = achivementData.rageQuit;
 
 
-        if(transform.parent != null)
+        if (transform.parent != null)
         {
             achivementPop = transform.parent.GetComponent<DescriptionBox>();
         }
@@ -143,7 +143,7 @@ public class AchivementManager : MonoBehaviour
     {
         achivementData.nbKilledTotal += 1;
 
-        if(!achivementData.nbEnemyKilled && achivementData.nbKilledTotal >= 100)
+        if (!achivementData.nbEnemyKilled && achivementData.nbKilledTotal >= 100)
         {
             achivementData.nbEnemyKilled = true;
             StartCoroutine(ShowAchivementGot(ENEMIES_NAME, ENEMIES));
@@ -161,13 +161,15 @@ public class AchivementManager : MonoBehaviour
     [ContextMenu("Test")]
     public void KilledMichael()
     {
-        achivementData.beatMichael = true;
+        if (achivementData.beatMichael) return;
+            achivementData.beatMichael = true;
         StartCoroutine(ShowAchivementGot(MICHAEL_NAME, MICHAEL));
         save.SaveData(achivementData);
     }
 
     public void KilledBob()
     {
+        if (achivementData.beatBob) return;
         achivementData.beatBob = true;
         StartCoroutine(ShowAchivementGot(BOB_NAME, BOB));
         save.SaveData(achivementData);
@@ -175,6 +177,7 @@ public class AchivementManager : MonoBehaviour
 
     public void KilledJeanGuy()
     {
+        if (achivementData.beatJeanGuy) return;
         achivementData.beatJeanGuy = true;
         StartCoroutine(ShowAchivementGot(JEANGUY_NAME, JEANGUY));
         save.SaveData(achivementData);
@@ -182,6 +185,7 @@ public class AchivementManager : MonoBehaviour
 
     public void BeatTheGame()
     {
+        if (achivementData.beatTheGame) return;
         achivementData.beatTheGame = true;
         //StartCoroutine(ShowAchivementGot(GAMEDONE));
         save.SaveData(achivementData);
@@ -198,7 +202,7 @@ public class AchivementManager : MonoBehaviour
         {
             achivementData.wonWith.Add(type);
 
-            if(achivementData.wonWith.Count == 6)
+            if (achivementData.wonWith.Count == 6)
             {
                 //StartCoroutine(ShowAchivementGot(WEAPON_MASTER));
             }
@@ -208,7 +212,7 @@ public class AchivementManager : MonoBehaviour
     }
     private IEnumerator ShowAchivementGot(string title, string description)
     {
-        if(achivementPop == null || transform.parent == null)
+        if (achivementPop == null || transform.parent == null)
         {
             achivementPop = GameObject.FindGameObjectWithTag("AchivementPopup").GetComponent<DescriptionBox>();
         }

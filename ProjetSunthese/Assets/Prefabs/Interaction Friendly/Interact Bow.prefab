@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1454111212443538057}
   - component: {fileID: 459978937407105301}
   - component: {fileID: 459978937407105300}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Interact Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 8130493802473667749}
   - component: {fileID: 8130493802473667751}
   - component: {fileID: 8130493802473667750}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Stimuli
   m_TagString: Untagged
   m_Icon: {fileID: 0}

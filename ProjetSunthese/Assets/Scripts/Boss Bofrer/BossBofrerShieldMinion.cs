@@ -18,8 +18,9 @@ public class BossBofrerShieldMinion : Enemy
         playerSensor.OnUnsensedObject += OnPlayerUnsense;
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         childTransform = transform.GetChild(0).transform;
     }
     private void Update()

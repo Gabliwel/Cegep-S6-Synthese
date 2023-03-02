@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2490192414102971591}
   - component: {fileID: 2490192414102971590}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Single Lava Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2490192414949957310}
   - component: {fileID: 2490192414949957311}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Lava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,6 +97,8 @@ MonoBehaviour:
   sensor: {fileID: 2490192415095531003}
   activeTime: 2
   fadeOutSpeed: 1
+  damage: 2
+  rate: 0.25
 --- !u!1 &2490192415095531000
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +110,7 @@ GameObject:
   - component: {fileID: 2490192415095531001}
   - component: {fileID: 2490192415095531003}
   - component: {fileID: 2490192415095531002}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2490192415226276688}
   - component: {fileID: 2490192415226276687}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +284,7 @@ GameObject:
   - component: {fileID: 2490192415622748191}
   - component: {fileID: 2490192415622748641}
   - component: {fileID: 2490192415622748640}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Tiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +436,7 @@ Tilemap:
       - {fileID: 866547675, guid: a75b39e815aa794488b3819a2af96853, type: 3}
       - {fileID: -688082554, guid: a75b39e815aa794488b3819a2af96853, type: 3}
       - {fileID: 968500371, guid: a75b39e815aa794488b3819a2af96853, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -1, y: 0, z: 0}

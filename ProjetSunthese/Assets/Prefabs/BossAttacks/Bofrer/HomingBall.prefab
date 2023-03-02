@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4387843104326295931}
   - component: {fileID: 205132967194214172}
   - component: {fileID: 5052834717428366755}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 6959389486111389806}
   - component: {fileID: 8311148749097849336}
   - component: {fileID: 3852024275469616735}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 8078984225477866811}
   - component: {fileID: 1562103745026189591}
   - component: {fileID: 4724678784424077168}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 6289762289241077747}
   - component: {fileID: 2201923065799795627}
   - component: {fileID: 4671444025303826268}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3159514012354990991}
   - component: {fileID: 4408345744752626618}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: HomingBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

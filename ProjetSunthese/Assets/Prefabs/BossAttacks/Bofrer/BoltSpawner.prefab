@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8702211788287361584}
   - component: {fileID: 5109038637771827725}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: BoltSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}

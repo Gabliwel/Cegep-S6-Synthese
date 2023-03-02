@@ -28,6 +28,7 @@ public class BofrerSceneManager : MonoBehaviour
     private void Start()
     {
         Player.instance.transform.position = playerSpawnPosition;
+        Player.instance.ChangeLayer("Layer 1", "Layer 1");
         MusicMaker.instance.PlayMusic(normalSong, true);
         cutsceneInteractable = GetComponentInChildren<TalkingCharacter>();
         StartCoroutine(Cinematic());
@@ -105,7 +106,6 @@ public class BofrerSceneManager : MonoBehaviour
         bofrer.gameObject.SetActive(true);
         Player.instance.BlocMovement(false);
         Player.instance.BlocAttack(false);
-        MusicMaker.instance.PlayMusic(normalSong, true);
     }
 
     private string[] GetRandomDialogue()
