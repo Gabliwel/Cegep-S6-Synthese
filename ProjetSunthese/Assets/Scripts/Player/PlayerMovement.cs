@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float stopAtMagnitude = 1.35f;
     
     private bool isKnockBack = false;
+    private bool isDead = false;
 
     private Vector2 movementInput;
     private Rigidbody2D rb;
@@ -44,9 +45,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (isKnockBack) return;
+        if (isKnockBack || isDead) return;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetAxis("Roll") != 0)
         {
             if (!RollOnCooldown() && !isRolling && DirectionHeld() && canMove)
             {
@@ -63,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isKnockBack) return;
+        if (isKnockBack || isDead) return;
 
         if (!isRolling && canMove)
         {
@@ -79,6 +80,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.velocity = currentVelocity;
+    }
+
+    public void Die()
+    {
+        StopAllCoroutines();
+        movementInput = Vector2.zero;
+        rb.velocity = Vector2.zero;
+        isDead = true;
+        animationController.PlayDie();
     }
 
     private void BuildMovement()

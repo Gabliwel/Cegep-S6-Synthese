@@ -45,8 +45,8 @@ public class Player : MonoBehaviour
 
     private bool bloodSuck = false;
     private float bloodSuckRate = 0;
-
     private bool crazyHeart = false;
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -72,6 +72,13 @@ public class Player : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         fireParticle = particuleGameObj.GetComponent<ParticleSystem>();
         lvlUpAnim = lvIUpGameObj.GetComponent<Animator>();
+    }
+
+    public void IsDead()
+    {
+        isDead = true;
+        BlocAttack(true);
+        playerMovement.Die();
     }
 
     private void Start()
@@ -231,7 +238,7 @@ public class Player : MonoBehaviour
 
     public bool Harm(float ammount)
     {
-        if (iframesTimer <= 0)
+        if (iframesTimer <= 0 && !isDead)
         {
             health.Harm(ammount);
             GameManager.instance.UpdateHealth();
@@ -243,6 +250,7 @@ public class Player : MonoBehaviour
 
     public void HarmIgnoreIFrame(float ammount)
     {
+        if (isDead) return;
         health.Harm(ammount);
         GameManager.instance.UpdateHealth();
         DamageNumbersManager.instance.CallText(ammount, transform.position, true);
@@ -360,7 +368,7 @@ public class Player : MonoBehaviour
     [ContextMenu("KevLevel")]
     public void KevLevel()
     {
-        GameManager.instance.StartNextlevel(0, Scene.KevenLevel);
+        GameManager.instance.StartNextlevel(0, Scene.CharlesLevel);
     }
 
 }

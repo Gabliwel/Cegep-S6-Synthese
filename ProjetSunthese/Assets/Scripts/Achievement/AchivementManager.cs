@@ -18,7 +18,7 @@ public class AchivementManager : MonoBehaviour
     private bool gotRageQuit;
     private float timeSinceDead = 3f;
 
-    private const string ENEMIES = "You killed 30 enemies!";
+    private const string ENEMIES = "You killed 100 enemies!";
     private const string CHEST = "You opened 30 chests";
     private const string BOB = "You defeated Bob for the first time!";
     private const string MICHAEL = "You defeated Michael for the first time!";
@@ -46,7 +46,11 @@ public class AchivementManager : MonoBehaviour
         }
         gotRageQuit = achivementData.rageQuit;
 
-        achivementPop = GameObject.FindGameObjectWithTag("AchivementPopup").GetComponent<DescriptionBox>();
+
+        if(transform.parent != null)
+        {
+            achivementPop = transform.parent.GetComponent<DescriptionBox>();
+        }
 
         if (achivementData.rageQuitFirst && achivementData.rageQuit)
         {
@@ -94,17 +98,29 @@ public class AchivementManager : MonoBehaviour
         }
     }
 
+    public int GetNumOfDeath()
+    {
+        return achivementData.nbDeath;
+    }
+
     public void Died()
     {
         dead = true;
         achivementData.nbDeath++;
+
+        if (achivementData.nbDeath >= 30)
+        {
+            achivementData.skillIssue = true;
+            StartCoroutine(ShowAchivementGot(CHEST));
+        }
+
         save.SaveData(achivementData);
     }
 
     public void OpenedChest()
     {
         achivementData.nbChestOpened++;
-        if (achivementData.nbChestOpened > 2)
+        if (achivementData.nbChestOpened >= 30)
         {
             achivementData.lotsChestOpened = true;
             StartCoroutine(ShowAchivementGot(CHEST));
@@ -116,7 +132,7 @@ public class AchivementManager : MonoBehaviour
     {
         achivementData.nbKilledTotal += 1;
 
-        if(!achivementData.nbEnemyKilled && achivementData.nbKilledTotal > 1)
+        if(!achivementData.nbEnemyKilled && achivementData.nbKilledTotal >= 100)
         {
             achivementData.nbEnemyKilled = true;
             StartCoroutine(ShowAchivementGot(ENEMIES));
@@ -131,6 +147,7 @@ public class AchivementManager : MonoBehaviour
         save.SaveData(achivementData);
     }
 
+    [ContextMenu("Test")]
     public void KilledMichael()
     {
         achivementData.beatMichael = true;
@@ -154,21 +171,37 @@ public class AchivementManager : MonoBehaviour
 
     public void BeatTheGame()
     {
-        achivementData.beatGontrand = true;
-        StartCoroutine(ShowAchivementGot(GAMEDONE));
+        achivementData.beatTheGame = true;
+        //StartCoroutine(ShowAchivementGot(GAMEDONE));
         save.SaveData(achivementData);
     }
 
     public void AddWeaponWonWith(WeaponsType type)
     {
+        if (achivementData.wonWith.Count == 0)
+        {
+            BeatTheGame();
+        }
+
         if (!achivementData.wonWith.Contains(type))
         {
             achivementData.wonWith.Add(type);
+
+            if(achivementData.wonWith.Count == 6)
+            {
+                //StartCoroutine(ShowAchivementGot(WEAPON_MASTER));
+            }
+
             save.SaveData(achivementData);
         }
     }
     private IEnumerator ShowAchivementGot(string description)
     {
+        if(achivementPop == null || transform.parent == null)
+        {
+            achivementPop = GameObject.FindGameObjectWithTag("AchivementPopup").GetComponent<DescriptionBox>();
+        }
+
         achivementPop.PopUp("achievement", description);
         yield return new WaitForSeconds(5f);
         achivementPop.Close();

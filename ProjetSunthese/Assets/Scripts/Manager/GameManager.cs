@@ -101,8 +101,7 @@ public class GameManager : MonoBehaviour
         if (textsNotLinked)
         {
             textsNotLinked = false;
-            /*pauseUI = GameObject.FindGameObjectWithTag("PauseUI");
-            pauseUI.SetActive(false);*/
+
             if (actualLevel == Scene.GabGameOver)
             {
                 return;
@@ -212,7 +211,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadEndScene()
     {
-        //AchivementManager.instance.AddWeaponWonWith(Player.instance.GetComponentInChildren<WeaponInformations>().GetWeaponType());
+        AchivementManager.instance.AddWeaponWonWith(Player.instance.GetComponentInChildren<WeaponInformations>().GetWeaponType());
         Debug.Log("AHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAH END");
         actualLevel = Scene.GabVictory;
         StartCoroutine(RestartLevelDelay(0, actualLevel));
@@ -252,13 +251,13 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RestartLevelDelay(float delay, Scene level)
     {
-        if(sceneTransition != null)
+        yield return new WaitForSeconds(delay);
+        if (sceneTransition != null)
         {
             sceneTransition.SetTrigger("Start");
             yield return new WaitForSeconds(1);
         }
 
-        yield return new WaitForSeconds(delay);
         textsNotLinked = true;
 
         if (level.Equals(Scene.Tutoriel))
@@ -293,7 +292,7 @@ public class GameManager : MonoBehaviour
     public void SetGameOver()
     {
         actualLevel = Scene.GabGameOver;
-        StartCoroutine(RestartLevelDelay(0, actualLevel));
-        //AchivementManager.instance.Died();
+        AchivementManager.instance.Died();
+        StartCoroutine(RestartLevelDelay(3, actualLevel));
     }
 }
