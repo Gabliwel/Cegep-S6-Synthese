@@ -72,11 +72,9 @@ MonoBehaviour:
   bobFires: {fileID: 0}
   bobInvincibility: {fileID: 0}
   bobDie: {fileID: 0}
-  bofrerBFL: {fileID: 8300000, guid: e7fd3c8b093b31240a3f5a8d5e353261, type: 3}
-  bofrerRockets: {fileID: 8300000, guid: c78f903f006c8634cafd1044962fbd78, type: 3}
+  bofrerBFL: {fileID: 0}
+  bofrerRockets: {fileID: 0}
   bofrerShieldHitSound: {fileID: 8300000, guid: 057849ce23ec2204f8bef04d3f6101d9, type: 3}
-  bofrerHomingBall: {fileID: 8300000, guid: 971ad97a224145b46b3b4f76391d64dc, type: 3}
-  bofrerStolenAttackSound: {fileID: 8300000, guid: 364c4466290dd8842925967070151969, type: 3}
   heal: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   useItem: {fileID: 0}
   levelUp: {fileID: 0}
