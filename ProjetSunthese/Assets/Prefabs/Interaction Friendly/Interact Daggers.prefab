@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f570376a354d84e9762de3d1d233c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ROTATION_OFFSET: 45
+  ROTATION_OFFSET: 0
   orbit: 1
   baseDamage: 5
   defaultStartup: 0.5
@@ -232,7 +232,7 @@ MonoBehaviour:
   weaponType: 3
   scaleWithPlayer: {x: 1, y: 1, z: 1}
   scaleNotWithPlayer: {x: 6, y: 6, z: 1}
-  positionWithPlayer: {x: 0.05, y: 0.05, z: 0}
+  positionWithPlayer: {x: 0, y: 0, z: 0}
   isCurrentWeapon: 0
   weapon: {fileID: 3517278699109352329}
   interactStimuli: {fileID: 2987581264763379050}
@@ -367,6 +367,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3360645521039324887, guid: 79e46ff557ad8944a90f11191af1445f, type: 3}
+      propertyPath: ROTATION_OFFSET
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 3360645521172264910, guid: 79e46ff557ad8944a90f11191af1445f, type: 3}
       propertyPath: m_Layer
       value: 28
@@ -456,6 +460,10 @@ PrefabInstance:
     - target: {fileID: 3360645521039324886, guid: 79e46ff557ad8944a90f11191af1445f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360645521039324887, guid: 79e46ff557ad8944a90f11191af1445f, type: 3}
+      propertyPath: ROTATION_OFFSET
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 3360645521172264910, guid: 79e46ff557ad8944a90f11191af1445f, type: 3}
       propertyPath: m_Layer
