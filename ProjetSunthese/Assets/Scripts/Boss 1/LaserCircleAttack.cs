@@ -62,16 +62,19 @@ public class LaserCircleAttack : BossAttack
         {
             lasers[i].GetComponent<LaserPoint>().ActivateLaser(time);
         }
+        SoundMaker.instance.BobLaserSound(gameObject.transform.position);
         yield return new WaitForSeconds(time + 0.54f);
         for (int i = 1; i < numberBullets; i += 2)
         {
             lasers[i].GetComponent<LaserPoint>().ActivateLaser(time);
         }
+        SoundMaker.instance.BobLaserSound(gameObject.transform.position);
         yield return new WaitForSeconds(time + 0.54f);
         for (int i = 0; i < numberBullets; i ++)
         {
             lasers[i].GetComponent<LaserPoint>().ActivateLaser(time);
         }
+        SoundMaker.instance.BobLaserSound(gameObject.transform.position);
         yield return new WaitForSeconds(time);
         StartCoroutine(DeactivateLasers());
     }

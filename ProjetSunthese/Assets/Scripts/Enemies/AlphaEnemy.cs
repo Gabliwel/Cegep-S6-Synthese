@@ -11,6 +11,8 @@ public class AlphaEnemy : Enemy
 
     [SerializeField] float attackSpeed;
 
+    [SerializeField] private float knockBackForce = 7;
+
     private Sensor damageSensor;
     private ISensor<Player> playerDamageSensor;
 
@@ -87,6 +89,7 @@ public class AlphaEnemy : Enemy
             if (TouchingPlayer())
             {
                 Player.instance.Harm(damageDealt);
+                Player.instance.KnockBack((Player.instance.gameObject.transform.position - transform.position).normalized, knockBackForce);
                 yield return new WaitForSeconds(attackSpeed);
             }
             yield return null;

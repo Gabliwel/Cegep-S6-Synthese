@@ -27,7 +27,7 @@ public class Boss1 : Enemy
     [SerializeField] private float shieldLifeFraction = 0.25f;
 
     private BossInfoController bossInfo;
-    private const string bossName = "Billy";
+    private const string bossName = "Bob";
 
     protected override void Awake()
     {
@@ -145,6 +145,7 @@ public class Boss1 : Enemy
     private IEnumerator ShieldTime()
     {
         isProtected = true;
+        SoundMaker.instance.BobInvincibilitySound(transform.position);
         shield.SetActive(true);
 
         shieldLeft--;
@@ -199,6 +200,7 @@ public class Boss1 : Enemy
     {
         base.Die();
         AchivementManager.instance.KilledBob();
+        bossInfo.Stop();
         bossInfo.gameObject.SetActive(false);
         Scaling.instance.ScalingIncrease();
         drops.BossDrop(transform.position, boss);
@@ -206,6 +208,7 @@ public class Boss1 : Enemy
 
     private void OnEnable()
     {
+        base.OnEnable();
         StartCoroutine(Wait());
     }
 

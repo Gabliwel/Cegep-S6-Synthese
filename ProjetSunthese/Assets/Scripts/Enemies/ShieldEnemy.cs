@@ -11,6 +11,8 @@ public class ShieldEnemy : Enemy
 
     [SerializeField] float attackSpeed;
 
+    [SerializeField] private float knockBackForce = 10;
+
     private Sensor damageSensor;
     private ISensor<Player> playerDamageSensor;
 
@@ -128,6 +130,7 @@ public class ShieldEnemy : Enemy
             if (TouchingPlayer())
             {
                 Player.instance.Harm(damageDealt);
+                Player.instance.KnockBack((Player.instance.gameObject.transform.position - transform.position).normalized, knockBackForce);
                 yield return new WaitForSeconds(attackSpeed);
             }
             yield return null;
