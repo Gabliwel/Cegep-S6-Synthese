@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
 
         if (nbSceneAccessible > 0)
         {
-            if (nbSceneAccessible == 5)
+            /*if (nbSceneAccessible == 5)
             {
                 nbSceneAccessible -= 1;
             }
@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
             {
                 LoadEndScene();
                 return;
-            }
+            }*/
 
             int randomChoice = UnityEngine.Random.Range(0, nbSceneAccessible);
             Debug.Log(randomChoice);
