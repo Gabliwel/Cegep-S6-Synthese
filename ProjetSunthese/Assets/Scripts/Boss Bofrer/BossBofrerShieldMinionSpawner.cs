@@ -18,6 +18,7 @@ public class BossBofrerShieldMinionSpawner : BossAttack
             BossBofrerShieldMinion enemy = GetAvailableEnemy();
             enemy.gameObject.SetActive(true);
             enemy.SetRotation(GetRandomRotation());
+            enemy.transform.position = transform.position;
         }
         type = BossAttackType.Bofrer;
     }
