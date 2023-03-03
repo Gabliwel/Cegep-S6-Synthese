@@ -130,9 +130,10 @@ public class Player : MonoBehaviour
         GameManager.instance.UpdateHealth();
     }
 
-    public void GainSecondChance()
+    public void GainSecondChance(float value)
     {
         health.GainSecondChance();
+        playerMovement.IncreaseBaseSpeed(value);
     }
 
     public void GainDeathContract()
