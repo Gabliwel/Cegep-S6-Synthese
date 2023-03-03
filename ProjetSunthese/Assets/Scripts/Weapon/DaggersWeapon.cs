@@ -34,8 +34,6 @@ public class Daggers : Weapon
         dagger1.gameObject.SetActive(true);
         dagger2.gameObject.SetActive(true);
 
-        dagger1.SetLayer(LayerMask.LayerToName(gameObject.layer));
-        dagger2.SetLayer(LayerMask.LayerToName(gameObject.layer));
     }
 
     protected override IEnumerator Attack()
