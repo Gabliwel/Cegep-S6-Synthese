@@ -93,8 +93,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void BuildMovement()
     {
-        currentVelocity.x = movementInput.x * (BASE_SPEED * speedReducer);
-        currentVelocity.y = movementInput.y * (BASE_SPEED * speedReducer);
+        float speed = BASE_SPEED * speedReducer;
+        if (speed < 0) speed = 0;
+        currentVelocity.x = movementInput.x * speed;
+        currentVelocity.y = movementInput.y * speed;
 
         if (Mathf.Abs(movementInput.x) < STOP_TRESHOLD)
             currentVelocity.x = 0;
@@ -162,7 +164,6 @@ public class PlayerMovement : MonoBehaviour
     {
         while (rb.velocity.magnitude > stopAtMagnitude)
         {
-            Debug.Log(rb.velocity.magnitude);
             yield return true;
         }
         rb.velocity = Vector2.zero;

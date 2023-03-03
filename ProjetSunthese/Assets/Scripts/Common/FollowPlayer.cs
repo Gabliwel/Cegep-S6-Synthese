@@ -21,4 +21,9 @@ public class FollowPlayer : MonoBehaviour
     {
         transform.position = new Vector3(player.position.x, player.position.y, -10);
     }
+
+    public void SetTarget(Transform t)
+    {
+        player = t;
+    }
 }
