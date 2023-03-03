@@ -20,11 +20,25 @@ public class MichaelFight : Enemy
 
     private Animator animator;
 
-    private HPBar hpBar;
+    private BossInfoController bossInfo;
+    private const string bossName = "Michael";
 
     private Sensor damageSensor;
     private ISensor<Player> playerDamageSensor;
     private bool firstSpawn = true;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        bossInfo = GameObject.FindGameObjectWithTag("BossInfo").GetComponent<BossInfoController>();
+        bossInfo.SetName(bossName);
+        bossInfo.gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        bossInfo.gameObject.SetActive(false);
+    }
 
     void Start()
     {
@@ -50,7 +64,6 @@ public class MichaelFight : Enemy
         playerDamageSensor.OnSensedObject += OnPlayerDamageSense;
         playerDamageSensor.OnUnsensedObject += OnPlayerDamageUnsense;
 
-        hpBar = GetComponentInChildren<HPBar>();
     }
 
     // Update is called once per frame
@@ -133,40 +146,36 @@ public class MichaelFight : Enemy
 
     public override void Die()
     {
+        base.Die();
         Scaling.instance.ScalingIncrease();
         AchivementManager.instance.KilledMichael();
-        base.Die();
+        bossInfo.Stop();
+        bossInfo.gameObject.SetActive(false);
     }
 
     public override void Harm(float ammount, float poison)
     {
         base.Harm(ammount, poison);
-        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        bossInfo.Bar.UpdateHealth(hp, baseHP);
     }
 
-    protected override void WasPoisonHurt() 
+    protected override void WasPoisonHurt()
     {
-        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        /*if (collision.gameObject.tag == "Player")
-        {
-            player.GetComponent<Player>().Harm(damageDealt);
-            firstSpawn = false;
-        }*/
+        bossInfo.Bar.UpdateHealth(hp, baseHP);
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
+        bossInfo.gameObject.SetActive(true);
+        bossInfo.Bar.SetDefault(hp, baseHP);
         if (!firstSpawn)
         {
             StartCoroutine(AttackPlayerInRange());
         }
         firstSpawn = false;
     }
+
 
     private IEnumerator AttackPlayerInRange()
     {

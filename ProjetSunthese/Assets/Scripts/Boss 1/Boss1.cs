@@ -49,9 +49,19 @@ public class Boss1 : Enemy
         lavaThrowAttack = gameObject.GetComponentInChildren<LavaThrowAttack>();
         bossAnimator = boss.GetComponent<Animator>();
         shield.SetActive(false);
+    }
 
-        bossInfo.Bar.SetDefault(hp, baseHP);
+    protected override void OnEnable()
+    {
+        base.OnEnable();
         bossInfo.gameObject.SetActive(true);
+        bossInfo.Bar.SetDefault(hp, baseHP);
+        StartCoroutine(Wait());
+    }
+
+    private void OnDisable()
+    {
+        bossInfo.gameObject.SetActive(false);
     }
 
     void Update()
@@ -204,12 +214,6 @@ public class Boss1 : Enemy
         bossInfo.gameObject.SetActive(false);
         Scaling.instance.ScalingIncrease();
         drops.BossDrop(transform.position, boss);
-    }
-
-    private void OnEnable()
-    {
-        base.OnEnable();
-        StartCoroutine(Wait());
     }
 
     private IEnumerator Wait()
