@@ -1412,18 +1412,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: xpGiven
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5013013055534734155, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: goldDropped
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5013013055534734157, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 5013013055534734159, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
       propertyPath: m_Name
       value: Bofrer
@@ -1435,23 +1423,5 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5013013055534734159, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 5013013055915108141}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d0d7a0bdfa46cd4787bc62fe66867f5, type: 3}
---- !u!114 &5013013055915108141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 589754765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bd9b52e3181b5647a3f5e1af6d4ac30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponsDrop: []
-  portal: {fileID: 6202557103775462470, guid: 54a64a756be8cc14b884655180b6de4a, type: 3}
-  portalSpawnPosition: {x: 0, y: 4, z: 0}
