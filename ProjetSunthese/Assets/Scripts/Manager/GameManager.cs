@@ -36,8 +36,7 @@ public class GameManager : MonoBehaviour
     Scene.CharlesLevel,
     Scene.GabLevel,
     Scene.KevenLevel,
-    Scene.MarcAntoine,
-    Scene.GabShop
+    Scene.MarcAntoine
     };
     [SerializeField] List<Scene> levelsDone;
     List<BossAttack> bofrerStolenAttacks = new List<BossAttack>();
@@ -138,6 +137,29 @@ public class GameManager : MonoBehaviour
 
     public void GetRandomNextLevelAndStart()
     {
+        if (levelSceneList.Count <= 0)
+        {
+            LoadEndScene();
+            return;
+        }
+
+        if (actualLevel != Scene.GabShop && levelSceneList.Count != 4)
+        {
+            int chance = UnityEngine.Random.Range(0, 100);
+            if (chance < 40)
+            {
+                actualLevel = Scene.GabShop;
+                StartNextlevel(0, actualLevel);
+                return;
+            }
+        }
+
+        int randomChoice = UnityEngine.Random.Range(0, levelSceneList.Count);
+        actualLevel = levelSceneList.ElementAt(randomChoice);
+        RemoveSceneFromSceneList(actualLevel);
+        StartNextlevel(0, actualLevel);
+
+        /*
         Debug.Log("Before : " + levelSceneList.Count);
         int nbSceneAccessible = levelSceneList.Count;
 
@@ -162,7 +184,7 @@ public class GameManager : MonoBehaviour
         else
         {
             LoadEndScene();
-        }
+        }*/
     }
 
     [ContextMenu("Early wood")]
@@ -230,7 +252,6 @@ public class GameManager : MonoBehaviour
         scenesAreInTransition = true;
 
         StartCoroutine(RestartLevelDelay(delay, chosenLevel));
-        RemoveSceneFromSceneList(chosenLevel);
         Debug.Log("After : " + levelSceneList.Count);
     }
 

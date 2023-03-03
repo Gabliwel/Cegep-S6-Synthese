@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     private Player player;
-    private SoundMaker soundMaker;
 
     [Header("Health")]
     [SerializeField] private float maxHealth;
@@ -36,7 +35,6 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         player = GetComponent<Player>();
-        soundMaker = GameObject.FindGameObjectWithTag("SoundMaker").GetComponent<SoundMaker>();
     }
 
     void Start()
