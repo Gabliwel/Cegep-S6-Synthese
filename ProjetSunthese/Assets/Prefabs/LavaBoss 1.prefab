@@ -117,7 +117,7 @@ Transform:
   - {fileID: 7918460415864449204}
   - {fileID: 140998701637644448}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7918460414793181121
 SpriteRenderer:
@@ -217,8 +217,8 @@ MonoBehaviour:
   particleScale: 1
   baseDamageDealt: 0
   damageDealt: 0
-  goldDropped: 0
-  xpGiven: 0
+  goldDropped: 15
+  xpGiven: 30
   overtime: 0
   trail: {fileID: 7903956196021880511, guid: 039c57c16f2fb4a4b9c9c2ef977328c5, type: 3}
   trailListSize: 50

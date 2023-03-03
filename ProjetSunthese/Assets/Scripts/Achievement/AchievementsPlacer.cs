@@ -6,11 +6,22 @@ using UnityEngine.UI;
 public class AchievementsPlacer : MonoBehaviour
 {
     [SerializeField] private Sprite[] images;
-    private void Start()
+    GameObject achievementTemplate;
+    List<Achievement> achievements;
+    List<GameObject> achievementUIList = new List<GameObject>();
+
+    private void Awake()
     {
-        GameObject achievementTemplate = transform.GetChild(0).gameObject;
-        GameObject achievement;
-        List<Achievement> achievements = AchivementManager.instance.achievements;
+        achievementTemplate = transform.GetChild(0).gameObject;
+    }
+
+    private void OnEnable()
+    {
+        AchivementManager.instance.ReloadAchievementAndSetInObjects();
+        achievementTemplate.SetActive(true);
+        achievements = AchivementManager.instance.achievements;
+
+        GameObject achievement; 
         for(int i = 0; i < achievements.Count; i++)
         {
             achievement = Instantiate(achievementTemplate, transform);
@@ -22,8 +33,19 @@ public class AchievementsPlacer : MonoBehaviour
             {
                 achievement.GetComponent<Image>().color = new Color(0, 191, 47, 255);
             }
+            achievementUIList.Add(achievement);
         }
 
-        Destroy(achievementTemplate);
+        achievementTemplate.SetActive(false);
     }
+
+    private void OnDisable()
+    {
+        foreach(GameObject listUI in achievementUIList)
+        {
+            Destroy(listUI);
+        }
+        achievementUIList.Clear();
+    }
+
 }

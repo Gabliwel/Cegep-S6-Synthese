@@ -353,4 +353,22 @@ public class Player : MonoBehaviour
         playerMovement.SetSpeedReducer(1);
     }
 
+    [ContextMenu("NextLevel")]
+    public void NextLevel()
+    {
+        GameManager.instance.GetRandomNextLevelAndStart();
+    }
+
+    [ContextMenu("Central")]
+    public void BackToMain()
+    {
+        GameManager.instance.GetBackToMainStageAndStart();
+    }
+
+    [ContextMenu("KevLevel")]
+    public void KevLevel()
+    {
+        GameManager.instance.StartNextlevel(0, Scene.KevenLevel);
+    }
+
 }
