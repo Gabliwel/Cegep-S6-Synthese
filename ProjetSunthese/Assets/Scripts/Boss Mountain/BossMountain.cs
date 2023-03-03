@@ -54,7 +54,7 @@ public class BossMountain : Enemy
         hpBar = GetComponentInChildren<HPBar>();
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
         enemySpawnTimer = Random.Range(enemySpawnMinTime, enemySpawnMaxTime);
         stalagmiteSpawnTimer = Random.Range(stalagmiteSpawnMinTime, stalagmiteSpawnMaxTime);
@@ -132,18 +132,19 @@ public class BossMountain : Enemy
     {
         rock.Launch();
         rock.transform.position = transform.position + rockThrowOffset;
+        SoundMaker.instance.JgRockThrowSound(transform.position + rockThrowOffset);
     }
 
     void StartStalagmites()
     {
         stalagmiteSpawner.Launch();
+        SoundMaker.instance.JgSpawnStalagmitesSound(transform.position);
     }
 
     void StartEnemySpawn()
     {
         enemySpawner.Launch();
-
-
+        SoundMaker.instance.JgSpawnMobsSound(transform.position);
     }
 
     void StartPositionChange()
