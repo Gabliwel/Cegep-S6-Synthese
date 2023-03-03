@@ -34,8 +34,6 @@ public class JSONSave : MonoBehaviour
     {
         path = Application.dataPath + Path.AltDirectorySeparatorChar + "SaveAchivement.json";
         persitentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveAchivement.json";
-        //Debug.Log(path);
-        //Debug.Log(persitentPath);
     }
 
     public void SaveData(AchivementClass achives)

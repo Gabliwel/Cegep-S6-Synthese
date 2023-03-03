@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class EnnemyExplosion : Explosion
 {
-    private ExplosiveEnnemyHolder parentHolder;
-
+    private ISensor<Player> playerSensor;
     protected override void Awake()
     {
         base.Awake();
 
-        parentHolder = GetComponentInParent<ExplosiveEnnemyHolder>();
+        playerSensor = sensor.For<Player>();
+        playerSensor.OnSensedObject += OnEnemySense;
+        playerSensor.OnUnsensedObject += OnEnemyUnsense;
     }
     private void Update()
     {
@@ -20,5 +21,14 @@ public class EnnemyExplosion : Explosion
         {
             gameObject.SetActive(false);
         }
+    }
+    private void OnEnemySense(Player player)
+    {
+        player.Harm(damage);
+    }
+
+    private void OnEnemyUnsense(Player player)
+    {
+
     }
 }

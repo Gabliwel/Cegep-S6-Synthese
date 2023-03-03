@@ -6,6 +6,7 @@ public class MichaelFight : Enemy
 {
     [SerializeField] GameObject player; 
     [SerializeField] private List<BossAttack> michaelAttacks;
+    private float attackSpeed = 1;
 
     private string[] Attacks = new string[3];
     private string currentAttack;
@@ -15,9 +16,15 @@ public class MichaelFight : Enemy
 
     private float attackDelay = 3f;
 
+    private float SPEED = 3f;
+
     private Animator animator;
 
     private HPBar hpBar;
+
+    private Sensor damageSensor;
+    private ISensor<Player> playerDamageSensor;
+    private bool firstSpawn = true;
 
     void Start()
     {
@@ -36,6 +43,13 @@ public class MichaelFight : Enemy
             michaelAttacks[i].transform.SetParent(gameObject.transform);
         }
 
+        damageSensor = transform.Find("Sensor").GetComponent<Sensor>();
+
+        playerDamageSensor = damageSensor.For<Player>();
+
+        playerDamageSensor.OnSensedObject += OnPlayerDamageSense;
+        playerDamageSensor.OnUnsensedObject += OnPlayerDamageUnsense;
+
         hpBar = GetComponentInChildren<HPBar>();
     }
 
@@ -45,7 +59,7 @@ public class MichaelFight : Enemy
         if (!attackInProgress)
         {
             attackDelay -= Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, 0.009f);
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, Time.deltaTime * SPEED);
             CheckAnimationSide();
             if (attackDelay <= 0)
             {
@@ -85,6 +99,7 @@ public class MichaelFight : Enemy
                     StartProjectile();
                     break;
             }
+        SoundMaker.instance.MichealTPSound(transform.position);
     }
 
     public void ResetAttackState()
@@ -136,9 +151,54 @@ public class MichaelFight : Enemy
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        /*if (collision.gameObject.tag == "Player")
         {
             player.GetComponent<Player>().Harm(damageDealt);
+            firstSpawn = false;
+        }*/
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        if (!firstSpawn)
+        {
+            StartCoroutine(AttackPlayerInRange());
         }
+        firstSpawn = false;
+    }
+
+    private IEnumerator AttackPlayerInRange()
+    {
+        while (isActiveAndEnabled)
+        {
+            if (TouchingPlayer())
+            {
+                Player.instance.Harm(damageDealt);
+                yield return new WaitForSeconds(attackSpeed);
+            }
+            yield return null;
+        }
+    }
+
+    private bool TouchingPlayer()
+    {
+        Debug.Log(playerDamageSensor.SensedObjects.Count > 0);
+        return playerDamageSensor.SensedObjects.Count > 0;
+    }
+
+    void OnPlayerDamageSense(Player player)
+    {
+
+    }
+
+    void OnPlayerDamageUnsense(Player player)
+    {
+
+    }
+
+    public float SendDamage()
+    {
+        return damageDealt;
     }
 }

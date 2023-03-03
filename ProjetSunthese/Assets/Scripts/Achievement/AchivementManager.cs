@@ -164,6 +164,7 @@ public class AchivementManager : MonoBehaviour
 
     public void KilledGontrand()
     {
+        if (achivementData.beatGontrand) return;
         achivementData.beatGontrand = true;
         StartCoroutine(ShowAchivementGot(GONTRAND_NAME, GONTRAND));
         save.SaveData(achivementData);
@@ -173,7 +174,7 @@ public class AchivementManager : MonoBehaviour
     public void KilledMichael()
     {
         if (achivementData.beatMichael) return;
-            achivementData.beatMichael = true;
+        achivementData.beatMichael = true;
         StartCoroutine(ShowAchivementGot(MICHAEL_NAME, MICHAEL));
         save.SaveData(achivementData);
     }
