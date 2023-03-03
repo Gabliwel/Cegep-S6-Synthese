@@ -14,6 +14,10 @@ public class SoundMaker : MonoBehaviour
     private SoundManager soundManager;
     private GameObject walkingMaker;
 
+    private float DEFAULT_VOLUME = 0.2f;
+    private float WALK_VOLUME = 0.05f;
+    private float FIRE_ATTACK_VOLUME = 0.075f;
+
     void Start()
     {
         if (instance == null)
@@ -90,7 +94,7 @@ public class SoundMaker : MonoBehaviour
 
     public void PlayerWalkSound(Vector2 position)
     {
-        RequestInfiniteSound(position, soundManager.PlayerWalk, 0.05f);
+        RequestInfiniteSound(position, soundManager.PlayerWalk, WALK_VOLUME);
     }
 
     public void StopPlayerWalkSound()
@@ -103,12 +107,12 @@ public class SoundMaker : MonoBehaviour
 
     public void PlayerTakeDamageSound(Vector2 position)
     {
-        RequestSound(position, soundManager.PlayerTakeDamage, 0.2f);
+        RequestSound(position, soundManager.PlayerTakeDamage, DEFAULT_VOLUME);
     }
 
     public void GontrandShockWaveSound(Vector2 position)
     {
-        RequestSound(position, soundManager.GontrandShockWave, 0.075f);
+        RequestSound(position, soundManager.GontrandShockWave, FIRE_ATTACK_VOLUME);
     }
 
     public void GontrandAuraSound(Vector2 position)
@@ -195,7 +199,7 @@ public class SoundMaker : MonoBehaviour
 
     public void BofrerShieldHitSound(Vector2 position)
     {
-        RequestSound(position, soundManager.BofrerShieldHitSound, 0.2f);
+        RequestSound(position, soundManager.BofrerShieldHitSound, DEFAULT_VOLUME);
     }
 
     public void HealSound(Vector2 position)
@@ -225,10 +229,10 @@ public class SoundMaker : MonoBehaviour
 
     public void EnemyDeathSound(Vector2 position)
     {
-        RequestSound(position, soundManager.EnemyDeath, 0.15f);
+        RequestSound(position, soundManager.EnemyDeath, DEFAULT_VOLUME);
     }
 
-    private void RequestSound(Vector2 position, AudioClip audioClip)
+    public void RequestSound(Vector2 position, AudioClip audioClip)
     {
         foreach (GameObject individual in soundMakerArray)
         {

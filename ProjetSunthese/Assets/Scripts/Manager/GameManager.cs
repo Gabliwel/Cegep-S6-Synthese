@@ -30,23 +30,16 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private Player playerInfo;
 
-    private GameObject pauseUI;
-
     private Scene actualLevel = 0;
     List<Scene> levelSceneList = new List<Scene>
     {
     Scene.CharlesLevel,
     Scene.GabLevel,
     Scene.KevenLevel,
-    Scene.MarcAntoine,
-    Scene.GabShop
+    Scene.MarcAntoine
     };
-    [SerializeField] List<Scene> levelsDone;// = new List<Scene>();
+    [SerializeField] List<Scene> levelsDone;
     List<BossAttack> bofrerStolenAttacks = new List<BossAttack>();
-
-    //private float currentLife = maxLives;
-    //private int gold;
-    //private int currentXp;
 
     bool scenesAreInTransition = false;
 
@@ -144,12 +137,35 @@ public class GameManager : MonoBehaviour
 
     public void GetRandomNextLevelAndStart()
     {
+        if (levelSceneList.Count <= 0)
+        {
+            LoadEndScene();
+            return;
+        }
+
+        if (actualLevel != Scene.GabShop && levelSceneList.Count != 4)
+        {
+            int chance = UnityEngine.Random.Range(0, 100);
+            if (chance < 40)
+            {
+                actualLevel = Scene.GabShop;
+                StartNextlevel(0, actualLevel);
+                return;
+            }
+        }
+
+        int randomChoice = UnityEngine.Random.Range(0, levelSceneList.Count);
+        actualLevel = levelSceneList.ElementAt(randomChoice);
+        RemoveSceneFromSceneList(actualLevel);
+        StartNextlevel(0, actualLevel);
+
+        /*
         Debug.Log("Before : " + levelSceneList.Count);
         int nbSceneAccessible = levelSceneList.Count;
 
         if (nbSceneAccessible > 0)
         {
-            if(nbSceneAccessible == 5)
+            if (nbSceneAccessible == 5)
             {
                 nbSceneAccessible -= 1;
             }
@@ -168,7 +184,7 @@ public class GameManager : MonoBehaviour
         else
         {
             LoadEndScene();
-        }
+        }*/
     }
 
     [ContextMenu("Early wood")]
@@ -214,13 +230,13 @@ public class GameManager : MonoBehaviour
         AchivementManager.instance.AddWeaponWonWith(Player.instance.GetComponentInChildren<WeaponInformations>().GetWeaponType());
         Debug.Log("AHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAH END");
         actualLevel = Scene.GabVictory;
-        StartCoroutine(RestartLevelDelay(0, actualLevel));
+        StartNextlevel(0, actualLevel);
     }
 
     public void GetBackToMainStageAndStart()
     {
         actualLevel = Scene.CentralBoss;
-        StartCoroutine(RestartLevelDelay(0, Scene.CentralBoss));
+        StartNextlevel(0, actualLevel);
     }
 
     public void RemoveSceneFromSceneList(Scene sceneToRemove)
@@ -229,24 +245,14 @@ public class GameManager : MonoBehaviour
         levelSceneList.Remove(sceneToRemove);
     }
 
-    public void StartNextlevel(float delay, Scene chosenLevel)
+    private void StartNextlevel(float delay, Scene chosenLevel)
     {
         textsNotLinked = true;
         if (scenesAreInTransition) return;
         scenesAreInTransition = true;
 
         StartCoroutine(RestartLevelDelay(delay, chosenLevel));
-        RemoveSceneFromSceneList(chosenLevel);
         Debug.Log("After : " + levelSceneList.Count);
-    }
-
-    public void RestartLevel(float delay)
-    {
-        if (scenesAreInTransition) return;
-
-        scenesAreInTransition = true;
-
-        StartCoroutine(RestartLevelDelay(delay, actualLevel));
     }
 
     private IEnumerator RestartLevelDelay(float delay, Scene level)
@@ -293,6 +299,6 @@ public class GameManager : MonoBehaviour
     {
         actualLevel = Scene.GabGameOver;
         AchivementManager.instance.Died();
-        StartCoroutine(RestartLevelDelay(3, actualLevel));
+        StartNextlevel(3, actualLevel);
     }
 }

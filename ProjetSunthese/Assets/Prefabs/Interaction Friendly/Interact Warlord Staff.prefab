@@ -35,7 +35,7 @@ Transform:
   m_Children:
   - {fileID: 8130493802473667749}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5120778128626218136
 SpriteRenderer:
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ROTATION_OFFSET: 0
   orbit: 1
-  baseDamage: 69
+  baseDamage: 18
   defaultStartup: 1
   defaultRecovery: 2
   cooldown: 0.1

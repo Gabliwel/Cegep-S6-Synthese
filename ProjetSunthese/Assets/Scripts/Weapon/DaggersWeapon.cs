@@ -13,18 +13,28 @@ public class Daggers : Weapon
     [SerializeField] private Dagger dagger1;
     [SerializeField] private Dagger dagger2;
     private Vector3 reversed = new Vector3(1, -1, 1);
+    SpriteRenderer spriteRenderer;
 
     protected override void Start()
     {
         base.Start();
-        dagger1.transform.parent.position = rotationPoint.position;
-        dagger2.transform.parent.position = rotationPoint.position;
         orbit = false;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
     {
         orbit = false;
+    }
+
+    public override void SetDefault()
+    {
+        base.SetDefault();
+        dagger1.transform.parent.position = rotationPoint.position;
+        dagger2.transform.parent.position = rotationPoint.position;
+
+        dagger1.SetLayer(spriteRenderer.sortingLayerName);
+        dagger2.SetLayer(spriteRenderer.sortingLayerName);
     }
 
     protected override IEnumerator Attack()

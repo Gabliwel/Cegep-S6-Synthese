@@ -60,23 +60,23 @@ MonoBehaviour:
   gontrandShockWave: {fileID: 8300000, guid: 341ea3363c31ada4782b27cc1c971e5d, type: 3}
   gontrandAura: {fileID: 0}
   gontrandDie: {fileID: 0}
-  michealTP: {fileID: 0}
+  michealTP: {fileID: 8300000, guid: 8ff2a2d7e79f81c40ac447512f879374, type: 3}
   michealThrow: {fileID: 0}
   michealDie: {fileID: 0}
   jgRockThrow: {fileID: 0}
   jgSpawnStalagmites: {fileID: 0}
   jgSpawnMobs: {fileID: 0}
   jgDie: {fileID: 0}
-  bobAura: {fileID: 0}
-  bobLaser: {fileID: 0}
-  bobInvincibility: {fileID: 0}
+  bobAura: {fileID: 8300000, guid: 549c62bd69d33ec47940fc6285f0d06e, type: 3}
+  bobLaser: {fileID: 8300000, guid: a9e3fee688cf000499bded40dd54ff48, type: 3}
+  bobFires: {fileID: 8300000, guid: 341ea3363c31ada4782b27cc1c971e5d, type: 3}
+  bobInvincibility: {fileID: 8300000, guid: 1d74880bed4586644a16a79a2d9dc8af, type: 3}
   bobDie: {fileID: 0}
   bofrerBFL: {fileID: 0}
   bofrerRockets: {fileID: 0}
   bofrerShieldHitSound: {fileID: 8300000, guid: 057849ce23ec2204f8bef04d3f6101d9, type: 3}
   heal: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
-  equipBoots: {fileID: 0}
-  equipGloves: {fileID: 0}
+  useItem: {fileID: 8300000, guid: 44321577163abee4ab67fa15be97792c, type: 3}
   levelUp: {fileID: 0}
   victory: {fileID: 0}
   gameOver: {fileID: 0}

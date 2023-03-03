@@ -110,7 +110,8 @@ public class ShieldEnemy : Enemy
             didShield = true;
             shieldOn = true;
             shield.SetActive(true);
-            StartCoroutine(ShieldTime());
+            if (hp > 0)
+                StartCoroutine(ShieldTime());
 
         }
     }

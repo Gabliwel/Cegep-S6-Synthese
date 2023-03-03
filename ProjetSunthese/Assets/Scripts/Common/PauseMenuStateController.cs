@@ -12,7 +12,7 @@ public class PauseMenuStateController : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetButtonDown("Pause") || Input.GetButtonDown("Cancel"))
         {
             if (pauseUI.activeSelf)
             {

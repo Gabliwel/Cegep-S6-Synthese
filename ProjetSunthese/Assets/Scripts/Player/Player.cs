@@ -243,7 +243,6 @@ public class Player : MonoBehaviour
         {
             health.Harm(ammount);
             GameManager.instance.UpdateHealth();
-            DamageNumbersManager.instance.CallText(ammount, transform.position, true);
             return true;
         }
         return false;
@@ -254,7 +253,6 @@ public class Player : MonoBehaviour
         if (isDead) return;
         health.Harm(ammount);
         GameManager.instance.UpdateHealth();
-        DamageNumbersManager.instance.CallText(ammount, transform.position, true);
     }
 
     public void ChangeLayer(string layer, string sortingLayer)
@@ -354,4 +352,15 @@ public class Player : MonoBehaviour
         playerMovement.SetSpeedReducer(1);
     }
 
+    [ContextMenu("NextLevel")]
+    public void NextLevel()
+    {
+        GameManager.instance.GetRandomNextLevelAndStart();
+    }
+
+    [ContextMenu("Central")]
+    public void BackToMain()
+    {
+        GameManager.instance.GetBackToMainStageAndStart();
+    }
 }
