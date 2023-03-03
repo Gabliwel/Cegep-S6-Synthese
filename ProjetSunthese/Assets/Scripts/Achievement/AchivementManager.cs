@@ -69,9 +69,7 @@ public class AchivementManager : MonoBehaviour
 
     private void LoadAchievementClass()
     {
-        achivementData = null;
         achivementData = save.LoadData();
-        Debug.Log(achivementData);
         if (achivementData == null)
         {
             achivementData = new AchivementClass();

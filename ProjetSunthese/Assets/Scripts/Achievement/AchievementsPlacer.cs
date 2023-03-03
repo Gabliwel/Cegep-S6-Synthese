@@ -8,12 +8,19 @@ public class AchievementsPlacer : MonoBehaviour
     [SerializeField] private Sprite[] images;
     GameObject achievementTemplate;
     List<Achievement> achievements;
+    List<GameObject> achievementUIList = new List<GameObject>();
+
+    private void Awake()
+    {
+        achievementTemplate = transform.GetChild(0).gameObject;
+    }
 
     private void OnEnable()
     {
-        achievementTemplate = transform.GetChild(0).gameObject;
+        AchivementManager.instance.ReloadAchievementAndSetInObjects();
+        achievementTemplate.SetActive(true);
         achievements = AchivementManager.instance.achievements;
-        Debug.Log(achievements.Count);
+
         GameObject achievement; 
         for(int i = 0; i < achievements.Count; i++)
         {
@@ -26,9 +33,19 @@ public class AchievementsPlacer : MonoBehaviour
             {
                 achievement.GetComponent<Image>().color = new Color(0, 191, 47, 255);
             }
+            achievementUIList.Add(achievement);
         }
 
-        Destroy(achievementTemplate);
+        achievementTemplate.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        foreach(GameObject listUI in achievementUIList)
+        {
+            Destroy(listUI);
+        }
+        achievementUIList.Clear();
     }
 
 }
