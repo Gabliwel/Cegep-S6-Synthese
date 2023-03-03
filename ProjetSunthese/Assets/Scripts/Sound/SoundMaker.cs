@@ -226,7 +226,7 @@ public class SoundMaker : MonoBehaviour
         RequestSound(position, soundManager.EnemyDeath, 0.15f);
     }
 
-    private void RequestSound(Vector2 position, AudioClip audioClip)
+    public void RequestSound(Vector2 position, AudioClip audioClip)
     {
         foreach (GameObject individual in soundMakerArray)
         {

@@ -24,6 +24,7 @@ public class BofrerSceneManager : MonoBehaviour
     [SerializeField] private GameObject bofrer;
     [SerializeField] private Dialogue[] possibleDialogues;
     private TalkingCharacter cutsceneInteractable;
+    private VoiceManager voice;
 
     private void Start()
     {
@@ -32,6 +33,7 @@ public class BofrerSceneManager : MonoBehaviour
         MusicMaker.instance.PlayMusic(normalSong, true);
         cutsceneInteractable = GetComponentInChildren<TalkingCharacter>();
         StartCoroutine(Cinematic());
+        voice = GetComponent<VoiceManager>();
     }
 
     public void SwitchToPhase2()
@@ -78,7 +80,14 @@ public class BofrerSceneManager : MonoBehaviour
         cutsceneInteractable.SetDialogues(GetRandomDialogue());
         cutsceneInteractable.Interact(Player.instance);
         while (!cutsceneInteractable.HasDialogueEnded())
+        {
+            if (cutsceneInteractable.IsDialogueWaiting())
+                voice.StopRandomVoiceClips();
+            else
+                voice.PlayRandomVoiceClips();
             yield return null;
+        }
+        voice.StopRandomVoiceClips();
         cutsceneInteractable.DeactivateStimuli();
         yield return new WaitForSeconds(1);
 

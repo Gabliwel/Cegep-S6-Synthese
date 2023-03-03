@@ -77,4 +77,9 @@ public class DialogueBox : MonoBehaviour
         character.DialogueEnded();
         gameObject.SetActive(false);
     }
+
+    public bool IsWaiting()
+    {
+        return waitingForContinue;
+    }
 }
