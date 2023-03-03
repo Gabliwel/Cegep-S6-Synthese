@@ -253,7 +253,6 @@ public class Player : MonoBehaviour
         if (isDead) return;
         health.Harm(ammount);
         GameManager.instance.UpdateHealth();
-        DamageNumbersManager.instance.CallText(ammount, transform.position, true);
     }
 
     public void ChangeLayer(string layer, string sortingLayer)
@@ -294,7 +293,7 @@ public class Player : MonoBehaviour
             weapon.gameObject.GetComponent<WarlorckStaff>().SetProjectiles(projectilesManager.GetWarlockProjectiles());
         else if (type == WeaponsType.STAFF)
             weapon.gameObject.GetComponent<Staff>().SetProjectiles(projectilesManager.GetWizardProjectiles());
-        else if(type == WeaponsType.SWORD)
+        else if (type == WeaponsType.SWORD)
             weapon.gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
     }
 
@@ -364,11 +363,4 @@ public class Player : MonoBehaviour
     {
         GameManager.instance.GetBackToMainStageAndStart();
     }
-
-    [ContextMenu("KevLevel")]
-    public void KevLevel()
-    {
-        GameManager.instance.StartNextlevel(0, Scene.KevenLevel);
-    }
-
 }

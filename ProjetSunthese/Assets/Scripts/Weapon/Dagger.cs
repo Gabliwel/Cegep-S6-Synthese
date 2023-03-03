@@ -49,11 +49,11 @@ public class Dagger : Melee
     public override void StartAttack()
     {
         flipped = (Mathf.Abs(Mathf.Atan2(mouseRelativeToPlayer.y, mouseRelativeToPlayer.x) * Mathf.Rad2Deg)) < 90;
-        Debug.Log("I, " + gameObject.name + "have declared that " + flipped);
     }
 
     public bool GetShouldFlip()
     {
         return shouldFlip;
     }
+
 }
