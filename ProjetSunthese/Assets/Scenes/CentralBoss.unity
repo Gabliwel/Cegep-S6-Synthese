@@ -405,7 +405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 873655346591603271, guid: ac0ee4e18dc2e874aac221711e05947a, type: 3}
       propertyPath: currentScaling
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 873655346591604152, guid: ac0ee4e18dc2e874aac221711e05947a, type: 3}
       propertyPath: m_Name
@@ -806,7 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f270c8e68f756d45bc6b2a0b224c109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelsDone: 06000000050000000200000003000000
+  levelsDone: 03000000
 --- !u!4 &1356696140
 Transform:
   m_ObjectHideFlags: 0
