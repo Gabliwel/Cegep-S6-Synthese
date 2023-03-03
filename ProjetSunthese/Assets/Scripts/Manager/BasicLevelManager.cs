@@ -64,7 +64,6 @@ public class BasicLevelManager : MonoBehaviour
     {
         boss.SetActive(false);
         followingBoss.SetActive(true);
-
         MusicMaker.instance.PlayMusic(levelMusic, true);
         if (doCinematic)
         {

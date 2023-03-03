@@ -158,33 +158,6 @@ public class GameManager : MonoBehaviour
         actualLevel = levelSceneList.ElementAt(randomChoice);
         RemoveSceneFromSceneList(actualLevel);
         StartNextlevel(0, actualLevel);
-
-        /*
-        Debug.Log("Before : " + levelSceneList.Count);
-        int nbSceneAccessible = levelSceneList.Count;
-
-        if (nbSceneAccessible > 0)
-        {
-            /*if (nbSceneAccessible == 5)
-            {
-                nbSceneAccessible -= 1;
-            }
-
-            if (nbSceneAccessible == 1 && levelSceneList.ElementAt(0) == Scene.GabShop)
-            {
-                LoadEndScene();
-                return;
-            }*/
-
-            int randomChoice = UnityEngine.Random.Range(0, nbSceneAccessible);
-            Debug.Log(randomChoice);
-            actualLevel = levelSceneList.ElementAt(randomChoice);
-            StartNextlevel(0, actualLevel);
-        }
-        else
-        {
-            LoadEndScene();
-        }*/
     }
 
     [ContextMenu("Early wood")]

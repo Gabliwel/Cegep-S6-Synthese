@@ -15,7 +15,10 @@ public class LavaBossController : Enemy
     private GameObject player;
     private int speed =3 ;
     private Animator animator;
-    private HPBar hpBar;
+
+    private BossInfoController bossInfo;
+    private const string bossName = "Gontrant";
+
     private BoxCollider2D bossCollider;
     private int timeBeforeFirstAttack = 8;
     private int timeBetweenTrail = 1;
@@ -33,7 +36,9 @@ public class LavaBossController : Enemy
             trailArray[i].SetActive(false);
         }
         player =GameObject.FindGameObjectWithTag("Player");
-        hpBar = GetComponentInChildren<HPBar>();
+        bossInfo = GameObject.FindGameObjectWithTag("BossInfo").GetComponent<BossInfoController>();
+        bossInfo.SetName(bossName);
+        bossInfo.gameObject.SetActive(false);
     }
 
     void Update()
@@ -68,7 +73,18 @@ public class LavaBossController : Enemy
         }
     }
 
- 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        bossInfo.gameObject.SetActive(true);
+        bossInfo.Bar.SetDefault(hp, baseHP);
+    }
+
+    private void OnDisable()
+    {
+        bossInfo.gameObject.SetActive(false);
+    }
+
     protected override void Drop()
     {
         GetComponent<BossDrops>().BossDrop(transform.position);
@@ -77,18 +93,20 @@ public class LavaBossController : Enemy
     public override void Harm(float ammount, float poison)
     {
         base.Harm(ammount, poison);
-        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        bossInfo.Bar.UpdateHealth(hp, baseHP);
     }
     protected override void WasPoisonHurt()
     {
-        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        bossInfo.Bar.UpdateHealth(hp, baseHP);
     }
 
     public override void Die()
     {
+        base.Die();
+        bossInfo.Stop();
+        bossInfo.gameObject.SetActive(false);
         Scaling.instance.ScalingIncrease();
         AchivementManager.instance.KilledGontrand();
-        base.Die();
     }
 
     private void Animate()

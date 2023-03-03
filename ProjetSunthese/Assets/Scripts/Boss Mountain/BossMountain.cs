@@ -36,11 +36,17 @@ public class BossMountain : Enemy
     private BossMountainStalagmiteSpawner stalagmiteSpawner;
     private BossMountainRock rock;
 
-    private HPBar hpBar;
+    private BossInfoController bossInfo;
+    private const string bossName = "Jean-Guy";
 
     protected override void Awake()
     {
         base.Awake();
+
+        bossInfo = GameObject.FindGameObjectWithTag("BossInfo").GetComponent<BossInfoController>();
+        bossInfo.SetName(bossName);
+        bossInfo.gameObject.SetActive(false);
+
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         animator = GetComponent<Animator>();
         childLight = transform.Find("Light 2D");
@@ -51,17 +57,25 @@ public class BossMountain : Enemy
         stalagmiteSpawner.transform.parent = transform;
         rock = Instantiate(rockAttackPrefab);
         rock.transform.parent = transform;
-        hpBar = GetComponentInChildren<HPBar>();
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         enemySpawnTimer = Random.Range(enemySpawnMinTime, enemySpawnMaxTime);
         stalagmiteSpawnTimer = Random.Range(stalagmiteSpawnMinTime, stalagmiteSpawnMaxTime);
         rockThrowTimer = Random.Range(rockThrowMinTime, rockThrowMaxTime);
         positionChangeTimer = positionChangeBaseTime;
         hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
         damageDealt = Scaling.instance.CalculateDamageOnScaling(baseDamageDealt);
+
+        bossInfo.gameObject.SetActive(true);
+        bossInfo.Bar.SetDefault(hp, baseHP);
+    }
+
+    private void OnDisable()
+    {
+        bossInfo.gameObject.SetActive(false);
     }
 
     protected override void Drop()
@@ -79,13 +93,13 @@ public class BossMountain : Enemy
     public override void Harm(float ammount, float poison)
     {
         base.Harm(ammount, poison);
-        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        bossInfo.Bar.UpdateHealth(hp, baseHP);
     }
 
     protected override void WasPoisonHurt()
     {
         base.WasPoisonHurt();
-        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        bossInfo.Bar.UpdateHealth(hp, baseHP);
     }
 
     protected void Update()
