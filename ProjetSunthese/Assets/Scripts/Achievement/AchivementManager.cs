@@ -24,8 +24,8 @@ public class AchivementManager : MonoBehaviour
     private const string MICHAEL = "You defeated Michael for the first time!";
     private const string JEANGUY = "You defeated Jean Guy for the first time!";
     private const string GONTRAND = "You defeated Gontrand for the first time!";
-    private const string GAMEDONE = "You beated the game for the first time!";
-    private const string RAGEQUIT = "You didnt take that lost so well...";
+    private const string GAMEDONE = "You beat the game for the first time!";
+    private const string RAGEQUIT = "You didn\'t take that lost so well...";
     private const string DEATH = "You died... 30 times...";
     private const string WEAPON_MASTER = "You won the game using every weapons!";
 
@@ -50,13 +50,8 @@ public class AchivementManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         save = GetComponent<JSONSave>();
-        achivementData = save.LoadData();
-        if (achivementData == null)
-        {
-            achivementData = new AchivementClass();
-        }
+        LoadAchievementClass();
         gotRageQuit = achivementData.rageQuit;
-
 
         if (transform.parent != null)
         {
@@ -70,11 +65,28 @@ public class AchivementManager : MonoBehaviour
             save.SaveData(achivementData);
         }
 
+    }
+
+    private void LoadAchievementClass()
+    {
+        achivementData = null;
+        achivementData = save.LoadData();
+        Debug.Log(achivementData);
+        if (achivementData == null)
+        {
+            achivementData = new AchivementClass();
+        }
+    }
+
+    public void ReloadAchievementAndSetInObjects()
+    {
+        LoadAchievementClass();
         CreateListOfAchievementWithState();
     }
 
     void CreateListOfAchievementWithState()
     {
+        achievements.Clear();
         achievements.Add(new Achievement("My loot now!", CHEST, achivementData.lotsChestOpened));
         achievements.Add(new Achievement("On a rampage", ENEMIES, achivementData.nbEnemyKilled));
         achievements.Add(new Achievement("Dungeon escape", BOB, achivementData.beatBob));
@@ -87,7 +99,6 @@ public class AchivementManager : MonoBehaviour
         achievements.Add(new Achievement("Like the back of my hands", WEAPON_MASTER, achivementData.weaponMaster));
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!gotRageQuit)

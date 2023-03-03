@@ -6,11 +6,15 @@ using UnityEngine.UI;
 public class AchievementsPlacer : MonoBehaviour
 {
     [SerializeField] private Sprite[] images;
-    private void Start()
+    GameObject achievementTemplate;
+    List<Achievement> achievements;
+
+    private void OnEnable()
     {
-        GameObject achievementTemplate = transform.GetChild(0).gameObject;
-        GameObject achievement;
-        List<Achievement> achievements = AchivementManager.instance.achievements;
+        achievementTemplate = transform.GetChild(0).gameObject;
+        achievements = AchivementManager.instance.achievements;
+        Debug.Log(achievements.Count);
+        GameObject achievement; 
         for(int i = 0; i < achievements.Count; i++)
         {
             achievement = Instantiate(achievementTemplate, transform);
@@ -26,4 +30,5 @@ public class AchievementsPlacer : MonoBehaviour
 
         Destroy(achievementTemplate);
     }
+
 }
