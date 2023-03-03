@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7266942886016800260}
   - component: {fileID: 7266942886016800262}
   - component: {fileID: 7266942886016800263}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 7266942886890778084}
   - component: {fileID: 7266942886890778085}
   - component: {fileID: 7266942886890778090}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}

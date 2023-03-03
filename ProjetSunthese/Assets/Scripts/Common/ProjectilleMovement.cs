@@ -8,7 +8,7 @@ public class ProjectilleMovement : MonoBehaviour
     private Vector3 playerPos;
     private Sensor sensor;
     private ISensor<Player> playerSensor;
-    [SerializeField] private float damage;
+    private float damage;
     void Start()
     {
         sensor = GetComponentInChildren<Sensor>(true);
@@ -44,5 +44,10 @@ public class ProjectilleMovement : MonoBehaviour
         gameObject.SetActive(true);
 
         playerPos = destination;
+    }
+
+    public void SetDamage(float damageBoss)
+    {
+        damage = damageBoss;
     }
 }

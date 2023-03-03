@@ -60,7 +60,7 @@ MonoBehaviour:
   gontrandShockWave: {fileID: 8300000, guid: 341ea3363c31ada4782b27cc1c971e5d, type: 3}
   gontrandAura: {fileID: 0}
   gontrandDie: {fileID: 0}
-  michealTP: {fileID: 0}
+  michealTP: {fileID: 8300000, guid: 8ff2a2d7e79f81c40ac447512f879374, type: 3}
   michealThrow: {fileID: 0}
   michealDie: {fileID: 0}
   jgRockThrow: {fileID: 0}
