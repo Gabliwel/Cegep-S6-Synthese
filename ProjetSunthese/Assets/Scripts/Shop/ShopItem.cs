@@ -22,6 +22,11 @@ public class ShopItem : Interactable
     private const int priceLegendary = 70;
     private const int priceUnique = 100;
 
+    private void Start()
+    {
+        transform.localEulerAngles = Vector3.zero;
+    }
+
     public void SetItem(GameObject newItem, int newPrice)
     {
         price = newPrice;

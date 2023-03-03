@@ -17,7 +17,6 @@ public class Daggers : Weapon
 
     protected override void Start()
     {
-        base.Start();
         orbit = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -32,9 +31,9 @@ public class Daggers : Weapon
         base.SetDefault();
         dagger1.transform.parent.position = rotationPoint.position;
         dagger2.transform.parent.position = rotationPoint.position;
+        dagger1.gameObject.SetActive(true);
+        dagger2.gameObject.SetActive(true);
 
-        dagger1.SetLayer(spriteRenderer.sortingLayerName);
-        dagger2.SetLayer(spriteRenderer.sortingLayerName);
     }
 
     protected override IEnumerator Attack()

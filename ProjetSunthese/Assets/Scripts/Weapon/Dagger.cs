@@ -49,7 +49,6 @@ public class Dagger : Melee
     public override void StartAttack()
     {
         flipped = (Mathf.Abs(Mathf.Atan2(mouseRelativeToPlayer.y, mouseRelativeToPlayer.x) * Mathf.Rad2Deg)) < 90;
-        Debug.Log("I, " + gameObject.name + "have declared that " + flipped);
     }
 
     public bool GetShouldFlip()
@@ -57,11 +56,4 @@ public class Dagger : Melee
         return shouldFlip;
     }
 
-    public void SetLayer(string layer)
-    {
-        GetComponent<SpriteRenderer>().sortingLayerName = layer;
-        gameObject.layer = gameObject.layer;
-
-        sensor.gameObject.layer = LayerMask.NameToLayer(layer);
-    }
 }
