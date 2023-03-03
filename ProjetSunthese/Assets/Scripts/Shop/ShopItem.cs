@@ -10,7 +10,6 @@ public class ShopItem : Interactable
     private GameObject item;
     private SpriteRenderer itemSprite;
     private TMP_Text text;
-    private SoundMaker soundMaker;
 
     private int price;
     private bool boxHasOutline = false;
@@ -22,11 +21,6 @@ public class ShopItem : Interactable
     private const int priceEpic = 50;
     private const int priceLegendary = 70;
     private const int priceUnique = 100;
-
-    private void Start()
-    {
-        soundMaker = GameObject.FindGameObjectWithTag("SoundMaker").GetComponent<SoundMaker>();
-    }
 
     public void SetItem(GameObject newItem, int newPrice)
     {
