@@ -51,6 +51,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip bofrerBFL;
     [SerializeField] private AudioClip bofrerRockets;
     [SerializeField] private AudioClip bofrerShieldHitSound;
+    [SerializeField] private AudioClip bofrerHomingBall;
+    [SerializeField] private AudioClip bofrerStolenAttackSound;
 
     [Header("Miscellaneous")]
     [SerializeField] private AudioClip heal;
@@ -93,6 +95,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip BofrerBFL { get => bofrerBFL; }
     public AudioClip BofrerRockets { get => bofrerRockets; }
     public AudioClip BofrerShieldHitSound { get => bofrerShieldHitSound; }
+    public AudioClip BofrerHomingBall { get => bofrerHomingBall; }
+    public AudioClip BofrerStolenAttackSound { get => bofrerStolenAttackSound; }
     public AudioClip Heal { get => heal; }
     public AudioClip UseItem { get => useItem; }
     public AudioClip LevelUp { get => levelUp; }

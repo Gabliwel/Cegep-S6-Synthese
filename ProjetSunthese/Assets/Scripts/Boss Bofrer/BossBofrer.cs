@@ -263,11 +263,13 @@ public class BossBofrer : Enemy
             stolenAttacks[num].Launch();
         }
         Debug.Log("firering " + stolenAttacks[num].name + " number " + num);
+        SoundMaker.instance.BofrerStolenAttackSound(transform.position);
     }
 
     void StartBFL()
     {
         StartCoroutine(BFLRoutine());
+        SoundMaker.instance.BofrerBFLSound(transform.position);
     }
 
     void StartMinionSpawn()
@@ -278,11 +280,13 @@ public class BossBofrer : Enemy
     void StartBoltSpawn()
     {
         boltSpawner.Launch();
+        SoundMaker.instance.BofrerRocketsSound(transform.position);
     }
 
     void StartBallAttack()
     {
         ball.Launch();
+        SoundMaker.instance.BofrerHomingBall(transform.position);
     }
 
     IEnumerator BFLRoutine()
