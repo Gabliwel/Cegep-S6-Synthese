@@ -130,9 +130,10 @@ public class Player : MonoBehaviour
         GameManager.instance.UpdateHealth();
     }
 
-    public void GainSecondChance()
+    public void GainSecondChance(float value)
     {
         health.GainSecondChance();
+        playerMovement.IncreaseBaseSpeed(value);
     }
 
     public void GainDeathContract()
@@ -350,24 +351,6 @@ public class Player : MonoBehaviour
     {
         fireParticle.Stop(false, ParticleSystemStopBehavior.StopEmitting);
         playerMovement.SetSpeedReducer(1);
-    }
-
-    [ContextMenu("NextLevel")]
-    public void NextLevel()
-    {
-        GameManager.instance.GetRandomNextLevelAndStart();
-    }
-
-    [ContextMenu("Central")]
-    public void BackToMain()
-    {
-        GameManager.instance.GetBackToMainStageAndStart();
-    }
-
-    [ContextMenu("KevLevel")]
-    public void KevLevel()
-    {
-        GameManager.instance.StartNextlevel(0, Scene.CharlesLevel);
     }
 
 }

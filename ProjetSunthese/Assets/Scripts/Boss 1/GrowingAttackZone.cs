@@ -50,7 +50,7 @@ public class GrowingAttackZone : BossAttack
         bool doneHalf = false;
         float timeScale = 1;
         if (returnToInitial) timeScale = 2;
-
+        SoundMaker.instance.BobAuraSound(transform.position);
         for (float time = 0; time < speedInSec * timeScale; time += Time.deltaTime)
         {
             // For the wait with "Return to Initial"
@@ -58,6 +58,7 @@ public class GrowingAttackZone : BossAttack
                 transform.localScale = endScale;
                 doneHalf = true;
                 yield return new WaitForSeconds(waitSecBeforeReturn);
+                SoundMaker.instance.BobAuraSound(transform.position);
             }
 
             // Scalling of the zone and mask in the parent object

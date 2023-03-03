@@ -55,12 +55,14 @@ public class PlayerHealth : MonoBehaviour
     {
         if (isDead) return;
 
-        float damge = (damageValue * receiveDamageMultiplicator) - armor;
-        Debug.Log("oof ouch ive been hit for " + (damge) + " damage");
-        if (damge < 1) damge = 1; 
-        currentHealth -= damge;
+        float damage = (damageValue * receiveDamageMultiplicator) - armor;
+        Debug.Log(armor);
+        Debug.Log(damageValue);
+        Debug.Log("oof ouch ive been hit for " + (damage) + " damage");
+        if (damage < 1) damage = 1; 
+        currentHealth -= damage;
         SoundMaker.instance.PlayerTakeDamageSound(gameObject.transform.position);
-        DamageNumbersManager.instance.CallText(damge, transform.position, true);
+        DamageNumbersManager.instance.CallText(damage, transform.position, true);
 
         if (currentHealth <= 0 && deathContract > 0)
         {

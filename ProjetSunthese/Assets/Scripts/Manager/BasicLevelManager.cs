@@ -64,6 +64,8 @@ public class BasicLevelManager : MonoBehaviour
     {
         boss.SetActive(false);
         followingBoss.SetActive(true);
+
+        MusicMaker.instance.PlayMusic(levelMusic, true);
         if (doCinematic)
         {
             StartCoroutine(Cinematic());
@@ -146,7 +148,6 @@ public class BasicLevelManager : MonoBehaviour
         followingBoss.GetComponent<AnimatedFollow>().StartChasing(player.transform, this);
         playerScript.BlocMovement(false);
         playerScript.BlocAttack(false);
-        MusicMaker.instance.PlayMusic(levelMusic, true);
     }
 
     // Status du "during" en param, et iverse pour le "after"
@@ -171,13 +172,13 @@ public class BasicLevelManager : MonoBehaviour
     {
         playerScript.BlocMovement(true);
         playerScript.BlocAttack(true);
+        playerScript.AddIframes(2.2f);
         yield return new WaitForSeconds(0.2f);
+
         MusicMaker.instance.FadeTo(bossMusic, true);
-        //do something (sound, anim...)
-
-
         cinematicBars.Activate(0.75f, 2000);
         yield return new WaitForSeconds(1f);
+
         ChangeListsActivation(false);
         followingBoss.SetActive(false);
         boss.transform.position = bossTrans.position;
@@ -186,7 +187,7 @@ public class BasicLevelManager : MonoBehaviour
         boss.SetActive(true);
         cinematicBars.Deactivate(0.75f);
         yield return new WaitForSeconds(1f);
-        //begin movement and attack
+
         playerScript.BlocMovement(false);
         playerScript.BlocAttack(false);
     }

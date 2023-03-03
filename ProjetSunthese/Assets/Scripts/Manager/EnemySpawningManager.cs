@@ -10,6 +10,11 @@ public class EnemySpawningManager : MonoBehaviour
     [SerializeField] private int enemyListSize;
     [SerializeField] private Enemy[] spawnableEnemies;
     [SerializeField] private int spawningInterval = 5;
+
+    [SerializeField] private int buffer = 0;
+
+    private bool canSpawn = true;
+
     void Awake()
     {
         spawnableEnemies = new Enemy[enemyListSize];
@@ -24,9 +29,15 @@ public class EnemySpawningManager : MonoBehaviour
         StartCoroutine(Spawn());
     }
 
-    void Update()
+    private void OnEnable()
     {
-        
+        canSpawn = true;
+    }
+
+    private void OnDisable()
+    {
+        canSpawn = false;
+        foreach (Enemy enemy in spawnableEnemies) if(enemy != null) enemy.gameObject.SetActive(false);
     }
 
     private IEnumerator Spawn()
@@ -34,14 +45,15 @@ public class EnemySpawningManager : MonoBehaviour
         SpawnerController currentSpawner;
         while (true)
         {
-            foreach(Enemy enemy in spawnableEnemies)
+            if (!canSpawn) yield return null;
+            foreach (Enemy enemy in spawnableEnemies)
             {
                 if (!enemy.gameObject.activeSelf)
                 {
                     MakeListOfAvailableSpawner();
-                    if(availableSpawners.Count > 0)
+                    if(availableSpawners.Count > 0 + buffer)
                     {
-                        currentSpawner = availableSpawners[Random.Range(0, availableSpawners.Count)];
+                        currentSpawner = availableSpawners[Random.Range(0, availableSpawners.Count - buffer)];
                         enemy.transform.position = currentSpawner.transform.position;
                         enemy.gameObject.SetActive(true);
                         enemy.ChangeLayer(currentSpawner.gameObject.layer);
@@ -55,7 +67,7 @@ public class EnemySpawningManager : MonoBehaviour
 
     bool CheckIfSpawnerIsAvailable(SpawnerController spawner)
     {
-        return spawner.isOccupied;
+        return spawner.IsOccupied();
     }
 
     void MakeListOfAvailableSpawner()
