@@ -11,8 +11,8 @@ public class Melee : Weapon
     [Range(0, 45)]
     [SerializeField] private float recoilDistance;
     protected bool flipped;
-    private Sensor sensor;
-    private ISensor<Enemy> enemySensor;
+    protected Sensor sensor;
+    protected ISensor<Enemy> enemySensor;
 
     protected override void Start()
     {

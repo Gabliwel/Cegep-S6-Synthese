@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79aec4225d39a564ea74ff8395142629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  damage: 10
   duration: 2
   timer: 0
 --- !u!212 &5052834717428366755
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1bda303f0ec094d8a64b853d87c0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 5
   speed: 1
   ttl: 10
   poisonDamage: 0

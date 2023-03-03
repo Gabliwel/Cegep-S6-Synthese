@@ -28,7 +28,7 @@ public abstract class Weapon : MonoBehaviour
         SetDefault();
     }
 
-    public void SetDefault()
+    public virtual void SetDefault()
     {
         rotationPoint = transform.parent;
         startup = defaultStartup;

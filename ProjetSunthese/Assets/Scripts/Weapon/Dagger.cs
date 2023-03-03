@@ -56,4 +56,12 @@ public class Dagger : Melee
     {
         return shouldFlip;
     }
+
+    public void SetLayer(string layer)
+    {
+        GetComponent<SpriteRenderer>().sortingLayerName = layer;
+        gameObject.layer = gameObject.layer;
+
+        sensor.gameObject.layer = LayerMask.NameToLayer(layer);
+    }
 }
