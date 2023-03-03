@@ -17,7 +17,8 @@ public class LavaBossController : Enemy
     private Animator animator;
     private HPBar hpBar;
     private BoxCollider2D bossCollider;
-
+    private int timeBeforeFirstAttack = 8;
+    private int timeBetweenTrail = 1;
     protected override void Awake()
     {
         base.Awake();
@@ -39,7 +40,7 @@ public class LavaBossController : Enemy
     {
         trailTimeElapsed += Time.deltaTime;
         attackTimer += Time.deltaTime;
-        if(attackTimer > 15)
+        if(attackTimer > timeBeforeFirstAttack)
         {
             lavaAura.Launch();
             lavaShockWave.Launch();
@@ -52,7 +53,7 @@ public class LavaBossController : Enemy
 
     public void LeaveTrail()
     {
-        if (trailTimeElapsed >= 3)
+        if (trailTimeElapsed >= timeBetweenTrail)
         {
             for (int i = 0; i < trailListSize; i++)
             {
