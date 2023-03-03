@@ -68,14 +68,20 @@ public class BossBofrer : Enemy
         hpBar = GetComponentInChildren<HPBar>();
     }
 
-    void Start()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         stolenAttacks = revisitsManager.GetStolenAttacks();
         ActivateAttacks();
-        EnsureRoutinesStarted();
         HPTreshold = CalculateHpThreshold();
         hp -= GetRevisitHealthReduction();
         hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        EnsureRoutinesStarted();
+    }
+
+    private void OnDisable()
+    {
+        routinesStarted = false;
     }
 
     void ActivateAttacks()

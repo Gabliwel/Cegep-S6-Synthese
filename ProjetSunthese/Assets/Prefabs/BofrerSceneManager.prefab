@@ -232,6 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4233596155585446588}
   - component: {fileID: 4233596155585446589}
+  - component: {fileID: 9010744083134047963}
   m_Layer: 0
   m_Name: BofrerSceneManager
   m_TagString: BofrerSceneManager
@@ -274,8 +275,34 @@ MonoBehaviour:
   barTime: 2
   barSpace: 300
   zoom: 4
-  unzoom: 4
   timeToBoss: 1.3
   smooth: 2
   buffer: 0.1
   bofrer: {fileID: 0}
+  possibleDialogues: []
+--- !u!114 &9010744083134047963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233596155585446590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d328aacaeaa40644ba7e5b01a7cf047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voiceClips:
+  - {fileID: 8300000, guid: d4882fb8b08724646946c88be6b46692, type: 3}
+  - {fileID: 8300000, guid: be42b99c101ef3d4a830d60c0bb9239b, type: 3}
+  - {fileID: 8300000, guid: a0144beefa7adef4aae0ba8c712c4fff, type: 3}
+  - {fileID: 8300000, guid: a47ab03e5d3a5df488b276508829d33d, type: 3}
+  - {fileID: 8300000, guid: 47149dbc72ff9f24fa5c71297921424a, type: 3}
+  - {fileID: 8300000, guid: 92311d3e7d9e9e94e93d26456ef64512, type: 3}
+  - {fileID: 8300000, guid: e625044874ef51046a02295f57b34c81, type: 3}
+  - {fileID: 8300000, guid: f95eb7a8e41f8334080e4970738389d8, type: 3}
+  - {fileID: 8300000, guid: 712e306428421c54d9a6272ac99ab775, type: 3}
+  - {fileID: 8300000, guid: b2e26aef82f051d43be76e9dea438a79, type: 3}
+  - {fileID: 8300000, guid: 33ba48754b758624085b6a6b18eef23d, type: 3}
+  - {fileID: 8300000, guid: 4d183157268d09b439a66c76aecc8033, type: 3}
+  frequency: 0.2

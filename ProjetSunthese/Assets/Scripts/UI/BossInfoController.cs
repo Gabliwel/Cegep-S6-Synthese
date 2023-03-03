@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class BossInfoController : MonoBehaviour
 {
@@ -18,5 +19,10 @@ public class BossInfoController : MonoBehaviour
     public void SetName(string name)
     {
         this.name.text = name;
+    }
+
+    public void Stop()
+    {
+        lifeBar.StopAllCoroutines();
     }
 }

@@ -156,19 +156,20 @@ public class SoundMaker : MonoBehaviour
         RequestSound(position, soundManager.JgDie);
     }
 
+    /************* BOB ***************/
     public void BobAuraSound(Vector2 position)
     {
-        RequestSound(position, soundManager.BobAura);
+        RequestSound(position, soundManager.BobAura, 0.7f);
     }
 
     public void BobLaserSound(Vector2 position)
     {
-        RequestSound(position, soundManager.BobLaser);
+        RequestSound(position, soundManager.BobLaser, 0.2f);
     }
 
     public void BobInvincibilitySound(Vector2 position)
     {
-        RequestSound(position, soundManager.BobInvincibility);
+        RequestSound(position, soundManager.BobInvincibility, 0.4f);
     }
 
     public void BobDieSound(Vector2 position)
@@ -176,6 +177,12 @@ public class SoundMaker : MonoBehaviour
         RequestSound(position, soundManager.BobDie);
     }
 
+    public void BobFireSound(Vector2 position)
+    {
+        RequestSound(position, soundManager.BobFires, 0.7f);
+    }
+
+    /************ BOFRER ********************/
     public void BofrerBFLSound(Vector2 position)
     {
         RequestSound(position, soundManager.BofrerBFL);
@@ -196,14 +203,9 @@ public class SoundMaker : MonoBehaviour
         RequestSound(position, soundManager.Heal);
     }
 
-    public void EquipBootsSound(Vector2 position)
+    public void UseItemSound(Vector2 position)
     {
-        RequestSound(position, soundManager.EquipBoots);
-    }
-
-    public void EquipGlovesSound(Vector2 position)
-    {
-        RequestSound(position, soundManager.EquipGloves);
+        RequestSound(position, soundManager.UseItem);
     }
 
     public void LevelUpSound(Vector2 position)
@@ -226,7 +228,7 @@ public class SoundMaker : MonoBehaviour
         RequestSound(position, soundManager.EnemyDeath, 0.15f);
     }
 
-    private void RequestSound(Vector2 position, AudioClip audioClip)
+    public void RequestSound(Vector2 position, AudioClip audioClip)
     {
         foreach (GameObject individual in soundMakerArray)
         {

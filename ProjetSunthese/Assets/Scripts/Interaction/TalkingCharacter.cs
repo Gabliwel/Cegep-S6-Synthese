@@ -55,6 +55,11 @@ public class TalkingCharacter : Interactable
         return !isDoingDialogue;
     }
 
+    public bool IsDialogueWaiting()
+    {
+        return dialogueBox.IsWaiting();
+    }
+
     public void SetDialogues(string[] newDialogues) 
     {
         dialogues = newDialogues;

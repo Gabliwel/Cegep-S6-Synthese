@@ -57,6 +57,7 @@ public abstract class GenericItem : Interactable
 
     private void Collected(Player player)
     {
+        SoundMaker.instance.UseItemSound(gameObject.transform.position);
         player.UpdateInteractables(this);
         gameObject.SetActive(false);
     }

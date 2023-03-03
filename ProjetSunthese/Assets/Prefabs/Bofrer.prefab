@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 5013013055534734154}
   - component: {fileID: 3709308765563638740}
   - component: {fileID: 5013013055534734155}
+  - component: {fileID: 9085624261302594557}
   - component: {fileID: 5013013055534734157}
   - component: {fileID: 5013013055534734156}
   - component: {fileID: 5013013055534734152}
@@ -242,28 +243,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c8a89a51a8bd2644ada469703517a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteInFirstChild: 0
   baseHP: 1000
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 10
   baseDamageDealt: 0
   damageDealt: 0
-  goldDropped: 0
-  xpGiven: 0
+  goldDropped: 20
+  xpGiven: 50
   overtime: 0
   HPTreshold: 0
   stolenAttacks: []
   stolenMinTimer: 10
   bflPrefab: {fileID: 4592944309761159550, guid: 73fa87cbf6d578e41a03f0a81e281fac, type: 3}
   bflChargeup: 2
-  bflminTimer: 15
+  bflminTimer: 10
   shieldMinionSpawnerPrefab: {fileID: 8566137690466289898, guid: f80b40905b1575d459a9444dfd0b6192, type: 3}
   shieldActive: 0
-  shieldMinionsMinTimer: 30
+  shieldMinionsMinTimer: 18
   boltSpawnerPrefab: {fileID: 5109038637771827725, guid: b40c339a4b2e3b047885fb607959edf0, type: 3}
   boltMinTimer: 7
   ballPrefab: {fileID: 4408345744752626618, guid: 8cd3e58f4ce29544ba9fd5492e0290a5, type: 3}
-  ballMinTimer: 10
+  ballMinTimer: 13
+--- !u!114 &9085624261302594557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5013013055534734159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd9b52e3181b5647a3f5e1af6d4ac30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponsDrop: []
+  portal: {fileID: 6202557103775462470, guid: 54a64a756be8cc14b884655180b6de4a, type: 3}
+  portalSpawnPosition: {x: 0, y: 4, z: 0}
 --- !u!212 &5013013055534734157
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -304,7 +321,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 359206789
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: -1902639281, guid: ed46bbcbc41093d4dbecf82e15653bcf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

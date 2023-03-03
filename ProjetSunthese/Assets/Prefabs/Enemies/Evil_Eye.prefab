@@ -152,7 +152,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1240086991
   m_SortingLayer: 2
-  m_SortingOrder: 5
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 3a584a3a95d56984b8d7c777f810c572, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -244,7 +244,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1240086991
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: -550118809, guid: 8a8856e63bd07f249bfe5e5bc61ed94f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4afb310b125b54daffcdf384bdabb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteInFirstChild: 0
   baseHP: 30
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
@@ -280,6 +281,7 @@ MonoBehaviour:
   speed: 2.5
   useNavMesh: 0
   attackSpeed: 1
+  knockBackForce: 10
 --- !u!114 &2667284385821027685
 MonoBehaviour:
   m_ObjectHideFlags: 0

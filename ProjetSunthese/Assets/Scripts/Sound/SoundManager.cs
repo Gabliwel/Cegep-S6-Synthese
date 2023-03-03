@@ -40,9 +40,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip jgSpawnMobs;
     [SerializeField] private AudioClip jgDie;
 
-    [Header("Boss - Bob (Castle)")]
+    [Header("Boss - Bob (Dungeon)")]
     [SerializeField] private AudioClip bobAura;
     [SerializeField] private AudioClip bobLaser;
+    [SerializeField] private AudioClip bobFires;
     [SerializeField] private AudioClip bobInvincibility;
     [SerializeField] private AudioClip bobDie;
 
@@ -53,8 +54,7 @@ public class SoundManager : MonoBehaviour
 
     [Header("Miscellaneous")]
     [SerializeField] private AudioClip heal;
-    [SerializeField] private AudioClip equipBoots;
-    [SerializeField] private AudioClip equipGloves;
+    [SerializeField] private AudioClip useItem;
     [SerializeField] private AudioClip levelUp;
     [SerializeField] private AudioClip victory;
     [SerializeField] private AudioClip gameOver;
@@ -89,12 +89,12 @@ public class SoundManager : MonoBehaviour
     public AudioClip BobLaser { get => bobLaser;}
     public AudioClip BobInvincibility { get => bobInvincibility; }
     public AudioClip BobDie { get => bobDie; }
+    public AudioClip BobFires { get => bobFires; }
     public AudioClip BofrerBFL { get => bofrerBFL; }
     public AudioClip BofrerRockets { get => bofrerRockets; }
     public AudioClip BofrerShieldHitSound { get => bofrerShieldHitSound; }
     public AudioClip Heal { get => heal; }
-    public AudioClip EquipBoots { get => equipBoots; }
-    public AudioClip EquipGloves { get => equipGloves;}
+    public AudioClip UseItem { get => useItem; }
     public AudioClip LevelUp { get => levelUp; }
     public AudioClip Victory { get => victory; }
     public AudioClip GameOver { get => gameOver; }

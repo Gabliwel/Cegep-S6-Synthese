@@ -62,14 +62,14 @@ public class LifeBar : MonoBehaviour
         if (coroutine != null) StopCoroutine(coroutine);
 
         bool takeDamage = false;
-        if (currentHealth > cHealth) takeDamage = true;
+        if (currentHealth > cHealth && cHealth > 0) takeDamage = true;
 
         currentHealth = cHealth;
         maxHealth = mHealth;
         UpdateText();
 
         if (takeDamage) coroutine = StartCoroutine(UpdateBarWhenDamaged());
-        else coroutine = StartCoroutine(UpdateBarWheHealed());
+        //else coroutine = StartCoroutine(UpdateBarWheHealed());
     }
 
     private IEnumerator UpdateBarWheHealed()
