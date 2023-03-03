@@ -6,7 +6,7 @@ public class MusicMaker : MonoBehaviour
 {
     public static MusicMaker instance = null;
     [SerializeField] private float fadeDuration;
-    private const float DEFAULT_VOLUME = 0.3f;
+    private const float DEFAULT_VOLUME = 0.1f;
     private AudioSource audioSource;
     private AudioClip currentClip;
     private bool fading = false;

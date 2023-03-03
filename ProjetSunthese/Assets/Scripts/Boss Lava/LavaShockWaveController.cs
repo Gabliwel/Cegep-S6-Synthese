@@ -103,5 +103,6 @@ public class LavaShockWaveController : BossAttack
     {
         spread = true;
         shockWaveCoroutine = StartCoroutine(StartShockWave());
+        SoundMaker.instance.GontrandShockWaveSound(transform.position);
     }
 }
