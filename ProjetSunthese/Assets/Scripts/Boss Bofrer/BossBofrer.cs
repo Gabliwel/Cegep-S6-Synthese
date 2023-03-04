@@ -42,7 +42,8 @@ public class BossBofrer : Enemy
     private BofrerRevisitsManger revisitsManager;
     private Animator animator;
     private GameObject shield;
-    private HPBar hpBar;
+    private BossInfoController bossInfo;
+    private const string bossName = "Bofrer";
 
     protected override void Awake()
     {
@@ -65,7 +66,11 @@ public class BossBofrer : Enemy
 
         animator = GetComponent<Animator>();
         revisitsManager = GetComponent<BofrerRevisitsManger>();
-        hpBar = GetComponentInChildren<HPBar>();
+        bossInfo = GameObject.FindGameObjectWithTag("BossInfo").GetComponent<BossInfoController>();
+        bossInfo.SetName(bossName);
+        bossInfo.gameObject.SetActive(false);
+
+
     }
 
     protected override void OnEnable()
@@ -75,12 +80,14 @@ public class BossBofrer : Enemy
         ActivateAttacks();
         HPTreshold = CalculateHpThreshold();
         hp -= GetRevisitHealthReduction();
-        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        bossInfo.gameObject.SetActive(true);
+        bossInfo.Bar.SetDefault(hp, scaledHp);
         EnsureRoutinesStarted();
     }
 
     private void OnDisable()
     {
+        bossInfo.gameObject.SetActive(false);
         routinesStarted = false;
     }
 
@@ -145,7 +152,7 @@ public class BossBofrer : Enemy
         {
             base.Harm(ammount, overtime);
             CheckHPForTeleport();
-            hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+            bossInfo.Bar.UpdateHealth(hp, scaledHp);
         }
     }
 
@@ -155,7 +162,7 @@ public class BossBofrer : Enemy
         if (!shieldActive)
         {
             CheckHPForTeleport();
-            hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+            bossInfo.Bar.UpdateHealth(hp, scaledHp);
         }
     }
 
@@ -180,6 +187,7 @@ public class BossBofrer : Enemy
             {
                 hasRespawned = true;
                 hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
+                scaledHp = hp;
                 GameObject.FindGameObjectWithTag("BofrerSceneManager").GetComponent<BofrerSceneManager>().SwitchToPhase2();
             }
         }

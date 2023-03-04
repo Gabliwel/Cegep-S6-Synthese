@@ -60,6 +60,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip gameOver;
     [SerializeField] private AudioClip enemyDeath;
 
+    [Header("Pause")]
+    [SerializeField] private AudioClip pause;
+    [SerializeField] private AudioClip unpause;
+
     public static SoundManager Instance { get { return instance; } }
 
     public AudioClip PanelPopUp { get => panelPopUp; }
@@ -99,6 +103,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip Victory { get => victory; }
     public AudioClip GameOver { get => gameOver; }
     public AudioClip EnemyDeath { get => enemyDeath; }
+    public AudioClip Pause { get => pause; }
+    public AudioClip Unpause { get => unpause; }
 
     void Awake()
     {

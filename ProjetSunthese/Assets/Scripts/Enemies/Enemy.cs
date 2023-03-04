@@ -25,12 +25,12 @@ public abstract class Enemy : MonoBehaviour
     private SpriteRenderer sprite;
     private float flashTime = 0.1f;
     private bool flashing = false;
-
-    private SoundMaker soundMaker;
+    protected float scaledHp;
 
     protected virtual void Awake()
     {
-        if(spriteInFirstChild)
+        scaledHp = baseHP;
+        if (spriteInFirstChild)
         {
             sprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
         }
@@ -39,13 +39,11 @@ public abstract class Enemy : MonoBehaviour
             sprite = GetComponent<SpriteRenderer>();
         }
     }
-    /// <summary>
-    /// TODO: FIXME: this is bad; no time for fix in alpha
-    /// </summary>
 
     protected virtual void OnEnable()
     {
-        hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
+        scaledHp = Scaling.instance.CalculateHealthOnScaling(baseHP);
+        hp = scaledHp;
         damageDealt = Scaling.instance.CalculateDamageOnScaling(baseDamageDealt);
         if (sprite != null)
             sprite.color = Color.white;
@@ -123,6 +121,10 @@ public abstract class Enemy : MonoBehaviour
     {
         gameObject.layer = layer;
         sprite.sortingLayerName = LayerMask.LayerToName(layer);
+        foreach (Transform child in transform)
+        {
+            child.gameObject.layer = layer;
+        }
     }
 
     protected abstract void Drop();

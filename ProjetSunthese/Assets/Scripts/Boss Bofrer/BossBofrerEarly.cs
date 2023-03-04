@@ -12,7 +12,8 @@ public class BossBofrerEarly : Enemy
     private Animator animator;
     private Sensor sensor;
     private ISensor<Player> playerSensor;
-    private HPBar hpBar;
+    private BossInfoController bossInfo;
+    private const string bossName = "Bofrer";
 
     protected override void Awake()
     {
@@ -23,7 +24,9 @@ public class BossBofrerEarly : Enemy
         playerSensor = sensor.For<Player>();
         playerSensor.OnSensedObject += OnPlayerSense;
         playerSensor.OnUnsensedObject += OnPlayerUnSense;
-        hpBar = GetComponentInChildren<HPBar>();
+        bossInfo = GameObject.FindGameObjectWithTag("BossInfo").GetComponent<BossInfoController>();
+        bossInfo.SetName(bossName);
+        bossInfo.gameObject.SetActive(false);
     }
 
     protected override void OnEnable()
@@ -31,6 +34,13 @@ public class BossBofrerEarly : Enemy
         base.OnEnable();
         animator.SetTrigger("Early");
         StartCoroutine(AttackPlayerInRange());
+        bossInfo.gameObject.SetActive(true);
+        bossInfo.Bar.SetDefault(hp, scaledHp);
+    }
+
+    private void OnDisable()
+    {
+        bossInfo.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -53,14 +63,14 @@ public class BossBofrerEarly : Enemy
     public override void Harm(float ammount, float overtimeDamage)
     {
         base.Harm(ammount, overtimeDamage);
-        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
         CheckHPForTeleport();
     }
 
     protected override void WasPoisonHurt()
     {
         base.WasPoisonHurt();
-        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
         CheckHPForTeleport();
     }
 

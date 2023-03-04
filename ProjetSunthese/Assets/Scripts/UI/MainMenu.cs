@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
    public void PlayGame()
     {
-        SceneManager.LoadScene("Tutoriel");
+        SceneManager.LoadScene("GabIntro");
         Time.timeScale = 1;
     }
 

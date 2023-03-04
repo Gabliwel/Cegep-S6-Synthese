@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,15 @@ public class MusicMaker : MonoBehaviour
     private const float DEFAULT_VOLUME = 0.1f;
     private AudioSource audioSource;
     private AudioClip currentClip;
+    private float musicTime = 0;
+
     private bool fading = false;
+
+    private void OnLevelWasLoaded(int level)
+    {
+        musicTime = 0;
+    }
+
     private void Awake()
     {
         if (instance == null)
@@ -36,6 +45,20 @@ public class MusicMaker : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioSource.volume = volume;
+    }
+
+    public void PauseState(bool paused)
+    {
+        if (paused)
+        {
+            musicTime = audioSource.time; 
+            audioSource.Stop();
+        }
+        else
+        {
+            audioSource.Play();
+            audioSource.time = musicTime;
+        }
     }
 
     public void FadeTo(AudioClip clip, bool loop)
@@ -69,6 +92,7 @@ public class MusicMaker : MonoBehaviour
     {
         audioSource.Stop();
         audioSource.clip = currentClip;
+        musicTime = 0;
         audioSource.Play();
     }
 }
