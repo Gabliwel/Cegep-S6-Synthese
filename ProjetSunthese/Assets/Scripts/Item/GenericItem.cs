@@ -2,27 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Billy.Rarity;
-
-namespace Billy.Rarity
-{
-    // For beta usage
-    public enum ItemRarity
-    {
-        COMMUN,
-        RARE,
-        EPIC,
-        LEGENDARY,
-        UNIQUE // unique wont change value
-    }
-}
+using System;
 
 public abstract class GenericItem : Interactable
 {
-    private ItemRarity rarity;
+    protected ItemRarity rarity;
+    private SpriteRenderer rarityLight;
 
-    void Start()
+    private bool doDust = false;
+    private Animator dust;
+    private float dustTime = 0.50f;
+
+    // Colors for item light base on rarity
+    private static Color commun = new Color(0.2f, 1, 0.29f, 1);
+    private static Color rare = new Color(0.1f, 0.61f, 1, 1);
+    private static Color epic = new Color(0.76f, 0.1f, 1, 1);
+    private static Color legendary = new Color(1, 0.7f, 0.09f, 1);
+    private static Color unique = new Color(1, 0.2f, 0.09f, 1);
+
+    protected override void Awake()
     {
-        rarity = ItemRarity.COMMUN;
+        base.Awake();
+        rarityLight = gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
+        dust = gameObject.transform.GetChild(2).GetComponent<Animator>();
+        dust.gameObject.SetActive(false);
     }
 
     public override void Interact(Player player) 
@@ -33,9 +36,94 @@ public abstract class GenericItem : Interactable
 
     protected abstract void AddToPlayer(Player player);
 
+    public override void ChangeSelectedState(bool selected, DescriptionBox descBox)
+    {
+        if (selected)
+        {
+            sprite.material = selectedMaterial;
+            if (useTextBox) descBox.PopUp(title, desc, rarity);
+        }
+        else
+        {
+            sprite.material = defaultMaterial;
+            if (useTextBox) descBox.Close();
+        }
+    }
+
+    public override int GetPrice()
+    {
+        return basePrice;
+    }
+
     private void Collected(Player player)
     {
+        SoundMaker.instance.UseItemSound(gameObject.transform.position);
         player.UpdateInteractables(this);
         gameObject.SetActive(false);
+    }
+
+    protected void SetRarity(ItemRarity rarity)
+    {
+        this.rarity = rarity;
+        UpdateColorByRarity();
+    }
+
+    public void SetItem(string chestLayer, ItemRarity newRarity)
+    {
+        gameObject.layer = LayerMask.NameToLayer(chestLayer);
+        gameObject.transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer(chestLayer); // for stimuli
+        if (sprite == null) Awake();
+        sprite.sortingLayerName = chestLayer;
+        rarityLight.sortingLayerName = chestLayer;
+        gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        SetRarity(newRarity);
+    }
+
+    public void DoDust()
+    {
+        doDust = true;
+    }
+
+    private void OnEnable()
+    {
+        if (doDust)
+        {
+            dust.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = sprite.sortingLayerName;
+            dust.gameObject.SetActive(true);
+            dust.SetTrigger("Move");
+            StartCoroutine(WaitDust());
+        }
+        else
+        {
+            dust.gameObject.SetActive(false);
+        }
+    }
+
+    private IEnumerator WaitDust()
+    {
+        yield return new WaitForSeconds(dustTime);
+        dust.gameObject.SetActive(false);
+    }
+
+    protected void UpdateColorByRarity()
+    {
+        switch (rarity)
+        {
+            case ItemRarity.COMMUN:
+                rarityLight.color = commun;
+                break;
+            case ItemRarity.RARE:
+                rarityLight.color = rare;
+                break;
+            case ItemRarity.EPIC:
+                rarityLight.color = epic;
+                break;
+            case ItemRarity.LEGENDARY:
+                rarityLight.color = legendary;
+                break;
+            case ItemRarity.UNIQUE:
+                rarityLight.color = unique;
+                break;
+        }
     }
 }

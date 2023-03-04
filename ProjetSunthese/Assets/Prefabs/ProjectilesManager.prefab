@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1850499486147274399
 MonoBehaviour:
@@ -46,3 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowNb: 20
   arrowPrefab: {fileID: 879389514689943430, guid: 41a2a77a76ef08a489731d1ae71f3398, type: 3}
+  warlockProjectileNb: 20
+  warlockProjectileHolderPrefab: {fileID: 4988200078497622259, guid: 533fbee68ef0c6c4d901e9a08ae44791, type: 3}
+  wizardProjectileNb: 20
+  wizardProjectileHolderPrefab: {fileID: 7476118061347176958, guid: 2ffda6d4fcf548840a83ef0866842132, type: 3}

@@ -42,10 +42,12 @@ public class BossBofrer : Enemy
     private BofrerRevisitsManger revisitsManager;
     private Animator animator;
     private GameObject shield;
-    private HPBar hpBar;
+    private BossInfoController bossInfo;
+    private const string bossName = "Bofrer";
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         bfl = Instantiate(bflPrefab);
         bfl.transform.position = transform.position;
         bfl.gameObject.SetActive(false);
@@ -64,17 +66,29 @@ public class BossBofrer : Enemy
 
         animator = GetComponent<Animator>();
         revisitsManager = GetComponent<BofrerRevisitsManger>();
-        hpBar = GetComponentInChildren<HPBar>();
+        bossInfo = GameObject.FindGameObjectWithTag("BossInfo").GetComponent<BossInfoController>();
+        bossInfo.SetName(bossName);
+        bossInfo.gameObject.SetActive(false);
+
+
     }
 
-    private void Start()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         stolenAttacks = revisitsManager.GetStolenAttacks();
         ActivateAttacks();
-        EnsureRoutinesStarted();
         HPTreshold = CalculateHpThreshold();
-        hp -= CalculateHpAtThreshold();
-        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        hp -= GetRevisitHealthReduction();
+        bossInfo.gameObject.SetActive(true);
+        bossInfo.Bar.SetDefault(hp, scaledHp);
+        EnsureRoutinesStarted();
+    }
+
+    private void OnDisable()
+    {
+        bossInfo.gameObject.SetActive(false);
+        routinesStarted = false;
     }
 
     void ActivateAttacks()
@@ -108,7 +122,6 @@ public class BossBofrer : Enemy
 
     private void Update()
     {
-        base.Update();
         shieldActive = minionSpawner.AnyMinionActive();
         shield.SetActive(shieldActive);
     }
@@ -125,10 +138,12 @@ public class BossBofrer : Enemy
         return hp - (hp * cutoff);
     }
 
-    private float CalculateHpAtThreshold()
+    private float GetRevisitHealthReduction()
     {
-        float scaling = Scaling.instance.SendScaling();
-        return HP_THRESHOLD_SCALING_CUTOFF - (scaling - 1 / HP_THRESHOLD_SCALING_CUTOFF);
+        float scaling = Scaling.instance.SendScaling() - 1;
+
+        float cutoff = scaling / HP_THRESHOLD_SCALING_CUTOFF;
+        return hp * cutoff;
     }
 
     public override void Harm(float ammount, float overtime)
@@ -137,7 +152,7 @@ public class BossBofrer : Enemy
         {
             base.Harm(ammount, overtime);
             CheckHPForTeleport();
-            hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+            bossInfo.Bar.UpdateHealth(hp, scaledHp);
         }
     }
 
@@ -147,7 +162,7 @@ public class BossBofrer : Enemy
         if (!shieldActive)
         {
             CheckHPForTeleport();
-            hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+            bossInfo.Bar.UpdateHealth(hp, scaledHp);
         }
     }
 
@@ -161,20 +176,30 @@ public class BossBofrer : Enemy
 
     public override void Die()
     {
-        if (hasRespawned)
+        if (IsFinalFight())
         {
-            base.Die();
+            if (hasRespawned)
+            {
+                base.Die();
+                GameManager.instance.SetNextLevel();
+            }
+            else
+            {
+                hasRespawned = true;
+                hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
+                scaledHp = hp;
+                GameObject.FindGameObjectWithTag("BofrerSceneManager").GetComponent<BofrerSceneManager>().SwitchToPhase2();
+            }
         }
         else
         {
-            hasRespawned = true;
-            hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
+            hp = GetRevisitHealthReduction() - 1;
         }
     }
 
     private bool IsFinalFight()
     {
-        return Scaling.instance.SendScaling() > HP_THRESHOLD_SCALING_CUTOFF + 1;
+        return Scaling.instance.SendScaling() >= HP_THRESHOLD_SCALING_CUTOFF;
     }
 
     IEnumerator BFLTimerRoutine()

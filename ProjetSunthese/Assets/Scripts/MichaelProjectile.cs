@@ -9,6 +9,8 @@ public class MichaelProjectile : BossAttack
     private GameObject boss;
     [SerializeField] GameObject projectile;
 
+    private float damage = 0;
+
     private float fadeAmount = 1f;
     private bool attackInProgress = false;
 
@@ -23,6 +25,11 @@ public class MichaelProjectile : BossAttack
         gameObject.SetActive(true);
         isAvailable = false;
         attackInProgress = true;
+        
+        if(damage == 0)
+        {
+            damage = transform.parent.GetComponent<MichaelFight>().SendDamage();
+        }
     }
 
     // Start is called before the first frame update
@@ -40,9 +47,16 @@ public class MichaelProjectile : BossAttack
     // Update is called once per frame
     void Update()
     {
-        if (attackInProgress)
+        if (transform.root.gameObject.activeSelf)
         {
-            ShootProjectile();
+            if (attackInProgress)
+            {
+                ShootProjectile();
+            }
+        }
+        else
+        {
+            projectile.SetActive(false);
         }
     }
 
@@ -72,7 +86,9 @@ public class MichaelProjectile : BossAttack
                     Reapear();
 
                     projectile.transform.position = boss.transform.position;
-                    projectile.GetComponent<ProjectilleMovement>().SetDestination(savedPlayerPos);
+                    ProjectilleMovement boll = projectile.GetComponent<ProjectilleMovement>();
+                    boll.SetDestination(savedPlayerPos);
+                    boll.SetDamage(damage);
                     attackInProgress = false;
                     reactionTime = 1.5f;
                     isAvailable = true;

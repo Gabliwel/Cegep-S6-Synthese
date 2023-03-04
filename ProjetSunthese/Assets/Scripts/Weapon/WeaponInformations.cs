@@ -10,7 +10,9 @@ namespace Billy.Weapons
         AXE,
         BOW,
         SWORD,
-        DAGUER
+        DAGGER,
+        STAFF,
+        WARLORCK_STAFF
     }
 }
 
@@ -76,6 +78,17 @@ public class WeaponInformations : MonoBehaviour
         interactStimuli.SetActive(true);
         sprite.sortingOrder = 3;
         hasInteracted = true;
+
+        if (weaponType == WeaponsType.DAGGER)
+        {
+            gameObject.transform.GetChild(1).gameObject.SetActive(false);
+            gameObject.transform.GetChild(2).gameObject.SetActive(false);
+            sprite.enabled = true;
+        }
+        else if(weaponType == WeaponsType.STAFF || weaponType == WeaponsType.WARLORCK_STAFF)
+        {
+            sprite.flipY = false;
+        }
     }
 
     public void SwitchToWeapon()
@@ -86,6 +99,13 @@ public class WeaponInformations : MonoBehaviour
         isCurrentWeapon = true;
         sprite.sortingOrder = 9;
         hasInteracted = true;
+
+        if (weaponType == WeaponsType.DAGGER)
+        {
+            gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            gameObject.transform.GetChild(2).gameObject.SetActive(true);
+            sprite.enabled = false;
+        }
     }
 
     public void ChangeLayer(string layer, string sortingLayer)
@@ -98,6 +118,7 @@ public class WeaponInformations : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
+        //if (transform.parent == null)
         if(!isCurrentWeapon && hasInteracted)
         {
             Destroy(this.gameObject);

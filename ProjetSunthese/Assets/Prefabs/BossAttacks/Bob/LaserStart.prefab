@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8352058696039022291}
   - component: {fileID: 8352058696039022288}
   - component: {fileID: 8352058696039022289}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 8352058696719011768}
   - component: {fileID: 8352058696719011769}
   - component: {fileID: 8352058696719011771}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: LaserStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,6 +208,8 @@ MonoBehaviour:
   sensor: {fileID: 8352058697263157347}
   smallScale: {x: 0.3, y: 0.3, z: 1}
   bigScale: {x: 1, y: 1, z: 1}
+  damage: 3
+  rate: 0.2
 --- !u!1 &8352058697263157358
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +221,7 @@ GameObject:
   - component: {fileID: 8352058697263157345}
   - component: {fileID: 8352058697263157347}
   - component: {fileID: 8352058697263157344}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

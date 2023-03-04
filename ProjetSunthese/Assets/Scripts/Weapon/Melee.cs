@@ -10,8 +10,9 @@ public class Melee : Weapon
     [SerializeField] private float windUpDistance;
     [Range(0, 45)]
     [SerializeField] private float recoilDistance;
-    private Sensor sensor;
-    private ISensor<Enemy> enemySensor;
+    protected bool flipped;
+    protected Sensor sensor;
+    protected ISensor<Enemy> enemySensor;
 
     protected override void Start()
     {
@@ -40,35 +41,40 @@ public class Melee : Weapon
     {
         sensor.gameObject.SetActive(false);
     }
+
+    public override void StartAttack()
+    {
+        flipped = (Mathf.Abs(Mathf.Atan2(mouseRelativeToPlayer.y, mouseRelativeToPlayer.x) * Mathf.Rad2Deg)) < 90;
+        base.StartAttack();
+    }
+
     protected override IEnumerator Attack()
     {
-        Vector3 worldPosition = Camera.main.WorldToScreenPoint(transform.position);
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition.x -= worldPosition.x;
-        mousePosition.y -= worldPosition.y;
-        mousePosition.z = 0;
-
-        bool flipped = (Mathf.Abs(Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg)) > 90;
-
         cooldownTimer = cooldown + duration + startup + recovery;
         orbit = false;
+        Quaternion target;
         if (flipped)
-            axis.z -= windUpDistance;
-        else
+        {
+            target = Quaternion.Euler(new Vector3(0, 0, axis.z - recoilDistance));
             axis.z += windUpDistance;
-
+        }
+        else
+        {
+            target = Quaternion.Euler(new Vector3(0, 0, axis.z + recoilDistance));
+            axis.z -= windUpDistance;
+        }
         rotationPoint.rotation = Quaternion.Euler(axis);
         yield return new WaitForSeconds(startup);
-        float stopTime = Time.time + duration;
+        float counter = 0;
+        Quaternion current = rotationPoint.rotation;
         ActivateSensor();
-        while (Time.time < stopTime)
+
+        SoundMaker.instance.PlayerSwordAttackSound(gameObject.transform.position);
+
+        while (counter < duration)
         {
-            yield return new WaitForEndOfFrame();
-            if (flipped)
-                axis.z += (recoilDistance + windUpDistance) / duration * Time.deltaTime;
-            else
-                axis.z -= (recoilDistance + windUpDistance) / duration * Time.deltaTime;
-            rotationPoint.rotation = Quaternion.Euler(axis);
+            counter += Time.deltaTime;
+            rotationPoint.rotation = Quaternion.Lerp(current, target, counter / duration);
             yield return null;
         }
         DeactivateSensor();

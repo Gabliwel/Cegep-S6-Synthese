@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 706298543432613039}
   - component: {fileID: 706298543432613032}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: FireAura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 1176048683788801186}
   - component: {fileID: 8701139985243699140}
   - component: {fileID: 3804225695490962006}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 1338880434043532215}
   - component: {fileID: 5632733865353012712}
   - component: {fileID: 5858013735185721057}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: ParticuleAura
   m_TagString: Untagged
   m_Icon: {fileID: 0}

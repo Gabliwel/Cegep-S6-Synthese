@@ -54,7 +54,7 @@ public class BossMountainRock : BossAttack
     void Update()
     {
         if (moving)
-            transform.position = Vector2.MoveTowards(transform.position, destination, speed);
+            transform.position = Vector2.MoveTowards(transform.position, destination, speed * Time.deltaTime);
         if (DestinationReached() && !breaking)
         {
             BreakRock();

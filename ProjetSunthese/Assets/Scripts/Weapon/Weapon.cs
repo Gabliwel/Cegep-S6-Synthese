@@ -6,7 +6,7 @@ public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] protected int ROTATION_OFFSET = 45;
     protected Vector3 axis;
-    protected Vector3 mousePosition;
+    protected Vector3 mouseRelativeToPlayer;
     protected Vector3 objectWorldPosition;
     protected Transform rotationPoint;
     [SerializeField] protected bool orbit = true;
@@ -28,14 +28,14 @@ public abstract class Weapon : MonoBehaviour
         SetDefault();
     }
 
-    public void SetDefault()
+    public virtual void SetDefault()
     {
         rotationPoint = transform.parent;
         startup = defaultStartup;
         recovery = defaultRecovery;
     }
 
-    public void SetPlayerBaseWeaponStat(PlayerBaseWeaponStat playerBaseWeaponStat)
+    public virtual void SetPlayerBaseWeaponStat(PlayerBaseWeaponStat playerBaseWeaponStat)
     {
         this.playerBaseWeaponStat = playerBaseWeaponStat;
     }
@@ -45,33 +45,36 @@ public abstract class Weapon : MonoBehaviour
         return playerBaseWeaponStat;
     }
 
-    void Update()
+    protected virtual void Update()
     {
-        mousePosition = Input.mousePosition;
+        CalculateMouseRelativeToPlayer();
         objectWorldPosition = Camera.main.WorldToScreenPoint(rotationPoint.position);
         if (orbit)
             OrbitClosestToMouse();
         if (cooldownTimer > 0)
             cooldownTimer -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetButtonDown("Fire1"))
         {
             StartAttack();
         }
     }
 
+    void CalculateMouseRelativeToPlayer()
+    {
+        mouseRelativeToPlayer = Input.mousePosition;
+        mouseRelativeToPlayer.x -= objectWorldPosition.x;
+        mouseRelativeToPlayer.y -= objectWorldPosition.y;
+        mouseRelativeToPlayer.z = 0;
+    }
+
     void OrbitClosestToMouse()
     {
-        Vector3 newMousePosition = mousePosition;
-        newMousePosition.x -= objectWorldPosition.x;
-        newMousePosition.y -= objectWorldPosition.y;
-        newMousePosition.z = 0;
-
-        float angle = Mathf.Atan2(newMousePosition.y, newMousePosition.x) * Mathf.Rad2Deg - ROTATION_OFFSET;
+        float angle = Mathf.Atan2(mouseRelativeToPlayer.y, mouseRelativeToPlayer.x) * Mathf.Rad2Deg - ROTATION_OFFSET;
         axis.z = angle;
         rotationPoint.rotation = Quaternion.Euler(axis);
     }
 
-    protected void StartAttack()
+    public virtual void StartAttack()
     {
         if (cooldownTimer <= 0)
         {
@@ -96,9 +99,9 @@ public abstract class Weapon : MonoBehaviour
         orbit = true;
     }
 
-    public void CalculateNewSpeed()
+    public virtual void CalculateNewSpeed()
     {
-        int speedLevel = playerBaseWeaponStat.GetBaseSpeedLevel();
+        float speedLevel = playerBaseWeaponStat.GetBaseSpeedLevel();
         startup = defaultStartup * (1 - speedLevel * 0.05f);
         recovery = defaultRecovery * (1 - speedLevel * 0.05f);
 

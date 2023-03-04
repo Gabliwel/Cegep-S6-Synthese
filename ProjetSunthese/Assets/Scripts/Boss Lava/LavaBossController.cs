@@ -15,10 +15,17 @@ public class LavaBossController : Enemy
     private GameObject player;
     private int speed =3 ;
     private Animator animator;
-    private HPBar hpBar;
 
-    void Awake()
+    private BossInfoController bossInfo;
+    private const string bossName = "Gontrant";
+
+    private BoxCollider2D bossCollider;
+    private int timeBeforeFirstAttack = 8;
+    private int timeBetweenTrail = 1;
+    protected override void Awake()
     {
+        base.Awake();
+        bossCollider = GetComponent<BoxCollider2D>();
         animator = GetComponentInChildren<Animator>();
         lavaShockWave = GetComponentInChildren<LavaShockWaveController>(true);
         lavaAura = GetComponentInChildren<LavaAura>(true);
@@ -29,29 +36,29 @@ public class LavaBossController : Enemy
             trailArray[i].SetActive(false);
         }
         player =GameObject.FindGameObjectWithTag("Player");
-        hpBar = GetComponentInChildren<HPBar>();
+        bossInfo = GameObject.FindGameObjectWithTag("BossInfo").GetComponent<BossInfoController>();
+        bossInfo.SetName(bossName);
+        bossInfo.gameObject.SetActive(false);
     }
 
     void Update()
     {
         trailTimeElapsed += Time.deltaTime;
         attackTimer += Time.deltaTime;
-        if(attackTimer > 15)
+        if(attackTimer > timeBeforeFirstAttack)
         {
             lavaAura.Launch();
             lavaShockWave.Launch();
             attackTimer = 0;
         }
-        animator.SetBool("Move", true);
-        animator.SetFloat("Move X", player.transform.position.x - transform.position.x);
-        animator.SetFloat("Move Y", player.transform.position.y - transform.position.y);
-        gameObject.transform.position = Vector2.MoveTowards(transform.position,player.transform.position, speed * Time.deltaTime);
+        Animate();
+        Move();
         LeaveTrail();
     }
 
     public void LeaveTrail()
     {
-        if (trailTimeElapsed >= 3)
+        if (trailTimeElapsed >= timeBetweenTrail)
         {
             for (int i = 0; i < trailListSize; i++)
             {
@@ -66,7 +73,18 @@ public class LavaBossController : Enemy
         }
     }
 
- 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        bossInfo.gameObject.SetActive(true);
+        bossInfo.Bar.SetDefault(hp, baseHP);
+    }
+
+    private void OnDisable()
+    {
+        bossInfo.gameObject.SetActive(false);
+    }
+
     protected override void Drop()
     {
         GetComponent<BossDrops>().BossDrop(transform.position);
@@ -75,16 +93,46 @@ public class LavaBossController : Enemy
     public override void Harm(float ammount, float poison)
     {
         base.Harm(ammount, poison);
-        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        bossInfo.Bar.UpdateHealth(hp, baseHP);
     }
     protected override void WasPoisonHurt()
     {
-        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        bossInfo.Bar.UpdateHealth(hp, baseHP);
     }
 
     public override void Die()
     {
-        Scaling.instance.ScalingIncrease();
         base.Die();
+        bossInfo.Stop();
+        bossInfo.gameObject.SetActive(false);
+        Scaling.instance.ScalingIncrease();
+        AchivementManager.instance.KilledGontrand();
+    }
+
+    private void Animate()
+    {
+        animator.SetBool("Move", true);
+        animator.SetFloat("Move X", player.transform.position.x - transform.position.x);
+        animator.SetFloat("Move Y", player.transform.position.y - transform.position.y);
+    }
+
+    private void IdleAnimate()
+    {
+        animator.SetBool("Idle", true);
+        animator.SetFloat("Move X", player.transform.position.x - transform.position.x);
+        animator.SetFloat("Move Y", player.transform.position.y - transform.position.y);
+    }
+    private void Move()
+    {
+        if(Mathf.Abs(player.transform.position.x - bossCollider.bounds.center.x) < 3 && Mathf.Abs(player.transform.position.y - bossCollider.bounds.center.y) < 3)
+        {
+            gameObject.transform.position = gameObject.transform.position;
+            IdleAnimate();
+        }
+        else 
+        {
+            gameObject.transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+            Animate();
+        }
     }
 }

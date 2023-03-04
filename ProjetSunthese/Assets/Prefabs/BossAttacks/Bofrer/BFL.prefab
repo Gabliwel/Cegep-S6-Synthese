@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6466534333072416116}
   - component: {fileID: 6362445294917498931}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 4592944309325515537}
   - component: {fileID: 4592944309325515539}
   - component: {fileID: 4592944309325515538}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,7 +586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4592944309761159536}
   - component: {fileID: 4592944309761159550}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: BFL
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
@@ -637,7 +637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 505154004834344578}
   - component: {fileID: 8338804993082409369}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -699,7 +699,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 359206789
   m_SortingLayer: 1
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 0.6666667}
   m_FlipX: 0

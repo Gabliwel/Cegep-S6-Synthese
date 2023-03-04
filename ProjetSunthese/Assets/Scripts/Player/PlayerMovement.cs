@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private const float STOP_TRESHOLD = 0.2f;
     [Header("Speed")]
     [SerializeField] private float BASE_SPEED = 4;
+    [SerializeField] private float speedReducer = 1;
     [SerializeField] private Vector2 currentVelocity;
     [Header("Roll")]
     [SerializeField] private float rollSpeed = 2.2f;
@@ -25,13 +26,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float stopAtMagnitude = 1.35f;
     
     private bool isKnockBack = false;
+    private bool isDead = false;
 
     private Vector2 movementInput;
     private Rigidbody2D rb;
     private PlayerAnimationController animationController;
     private SpriteRenderer sprite;
     private Player player;
-
+    private SoundMaker soundMaker;
 
     private void Awake()
     {
@@ -43,9 +45,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (isKnockBack) return;
+        if (isKnockBack || isDead) return;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetAxis("Roll") != 0)
         {
             if (!RollOnCooldown() && !isRolling && DirectionHeld() && canMove)
             {
@@ -62,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isKnockBack) return;
+        if (isKnockBack || isDead) return;
 
         if (!isRolling && canMove)
         {
@@ -80,16 +82,35 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = currentVelocity;
     }
 
+    public void Die()
+    {
+        StopAllCoroutines();
+        movementInput = Vector2.zero;
+        rb.velocity = Vector2.zero;
+        isDead = true;
+        animationController.PlayDie();
+    }
+
     private void BuildMovement()
     {
-        currentVelocity.x = movementInput.x * BASE_SPEED;
-        currentVelocity.y = movementInput.y * BASE_SPEED;
+        float speed = BASE_SPEED * speedReducer;
+        if (speed < 0) speed = 0;
+        currentVelocity.x = movementInput.x * speed;
+        currentVelocity.y = movementInput.y * speed;
 
         if (Mathf.Abs(movementInput.x) < STOP_TRESHOLD)
             currentVelocity.x = 0;
         if (Mathf.Abs(movementInput.y) < STOP_TRESHOLD)
             currentVelocity.y = 0;
 
+        if (currentVelocity.x != 0 || currentVelocity.y != 0)
+        {
+            SoundMaker.instance.PlayerWalkSound(gameObject.transform.position);
+        }
+        else
+        {
+            SoundMaker.instance.StopPlayerWalkSound();
+        }
     }
 
     private void AdjustRotation()
@@ -112,8 +133,8 @@ public class PlayerMovement : MonoBehaviour
         rollCooldownTimer = ROLL_COOLDOWN + rollSpeedupTime + rollSlowdownTime;
         // TODO: add sound
         currentVelocity = Vector2.zero;
-        currentVelocity.x += direction.x * (BASE_SPEED * rollSpeed);
-        currentVelocity.y += direction.y * (BASE_SPEED * rollSpeed);
+        currentVelocity.x += direction.x * ((BASE_SPEED * speedReducer) * rollSpeed);
+        currentVelocity.y += direction.y * ((BASE_SPEED * speedReducer) * rollSpeed);
         AdjustRotation();
         yield return new WaitForSeconds(rollSpeedupTime);
         currentVelocity /= 2;
@@ -122,9 +143,9 @@ public class PlayerMovement : MonoBehaviour
         animationController.SetRoll(false);
     }
 
-    public void IncreaseBaseSpeed()
+    public void IncreaseBaseSpeed(float value)
     {
-        BASE_SPEED += 1;
+        BASE_SPEED += value;
     }
 
     public void AddKnockBack(Vector2 difference, float force)
@@ -143,7 +164,6 @@ public class PlayerMovement : MonoBehaviour
     {
         while (rb.velocity.magnitude > stopAtMagnitude)
         {
-            Debug.Log(rb.velocity.magnitude);
             yield return true;
         }
         rb.velocity = Vector2.zero;
@@ -181,4 +201,15 @@ public class PlayerMovement : MonoBehaviour
     {
         return isRolling;
     }
+
+    public void SetSpeedReducer(float newReducer)
+    {
+        speedReducer = newReducer;
+    }
+
+    public void SetSoundMaker()
+    {
+        soundMaker = SoundMaker.instance;
+    }
+
 }

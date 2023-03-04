@@ -8,31 +8,42 @@ public class Interactable : MonoBehaviour
     [SerializeField] protected Material defaultMaterial;
     [SerializeField] protected Material selectedMaterial;
 
+    [Header("Description box")]
+    [SerializeField] protected bool useTextBox = false;
+    [SerializeField] protected string title = "";
+    [SerializeField, TextAreaAttribute] protected string desc = "";
+
     [Header("Only if used in shop")]
     [SerializeField] protected int basePrice = 0;
 
     protected SpriteRenderer sprite;
 
-    private void Awake()
+    public bool UseTextBox { get => useTextBox; }
+    public string Title { get => title; }
+    public string Desc { get => desc; }
+
+    protected virtual void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
     }
 
-    public virtual void ChangeSelectedState(bool selected)
+    public virtual void ChangeSelectedState(bool selected, DescriptionBox descBox)
     {
         if (selected)
         {
             sprite.material = selectedMaterial;
+            if (useTextBox) descBox.PopUp(title, desc);
         }
         else
         {
             sprite.material = defaultMaterial;
+            if (useTextBox) descBox.Close();
         }
     }
 
     public virtual void Interact(Player player) { }
 
-    public int GetPrice()
+    public virtual int GetPrice()
     {
         return basePrice;
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Billy.Rarity;
 
 public class ChestGameObject : Interactable
 {
@@ -10,12 +11,15 @@ public class ChestGameObject : Interactable
 
     public override void Interact(Player player) 
     {
-        GameObject drop = chestDropManager.SendRandomItem();
-        drop.layer = LayerMask.NameToLayer(chestLayer);
-        drop.transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer(chestLayer);
-        drop.GetComponent<SpriteRenderer>().sortingLayerName = chestLayer;
+        ItemWithRarity item = chestDropManager.SendRandomItem();
+        GameObject drop = item.item;
+        Debug.Log(item.currentRarity);
         drop.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        GenericItem genItem = drop.GetComponent<GenericItem>();
+        genItem.SetItem(chestLayer, item.currentRarity);
+        genItem.DoDust();
         drop.SetActive(true);
+
         gameObject.SetActive(false);
     }
 

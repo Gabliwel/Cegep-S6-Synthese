@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 using System.Linq;
+using TMPro;
 
 public enum Scene
 {
@@ -16,14 +17,15 @@ public enum Scene
     KevenLevel,
     MarcAntoine,
     EarlyCentralBoss,
-    GameOver
+    GabGameOver,
+    GabVictory
 }
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private const float maxLives = 100;
+    //private const float maxLives = 100;
 
     private GameObject player;
     private Player playerInfo;
@@ -33,27 +35,21 @@ public class GameManager : MonoBehaviour
     {
     Scene.CharlesLevel,
     Scene.GabLevel,
-    Scene.GabShop,
     Scene.KevenLevel,
     Scene.MarcAntoine
     };
-    [SerializeField] List<Scene> levelsDone;// = new List<Scene>();
+    [SerializeField] List<Scene> levelsDone;
     List<BossAttack> bofrerStolenAttacks = new List<BossAttack>();
-
-    private float currentLife = maxLives;
-    private int gold;
-    private int currentXp;
 
     bool scenesAreInTransition = false;
 
     private bool textsNotLinked = true;
 
-    Text playerGoldText;
-    Text playerXPText;
-    Text playerLivesText;
-    Text gameOverText;
+    private TMP_Text playerGoldText;
+    private XpBar playerXpBar;
+    private LifeBar playerLifeBar;
 
-    private string gameOverInfo = "";
+    private Animator sceneTransition = null;
 
     void Awake()
     {
@@ -68,17 +64,9 @@ public class GameManager : MonoBehaviour
         playerInfo = player.GetComponent<Player>();
     }
 
-    private void Start()
-    {
-        currentXp = playerInfo.CurrentXp;
-        gold = playerInfo.Gold;
-        currentLife = playerInfo.Health;
-    }
-
     void Update()
     {
         linkTexts();
-
     }
 
     public List<Scene> GetLevelsDone()
@@ -107,52 +95,69 @@ public class GameManager : MonoBehaviour
         {
             textsNotLinked = false;
 
-            if (actualLevel == Scene.GameOver)
+            if (actualLevel == Scene.GabGameOver)
             {
-                gameOverText = GameObject.FindGameObjectWithTag("GameOver").GetComponent<Text>();
-                gameOverText.text = gameOverInfo;
                 return;
             }
+            Debug.Log(playerInfo);
+            Debug.Log(playerInfo.Health.CurrentMax);
+            playerLifeBar = GameObject.FindGameObjectWithTag("Life").GetComponent<LifeBar>();
+            playerLifeBar.SetDefault(playerInfo.Health);
 
-            playerLivesText = GameObject.FindGameObjectWithTag("Life").GetComponent<Text>();
-            playerLivesText.text = currentLife.ToString();
+            playerGoldText = GameObject.FindGameObjectWithTag("Gold").GetComponentInChildren<TMP_Text>();
+            playerGoldText.text = playerInfo.Gold.ToString("n0");
 
-            playerGoldText = GameObject.FindGameObjectWithTag("Gold").GetComponent<Text>();
-            playerGoldText.text = gold.ToString();
+            playerXpBar = GameObject.FindGameObjectWithTag("CurrentXP").GetComponent<XpBar>();
+            playerXpBar.UpdateBar(playerInfo.CurrentXp, playerInfo.NeededXp, playerInfo.Level);
 
-            playerXPText = GameObject.FindGameObjectWithTag("CurrentXP").GetComponent<Text>();
-            playerXPText.text = currentXp.ToString();
-
-            UpdateHUD();
+            sceneTransition = GameObject.FindGameObjectWithTag("LevelFade").GetComponent<Animator>();
         }
     }
 
-    public void UpdateHUD()
+    public bool NeedLinkWithActivePlayer()
     {
-        currentLife = playerInfo.Health;
-        gold = playerInfo.Gold;
-        currentXp = playerInfo.CurrentXp;
+        if (actualLevel == Scene.GabGameOver) return false;
+        return true;
+    }
 
-        playerXPText.text = "Xp : " + currentXp.ToString();
-        playerGoldText.text = "Gold : " + gold.ToString();
-        playerLivesText.text = "Life : " + currentLife.ToString();
+    public void UpdateGold()
+    {
+        playerGoldText.text = playerInfo.Gold.ToString("n0");
+    }
+
+    public void UpdateXp()
+    {
+        playerXpBar.UpdateBar(playerInfo.CurrentXp, playerInfo.NeededXp, playerInfo.Level);
+    }
+
+    public void UpdateHealth()
+    {
+        playerLifeBar.UpdateHealth(playerInfo.Health);
     }
 
     public void GetRandomNextLevelAndStart()
     {
-        Debug.Log("Before : " + levelSceneList.Count);
-        int nbSceneAccessible = levelSceneList.Count;
-        if (nbSceneAccessible > 0)
-        {
-            int randomChoice = UnityEngine.Random.Range(0, nbSceneAccessible);
-            Debug.Log(randomChoice);
-            actualLevel = levelSceneList.ElementAt(randomChoice);
-            StartNextlevel(0, actualLevel);
-        }
-        else
+        if (levelSceneList.Count <= 0)
         {
             LoadEndScene();
+            return;
         }
+
+        if (actualLevel != Scene.GabShop && levelSceneList.Count != 4)
+        {
+            int chance = UnityEngine.Random.Range(0, 100);
+            if (chance < 40)
+            {
+                actualLevel = Scene.GabShop;
+                StartNextlevel(0, actualLevel);
+                return;
+            }
+        }
+
+        int randomChoice = UnityEngine.Random.Range(0, levelSceneList.Count);
+        actualLevel = levelSceneList.ElementAt(randomChoice);
+        RemoveSceneFromSceneList(actualLevel);
+        StartNextlevel(0, actualLevel);
     }
 
     [ContextMenu("Early wood")]
@@ -195,16 +200,16 @@ public class GameManager : MonoBehaviour
 
     public void LoadEndScene()
     {
+        AchivementManager.instance.AddWeaponWonWith(Player.instance.GetComponentInChildren<WeaponInformations>().GetWeaponType());
         Debug.Log("AHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAH END");
-        actualLevel = Scene.GameOver;
-        gameOverInfo = "Victory";
-        StartCoroutine(RestartLevelDelay(0, actualLevel));
+        actualLevel = Scene.GabVictory;
+        StartNextlevel(0, actualLevel);
     }
 
     public void GetBackToMainStageAndStart()
     {
         actualLevel = Scene.CentralBoss;
-        StartCoroutine(RestartLevelDelay(0, Scene.CentralBoss));
+        StartNextlevel(0, actualLevel);
     }
 
     public void RemoveSceneFromSceneList(Scene sceneToRemove)
@@ -213,29 +218,25 @@ public class GameManager : MonoBehaviour
         levelSceneList.Remove(sceneToRemove);
     }
 
-    public void StartNextlevel(float delay, Scene chosenLevel)
+    private void StartNextlevel(float delay, Scene chosenLevel)
     {
         textsNotLinked = true;
         if (scenesAreInTransition) return;
         scenesAreInTransition = true;
 
         StartCoroutine(RestartLevelDelay(delay, chosenLevel));
-        RemoveSceneFromSceneList(chosenLevel);
         Debug.Log("After : " + levelSceneList.Count);
-    }
-
-    public void RestartLevel(float delay)
-    {
-        if (scenesAreInTransition) return;
-
-        scenesAreInTransition = true;
-
-        StartCoroutine(RestartLevelDelay(delay, actualLevel));
     }
 
     private IEnumerator RestartLevelDelay(float delay, Scene level)
     {
         yield return new WaitForSeconds(delay);
+        if (sceneTransition != null)
+        {
+            sceneTransition.SetTrigger("Start");
+            yield return new WaitForSeconds(1);
+        }
+
         textsNotLinked = true;
 
         if (level.Equals(Scene.Tutoriel))
@@ -254,29 +255,23 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("EarlyCentralBoss");
         else if (level.Equals(Scene.GabShop))
             SceneManager.LoadScene("GabShop");
+        else if (level.Equals(Scene.GabGameOver))
+            SceneManager.LoadScene("GabGameOver");
         else
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("GabVictory");
 
         scenesAreInTransition = false;
     }
 
-    public void ResetGame()
-    {
-        currentLife = maxLives;
-        actualLevel = Scene.Tutoriel;
-        SceneManager.LoadScene("Tutoriel");
-    }
-
     public void PlayerDie()
     {
-        currentLife--;
-        playerLivesText.text = currentLife.ToString();
+        UpdateHealth();
     }
 
     public void SetGameOver()
     {
-        actualLevel = Scene.GameOver;
-        gameOverInfo = "Game Over";
-        StartCoroutine(RestartLevelDelay(0, actualLevel));
+        actualLevel = Scene.GabGameOver;
+        AchivementManager.instance.Died();
+        StartNextlevel(3, actualLevel);
     }
 }

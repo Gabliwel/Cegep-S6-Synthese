@@ -11,11 +11,6 @@ public class EnemyLavaController : Enemy
         //RandomDropManager.instance.DropItem(GetComponent<Collider2D>().bounds.center, collision.gameObject.GetComponent<Collider2D>().bounds.center);
     }
 
-    void Awake()
-    {
-        
-    }
-
     void Update()
     {
         

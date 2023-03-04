@@ -118,7 +118,7 @@ Transform:
   - {fileID: 770559642694183856}
   - {fileID: 3814608642783850674}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &770559643019811868
 SpriteRenderer:
@@ -184,7 +184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc01b9d38ed12748b613375da1a0f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHP: 100
+  spriteInFirstChild: 0
+  baseHP: 150
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 1
@@ -192,10 +193,8 @@ MonoBehaviour:
   damageDealt: 10
   goldDropped: 50
   xpGiven: 110
+  overtime: 0
   player: {fileID: 0}
-  dangerCircle: {fileID: 0}
-  dangerRectangle: {fileID: 0}
-  projectile: {fileID: 0}
   michaelAttacks:
   - {fileID: 8079596064074969842, guid: 7c7a27c44cef48b4f80e5b41ab28c3f3, type: 3}
   - {fileID: 2969018895991026450, guid: 7bde0a29a70e0944db27e9c077ed2fe7, type: 3}

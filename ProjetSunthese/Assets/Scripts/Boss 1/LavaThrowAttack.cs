@@ -33,8 +33,8 @@ public class LavaThrowAttack : BossAttack
         // max is exclusive
         int rand = Random.Range(minToThrow, maxToThrow + 1);
         int count = 0;
-
-        foreach(GameObject lava in lavaObjects)
+        SoundMaker.instance.BobFireSound(transform.position);
+        foreach (GameObject lava in lavaObjects)
         {
             if(!lava.activeSelf)
             {

@@ -23,6 +23,18 @@ TagManager:
   - CurrentXP
   - Gold
   - GameOver
+  - DescriptionBox
+  - LootManager
+  - AchivementPopup
+  - SoundMaker
+  - SoundManager
+  - GameManager
+  - PauseUI
+  - LevelFade
+  - DialogueBox
+  - BofrerSceneManager
+  - Billy
+  - BossInfo
   layers:
   - Default
   - TransparentFX

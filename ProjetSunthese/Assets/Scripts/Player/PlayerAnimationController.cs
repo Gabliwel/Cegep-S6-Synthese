@@ -6,6 +6,10 @@ public class PlayerAnimationController : MonoBehaviour
 {
     [SerializeField] RuntimeAnimatorController warrior;
     [SerializeField] RuntimeAnimatorController archer;
+    [SerializeField] RuntimeAnimatorController warlock;
+    [SerializeField] RuntimeAnimatorController knight;
+    [SerializeField] RuntimeAnimatorController thief;
+    [SerializeField] RuntimeAnimatorController wizard;
     private Animator animator;
     private bool rollAnim = false;
 
@@ -24,11 +28,17 @@ public class PlayerAnimationController : MonoBehaviour
             case WeaponsType.BOW:
                 animator.runtimeAnimatorController = archer;
                 break;
-            case WeaponsType.DAGUER:
-                // impossible pour le moment
+            case WeaponsType.DAGGER:
+                animator.runtimeAnimatorController = thief;
                 break;
             case WeaponsType.SWORD:
-                // impossible pour le moment
+                animator.runtimeAnimatorController = knight;
+                break;
+            case WeaponsType.STAFF:
+                animator.runtimeAnimatorController = wizard;
+                break;
+            case WeaponsType.WARLORCK_STAFF:
+                animator.runtimeAnimatorController = warlock;
                 break;
         }
     }

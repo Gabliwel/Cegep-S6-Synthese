@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
+    [SerializeField] private bool followBilly = false;
     private Transform player;
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;   
+        if(!followBilly)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        else
+        {
+            player = GameObject.FindGameObjectWithTag("Billy").transform;
+        }
     }
-    void Update()
+    void FixedUpdate()
     {
         transform.position = new Vector3(player.position.x, player.position.y, -10);
+    }
+
+    public void SetTarget(Transform t)
+    {
+        player = t;
     }
 }

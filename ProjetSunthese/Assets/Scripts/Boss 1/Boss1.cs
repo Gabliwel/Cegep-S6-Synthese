@@ -25,21 +25,20 @@ public class Boss1 : Enemy
     private float hpToWatch;
     [SerializeField] private float shieldLeft = 3;
     [SerializeField] private float shieldLifeFraction = 0.25f;
-    [SerializeField] private float bossSpeed = 3;
 
-    private HPBar HPbar;
+    private BossInfoController bossInfo;
+    private const string bossName = "Bob";
 
-    private void Awake()
+    protected override void Awake()
     {
-        HPbar = GetComponentInChildren<HPBar>();
+        base.Awake();
+        bossInfo = GameObject.FindGameObjectWithTag("BossInfo").GetComponent<BossInfoController>();
+        bossInfo.SetName(bossName);
+        bossInfo.gameObject.SetActive(false);
     }
 
     void Start()
     {
-        Debug.Log("maxHp: "+ baseHP);
-        hp = baseHP;
-        hpToWatch = baseHP * (shieldLifeFraction * shieldLeft);
-
         drops = GetComponent<BossDrops>();
         growingZoneAttack = gameObject.GetComponentInChildren<GrowingAttackZone>();
         rangedCircleAttack = gameObject.GetComponentInChildren<LaserCircleAttack>();
@@ -48,9 +47,24 @@ public class Boss1 : Enemy
         shield.SetActive(false);
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        bossInfo.gameObject.SetActive(true);
+        bossInfo.Bar.SetDefault(hp, scaledHp);
+
+        hp = scaledHp;
+        hpToWatch = scaledHp * (shieldLifeFraction * shieldLeft);
+        StartCoroutine(Wait());
+    }
+
+    private void OnDisable()
+    {
+        bossInfo.gameObject.SetActive(false);
+    }
+
     void Update()
     {
-        base.Update();
         if (isProtected) return;
 
         if(hp <= hpToWatch && hp > 0)
@@ -98,17 +112,6 @@ public class Boss1 : Enemy
 
     private IEnumerator Pattern2()
     {
-        growingZoneAttack.Launch();
-        rangedCircleAttack.Launch();
-        while (!growingZoneAttack.IsAvailable()) { yield return null; }
-        growingZoneAttack.Launch();
-        while (!growingZoneAttack.IsAvailable() || !rangedCircleAttack.IsAvailable()) { yield return null; }
-        yield return new WaitForSeconds(0.7f);
-        isAttacking = false;
-    }
-
-    private IEnumerator Pattern3()
-    {
         lavaThrowAttack.Launch();
         lavaThrowAttack.Launch();
         growingZoneAttack.Launch();
@@ -119,7 +122,7 @@ public class Boss1 : Enemy
         isAttacking = false;
     }
 
-    private IEnumerator Pattern4()
+    private IEnumerator Pattern3()
     {
         rangedCircleAttack.Launch();
         lavaThrowAttack.Launch();
@@ -132,7 +135,7 @@ public class Boss1 : Enemy
         isAttacking = false;
     }
 
-    private IEnumerator Pattern5()
+    private IEnumerator Pattern4()
     {
         growingZoneAttack.Launch();
         while (!growingZoneAttack.IsAvailable()) { yield return null; }
@@ -140,13 +143,22 @@ public class Boss1 : Enemy
         isAttacking = false;
     }
 
+    private IEnumerator Pattern5()
+    {
+        rangedCircleAttack.Launch();
+        while (!rangedCircleAttack.IsAvailable()) { yield return null; }
+        yield return new WaitForSeconds(0.7f);
+        isAttacking = false;
+    }
+
     private IEnumerator ShieldTime()
     {
         isProtected = true;
+        SoundMaker.instance.BobInvincibilitySound(transform.position);
         shield.SetActive(true);
 
         shieldLeft--;
-        hpToWatch = baseHP * (shieldLifeFraction * shieldLeft);
+        hpToWatch = scaledHp * (shieldLifeFraction * shieldLeft);
 
         int positionIndex = GetPositionIndex();
 
@@ -190,19 +202,17 @@ public class Boss1 : Enemy
     {
         if (isProtected) return;
         base.Harm(ammount, overtimeDamage);
-        HPbar.UpdateHp(hp, baseHP);
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
     }
 
     public override void Die()
     {
         base.Die();
+        AchivementManager.instance.KilledBob();
+        bossInfo.Stop();
+        bossInfo.gameObject.SetActive(false);
         Scaling.instance.ScalingIncrease();
         drops.BossDrop(transform.position, boss);
-    }
-
-    private void OnEnable()
-    {
-        StartCoroutine(Wait());
     }
 
     private IEnumerator Wait()
@@ -218,6 +228,6 @@ public class Boss1 : Enemy
 
     protected override void WasPoisonHurt()
     {
-        HPbar.UpdateHp(hp, baseHP);
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
     }
 }

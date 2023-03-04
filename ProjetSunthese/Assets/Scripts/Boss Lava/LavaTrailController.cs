@@ -5,11 +5,12 @@ using UnityEngine;
 public class LavaTrailController : MonoBehaviour
 {
     [SerializeField] private float damageTicksTimer;
-    [SerializeField] private int damage;
+    [SerializeField] private int damage = 1;
     float timeElapsed = 0;
     private ISensor<Player> playerSensor; 
     private Sensor sensor;
     private Player player;
+    private const int timeToLive = 49;
 
     void Start()
     {
@@ -44,7 +45,7 @@ public class LavaTrailController : MonoBehaviour
             }
         }
 
-        if(timeElapsed > 49)
+        if(timeElapsed > timeToLive)
         {
             gameObject.SetActive(false);
             timeElapsed = 0;

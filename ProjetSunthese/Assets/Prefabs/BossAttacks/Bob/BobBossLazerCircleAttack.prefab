@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6754728910071601456}
   - component: {fileID: 6754728910071601463}
-  m_Layer: 20
+  m_Layer: 28
   m_Name: BobBossLazerCircleAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

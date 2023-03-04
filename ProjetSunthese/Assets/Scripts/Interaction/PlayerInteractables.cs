@@ -5,53 +5,75 @@ using UnityEngine;
 
 public class PlayerInteractables : MonoBehaviour
 {
-    private Sensor sensor;
+    [SerializeField] private bool useComplexePlayerInteractable = true;
+
+    [SerializeField] private Sensor sensor;
     private ISensor<Interactable> interactablesSensor;
 
     [SerializeField] private List<Interactable> closeInteractables;
     private Interactable currentSelected = null;
 
     private Player player;
+    private DescriptionBox descBox;
 
-    void Awake()
-    {
-        sensor = GetComponentInChildren<Sensor>();
-        interactablesSensor = sensor.For<Interactable>();
-        interactablesSensor.OnSensedObject += OnInteractableSense;
-        interactablesSensor.OnUnsensedObject += OnInteractableUnsense;
-
-        player = GetComponent<Player>();
-    }
+    private bool textsNotLinked = true;
 
     private void Start()
     {
+        interactablesSensor = sensor.For<Interactable>();
+        interactablesSensor.OnSensedObject += OnInteractableSense;
+        interactablesSensor.OnUnsensedObject += OnInteractableUnsense;
+        if(useComplexePlayerInteractable) player = GetComponent<Player>();
         closeInteractables = new List<Interactable>();
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && currentSelected != null)
+        Link();
+
+        if (Input.GetButtonDown("Interact") && currentSelected != null)
         {
             currentSelected.Interact(player);
         }
     }
 
+    private void Link()
+    {
+        if (!textsNotLinked) return;
+        textsNotLinked = false;
+        if(!useComplexePlayerInteractable)
+        {
+            descBox = GameObject.FindGameObjectWithTag("DescriptionBox").GetComponent<DescriptionBox>();
+            return;
+        }
+        if (GameManager.instance.NeedLinkWithActivePlayer()) descBox = GameObject.FindGameObjectWithTag("DescriptionBox").GetComponent<DescriptionBox>();
+    }
+
+    public void AvoidLink()
+    {
+        textsNotLinked = false;
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        textsNotLinked = true;
+    }
+
     private void OnInteractableSense(Interactable interectable)
     {
-        Debug.Log("Sense");
         if(currentSelected != null)
         {
-            currentSelected.ChangeSelectedState(false);
+            currentSelected.ChangeSelectedState(false, descBox);
         }
 
         currentSelected = interectable;
         closeInteractables.Add(interectable);
-        interectable.ChangeSelectedState(true);
+        interectable.ChangeSelectedState(true, descBox);
     }
 
     private void OnInteractableUnsense(Interactable interectable)
     {
-        interectable.ChangeSelectedState(false);
+        interectable.ChangeSelectedState(false, descBox);
         closeInteractables.Remove(interectable);
         currentSelected = null;
 
@@ -76,13 +98,14 @@ public class PlayerInteractables : MonoBehaviour
             }
         }
         currentSelected = closest;
-        currentSelected.ChangeSelectedState(true);
+        currentSelected.ChangeSelectedState(true, descBox);
     }
 
-    internal void SearchNewInterac(Interactable interectable)
+    public void SearchNewInterac(Interactable interectable)
     {
         closeInteractables.Remove(interectable);
         currentSelected = null;
+        descBox.Close();
         SearchNewClosestInteractable();
     }
 }

@@ -16,6 +16,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float armor = 0;
 
     public float CurrentHealth { get => currentHealth;}
+    public float CurrentMax { get => currentMax; }
 
     [Header("Info for debug - bonus")]
     // ------------- Health bonus --------------------
@@ -28,6 +29,8 @@ public class PlayerHealth : MonoBehaviour
 
     // for player bonus that is independant health
     [SerializeField]  private int receiveDamageMultiplicator = 1;
+
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -48,9 +51,16 @@ public class PlayerHealth : MonoBehaviour
 
     public void Harm(float damageValue)
     {
-        float dammage = (damageValue * receiveDamageMultiplicator) - armor;
-        Debug.Log("oof ouch ive been hit for " + (dammage) + " damage");
-        currentHealth -= dammage;
+        if (isDead) return;
+
+        float damage = (damageValue * receiveDamageMultiplicator) - armor;
+        Debug.Log(armor);
+        Debug.Log(damageValue);
+        Debug.Log("oof ouch ive been hit for " + (damage) + " damage");
+        if (damage < 1) damage = 1; 
+        currentHealth -= damage;
+        SoundMaker.instance.PlayerTakeDamageSound(gameObject.transform.position);
+        DamageNumbersManager.instance.CallText(damage, transform.position, true);
 
         if (currentHealth <= 0 && deathContract > 0)
         {
@@ -71,6 +81,8 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             // call to player for anim and gamemanager
+            isDead = true;
+            player.IsDead();
             GameManager.instance.SetGameOver();
             Debug.Log("I am dead");
         }
@@ -88,15 +100,28 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void HealSpecific(float value)
+    {
+        if (!stoneHeart)
+        {
+            currentHealth += value;
+            if (currentHealth > currentMax)
+            {
+                currentHealth = currentMax;
+            }
+        }
+    }
+
     #region For bonus
     public void GainStoneHeart()
     {
         if(!stoneHeart)
         {
             stoneHeart = true;
-            armor += 10;
             currentHealth *= 2;
+            currentMax = currentHealth;
         }
+        armor += 5;
     }
 
     public void GainDeathContract()

@@ -9,16 +9,18 @@ public class BossBofrerShieldMinion : Enemy
     private Sensor sensor;
     private ISensor<Player> playerSensor;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         sensor = GetComponentInChildren<Sensor>();
         playerSensor = sensor.For<Player>();
         playerSensor.OnSensedObject += OnPlayerSense;
         playerSensor.OnUnsensedObject += OnPlayerUnsense;
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         childTransform = transform.GetChild(0).transform;
     }
     private void Update()

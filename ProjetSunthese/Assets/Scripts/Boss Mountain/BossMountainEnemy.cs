@@ -15,8 +15,9 @@ public class BossMountainEnemy : Enemy
     private Sensor sensor;
     private ISensor<Player> playerSensor;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         animator = GetComponent<Animator>();
         sensor = GetComponentInChildren<Sensor>();
@@ -37,8 +38,9 @@ public class BossMountainEnemy : Enemy
 
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         isMoving = false;
         animator.SetBool("Shake", true);
         shaking = true;
@@ -64,7 +66,7 @@ public class BossMountainEnemy : Enemy
     private void Update()
     {
         if (isMoving)
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed);
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
 
         if (shakeTimer > 0)
             shakeTimer -= Time.deltaTime;

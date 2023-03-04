@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class MichaelFight : Enemy
 {
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject dangerCircle;
-    [SerializeField] GameObject dangerRectangle;
-    [SerializeField] GameObject projectile;
+    [SerializeField] GameObject player; 
     [SerializeField] private List<BossAttack> michaelAttacks;
+    private float attackSpeed = 1;
 
     private string[] Attacks = new string[3];
     private string currentAttack;
@@ -18,9 +16,29 @@ public class MichaelFight : Enemy
 
     private float attackDelay = 3f;
 
+    private float SPEED = 3f;
+
     private Animator animator;
 
-    private HPBar hpBar;
+    private BossInfoController bossInfo;
+    private const string bossName = "Michael";
+
+    private Sensor damageSensor;
+    private ISensor<Player> playerDamageSensor;
+    private bool firstSpawn = true;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        bossInfo = GameObject.FindGameObjectWithTag("BossInfo").GetComponent<BossInfoController>();
+        bossInfo.SetName(bossName);
+        bossInfo.gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        bossInfo.gameObject.SetActive(false);
+    }
 
     void Start()
     {
@@ -30,25 +48,31 @@ public class MichaelFight : Enemy
         Attacks[2] = "PROJECTILE";
         player = GameObject.FindGameObjectWithTag("Player");
 
-        hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
+        hp = Scaling.instance.CalculateHealthOnScaling(scaledHp);
         damageDealt = Scaling.instance.CalculateDamageOnScaling(baseDamageDealt);
 
         for (int i = 0; i < michaelAttacks.Count; i++)
         {
             michaelAttacks[i] = Instantiate(michaelAttacks[i]);
+            michaelAttacks[i].transform.SetParent(gameObject.transform);
         }
 
-        hpBar = GetComponentInChildren<HPBar>();
+        damageSensor = transform.Find("Sensor").GetComponent<Sensor>();
+
+        playerDamageSensor = damageSensor.For<Player>();
+
+        playerDamageSensor.OnSensedObject += OnPlayerDamageSense;
+        playerDamageSensor.OnUnsensedObject += OnPlayerDamageUnsense;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        base.Update();
         if (!attackInProgress)
         {
             attackDelay -= Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, 0.009f);
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, Time.deltaTime * SPEED);
             CheckAnimationSide();
             if (attackDelay <= 0)
             {
@@ -88,6 +112,7 @@ public class MichaelFight : Enemy
                     StartProjectile();
                     break;
             }
+        SoundMaker.instance.MichealTPSound(transform.position);
     }
 
     public void ResetAttackState()
@@ -114,33 +139,75 @@ public class MichaelFight : Enemy
 
     protected override void Drop()
     {
-        player.GetComponent<Player>().GainDrops(2, xpGiven, goldDropped);
+        player.GetComponent<Player>().GainDrops(xpGiven, goldDropped);
 
         GetComponent<BossDrops>().BossDrop(transform.position);
     }
 
     public override void Die()
     {
-        Scaling.instance.ScalingIncrease();
         base.Die();
+        Scaling.instance.ScalingIncrease();
+        AchivementManager.instance.KilledMichael();
+        bossInfo.Stop();
+        bossInfo.gameObject.SetActive(false);
     }
 
     public override void Harm(float ammount, float poison)
     {
         base.Harm(ammount, poison);
-        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
     }
 
-    protected override void WasPoisonHurt() 
+    protected override void WasPoisonHurt()
     {
-        hpBar.UpdateHp(hp, Scaling.instance.CalculateHealthOnScaling(baseHP));
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnEnable()
     {
-        if (collision.gameObject.tag == "Player")
+        base.OnEnable();
+        bossInfo.gameObject.SetActive(true);
+        bossInfo.Bar.SetDefault(hp, scaledHp);
+        if (!firstSpawn)
         {
-            player.GetComponent<Player>().Harm(damageDealt);
+            StartCoroutine(AttackPlayerInRange());
         }
+        firstSpawn = false;
+    }
+
+
+    private IEnumerator AttackPlayerInRange()
+    {
+        while (isActiveAndEnabled)
+        {
+            if (TouchingPlayer())
+            {
+                Player.instance.Harm(damageDealt);
+                yield return new WaitForSeconds(attackSpeed);
+            }
+            yield return null;
+        }
+    }
+
+    private bool TouchingPlayer()
+    {
+        Debug.Log(playerDamageSensor.SensedObjects.Count > 0);
+        return playerDamageSensor.SensedObjects.Count > 0;
+    }
+
+    void OnPlayerDamageSense(Player player)
+    {
+
+    }
+
+    void OnPlayerDamageUnsense(Player player)
+    {
+
+    }
+
+    public float SendDamage()
+    {
+        return damageDealt;
     }
 }

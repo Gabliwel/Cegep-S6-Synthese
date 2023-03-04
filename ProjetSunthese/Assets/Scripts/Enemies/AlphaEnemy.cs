@@ -1,46 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AlphaEnemy : Enemy
 {
     [SerializeField] private float speed = 5;
 
+    [SerializeField] bool useNavMesh;
+
+    [SerializeField] float attackSpeed;
+
+    [SerializeField] private float knockBackForce = 7;
+
     private Sensor damageSensor;
-    private Sensor rangeSensor;
     private ISensor<Player> playerDamageSensor;
-    private ISensor<Player> playerRangeSensor;
 
-    private Player player;
-
-    void Awake()
+    private NavMeshAgent agent;
+    private Animator animator;
+    private PlayerProximitySensor proximitySensor;
+    protected override void Awake()
     {
-        rangeSensor = transform.Find("RangeSensor").GetComponent<Sensor>();
+        base.Awake();
         damageSensor = transform.Find("DamageSensor").GetComponent<Sensor>();
+        proximitySensor = GetComponent<PlayerProximitySensor>();
 
-        playerRangeSensor = rangeSensor.For<Player>();
         playerDamageSensor = damageSensor.For<Player>();
 
-        playerRangeSensor.OnSensedObject += OnPlayerRangeSense;
-        playerRangeSensor.OnUnsensedObject += OnPlayerRangeUnsense;
-
         playerDamageSensor.OnSensedObject += OnPlayerDamageSense;
-        playerDamageSensor.OnSensedObject += OnPlayerDamageUnsense;
+        playerDamageSensor.OnUnsensedObject += OnPlayerDamageUnsense;
+
+        if (useNavMesh)
+        {
+            agent = GetComponent<NavMeshAgent>();
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
+            agent.speed = speed;
+        }
+        animator = GetComponent<Animator>();
     }
 
-    void OnPlayerRangeSense(Player player)
+    protected override void OnEnable()
     {
-        this.player = player;
-    }
-
-    void OnPlayerRangeUnsense(Player player)
-    {
-        this.player = null;
+        base.OnEnable();
+        StartCoroutine(AttackPlayerInRange());
     }
 
     void OnPlayerDamageSense(Player player)
     {
-        player.Harm(10);
+
     }
 
     void OnPlayerDamageUnsense(Player player)
@@ -50,16 +58,47 @@ public class AlphaEnemy : Enemy
 
     void Update()
     {
-        base.Update();
-        if(player != null)
+        if (proximitySensor.IsClose())
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+            animator.SetFloat("Move X", Player.instance.transform.position.x - transform.position.x);
+            animator.SetFloat("Move Y", Player.instance.transform.position.y - transform.position.y);
+            if (!TouchingPlayer())
+            {
+                if (useNavMesh)
+                {
+                    agent.SetDestination(Player.instance.transform.position);
+                }
+                else
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, Player.instance.transform.position, speed * Time.deltaTime);
+                }
+            }
+
         }
     }
 
     protected override void Drop()
     {
-        Player.instance.GainDrops(0, xpGiven, goldDropped);
+        Player.instance.GainDrops(xpGiven, goldDropped);
     }
 
+    private IEnumerator AttackPlayerInRange()
+    {
+        while (isActiveAndEnabled)
+        {
+            if (TouchingPlayer())
+            {
+                Player.instance.Harm(damageDealt);
+                Player.instance.KnockBack((Player.instance.gameObject.transform.position - transform.position).normalized, knockBackForce);
+                yield return new WaitForSeconds(attackSpeed);
+            }
+            yield return null;
+        }
+    }
+
+    private bool TouchingPlayer()
+    {
+        Debug.Log(playerDamageSensor.SensedObjects.Count > 0);
+        return playerDamageSensor.SensedObjects.Count > 0;
+    }
 }

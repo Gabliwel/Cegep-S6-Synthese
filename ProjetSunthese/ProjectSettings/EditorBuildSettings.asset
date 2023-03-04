@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/StartingMenu.unity
+    guid: 26d132e0709a80640bd0eb7665ff37db
+  - enabled: 1
     path: Assets/Scenes/Tutoriel.unity
     guid: 872e6af462bf8a44b954487f15f12344
   - enabled: 1
@@ -30,6 +33,12 @@ EditorBuildSettings:
     path: Assets/Scenes/EarlyCentralBoss.unity
     guid: 5ef841867927c604a8bcb4da8e8f5f48
   - enabled: 1
-    path: Assets/Scenes/GameOver.unity
-    guid: 367b3622a7510d54bb5065ebb623bcea
+    path: Assets/Scenes/GabGameOver.unity
+    guid: 8feabfe3dae8bf341b5be698b91d5a2f
+  - enabled: 1
+    path: Assets/Scenes/GabVictory.unity
+    guid: 4b074c4b0c07deb45b76e8e5ff2499ea
+  - enabled: 1
+    path: Assets/Scenes/GabIntro.unity
+    guid: f3c3ff20969618c4f80b3f5c3c6596a1
   m_configObjects: {}

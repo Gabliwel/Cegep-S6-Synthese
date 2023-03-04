@@ -36,6 +36,10 @@ public class BasicLevelManager : MonoBehaviour
     [SerializeField] private Transform secondPlayerTrans;
     [SerializeField] private Transform bossTrans;
 
+    [Header("Music")]
+    [SerializeField] private AudioClip levelMusic;
+    [SerializeField] private AudioClip bossMusic;
+
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -47,9 +51,6 @@ public class BasicLevelManager : MonoBehaviour
 
         ChangeListsActivation(true);
         SetStartPositions();
-
-        boss.SetActive(false);
-        followingBoss.SetActive(true);
     }
 
     protected virtual void SetStartPositions()
@@ -61,6 +62,9 @@ public class BasicLevelManager : MonoBehaviour
 
     private void Start()
     {
+        boss.SetActive(false);
+        followingBoss.SetActive(true);
+        MusicMaker.instance.PlayMusic(levelMusic, true);
         if (doCinematic)
         {
             StartCoroutine(Cinematic());
@@ -167,12 +171,13 @@ public class BasicLevelManager : MonoBehaviour
     {
         playerScript.BlocMovement(true);
         playerScript.BlocAttack(true);
+        playerScript.AddIframes(2.2f);
         yield return new WaitForSeconds(0.2f);
-        //do something (sound, anim...)
 
-
+        MusicMaker.instance.FadeTo(bossMusic, true);
         cinematicBars.Activate(0.75f, 2000);
         yield return new WaitForSeconds(1f);
+
         ChangeListsActivation(false);
         followingBoss.SetActive(false);
         boss.transform.position = bossTrans.position;
@@ -181,7 +186,7 @@ public class BasicLevelManager : MonoBehaviour
         boss.SetActive(true);
         cinematicBars.Deactivate(0.75f);
         yield return new WaitForSeconds(1f);
-        //begin movement and attack
+
         playerScript.BlocMovement(false);
         playerScript.BlocAttack(false);
     }
