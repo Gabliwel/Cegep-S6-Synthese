@@ -13,5 +13,6 @@ public class TutoSceneManager : MonoBehaviour
         Player player = Player.instance;
         player.ChangeLayer("Layer 1", "Layer 1");
         player.gameObject.transform.position = staringPosition;
+
     }
 }
