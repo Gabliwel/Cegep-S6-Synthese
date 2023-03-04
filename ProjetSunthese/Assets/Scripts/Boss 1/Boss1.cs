@@ -39,10 +39,6 @@ public class Boss1 : Enemy
 
     void Start()
     {
-        Debug.Log("maxHp: "+ baseHP);
-        hp = baseHP;
-        hpToWatch = baseHP * (shieldLifeFraction * shieldLeft);
-
         drops = GetComponent<BossDrops>();
         growingZoneAttack = gameObject.GetComponentInChildren<GrowingAttackZone>();
         rangedCircleAttack = gameObject.GetComponentInChildren<LaserCircleAttack>();
@@ -55,7 +51,10 @@ public class Boss1 : Enemy
     {
         base.OnEnable();
         bossInfo.gameObject.SetActive(true);
-        bossInfo.Bar.SetDefault(hp, baseHP);
+        bossInfo.Bar.SetDefault(hp, scaledHp);
+
+        hp = scaledHp;
+        hpToWatch = scaledHp * (shieldLifeFraction * shieldLeft);
         StartCoroutine(Wait());
     }
 
@@ -159,7 +158,7 @@ public class Boss1 : Enemy
         shield.SetActive(true);
 
         shieldLeft--;
-        hpToWatch = baseHP * (shieldLifeFraction * shieldLeft);
+        hpToWatch = scaledHp * (shieldLifeFraction * shieldLeft);
 
         int positionIndex = GetPositionIndex();
 
@@ -203,7 +202,7 @@ public class Boss1 : Enemy
     {
         if (isProtected) return;
         base.Harm(ammount, overtimeDamage);
-        bossInfo.Bar.UpdateHealth(hp, baseHP);
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
     }
 
     public override void Die()
@@ -229,6 +228,6 @@ public class Boss1 : Enemy
 
     protected override void WasPoisonHurt()
     {
-        bossInfo.Bar.UpdateHealth(hp, baseHP);
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
     }
 }

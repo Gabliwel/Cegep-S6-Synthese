@@ -232,6 +232,18 @@ public class SoundMaker : MonoBehaviour
         RequestSound(position, soundManager.EnemyDeath, DEFAULT_VOLUME);
     }
 
+    /******************** Pause ***********************/
+    public void PauseSound(Vector2 position)
+    {
+        RequestSound(position, soundManager.Pause, 0.4f);
+    }
+
+    public void UnpauseSound(Vector2 position)
+    {
+        RequestSound(position, soundManager.Unpause, 0.4f);
+    }
+
+    /******************** Request ***********************/
     public void RequestSound(Vector2 position, AudioClip audioClip)
     {
         foreach (GameObject individual in soundMakerArray)

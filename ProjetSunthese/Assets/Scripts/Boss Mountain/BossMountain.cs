@@ -66,11 +66,10 @@ public class BossMountain : Enemy
         stalagmiteSpawnTimer = Random.Range(stalagmiteSpawnMinTime, stalagmiteSpawnMaxTime);
         rockThrowTimer = Random.Range(rockThrowMinTime, rockThrowMaxTime);
         positionChangeTimer = positionChangeBaseTime;
-        hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
         damageDealt = Scaling.instance.CalculateDamageOnScaling(baseDamageDealt);
 
         bossInfo.gameObject.SetActive(true);
-        bossInfo.Bar.SetDefault(hp, baseHP);
+        bossInfo.Bar.SetDefault(hp, scaledHp);
     }
 
     private void OnDisable()
@@ -93,13 +92,13 @@ public class BossMountain : Enemy
     public override void Harm(float ammount, float poison)
     {
         base.Harm(ammount, poison);
-        bossInfo.Bar.UpdateHealth(hp, baseHP);
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
     }
 
     protected override void WasPoisonHurt()
     {
         base.WasPoisonHurt();
-        bossInfo.Bar.UpdateHealth(hp, baseHP);
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
     }
 
     protected void Update()

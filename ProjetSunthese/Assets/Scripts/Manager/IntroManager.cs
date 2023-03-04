@@ -32,13 +32,13 @@ public class IntroManager : MonoBehaviour
         int index = Random.Range(0, playerPossiblities.Length);
         playerPossiblities[index].SetActive(true);
         player = playerPossiblities[index].GetComponent<Player>();
-        player.gameObject.GetComponent<PlayerInteractables>().AvoidLink();
         player.BlocAttack(true);
         player.BlocMovement(true);
     }
 
     private void Start()
     {
+        player.gameObject.GetComponent<PlayerInteractables>().AvoidLink();
         billy.transform.position = billyStartPosition.position;
         StartCoroutine(Cinematic());
     }

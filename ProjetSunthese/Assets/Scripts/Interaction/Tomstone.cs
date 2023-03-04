@@ -36,7 +36,7 @@ public class Tomstone : Interactable
             yield return new WaitForSeconds(1);
         }
 
-        if(replay) SceneManager.LoadScene("Tutoriel");
+        if(replay) SceneManager.LoadScene("GabIntro");
         else if(menu) SceneManager.LoadScene("StartingMenu");
     }
 }

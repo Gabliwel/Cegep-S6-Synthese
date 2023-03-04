@@ -48,7 +48,7 @@ public class MichaelFight : Enemy
         Attacks[2] = "PROJECTILE";
         player = GameObject.FindGameObjectWithTag("Player");
 
-        hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
+        hp = Scaling.instance.CalculateHealthOnScaling(scaledHp);
         damageDealt = Scaling.instance.CalculateDamageOnScaling(baseDamageDealt);
 
         for (int i = 0; i < michaelAttacks.Count; i++)
@@ -156,19 +156,19 @@ public class MichaelFight : Enemy
     public override void Harm(float ammount, float poison)
     {
         base.Harm(ammount, poison);
-        bossInfo.Bar.UpdateHealth(hp, baseHP);
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
     }
 
     protected override void WasPoisonHurt()
     {
-        bossInfo.Bar.UpdateHealth(hp, baseHP);
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
         bossInfo.gameObject.SetActive(true);
-        bossInfo.Bar.SetDefault(hp, baseHP);
+        bossInfo.Bar.SetDefault(hp, scaledHp);
         if (!firstSpawn)
         {
             StartCoroutine(AttackPlayerInRange());

@@ -24,14 +24,18 @@ public class PauseMenuStateController : MonoBehaviour
     }
     public void Pause()
     {
+        MusicMaker.instance.PauseState(true);
         pauseUI.SetActive(true);
         Time.timeScale = 0;
+        SoundMaker.instance.PauseSound(Camera.main.transform.position);
     }
 
     public void Unpause()
     {
         pauseUI.SetActive(false);
         Time.timeScale = 1;
+        MusicMaker.instance.PauseState(false);
+        SoundMaker.instance.UnpauseSound(Camera.main.transform.position);
     }
 
     private void OnEnable()
