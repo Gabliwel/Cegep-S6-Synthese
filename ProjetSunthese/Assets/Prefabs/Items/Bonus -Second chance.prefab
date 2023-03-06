@@ -196,6 +196,7 @@ MonoBehaviour:
   title: Armor of second chance
   desc: Heals health to 80% when it's under 15%, but slow downs speed
   basePrice: 10
+  speedDecrease: 0
 --- !u!1 &8051050291385598496
 GameObject:
   m_ObjectHideFlags: 0
