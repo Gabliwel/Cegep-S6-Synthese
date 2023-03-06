@@ -207,7 +207,7 @@ MonoBehaviour:
   ROTATION_OFFSET: 0
   orbit: 1
   baseDamage: 5
-  defaultStartup: 0.5
+  defaultStartup: 0.1
   defaultRecovery: 0.7
   cooldown: 0.1
   cooldownTimer: 0

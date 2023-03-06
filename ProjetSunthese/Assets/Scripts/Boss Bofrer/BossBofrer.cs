@@ -89,7 +89,6 @@ public class BossBofrer : Enemy
 
     private void OnDisable()
     {
-        bossInfo.gameObject.SetActive(false);
         routinesStarted = false;
     }
 

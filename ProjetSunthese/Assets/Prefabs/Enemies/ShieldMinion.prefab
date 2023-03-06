@@ -434,7 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteInFirstChild: 1
-  baseHP: 10
+  baseHP: 2
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 2

@@ -44,7 +44,6 @@ public class BossDrops : MonoBehaviour
         }
 
         portal.transform.position = portalSpawnPosition;
-        portal.layer = LayerMask.NameToLayer(layerName);
         portal.GetComponent<SpriteRenderer>().sortingLayerName = layerName;
         portal.transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer(layerName);
         portal.SetActive(true);

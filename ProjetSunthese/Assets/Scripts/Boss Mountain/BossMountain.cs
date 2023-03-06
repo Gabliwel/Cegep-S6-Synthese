@@ -74,7 +74,8 @@ public class BossMountain : Enemy
 
     private void OnDisable()
     {
-        bossInfo.gameObject.SetActive(false);
+        if (bossInfo.gameObject != null)
+            bossInfo.gameObject.SetActive(false);
     }
 
     protected override void Drop()

@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   speed: 10
-  ttl: 5
+  ttl: 2
   poisonDamage: 0
   destination: {x: 0, y: 0}
 --- !u!1 &6320425159648159189

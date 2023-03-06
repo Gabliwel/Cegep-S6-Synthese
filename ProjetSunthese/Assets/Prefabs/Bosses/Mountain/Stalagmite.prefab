@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b4de0e8b732074289841c2115a25c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 12
-  warningTime: 0.3
+  damage: 7
+  warningTime: 0.8
   isWarning: 0
   waitTime: 0.2
   isWaiting: 0

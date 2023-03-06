@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   minEnemySpawnNb: 2
-  maxEnemySpawnNb: 5
-  enemyNb: 30
+  maxEnemySpawnNb: 4
+  enemyNb: 20
   enemyPrefab: {fileID: 3764310346868133788, guid: 4c322e611185b9748bbe10d4d6f033f3, type: 3}

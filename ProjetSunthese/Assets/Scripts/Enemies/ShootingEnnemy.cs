@@ -40,7 +40,6 @@ public class ShootingEnnemy : Enemy
 
     void OnPlayerDamageSense(Player player)
     {
-        player.Harm(10);
     }
 
     void OnPlayerDamageUnsense(Player player)
@@ -82,6 +81,7 @@ public class ShootingEnnemy : Enemy
     private IEnumerator ShootingDelay()
     {
         shootingDelayGoing = true;
+        Debug.Log("Tick");
         yield return new WaitForSeconds(SHOOTING_WAIT);
         shootingDelayGoing = false;
     }
