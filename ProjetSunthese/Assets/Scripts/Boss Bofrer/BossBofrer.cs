@@ -44,7 +44,7 @@ public class BossBofrer : Enemy
     private GameObject shield;
     private BossInfoController bossInfo;
     private const string bossName = "Bofrer";
-    private bool canBeHarmed = true;
+    [SerializeField] private bool canBeHarmed = true;
 
     protected override void Awake()
     {
