@@ -40,7 +40,7 @@ public class BossBofrerEarly : Enemy
 
     private void OnDisable()
     {
-        bossInfo.gameObject.SetActive(false);
+        if(bossInfo != null) bossInfo.gameObject.SetActive(false);
     }
 
     private void Start()
