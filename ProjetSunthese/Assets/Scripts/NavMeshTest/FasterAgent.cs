@@ -27,7 +27,6 @@ public class FasterAgent : MonoBehaviour
             float toAdd = agent.speed * gainedPercentSpeed;
             agent.speed += toAdd;
             agent.acceleration = agent.speed * 5;
-            Debug.Log(Time.unscaledTime + "(Current speed: " + agent.speed + ", added speed: " + toAdd + ")");
         }
     }
 }

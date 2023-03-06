@@ -54,9 +54,6 @@ public class PlayerHealth : MonoBehaviour
         if (isDead) return;
 
         float damage = (damageValue * receiveDamageMultiplicator) - armor;
-        Debug.Log(armor);
-        Debug.Log(damageValue);
-        Debug.Log("oof ouch ive been hit for " + (damage) + " damage");
         if (damage < 1) damage = 1; 
         currentHealth -= damage;
         SoundMaker.instance.PlayerTakeDamageSound(gameObject.transform.position);
@@ -84,7 +81,6 @@ public class PlayerHealth : MonoBehaviour
             isDead = true;
             player.IsDead();
             GameManager.instance.SetGameOver();
-            Debug.Log("I am dead");
         }
     }
 

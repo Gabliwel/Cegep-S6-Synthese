@@ -44,6 +44,7 @@ public class BossBofrer : Enemy
     private GameObject shield;
     private BossInfoController bossInfo;
     private const string bossName = "Bofrer";
+    private bool canBeHarmed = true;
 
     protected override void Awake()
     {
@@ -69,7 +70,7 @@ public class BossBofrer : Enemy
         bossInfo = GameObject.FindGameObjectWithTag("BossInfo").GetComponent<BossInfoController>();
         bossInfo.SetName(bossName);
         bossInfo.gameObject.SetActive(false);
-
+        canBeHarmed = true;
 
     }
 
@@ -83,6 +84,7 @@ public class BossBofrer : Enemy
         bossInfo.gameObject.SetActive(true);
         bossInfo.Bar.SetDefault(hp, scaledHp);
         EnsureRoutinesStarted();
+        canBeHarmed = true;
     }
 
     private void OnDisable()
@@ -148,7 +150,7 @@ public class BossBofrer : Enemy
 
     public override void Harm(float ammount, float overtime)
     {
-        if (!shieldActive)
+        if (!shieldActive && canBeHarmed)
         {
             base.Harm(ammount, overtime);
             CheckHPForTeleport();
@@ -158,9 +160,9 @@ public class BossBofrer : Enemy
 
     protected override void WasPoisonHurt()
     {
-        base.WasPoisonHurt();
-        if (!shieldActive)
+        if (!shieldActive && canBeHarmed)
         {
+            base.WasPoisonHurt();
             CheckHPForTeleport();
             bossInfo.Bar.UpdateHealth(hp, scaledHp);
         }
@@ -170,6 +172,7 @@ public class BossBofrer : Enemy
     {
         if (hp < HPTreshold && !IsFinalFight())
         {
+            canBeHarmed = false;
             GameManager.instance.SetNextLevel();
         }
     }
