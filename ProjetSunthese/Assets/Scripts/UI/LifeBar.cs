@@ -50,8 +50,8 @@ public class LifeBar : MonoBehaviour
         bool takeDamage = false;
         if (currentHealth > health.CurrentHealth) takeDamage = true;
 
-        currentHealth = health.CurrentHealth;
-        maxHealth = health.CurrentMax;
+        currentHealth = MathF.Floor(health.CurrentHealth);
+        maxHealth = MathF.Floor(health.CurrentMax);
         UpdateText();
 
         if(takeDamage) coroutine = StartCoroutine(UpdateBarWhenDamaged());
