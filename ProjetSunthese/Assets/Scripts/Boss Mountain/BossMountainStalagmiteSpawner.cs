@@ -40,6 +40,7 @@ public class BossMountainStalagmiteSpawner : BossAttack
             stalagmite.transform.position = GetRandomSpawnLocation();
             stalagmite.gameObject.SetActive(true);
         }
+        SoundMaker.instance.JgSpawnStalagmitesSound(transform.position);
     }
 
     public BossMountainStalagmite GetAvailableStalagamite()

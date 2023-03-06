@@ -49,6 +49,8 @@ public class SoundManager : MonoBehaviour
 
     [Header("Boss - Bofrer")]
     [SerializeField] private AudioClip bofrerBFL;
+    [SerializeField] private AudioClip bofrerHomingBall;
+    [SerializeField] private AudioClip bofrerStolenAttack;
     [SerializeField] private AudioClip bofrerRockets;
     [SerializeField] private AudioClip bofrerShieldHitSound;
 
@@ -97,6 +99,9 @@ public class SoundManager : MonoBehaviour
     public AudioClip BofrerBFL { get => bofrerBFL; }
     public AudioClip BofrerRockets { get => bofrerRockets; }
     public AudioClip BofrerShieldHitSound { get => bofrerShieldHitSound; }
+    public AudioClip BofrerHomingBall { get => bofrerHomingBall; }
+    public AudioClip BofrerStolenAttackSound { get => bofrerStolenAttack; }
+
     public AudioClip Heal { get => heal; }
     public AudioClip UseItem { get => useItem; }
     public AudioClip LevelUp { get => levelUp; }

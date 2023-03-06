@@ -202,6 +202,17 @@ public class SoundMaker : MonoBehaviour
         RequestSound(position, soundManager.BofrerShieldHitSound, DEFAULT_VOLUME);
     }
 
+    public void BofrerHomingBall(Vector2 position)
+    {
+        RequestSound(position, soundManager.BofrerHomingBall);
+    }
+
+    public void BofrerStolenAttackSound(Vector2 position)
+    {
+        RequestSound(position, soundManager.BofrerStolenAttackSound);
+    }
+
+
     public void HealSound(Vector2 position)
     {
         RequestSound(position, soundManager.Heal);

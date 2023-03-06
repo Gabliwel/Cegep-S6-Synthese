@@ -327,11 +327,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[0].lines.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[1].lines.Array.size
@@ -347,21 +347,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[0].lines.Array.data[0]
-      value: asdasdasdasddasdsadassaddasdas
+      value: You fool.
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[0].lines.Array.data[1]
-      value: adsdasdasdasddadalkjasdhjgfhailduesfhgkliajsdef hngklijsadefhglksjdfhglksjdfhg
+      value: You absolute moron.
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[0].lines.Array.data[2]
-      value: asd g;oaiwej fgpoiusehjgrfpiouaewnjdrgfp oiasenfgpio uasehrpiasuenfdgpiuaen
-        fpigsjben
+      value: To think you can actually defeat me and bring back peace to the neibourhood
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[0].lines.Array.data[3]
-      value: asw;rdeolg ifawikjrbfgn asoiweuysd ghboaiwudrbhngopiaswueedfhnb goiaeunfdg
-        piawj dung
+      value: Pathetic.
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[0].lines.Array.data[4]
@@ -370,19 +368,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[1].lines.Array.data[0]
-      value: this
+      value: 'Welcome. '
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[1].lines.Array.data[1]
-      value: is
+      value: 'As you can see, I''ve taken '
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[1].lines.Array.data[2]
-      value: the
+      value: To think you can actually defeat me and bring back peace to the neibourhood
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[1].lines.Array.data[3]
-      value: painkiller
+      value: Pathetic.
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[1].lines.Array.data[4]
