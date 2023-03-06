@@ -405,7 +405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 873655346591603271, guid: ac0ee4e18dc2e874aac221711e05947a, type: 3}
       propertyPath: currentScaling
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 873655346591604152, guid: ac0ee4e18dc2e874aac221711e05947a, type: 3}
       propertyPath: m_Name
@@ -920,7 +920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f270c8e68f756d45bc6b2a0b224c109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelsDone: 03000000
+  levelsDone: 0500000005000000050000000500000005000000
 --- !u!4 &1356696140
 Transform:
   m_ObjectHideFlags: 0
@@ -1117,6 +1117,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1268080196, guid: 44d865aa63b1e884f94cd873c2bc1e19, type: 3}
+      propertyPath: maxHealth
+      value: 9999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268080196, guid: 44d865aa63b1e884f94cd873c2bc1e19, type: 3}
+      propertyPath: currentMax
+      value: 9999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268080196, guid: 44d865aa63b1e884f94cd873c2bc1e19, type: 3}
+      propertyPath: currentHealth
+      value: 9999
+      objectReference: {fileID: 0}
     - target: {fileID: 3005110375048778725, guid: 44d865aa63b1e884f94cd873c2bc1e19, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
