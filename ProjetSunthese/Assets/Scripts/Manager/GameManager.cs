@@ -144,7 +144,6 @@ public class GameManager : MonoBehaviour
         if (actualLevel != Scene.GabShop && levelSceneList.Count != 4)
         {
             int chance = UnityEngine.Random.Range(0, 100);
-            chance = 20;
             if (chance < 40)
             {
                 actualLevel = Scene.GabShop;
