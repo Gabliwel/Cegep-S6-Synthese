@@ -50,6 +50,7 @@ public class DamageNumbersManager : MonoBehaviour
         RandomizeOffset();
         text.transform.position = position + textOffset;
         text.gameObject.SetActive(true);
+        ammount = Mathf.Floor(ammount);
         text.SetText(ammount.ToString(), color);
     }
 

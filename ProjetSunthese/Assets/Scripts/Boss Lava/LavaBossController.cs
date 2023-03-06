@@ -77,7 +77,7 @@ public class LavaBossController : Enemy
     {
         base.OnEnable();
         bossInfo.gameObject.SetActive(true);
-        bossInfo.Bar.SetDefault(hp, baseHP);
+        bossInfo.Bar.SetDefault(hp, scaledHp);
     }
 
     private void OnDisable()

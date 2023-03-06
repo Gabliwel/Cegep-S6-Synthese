@@ -40,7 +40,6 @@ public class ShootingEnnemy : Enemy
 
     void OnPlayerDamageSense(Player player)
     {
-        player.Harm(10);
     }
 
     void OnPlayerDamageUnsense(Player player)

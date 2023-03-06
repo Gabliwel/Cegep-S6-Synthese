@@ -62,7 +62,6 @@ public class Bomb : Projectile
     private void StartFuse()
     {
         if (fuseStarted) return;
-        Debug.Log("starting fuse");
         fuseTimer = fuse;
         fuseStarted = true;
         animator.SetTrigger("Idle");

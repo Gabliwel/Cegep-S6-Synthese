@@ -13,7 +13,6 @@ public class LavaController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag != "Player") return;
-        Debug.Log("Player enter");
         Player player = collision.gameObject.GetComponent<Player>();
         player.IsInLava(speedReducer);
         isInLava = true;
@@ -32,7 +31,6 @@ public class LavaController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag != "Player") return;
-        Debug.Log("Player exit");
         isInLava = false;
         collision.gameObject.GetComponent<Player>().IsNotInLava();
     }

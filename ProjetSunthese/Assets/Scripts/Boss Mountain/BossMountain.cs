@@ -74,7 +74,8 @@ public class BossMountain : Enemy
 
     private void OnDisable()
     {
-        bossInfo.gameObject.SetActive(false);
+        if (bossInfo.gameObject != null)
+            bossInfo.gameObject.SetActive(false);
     }
 
     protected override void Drop()
@@ -103,14 +104,6 @@ public class BossMountain : Enemy
 
     protected void Update()
     {
-        //debug
-        if (Input.GetKeyDown(KeyCode.F))
-            StartRockThrow();
-        if (Input.GetKeyDown(KeyCode.G))
-            StartStalagmites();
-        if (Input.GetKeyDown(KeyCode.H))
-            StartEnemySpawn();
-
         if (enemySpawnTimer > 0)
             enemySpawnTimer -= Time.deltaTime;
         else

@@ -33,6 +33,8 @@ public class LifeBar : MonoBehaviour
 
     public void SetDefault(float cHealth, float mHealth)
     {
+        cHealth = Mathf.Floor(cHealth);
+        mHealth = Mathf.Floor(mHealth);
         currentHealth = cHealth;
         maxHealth = mHealth;
         front.fillAmount = currentHealth / maxHealth;
@@ -60,7 +62,8 @@ public class LifeBar : MonoBehaviour
     {
         UpdateText();
         if (coroutine != null) StopCoroutine(coroutine);
-
+        cHealth = Mathf.Floor(cHealth);
+        mHealth = Mathf.Floor(mHealth);
         bool takeDamage = false;
         if (currentHealth > cHealth && cHealth > 0) takeDamage = true;
 

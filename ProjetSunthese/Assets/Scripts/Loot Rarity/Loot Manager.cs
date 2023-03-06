@@ -67,7 +67,6 @@ public class LootManager : MonoBehaviour
 
     private ItemWithRarity RandItemByRarity(ItemRarity baseRarity)
     {
-        Debug.Log(baseRarity);
         List<ItemWithRarity> temp = new List<ItemWithRarity>();
         foreach(ItemWithRarity item in items)
         {
