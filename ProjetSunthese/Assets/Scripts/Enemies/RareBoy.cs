@@ -30,12 +30,10 @@ public class RareBoy : Enemy
     void OnPlayerCatchSense(Player player)
     {
         Die();
-        Debug.Log("Sense");
     }
 
     void OnPlayerCatchUnsense(Player player)
     {
-        Debug.Log("Unsense");
     }
 
     public override void Harm(float ammount, float poison)
@@ -43,7 +41,6 @@ public class RareBoy : Enemy
         ammount = 0;
         poison = 0;
         base.Harm(ammount, poison);
-        Debug.Log(playerCatchingSensor);
     }
 
     void Update()

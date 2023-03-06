@@ -23,7 +23,6 @@ public class BofTeleport : BossAttack
     [ContextMenu("Test")]
     public override void Launch()
     {
-        Debug.Log("Test");
         isAvailable = false;
         attackInProgress = true;
         duration = durationReset;
@@ -45,7 +44,6 @@ public class BofTeleport : BossAttack
 
     void OnPlayerSense(Player player)
     {
-        Debug.Log("Damage");
         player.Harm(damage);
     }
 

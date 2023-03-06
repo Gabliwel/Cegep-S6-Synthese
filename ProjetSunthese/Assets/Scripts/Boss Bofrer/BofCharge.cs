@@ -44,7 +44,6 @@ public class BofCharge : BossAttack
 
     void OnPlayerSense(Player player)
     {
-        Debug.Log("Damage");
         player.Harm(damage);
     }
 
@@ -56,7 +55,6 @@ public class BofCharge : BossAttack
     [ContextMenu("Test")]
     public override void Launch()
     {
-        Debug.Log("Test");
         attackInProgress = true;
         isAvailable = false;
     }

@@ -118,7 +118,6 @@ public class ShieldEnemy : Enemy
 
     private IEnumerator ShieldTime()
     {
-        Debug.Log("Shield");
         yield return new WaitForSeconds(3f);
         shield.SetActive(false);
         shieldOn = false;
@@ -140,7 +139,6 @@ public class ShieldEnemy : Enemy
 
     private bool TouchingPlayer()
     {
-        Debug.Log(playerDamageSensor.SensedObjects.Count > 0);
         return playerDamageSensor.SensedObjects.Count > 0;
     }
 }

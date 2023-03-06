@@ -110,7 +110,6 @@ public class BossBofrerEarly : Enemy
 
     private bool TouchingPlayer()
     {
-        Debug.Log(playerSensor.SensedObjects.Count > 0);
         return playerSensor.SensedObjects.Count > 0;
     }
 

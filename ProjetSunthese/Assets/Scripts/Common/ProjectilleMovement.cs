@@ -20,7 +20,6 @@ public class ProjectilleMovement : MonoBehaviour
 
     void OnPlayerSense(Player player)
     {
-        Debug.Log("Damage");
         player.Harm(damage);
     }
 

@@ -39,7 +39,6 @@ public class Door : MonoBehaviour
 
     private void OnPlayerSense(Player player)
     {
-        Debug.Log("DOOR STUCK");
         if (!isCaveExit)
         {
             doorManager.PlayerWentThrough(sensor.transform.position - returnOffset, LayerMask.LayerToName(sensor.gameObject.layer));

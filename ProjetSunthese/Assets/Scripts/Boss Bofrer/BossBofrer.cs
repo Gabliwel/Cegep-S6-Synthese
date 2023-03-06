@@ -270,7 +270,6 @@ public class BossBofrer : Enemy
             stolenAttacks[num].gameObject.SetActive(true);
             stolenAttacks[num].Launch();
         }
-        Debug.Log("firering " + stolenAttacks[num].name + " number " + num);
     }
 
     void StartBFL()

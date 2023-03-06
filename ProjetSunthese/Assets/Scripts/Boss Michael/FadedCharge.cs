@@ -52,7 +52,6 @@ public class FadedCharge : BossAttack
 
     private void FadedChargeAttack()
     {
-        Debug.Log("Charge");
         if (attackInProgress)
         {
             if (!charging)

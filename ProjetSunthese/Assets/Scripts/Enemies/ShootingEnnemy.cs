@@ -82,7 +82,6 @@ public class ShootingEnnemy : Enemy
     private IEnumerator ShootingDelay()
     {
         shootingDelayGoing = true;
-        Debug.Log("Tick");
         yield return new WaitForSeconds(SHOOTING_WAIT);
         shootingDelayGoing = false;
     }
