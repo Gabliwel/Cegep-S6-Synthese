@@ -36,6 +36,7 @@ public class BossMountainEnemySpawner : BossAttack
             enemy.transform.position = GetRandomSpawnLocation();
             enemy.gameObject.SetActive(true);
         }
+        SoundMaker.instance.JgSpawnMobsSound(transform.position);
     }
 
     public BossMountainEnemy GetAvailableEnemy()

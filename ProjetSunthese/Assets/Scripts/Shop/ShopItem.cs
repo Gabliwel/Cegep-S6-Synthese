@@ -17,9 +17,9 @@ public class ShopItem : Interactable
 
     // prices for item with rairty
     private const int priceCommun = 20;
-    private const int priceRare = 30;
-    private const int priceEpic = 50;
-    private const int priceLegendary = 70;
+    private const int priceRare = 20;
+    private const int priceEpic = 40;
+    private const int priceLegendary = 60;
     private const int priceUnique = 100;
 
     private void Start()

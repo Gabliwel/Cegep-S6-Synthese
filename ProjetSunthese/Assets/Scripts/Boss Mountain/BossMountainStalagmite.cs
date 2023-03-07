@@ -56,6 +56,7 @@ public class BossMountainStalagmite : MonoBehaviour
 
     void EnableWarning()
     {
+        DisableSensor();
         isWarning = true;
         animator.SetBool("Warning", true);
         warningTimer = warningTime;

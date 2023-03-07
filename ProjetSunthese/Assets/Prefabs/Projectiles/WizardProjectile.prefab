@@ -204,4 +204,4 @@ MonoBehaviour:
   ttl: 10
   poisonDamage: 0
   destination: {x: 0, y: 0}
-  tickRate: 0.3
+  tickRate: 0.2

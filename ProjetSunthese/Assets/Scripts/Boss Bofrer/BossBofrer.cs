@@ -44,7 +44,7 @@ public class BossBofrer : Enemy
     private GameObject shield;
     private BossInfoController bossInfo;
     private const string bossName = "Bofrer";
-    private bool canBeHarmed = true;
+    [SerializeField] private bool canBeHarmed = true;
 
     protected override void Awake()
     {
@@ -206,6 +206,8 @@ public class BossBofrer : Enemy
 
     IEnumerator BFLTimerRoutine()
     {
+        yield return new WaitForSeconds(GetRandomTimer(bflminTimer / 2));
+        StartBFL();
         while (isActiveAndEnabled && bflActive)
         {
             float timer = GetRandomTimer(bflminTimer);
@@ -215,6 +217,8 @@ public class BossBofrer : Enemy
     }
     IEnumerator BallTimerRoutine()
     {
+        yield return new WaitForSeconds(GetRandomTimer(ballMinTimer / 2));
+        StartBallAttack();
         while (isActiveAndEnabled && ballActive)
         {
             float timer = GetRandomTimer(ballMinTimer);
@@ -225,6 +229,8 @@ public class BossBofrer : Enemy
 
     IEnumerator BoltTimerRoutine()
     {
+        yield return new WaitForSeconds(GetRandomTimer(boltMinTimer / 2));
+        StartBoltSpawn();
         while (isActiveAndEnabled && boltsActive)
         {
             float timer = GetRandomTimer(boltMinTimer);
@@ -235,6 +241,8 @@ public class BossBofrer : Enemy
 
     IEnumerator ShieldMinionTimerRoutine()
     {
+        yield return new WaitForSeconds(GetRandomTimer(shieldMinionsMinTimer / 2));
+        StartMinionSpawn();
         while (isActiveAndEnabled && shieldMinionsActive)
         {
             float timer = GetRandomTimer(shieldMinionsMinTimer);
@@ -245,6 +253,8 @@ public class BossBofrer : Enemy
 
     IEnumerator StolenAttackTimerRoutine()
     {
+        yield return new WaitForSeconds(GetRandomTimer(stolenMinTimer / 2));
+        StartRandomStolenAttack();
         while (isActiveAndEnabled && stolenActive)
         {
             float timer = GetRandomTimer(stolenMinTimer);
@@ -261,8 +271,6 @@ public class BossBofrer : Enemy
         return random;
     }
 
-
-
     void StartRandomStolenAttack()
     {
         int num = Random.Range(0, stolenAttacks.Count);
@@ -271,12 +279,14 @@ public class BossBofrer : Enemy
             stolenAttacks[num].transform.position = transform.position;
             stolenAttacks[num].gameObject.SetActive(true);
             stolenAttacks[num].Launch();
+            SoundMaker.instance.BofrerStolenAttackSound(transform.position);
         }
     }
 
     void StartBFL()
     {
         StartCoroutine(BFLRoutine());
+        SoundMaker.instance.BofrerBFLSound(transform.position);
     }
 
     void StartMinionSpawn()
@@ -287,11 +297,13 @@ public class BossBofrer : Enemy
     void StartBoltSpawn()
     {
         boltSpawner.Launch();
+        SoundMaker.instance.BofrerRocketsSound(transform.position);
     }
 
     void StartBallAttack()
     {
         ball.Launch();
+        SoundMaker.instance.BofrerHomingBall(transform.position);
     }
 
     IEnumerator BFLRoutine()

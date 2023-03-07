@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteInFirstChild: 0
-  baseHP: 20
+  baseHP: 18
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 1
@@ -278,7 +278,7 @@ MonoBehaviour:
   goldDropped: 3
   xpGiven: 5
   overtime: 0
-  speed: 4
+  speed: 2.5
   useNavMesh: 0
   attackSpeed: 1
   knockBackForce: 5

@@ -254,7 +254,7 @@ MonoBehaviour:
   useTextBox: 1
   title: Daggers
   desc: Two quick weapons, but not has powerful
-  basePrice: 20
+  basePrice: 15
 --- !u!212 &4285788308435559348
 SpriteRenderer:
   m_ObjectHideFlags: 0

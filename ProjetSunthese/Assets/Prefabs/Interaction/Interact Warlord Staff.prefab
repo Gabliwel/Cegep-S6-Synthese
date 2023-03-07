@@ -146,7 +146,7 @@ MonoBehaviour:
   title: Staff
   desc: Powerful staff that sends a projectile towards a destination that explodes
     on contact
-  basePrice: 20
+  basePrice: 15
 --- !u!95 &459978937407105300
 Animator:
   serializedVersion: 5

@@ -24,8 +24,8 @@ public class LifeBar : MonoBehaviour
 
     public void SetDefault(PlayerHealth health)
     {
-        currentHealth = health.CurrentHealth;
-        maxHealth = health.CurrentMax;
+        currentHealth = Mathf.Floor(health.CurrentHealth);
+        maxHealth = Mathf.Floor(health.CurrentMax);
         front.fillAmount = currentHealth / maxHealth;
         back.fillAmount = currentHealth / maxHealth;
         UpdateText();
@@ -50,8 +50,8 @@ public class LifeBar : MonoBehaviour
         bool takeDamage = false;
         if (currentHealth > health.CurrentHealth) takeDamage = true;
 
-        currentHealth = health.CurrentHealth;
-        maxHealth = health.CurrentMax;
+        currentHealth = MathF.Floor(health.CurrentHealth);
+        maxHealth = MathF.Floor(health.CurrentMax);
         UpdateText();
 
         if(takeDamage) coroutine = StartCoroutine(UpdateBarWhenDamaged());
@@ -110,6 +110,9 @@ public class LifeBar : MonoBehaviour
 
     private void UpdateText()
     {
-        tmp.text = currentHealth.ToString() + " / " + maxHealth.ToString();
+        float tempHealthAdjust = currentHealth;
+        if (currentHealth < 1 && currentHealth > 0)
+            tempHealthAdjust = 1;
+        tmp.text = tempHealthAdjust.ToString() + " / " + maxHealth.ToString();
     }
 }

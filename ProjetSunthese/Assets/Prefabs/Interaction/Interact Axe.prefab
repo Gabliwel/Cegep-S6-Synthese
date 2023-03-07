@@ -328,4 +328,4 @@ MonoBehaviour:
   useTextBox: 1
   title: Axe
   desc: Strong, but slow, melee weapon
-  basePrice: 20
+  basePrice: 15

@@ -328,4 +328,4 @@ MonoBehaviour:
   useTextBox: 1
   title: Sword
   desc: An average weapon in speed and damage
-  basePrice: 20
+  basePrice: 15

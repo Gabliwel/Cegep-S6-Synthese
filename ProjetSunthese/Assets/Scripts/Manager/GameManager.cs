@@ -151,14 +151,10 @@ public class GameManager : MonoBehaviour
                 return;
             }
         }
-        else
-        {
-            int randomChoice = UnityEngine.Random.Range(0, levelSceneList.Count);
-            actualLevel = levelSceneList.ElementAt(randomChoice);
-            RemoveSceneFromSceneList(actualLevel);
-            StartNextlevel(0, actualLevel);
-
-        }
+        int randomChoice = UnityEngine.Random.Range(0, levelSceneList.Count);
+        actualLevel = levelSceneList.ElementAt(randomChoice);
+        RemoveSceneFromSceneList(actualLevel);
+        StartNextlevel(0, actualLevel);
     }
 
     [ContextMenu("Early wood")]

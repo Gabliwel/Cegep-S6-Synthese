@@ -29,7 +29,7 @@ public class VoiceManager : MonoBehaviour
             else
             {
                 timer = frequency;
-                SoundMaker.instance.RequestSound(Player.instance.transform.position, GetRandomVoiceClip());
+                SoundMaker.instance.RequestSound(Camera.main.transform.position, GetRandomVoiceClip());
             }
         }
     }

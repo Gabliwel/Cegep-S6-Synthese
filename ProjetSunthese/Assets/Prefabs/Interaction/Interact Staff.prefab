@@ -126,7 +126,7 @@ MonoBehaviour:
   useTextBox: 1
   title: Staff 2
   desc: A staff of infinite piercing magic
-  basePrice: 20
+  basePrice: 15
 --- !u!95 &459978937407105300
 Animator:
   serializedVersion: 5

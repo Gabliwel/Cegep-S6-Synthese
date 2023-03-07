@@ -196,10 +196,10 @@ MonoBehaviour:
   title: Speed gloves
   desc: Increment the speed attack of each weapon
   basePrice: 10
-  communGain: 0.05
-  rareGain: 0.2
-  epicGain: 0.4
-  legendaryGain: 0.7
+  communGain: 0
+  rareGain: 3
+  epicGain: 5
+  legendaryGain: 7
 --- !u!1001 &1849533593580246712
 PrefabInstance:
   m_ObjectHideFlags: 0
