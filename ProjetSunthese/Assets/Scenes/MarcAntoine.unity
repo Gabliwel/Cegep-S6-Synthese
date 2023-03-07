@@ -19595,7 +19595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5190004353726405865, guid: 81c8d1de6e55dec4f87b299b1fa7a5e9, type: 3}
       propertyPath: spawningInterval
-      value: 90
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5190004353726405865, guid: 81c8d1de6e55dec4f87b299b1fa7a5e9, type: 3}
       propertyPath: allSpawners.Array.size
@@ -52516,7 +52516,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 359206789
   m_SortingLayer: 1
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -61946,9 +61946,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useNavMesh: 0
-  speed: 0.5
-  speedIncrease: 0.15
-  timeToAccelerate: 15
+  speed: 0.8
+  speedIncrease: 0.3
+  timeToAccelerate: 10
 --- !u!1 &1401647023
 GameObject:
   m_ObjectHideFlags: 0
@@ -65703,7 +65703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5190004353726405865, guid: 81c8d1de6e55dec4f87b299b1fa7a5e9, type: 3}
       propertyPath: spawningInterval
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5190004353726405865, guid: 81c8d1de6e55dec4f87b299b1fa7a5e9, type: 3}
       propertyPath: allSpawners.Array.size
@@ -65711,7 +65711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5190004353726405865, guid: 81c8d1de6e55dec4f87b299b1fa7a5e9, type: 3}
       propertyPath: enemyChoice.Array.size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5190004353726405865, guid: 81c8d1de6e55dec4f87b299b1fa7a5e9, type: 3}
       propertyPath: allSpawners.Array.data[0]
@@ -65769,6 +65769,14 @@ PrefabInstance:
       propertyPath: enemyChoice.Array.data[3]
       value: 
       objectReference: {fileID: 4602663822235394319, guid: ba8f7834961a54a4098f5ad77d90183c, type: 3}
+    - target: {fileID: 5190004353726405865, guid: 81c8d1de6e55dec4f87b299b1fa7a5e9, type: 3}
+      propertyPath: enemyChoice.Array.data[4]
+      value: 
+      objectReference: {fileID: 2667284385821027673, guid: f7276b69500935a4ba454bd55fe800a6, type: 3}
+    - target: {fileID: 5190004353726405865, guid: 81c8d1de6e55dec4f87b299b1fa7a5e9, type: 3}
+      propertyPath: enemyChoice.Array.data[5]
+      value: 
+      objectReference: {fileID: 2667284385821027673, guid: 334d2c214289e4b43a7e4a16a554b36e, type: 3}
     - target: {fileID: 5190004353726405865, guid: 81c8d1de6e55dec4f87b299b1fa7a5e9, type: 3}
       propertyPath: allSpawners.Array.data[10]
       value: 
@@ -71415,6 +71423,10 @@ PrefabInstance:
     - target: {fileID: 3703158472461327426, guid: 2bf265dcd2b421c47ad3b7e9fbe12cbc, type: 3}
       propertyPath: m_Name
       value: PauseUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703158472461327426, guid: 2bf265dcd2b421c47ad3b7e9fbe12cbc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3703158472461327486, guid: 2bf265dcd2b421c47ad3b7e9fbe12cbc, type: 3}
       propertyPath: m_Pivot.x

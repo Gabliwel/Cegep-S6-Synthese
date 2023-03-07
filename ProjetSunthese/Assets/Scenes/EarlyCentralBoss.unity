@@ -327,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[0].lines.Array.size
@@ -339,7 +339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[2].lines.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[3].lines.Array.size
@@ -388,19 +388,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[2].lines.Array.data[0]
-      value: you
+      value: You have the guts to come over here, Billy?
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[2].lines.Array.data[1]
-      value: are
+      value: 'After all we''ve been through together? '
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[2].lines.Array.data[2]
-      value: an
+      value: You make me sick. I work hard out here to make the perfect world happen.
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[2].lines.Array.data[3]
-      value: idiot
+      value: Come here, and fight me.
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[2].lines.Array.data[4]

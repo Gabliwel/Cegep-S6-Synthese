@@ -206,6 +206,8 @@ public class BossBofrer : Enemy
 
     IEnumerator BFLTimerRoutine()
     {
+        yield return new WaitForSeconds(GetRandomTimer(bflminTimer / 2));
+        StartBFL();
         while (isActiveAndEnabled && bflActive)
         {
             float timer = GetRandomTimer(bflminTimer);
@@ -215,6 +217,8 @@ public class BossBofrer : Enemy
     }
     IEnumerator BallTimerRoutine()
     {
+        yield return new WaitForSeconds(GetRandomTimer(ballMinTimer / 2));
+        StartBallAttack();
         while (isActiveAndEnabled && ballActive)
         {
             float timer = GetRandomTimer(ballMinTimer);
@@ -225,6 +229,8 @@ public class BossBofrer : Enemy
 
     IEnumerator BoltTimerRoutine()
     {
+        yield return new WaitForSeconds(GetRandomTimer(boltMinTimer / 2));
+        StartBoltSpawn();
         while (isActiveAndEnabled && boltsActive)
         {
             float timer = GetRandomTimer(boltMinTimer);
@@ -235,6 +241,8 @@ public class BossBofrer : Enemy
 
     IEnumerator ShieldMinionTimerRoutine()
     {
+        yield return new WaitForSeconds(GetRandomTimer(shieldMinionsMinTimer / 2));
+        StartMinionSpawn();
         while (isActiveAndEnabled && shieldMinionsActive)
         {
             float timer = GetRandomTimer(shieldMinionsMinTimer);
@@ -245,6 +253,8 @@ public class BossBofrer : Enemy
 
     IEnumerator StolenAttackTimerRoutine()
     {
+        yield return new WaitForSeconds(GetRandomTimer(stolenMinTimer / 2));
+        StartRandomStolenAttack();
         while (isActiveAndEnabled && stolenActive)
         {
             float timer = GetRandomTimer(stolenMinTimer);
@@ -260,8 +270,6 @@ public class BossBofrer : Enemy
         float random = Random.Range(minTime, maxTime);
         return random;
     }
-
-
 
     void StartRandomStolenAttack()
     {

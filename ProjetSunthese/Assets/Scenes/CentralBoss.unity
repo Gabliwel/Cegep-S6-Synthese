@@ -471,7 +471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 873655346591603271, guid: ac0ee4e18dc2e874aac221711e05947a, type: 3}
       propertyPath: currentScaling
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 873655346591604152, guid: ac0ee4e18dc2e874aac221711e05947a, type: 3}
       propertyPath: m_Name
@@ -986,7 +986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f270c8e68f756d45bc6b2a0b224c109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelsDone: 0500000005000000050000000500000005000000
+  levelsDone: 05000000030000000600000002000000
 --- !u!4 &1356696140
 Transform:
   m_ObjectHideFlags: 0
@@ -1547,7 +1547,7 @@ PrefabInstance:
       objectReference: {fileID: 1401463463}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.size
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[0].lines.Array.size
@@ -1555,23 +1555,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[1].lines.Array.size
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[2].lines.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[3].lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[4].lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[5].lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[6].lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[0].lines.Array.data[0]
-      value: PLACEHOLDER MOMENT
+      value: Look who's back.
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[0].lines.Array.data[1]
-      value: :)
+      value: Back and ready to die.
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[1].lines.Array.data[0]
-      value: LET
+      value: Finally, someone that might not bore me.
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[1].lines.Array.data[1]
@@ -1595,15 +1611,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[2].lines.Array.data[0]
-      value: OH MY GOD
+      value: The hero of the story is here!
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[2].lines.Array.data[1]
-      value: WOW
+      value: But all stories have to come to an end.
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[2].lines.Array.data[2]
-      value: IT
+      value: But all stories have to come to an end.
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[2].lines.Array.data[3]
@@ -1616,6 +1632,38 @@ PrefabInstance:
     - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: possibleDialogues.Array.data[2].lines.Array.data[5]
       value: YOU
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[3].lines.Array.data[0]
+      value: The hero of the story is here!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[3].lines.Array.data[1]
+      value: And this time, the villain is going to win.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[4].lines.Array.data[0]
+      value: You are filled with determination.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[4].lines.Array.data[1]
+      value: Let's turn it to doubt.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[5].lines.Array.data[0]
+      value: You have defeated one of the guardians.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[5].lines.Array.data[1]
+      value: Their power have come back to me.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[6].lines.Array.data[0]
+      value: You have defeated one of the guardians.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233596155585446589, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
+      propertyPath: possibleDialogues.Array.data[6].lines.Array.data[1]
+      value: Fool. That only serves to make me stronger.
       objectReference: {fileID: 0}
     - target: {fileID: 4233596155585446590, guid: 4d24cf42893dc0b42acab9d097c7d40c, type: 3}
       propertyPath: m_Name

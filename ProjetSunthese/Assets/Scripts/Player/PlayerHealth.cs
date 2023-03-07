@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    private const float MAX_ARMOR = 0.6f;
     private Player player;
 
     [Header("Health")]
@@ -15,20 +16,20 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float currentHealth = 0;
     [SerializeField] private float armor = 0;
 
-    public float CurrentHealth { get => currentHealth;}
+    public float CurrentHealth { get => currentHealth; }
     public float CurrentMax { get => currentMax; }
 
     [Header("Info for debug - bonus")]
     // ------------- Health bonus --------------------
     // if currentHealth is 15% of max, regen health to 80% of max
-    [SerializeField]  private int secondChance = 0;
+    [SerializeField] private int secondChance = 0;
     // if currentHealth is equivalent to dead, rest alive with 1 hp
-    [SerializeField]  private int deathContract = 0;
+    [SerializeField] private int deathContract = 0;
     // double the amount of lives and gain 10 armor, but cant regen
-    [SerializeField]  private bool stoneHeart = false;
+    [SerializeField] private bool stoneHeart = false;
 
     // for player bonus that is independant health
-    [SerializeField]  private int receiveDamageMultiplicator = 1;
+    [SerializeField] private int receiveDamageMultiplicator = 1;
 
     private bool isDead = false;
 
@@ -52,9 +53,10 @@ public class PlayerHealth : MonoBehaviour
     public void Harm(float damageValue)
     {
         if (isDead) return;
-
-        float damage = (damageValue * receiveDamageMultiplicator) - armor;
-        if (damage < 1) damage = 1; 
+        float damage = (damageValue * receiveDamageMultiplicator);
+        float damageReduction = damage * armor;
+        damage -= damageReduction;
+        if (damage < 1) damage = 1;
         currentHealth -= damage;
         SoundMaker.instance.PlayerTakeDamageSound(gameObject.transform.position);
         DamageNumbersManager.instance.CallText(damage, transform.position, true);
@@ -67,7 +69,7 @@ public class PlayerHealth : MonoBehaviour
             // cant hit for duration?
         }
 
-        if(currentHealth <= currentMax * 0.15f && secondChance > 0)
+        if (currentHealth <= currentMax * 0.15f && secondChance > 0)
         {
             secondChance--;
             currentHealth = currentMax * 0.80f;
@@ -111,13 +113,13 @@ public class PlayerHealth : MonoBehaviour
     #region For bonus
     public void GainStoneHeart()
     {
-        if(!stoneHeart)
-        {
-            stoneHeart = true;
+        if (!stoneHeart)
             currentHealth *= 2;
-            currentMax = currentHealth;
-        }
-        armor += 5;
+        else
+            currentHealth *= 1.5f;
+        currentMax = currentHealth;
+        GainArmor(0.1f);
+        stoneHeart = true;
     }
 
     public void GainDeathContract()
@@ -133,6 +135,8 @@ public class PlayerHealth : MonoBehaviour
     public void GainArmor(float value)
     {
         armor += value;
+        if (armor > MAX_ARMOR)
+            armor = MAX_ARMOR;
     }
 
     public void LevelUpChange()

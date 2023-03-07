@@ -106,8 +106,8 @@ MonoBehaviour:
   title: Big healing potion
   desc: Heal a portion of the current health abd increase the max health
   basePrice: 15
-  epicGain: 15
-  legendaryGain: 25
+  epicGain: 30
+  legendaryGain: 50
 --- !u!1 &1401539237983016500
 GameObject:
   m_ObjectHideFlags: 0

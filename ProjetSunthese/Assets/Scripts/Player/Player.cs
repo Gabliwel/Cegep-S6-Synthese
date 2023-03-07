@@ -6,6 +6,7 @@ using Billy.Weapons;
 
 public class Player : MonoBehaviour
 {
+    private const float MAX_LUCK = 90f;
     public static Player instance;
     private PlayerAnimationController animationController;
     private PlayerMovement playerMovement;
@@ -145,7 +146,7 @@ public class Player : MonoBehaviour
 
     public void GetCrazyHalfHeart()
     {
-        if(!crazyHeart)
+        if (!crazyHeart)
         {
             baseWeaponStat.MultiplyBaseAttack(1.5f);
         }
@@ -199,7 +200,9 @@ public class Player : MonoBehaviour
 
     public void IncreasePlayerLuck(float value)
     {
-        if (luck < 90) luck += value;
+        luck += value;
+        if (luck > MAX_LUCK)
+            luck = MAX_LUCK;
     }
 
     public void IncreaseAttackSpeed(float lvl)
