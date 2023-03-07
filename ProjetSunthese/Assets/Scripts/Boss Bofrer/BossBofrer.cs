@@ -286,7 +286,6 @@ public class BossBofrer : Enemy
     void StartBFL()
     {
         StartCoroutine(BFLRoutine());
-        SoundMaker.instance.BofrerBFLSound(transform.position);
     }
 
     void StartMinionSpawn()
@@ -297,7 +296,7 @@ public class BossBofrer : Enemy
     void StartBoltSpawn()
     {
         boltSpawner.Launch();
-        SoundMaker.instance.BofrerRocketsSound(transform.position);
+        
     }
 
     void StartBallAttack()
@@ -312,5 +311,6 @@ public class BossBofrer : Enemy
         yield return new WaitForSeconds(bflChargeup);
         bfl.Launch();
         animator.SetBool("Charging", false);
+        SoundMaker.instance.BofrerBFLSound(transform.position);
     }
 }

@@ -63,6 +63,7 @@ public class BossBofrerHomingBoltSpawner : BossAttack
 
 
             rotation += step;
+            SoundMaker.instance.BofrerRocketsSound(transform.position);
             yield return new WaitForSeconds(timePerBolt);
         }
     }
