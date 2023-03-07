@@ -13,6 +13,7 @@ public class SoundMaker : MonoBehaviour
     private GameObject[] soundMakerArray = new GameObject[arrayLenght];
     private SoundManager soundManager;
     private GameObject walkingMaker;
+    private GameObject fireAura;
 
     private float DEFAULT_VOLUME = 0.2f;
     private float WALK_VOLUME = 0.05f;
@@ -94,7 +95,7 @@ public class SoundMaker : MonoBehaviour
 
     public void PlayerWalkSound(Vector2 position)
     {
-        RequestInfiniteSound(position, soundManager.PlayerWalk, WALK_VOLUME);
+        RequestWalkingSound(position, soundManager.PlayerWalk, WALK_VOLUME);
     }
 
     public void StopPlayerWalkSound()
@@ -117,7 +118,7 @@ public class SoundMaker : MonoBehaviour
 
     public void GontrandAuraSound(Vector2 position)
     {
-        RequestSound(position, soundManager.GontrandAura);
+        RequestFireAuraSound(position, soundManager.GontrandAura, FIRE_ATTACK_VOLUME);
     }
 
     public void GontrandDieSound(Vector2 position)
@@ -283,7 +284,38 @@ public class SoundMaker : MonoBehaviour
         }
     }
 
-    private void RequestInfiniteSound(Vector2 position, AudioClip audioClip, float volume)
+    private void RequestFireAuraSound(Vector2 position, AudioClip audioClip, float volume)
+    {
+        if (fireAura == null)
+        {
+            foreach (GameObject individual in soundMakerArray)
+            {
+                if (!individual.activeSelf)
+                {
+                    fireAura = individual;
+                    individual.SetActive(true);
+                    individual.GetComponent<IndividualSoundMaker>().InfinitePlayAtPoint(audioClip, position, volume);
+
+                    return;
+                }
+            }
+        }
+        else
+        {
+            fireAura.SetActive(true);
+            fireAura.GetComponent<IndividualSoundMaker>().InfinitePlayAtPoint(audioClip, position, volume);
+        }
+    }
+
+    public void StopFireAuraSound()
+    {
+        if (fireAura != null)
+        {
+            fireAura.SetActive(false);
+        }
+    }
+
+    private void RequestWalkingSound(Vector2 position, AudioClip audioClip, float volume)
     {
         if (walkingMaker == null)
         {
