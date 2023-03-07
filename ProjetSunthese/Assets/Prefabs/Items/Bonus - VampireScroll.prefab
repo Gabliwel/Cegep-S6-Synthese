@@ -106,6 +106,7 @@ MonoBehaviour:
   title: Vampire's scroll
   desc: Heal after enemy kill
   basePrice: 10
+  suckAmmount: 0.01
 --- !u!1 &3135231326501346190
 GameObject:
   m_ObjectHideFlags: 0

@@ -158,17 +158,17 @@ public class Player : MonoBehaviour
         health.IncreaseReceiveDamageMultiplicator();
     }
 
-    public void GainBloodSuck()
+    public void GainBloodSuck(float amount)
     {
         bloodSuck = true;
-        bloodSuckRate += 0.5f;
+        bloodSuckRate += amount;
     }
 
     public void HealBloodSuck()
     {
         if (bloodSuck)
         {
-            health.HealSpecific(bloodSuckRate);
+            health.HealSpecific(bloodSuckRate * health.CurrentMax);
             GameManager.instance.UpdateHealth();
         }
     }

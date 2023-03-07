@@ -103,7 +103,7 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   selectedMaterial: {fileID: 2100000, guid: 65bb25d58066acf44975f496fb328fae, type: 2}
   useTextBox: 1
-  title: Big healing potion
+  title: Max Health Potion
   desc: Heal a portion of the current health abd increase the max health
   basePrice: 15
   epicGain: 30

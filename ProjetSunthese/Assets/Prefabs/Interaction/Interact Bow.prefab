@@ -145,7 +145,7 @@ MonoBehaviour:
   useTextBox: 1
   title: Bow
   desc: The classic long ranged weapon
-  basePrice: 20
+  basePrice: 15
 --- !u!95 &459978937407105300
 Animator:
   serializedVersion: 5
