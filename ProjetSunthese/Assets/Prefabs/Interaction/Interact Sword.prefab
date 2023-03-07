@@ -327,5 +327,5 @@ MonoBehaviour:
   selectedMaterial: {fileID: 2100000, guid: 65bb25d58066acf44975f496fb328fae, type: 2}
   useTextBox: 1
   title: Sword
-  desc: SWOOOOOOOORD!
+  desc: An average weapon in speed and damage
   basePrice: 20

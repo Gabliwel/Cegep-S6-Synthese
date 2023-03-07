@@ -253,7 +253,7 @@ MonoBehaviour:
   selectedMaterial: {fileID: 2100000, guid: 65bb25d58066acf44975f496fb328fae, type: 2}
   useTextBox: 1
   title: Daggers
-  desc: no idea!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+  desc: Two quick weapons, but not has powerful
   basePrice: 20
 --- !u!212 &4285788308435559348
 SpriteRenderer:

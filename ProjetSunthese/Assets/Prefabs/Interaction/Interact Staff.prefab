@@ -125,7 +125,7 @@ MonoBehaviour:
   selectedMaterial: {fileID: 2100000, guid: 65bb25d58066acf44975f496fb328fae, type: 2}
   useTextBox: 1
   title: Staff 2
-  desc: desc no idea
+  desc: A staff of infinite piercing magic
   basePrice: 20
 --- !u!95 &459978937407105300
 Animator:
