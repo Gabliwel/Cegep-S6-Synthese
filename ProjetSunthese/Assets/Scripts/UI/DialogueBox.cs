@@ -61,10 +61,16 @@ public class DialogueBox : MonoBehaviour
     {
         for (int i = 0; i < currentDialogues.Length; i++)
         {
+            waitingForContinue = true;
             foreach (char c in currentDialogues[i].ToCharArray())
             {
                 text.text += c;
                 if (c != ' ') yield return new WaitForSeconds(textSpeed);
+                if(!waitingForContinue)
+                {
+                    text.text = currentDialogues[i];
+                    break;
+                }
             }
             endImageObj.SetActive(true);
             waitingForContinue = true;
