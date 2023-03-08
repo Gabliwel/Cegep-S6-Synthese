@@ -25,14 +25,14 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void Start()
     {
-        SetDefault();
+        //SetDefault(true);
     }
 
-    public virtual void SetDefault()
+    public virtual void SetDefault(bool defaultTimers)
     {
         rotationPoint = transform.parent;
-        startup = defaultStartup;
-        recovery = defaultRecovery;
+        if (!defaultTimers) return;
+        CalculateNewSpeed();
     }
 
     public virtual void SetPlayerBaseWeaponStat(PlayerBaseWeaponStat playerBaseWeaponStat)
@@ -47,6 +47,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (rotationPoint == null) return;
         CalculateMouseRelativeToPlayer();
         objectWorldPosition = Camera.main.WorldToScreenPoint(rotationPoint.position);
         if (orbit)
@@ -101,12 +102,17 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void CalculateNewSpeed()
     {
+        Debug.Log(playerBaseWeaponStat);
         float speedLevel = playerBaseWeaponStat.GetBaseSpeedLevel();
-        startup = defaultStartup * (1 - speedLevel * 0.05f);
-        recovery = defaultRecovery * (1 - speedLevel * 0.05f);
+
+        Debug.Log(speedLevel);
+        startup = defaultStartup * (1 - (speedLevel * 0.05f));
+        recovery = defaultRecovery * (1 - (speedLevel * 0.05f));
 
         if (startup < 0.01f) startup = 0.01f;
         if (recovery < 0.01f) recovery = 0.01f;
+        Debug.Log("startup: " + startup.ToString());
+        Debug.Log("recovery: " + recovery.ToString());
     }
 
     protected abstract IEnumerator Attack();
