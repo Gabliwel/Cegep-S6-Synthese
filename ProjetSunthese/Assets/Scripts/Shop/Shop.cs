@@ -39,6 +39,7 @@ public class Shop : MonoBehaviour
     private void PrepareItem(GameObject item, int standIndex)
     {
         int price = BaseItem(item, standIndex);
+        item.transform.localScale = new Vector3(6, 6, 1);
         stands[standIndex].GetComponent<ShopItem>().SetItem(item, price);
         item.SetActive(true);
     }
