@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         weapon.SetPlayerBaseWeaponStat(baseWeaponStat);
-        weapon.CalculateNewSpeed();
+        weapon.SetDefault(true);
         animationController.ChangeOnWeaponType(weaponInfo.GetWeaponType());
         playerMovement.SetSoundMaker();
     }
@@ -327,8 +327,7 @@ public class Player : MonoBehaviour
 
         newWeaponInfo.SwitchToWeapon();
         weapon.SetPlayerBaseWeaponStat(baseWeaponStat);
-        weapon.SetDefault();
-        weapon.CalculateNewSpeed();
+        weapon.SetDefault(true);
 
         //change anim et autre...
         animationController.ChangeOnWeaponType(weaponInfo.GetWeaponType());
