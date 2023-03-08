@@ -107,6 +107,7 @@ public class LavaBossController : Enemy
         bossInfo.gameObject.SetActive(false);
         Scaling.instance.ScalingIncrease();
         AchivementManager.instance.KilledGontrand();
+        SoundMaker.instance.StopFireAuraSound();
     }
 
     private void Animate()
