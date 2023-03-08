@@ -140,7 +140,7 @@ public class AchivementManager : MonoBehaviour
     public void OpenedChest()
     {
         achivementData.nbChestOpened++;
-        if (achivementData.nbChestOpened >= 30)
+        if (achivementData.nbChestOpened >= 30 && !achivementData.lotsChestOpened)
         {
             achivementData.lotsChestOpened = true;
             StartCoroutine(ShowAchivementGot(CHEST_NAME, CHEST));
