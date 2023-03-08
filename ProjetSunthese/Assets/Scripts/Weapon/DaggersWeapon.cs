@@ -26,11 +26,13 @@ public class Daggers : Weapon
         orbit = false;
     }
 
-    public override void SetDefault()
+    public override void SetDefault(bool defaultTimer)
     {
-        base.SetDefault();
+        base.SetDefault(defaultTimer);
         dagger1.transform.parent.position = rotationPoint.position;
         dagger2.transform.parent.position = rotationPoint.position;
+        dagger1.SetDefault(true);
+        dagger2.SetDefault(true);
         dagger1.gameObject.SetActive(true);
         dagger2.gameObject.SetActive(true);
 
@@ -38,7 +40,7 @@ public class Daggers : Weapon
 
     protected override IEnumerator Attack()
     {
-        cooldownTimer = cooldown + duration + startup + recovery + delay;
+        cooldownTimer = cooldown + duration + startup + (recovery * 2) + delay;
         dagger1.StopOrbit();
         dagger2.StopOrbit();
         dagger1.Slash();

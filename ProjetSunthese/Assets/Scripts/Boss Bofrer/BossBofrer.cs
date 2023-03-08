@@ -172,6 +172,7 @@ public class BossBofrer : Enemy
         if (hp < HPTreshold && !IsFinalFight())
         {
             canBeHarmed = false;
+            SoundMaker.instance.StopFireAuraSound();
             GameManager.instance.SetNextLevel();
         }
     }
@@ -183,6 +184,7 @@ public class BossBofrer : Enemy
             if (hasRespawned)
             {
                 base.Die();
+                SoundMaker.instance.StopFireAuraSound();
                 GameManager.instance.SetNextLevel();
             }
             else
