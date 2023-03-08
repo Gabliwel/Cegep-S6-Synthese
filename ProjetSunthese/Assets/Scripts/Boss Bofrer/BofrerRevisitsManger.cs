@@ -82,27 +82,23 @@ public class BofrerRevisitsManger : MonoBehaviour
     {
         int num = Random.Range(0, mountainBossAttackPrefabs.Count);
         chosenAttacks.Add(mountainBossAttackPrefabs[num]);
-        Debug.Log("stole " + mountainBossAttackPrefabs[num].name + " number " + num);
     }
 
     void StealRandomLavaAttack()
     {
         int num = Random.Range(0, lavaBossAttackPrefabs.Count);
         chosenAttacks.Add(lavaBossAttackPrefabs[num]);
-        Debug.Log("stole " + lavaBossAttackPrefabs[num].name + " number " + num);
     }
 
     void StealRandomBobAttack()
     {
         int num = Random.Range(0, bobBossAttackPrefabs.Count);
         chosenAttacks.Add(bobBossAttackPrefabs[num]);
-        Debug.Log("stole " + bobBossAttackPrefabs[num].name + " number " + num);
     }
 
     void StealRandomMichaelAttack()
     {
         int num = Random.Range(0, michaelBossAttackPrefabs.Count);
         chosenAttacks.Add(michaelBossAttackPrefabs[num]);
-        Debug.Log("stole " + michaelBossAttackPrefabs[num].name + " number " + num);
     }
 }

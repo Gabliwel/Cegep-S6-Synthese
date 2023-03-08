@@ -196,8 +196,8 @@ MonoBehaviour:
   title: Speed boots
   desc: Increase the movement speed
   basePrice: 10
-  epicGain: 0.08
-  legendaryGain: 0.15
+  epicGain: 0.8
+  legendaryGain: 1.7
 --- !u!1001 &2336258980836212509
 PrefabInstance:
   m_ObjectHideFlags: 0

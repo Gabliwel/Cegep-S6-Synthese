@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dragStopper = 8;
     [Range(0, 2)]
     [SerializeField] private float stopAtMagnitude = 1.35f;
-    
+
     private bool isKnockBack = false;
     private bool isDead = false;
 
@@ -195,6 +195,9 @@ public class PlayerMovement : MonoBehaviour
     {
         canMove = false;
         currentVelocity = Vector2.zero;
+        animationController.SetSpeed(0);
+        if (SoundMaker.instance != null)
+            SoundMaker.instance.StopPlayerWalkSound();
     }
 
     public bool IsRolling()

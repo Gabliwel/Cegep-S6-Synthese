@@ -192,7 +192,6 @@ public class MichaelFight : Enemy
 
     private bool TouchingPlayer()
     {
-        Debug.Log(playerDamageSensor.SensedObjects.Count > 0);
         return playerDamageSensor.SensedObjects.Count > 0;
     }
 

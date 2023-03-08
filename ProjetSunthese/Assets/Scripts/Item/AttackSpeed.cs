@@ -14,9 +14,9 @@ public class AttackSpeed : GenericItem
     protected override void AddToPlayer(Player player)
     {
         // check with loot manager, but isnt suppose to be unique and start at commun
-        if (rarity == ItemRarity.COMMUN) player.GainArmor(communGain);
-        else if (rarity == ItemRarity.RARE) player.GainArmor(rareGain);
-        else if (rarity == ItemRarity.EPIC) player.GainArmor(epicGain);
-        else if (rarity == ItemRarity.LEGENDARY) player.GainArmor(legendaryGain);
+        if (rarity == ItemRarity.COMMUN) player.IncreaseAttackSpeed(communGain);
+        else if (rarity == ItemRarity.RARE) player.IncreaseAttackSpeed(rareGain);
+        else if (rarity == ItemRarity.EPIC) player.IncreaseAttackSpeed(epicGain);
+        else if (rarity == ItemRarity.LEGENDARY) player.IncreaseAttackSpeed(legendaryGain);
     }
 }

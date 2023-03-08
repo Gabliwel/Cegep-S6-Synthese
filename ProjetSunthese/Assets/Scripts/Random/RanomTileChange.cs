@@ -42,13 +42,11 @@ public class RanomTileChange : MonoBehaviour
                 else
                 {
                     stopSpawn = true;
-                    Debug.Log("Stopped random");
                 }
             }
             else
             {
                 stopSpawn = true;
-                Debug.Log("Stopped random");
             }
         }
         if (redoNavMesh)

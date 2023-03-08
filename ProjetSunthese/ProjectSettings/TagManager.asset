@@ -35,6 +35,7 @@ TagManager:
   - BofrerSceneManager
   - Billy
   - BossInfo
+  - Enemy
   layers:
   - Default
   - TransparentFX

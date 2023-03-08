@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 972104918393998556}
   m_Layer: 20
   m_Name: RareBoy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -392,6 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1faeb96f1febb664da53dabd7b0fc0bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteInFirstChild: 0
   baseHP: 30
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}

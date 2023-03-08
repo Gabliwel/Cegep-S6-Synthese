@@ -15,7 +15,6 @@ public class ChestDropManager : MonoBehaviour
     public ItemWithRarity SendRandomItem()
     {
         ItemWithRarity item = lootManager.RequestItem(true);
-        Debug.Log(item.currentRarity);
         return item;
     }
 }

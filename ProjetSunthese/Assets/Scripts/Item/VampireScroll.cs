@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class VampireScroll : GenericItem
 {
+    [SerializeField] private float suckAmmount;
     protected override void AddToPlayer(Player player)
     {
-        player.GainBloodSuck();
+        player.GainBloodSuck(suckAmmount);
     }
 }
