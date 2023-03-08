@@ -51,6 +51,8 @@ public class ShieldEnemy : Enemy
     protected override void OnEnable()
     {
         base.OnEnable();
+        shield.SetActive(false);
+        shieldOn = false;
         StartCoroutine(AttackPlayerInRange());
     }
 
