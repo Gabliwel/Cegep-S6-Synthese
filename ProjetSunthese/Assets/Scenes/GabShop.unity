@@ -1102,27 +1102,27 @@ PrefabInstance:
     - target: {fileID: 589765669, guid: adf11307ed46a004cb0e7e20e804a5fb, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: e9f63c55b1d23c7459c6daba62a89d8e, type: 2}
     - target: {fileID: 589765669, guid: adf11307ed46a004cb0e7e20e804a5fb, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: -8413375481815767472, guid: e9f63c55b1d23c7459c6daba62a89d8e, type: 2}
     - target: {fileID: 800509597, guid: adf11307ed46a004cb0e7e20e804a5fb, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: e9f63c55b1d23c7459c6daba62a89d8e, type: 2}
     - target: {fileID: 800509597, guid: adf11307ed46a004cb0e7e20e804a5fb, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: -8413375481815767472, guid: e9f63c55b1d23c7459c6daba62a89d8e, type: 2}
     - target: {fileID: 1322017207, guid: adf11307ed46a004cb0e7e20e804a5fb, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: e9f63c55b1d23c7459c6daba62a89d8e, type: 2}
     - target: {fileID: 1322017207, guid: adf11307ed46a004cb0e7e20e804a5fb, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: -8413375481815767472, guid: e9f63c55b1d23c7459c6daba62a89d8e, type: 2}
     - target: {fileID: 6666449115051410799, guid: adf11307ed46a004cb0e7e20e804a5fb, type: 3}
       propertyPath: m_Name
       value: Canvas
