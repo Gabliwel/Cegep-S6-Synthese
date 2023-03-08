@@ -32,6 +32,7 @@ public class ShopItem : Interactable
         price = newPrice;
         item = newItem;
         Interactable interactable = newItem.GetComponent<Interactable>();
+        interactable.transform.rotation = new Quaternion(0, 0, 0, 1);
 
         title = interactable.Title;
         desc = interactable.Desc;
@@ -42,6 +43,7 @@ public class ShopItem : Interactable
         text.text = newPrice.ToString();
 
         gameObject.transform.localEulerAngles = Vector3.zero;
+        gameObject.transform.rotation = new Quaternion(0, 0, 0, 1);
     }
 
     public void SetItem(GameObject item, int price, ItemRarity newRarity)
