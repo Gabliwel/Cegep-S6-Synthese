@@ -1,19 +1,15 @@
-[//]: # (TODO : Remplacer le titre de ce document par le nom de votre jeu. Attention à conserver les sauts de ligne!)
-[//]: # (TODO : Remplacer le logo par le logo de votre jeu. Attention à conserver les sauts de ligne!)
 <div align="center">
 
-![Projet Synthèse](.docs/Logo.svg)
+![Billy's Nightmare](.docs/Logo.png)
 
 # Billy's Nightmares
 
 </div>
 
-[//]: # (TODO : Remplacer ce texte par une courte description de votre projet.)
 
 Projet de jeu vidéo sur Unity pour l'épreuve synthèse de programme des Techniques de l'informatique
 du Cégep de Sainte-Foy. Ce projet de type "roguelike", en 2D "top-down", suit l'histoire de Billy, le protagoniste. À travers ses combats variés, il cherche à vaincre Bobby, son beau-frère. Cependant, des portails l'éloignant de ce dernier rendent sa quête d'autant plus difficile et dangereuse. Bref, êtes-vous prêt à mourir?
 
-[//]: # (TODO : Remplacez cette image par une capture d'écran de votre jeu.)
 
 <div align="center">
 
@@ -23,7 +19,6 @@ du Cégep de Sainte-Foy. Ce projet de type "roguelike", en 2D "top-down", suit l
 
 ## Installation
 
-[//]: # (TODO : Remplacez le nom de l'exécutable par celui dans ".gitlab-ci.yml". Voir la variable BUILD_NAME.)
 
 Téléchargez la dernière version [stable du jeu][Stable Download]. Décompressez l'archive dans un dossier et exécutez
 le programme `ProjetSynthese.exe`. Notez que vous aurez à naviguer au travers de quelques sous-dossiers. Sous Windows,
@@ -37,7 +32,6 @@ développement.
 
 ### Prérequis
 
-[//]: # (TODO : Notez que les hyperliens sont décrits à la fin de ce document.)
 
 * [Git] - Système de contrôle de version. Utilisez la dernière version.
 * [Rider] ou [Visual Studio] - IDE. Vous pouvez utiliser également n'importe quel autre IDE: assurez-vous simplement 
@@ -135,14 +129,11 @@ Veuillez lire [CONTRIBUTING.md](CONTRIBUTING.md) pour plus de détails sur notre
 
 ## Auteurs
 
-[//]: # (TODO : Ajoutez vous noms ici ainsi que le nom de tout artiste ayant participé au projet avec un lien vers son portfolio.)
-[//]: # (       Inscrivez aussi, en détail, ce sur quoi chaque membre de l'équipe a principalement travaillé.)
-[//]: # (       Vous n'êtes pas obligé d'inclure mon nom dans les auteurs du projet. C'est pour vous montrer comment faire.)
 
-* **Gabriel Bertrand** - *Programmeur*
-* **Kéven Champagne** - *Programmeur*
-* **Marc-Antoine Girard-Gagnon** - *Programmeur*
-* **Charles Côté** - *Programmeur*
+* **Gabriel Bertrand** - *Programmeur, interface utilisateur, cinématiques*
+* **Kéven Champagne** - *Programmeur, menus, rythme du jeu*
+* **Marc-Antoine Girard-Gagnon** - *Programmeur, mécanique de combat, conception du boss final*
+* **Charles Côté** - *Programmeur, conception des ennemis, gestion des sons*
 
 ## Remerciements
 
@@ -167,8 +158,7 @@ Veuillez lire [CONTRIBUTING.md](CONTRIBUTING.md) pour plus de détails sur notre
 [h8man]: https://github.com/h8man
 [NavMesh]: https://github.com/h8man/NavMeshPlus
 
-[//]: # (TODO : Modifiez ces hyperlien pour qu'ils ciblent votre projet à la place. Conservez le restant de l'URL.)
-[//]: # (       Ici, vous devez remplacer "https://gitlab.com/csfpwmjv/projet-synthese/starter-game" par le votre.)
+
 [Submit Bug]: https://gitlab.com/Bodeje/projet-synthese-jv/-/issues/new?issuable_template=Bug
 [Stable Download]: https://gitlab.com/Bodeje/projet-synthese-jv
 [Develop Download]: https://gitlab.com/Bodeje/projet-synthese-jv/-/tree/dev
