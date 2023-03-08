@@ -93,11 +93,11 @@ public class LavaBossController : Enemy
     public override void Harm(float ammount, float poison)
     {
         base.Harm(ammount, poison);
-        bossInfo.Bar.UpdateHealth(hp, baseHP);
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
     }
     protected override void WasPoisonHurt()
     {
-        bossInfo.Bar.UpdateHealth(hp, baseHP);
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
     }
 
     public override void Die()
