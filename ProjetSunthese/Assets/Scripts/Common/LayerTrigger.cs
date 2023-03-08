@@ -6,7 +6,10 @@ public class LayerTrigger : MonoBehaviour
     public string sortingLayer;
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag != "Player") return;
-        other.GetComponent<Player>().ChangeLayer(layer, sortingLayer);
+        if (other.gameObject.CompareTag("Enemy"))
+            other.GetComponent<Enemy>().ChangeLayer(LayerMask.NameToLayer(layer));
+
+        if (other.gameObject.CompareTag("Player"))
+            other.GetComponent<Player>().ChangeLayer(layer, sortingLayer);
     }
 }

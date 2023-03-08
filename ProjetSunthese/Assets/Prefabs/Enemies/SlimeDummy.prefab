@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4831749139912137691}
   m_Layer: 0
   m_Name: SlimeDummy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,12 +100,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266fe23a921d9114088299ee027068cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteInFirstChild: 0
   baseHP: 10
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
   particleScale: 1
   baseDamageDealt: 3
   damageDealt: 0
+  goldDropped: 0
+  xpGiven: 0
+  overtime: 0
 --- !u!95 &4831749139912137687
 Animator:
   serializedVersion: 5
