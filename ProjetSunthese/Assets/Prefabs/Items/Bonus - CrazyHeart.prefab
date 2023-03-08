@@ -194,7 +194,7 @@ MonoBehaviour:
   selectedMaterial: {fileID: 2100000, guid: 65bb25d58066acf44975f496fb328fae, type: 2}
   useTextBox: 1
   title: Strange drink
-  desc: Doubles received and made damage
+  desc: Doubles damage received and dealt
   basePrice: 15
 --- !u!1001 &7385787425498974875
 PrefabInstance:

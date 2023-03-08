@@ -77,7 +77,7 @@ public class LavaBossController : Enemy
     {
         base.OnEnable();
         bossInfo.gameObject.SetActive(true);
-        bossInfo.Bar.SetDefault(hp, baseHP);
+        bossInfo.Bar.SetDefault(hp, scaledHp);
     }
 
     private void OnDisable()
@@ -93,11 +93,11 @@ public class LavaBossController : Enemy
     public override void Harm(float ammount, float poison)
     {
         base.Harm(ammount, poison);
-        bossInfo.Bar.UpdateHealth(hp, baseHP);
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
     }
     protected override void WasPoisonHurt()
     {
-        bossInfo.Bar.UpdateHealth(hp, baseHP);
+        bossInfo.Bar.UpdateHealth(hp, scaledHp);
     }
 
     public override void Die()
@@ -107,6 +107,7 @@ public class LavaBossController : Enemy
         bossInfo.gameObject.SetActive(false);
         Scaling.instance.ScalingIncrease();
         AchivementManager.instance.KilledGontrand();
+        SoundMaker.instance.StopFireAuraSound();
     }
 
     private void Animate()

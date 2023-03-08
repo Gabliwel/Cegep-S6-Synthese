@@ -35,9 +35,11 @@ public class LavaAura : BossAttack
     private IEnumerator StartAura()
     {
         ActivateAura();
+        SoundMaker.instance.GontrandAuraSound(transform.position);
         timer = 10f;
         yield return new WaitForSeconds(timer);
         DespawnAura();
+        SoundMaker.instance.StopFireAuraSound();
         StopCoroutine(auraCoroutine);
     }
 

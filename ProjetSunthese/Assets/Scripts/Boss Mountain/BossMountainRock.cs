@@ -37,6 +37,7 @@ public class BossMountainRock : BossAttack
     public override void Launch()
     {
         gameObject.SetActive(true);
+        SoundMaker.instance.JgRockThrowSound(transform.position);
     }
 
     void OnPlayerSense(Player player)

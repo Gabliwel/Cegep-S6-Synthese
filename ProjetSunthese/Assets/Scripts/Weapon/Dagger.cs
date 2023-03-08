@@ -17,6 +17,11 @@ public class Dagger : Melee
         StartCoroutine(Attack());
     }
 
+    public void SetOrbit()
+    {
+        rotationPoint = transform.parent;
+    }
+
     protected override void Update()
     {
         base.Update();

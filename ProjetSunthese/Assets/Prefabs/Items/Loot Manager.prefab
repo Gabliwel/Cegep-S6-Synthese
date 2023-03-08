@@ -44,16 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e54900c33b2f594a969d422c213e2f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCommun: 45
-  maxRare: 70
-  maxEpic: 90
-  maxLegendary: 100
+  maxCommun: -999
+  maxRare: 50
+  maxEpic: 75
+  maxLegendary: 90
   maxUnique: 105
   possibleItems:
   - item: {fileID: 4764709979175173856, guid: 36baac51fd06bfd41a8560c9d01d34be, type: 3}
-    baseRarity: 0
+    baseRarity: 1
   - item: {fileID: 3871843997951727808, guid: 2b0b49c47cb696546823c320a87b1ebc, type: 3}
-    baseRarity: 0
+    baseRarity: 1
   - item: {fileID: 6083498470608058093, guid: c92df4339b5782b4bb544034d56d5a30, type: 3}
     baseRarity: 1
   - item: {fileID: 2478134350372081223, guid: cbcd6756bdbb69c4ba541e0c4248f75e, type: 3}

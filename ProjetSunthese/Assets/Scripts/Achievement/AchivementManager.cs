@@ -27,7 +27,7 @@ public class AchivementManager : MonoBehaviour
     private const string GAMEDONE = "You beat the game for the first time!";
     private const string RAGEQUIT = "You didn\'t take that lost so well...";
     private const string DEATH = "You died... 30 times...";
-    private const string WEAPON_MASTER = "You won the game using every weapons!";
+    private const string WEAPON_MASTER = "You won the game using every weapon!";
 
     private const string ENEMIES_NAME = "On a rampage";
     private const string CHEST_NAME = "My loot now!";
@@ -35,10 +35,10 @@ public class AchivementManager : MonoBehaviour
     private const string MICHAEL_NAME = "Back to the grave";
     private const string JEANGUY_NAME = "Climbing the mountain";
     private const string GONTRAND_NAME = "Extinguishing the flames";
-    private const string GAMEDONE_NAME = "I did it!";
     private const string RAGEQUIT_NAME = "Rage quit";
     private const string DEATH_NAME = "Learning in death";
-    private const string WEAPON_MASTER_NAME = "Like the back of my hands";
+    private const string GAMEDONE_NAME = "I did it!";
+    private const string WEAPON_MASTER_NAME = "Like the back of my hand";
     void Awake()
     {
         if (instance == null)
@@ -85,16 +85,16 @@ public class AchivementManager : MonoBehaviour
     void CreateListOfAchievementWithState()
     {
         achievements.Clear();
-        achievements.Add(new Achievement("My loot now!", CHEST, achivementData.lotsChestOpened));
-        achievements.Add(new Achievement("On a rampage", ENEMIES, achivementData.nbEnemyKilled));
-        achievements.Add(new Achievement("Dungeon escape", BOB, achivementData.beatBob));
-        achievements.Add(new Achievement("Extinguishing the flames", GONTRAND, achivementData.beatGontrand));
-        achievements.Add(new Achievement("Climbing the mountain", JEANGUY, achivementData.beatJeanGuy));
-        achievements.Add(new Achievement("Back to the grave", MICHAEL, achivementData.beatMichael));
-        achievements.Add(new Achievement("Learning in death", DEATH, achivementData.skillIssue));
-        achievements.Add(new Achievement("Rage quit", RAGEQUIT, achivementData.rageQuit));
-        achievements.Add(new Achievement("I did it!", GAMEDONE, achivementData.beatTheGame));
-        achievements.Add(new Achievement("Like the back of my hands", WEAPON_MASTER, achivementData.weaponMaster));
+        achievements.Add(new Achievement(CHEST_NAME, CHEST, achivementData.lotsChestOpened));
+        achievements.Add(new Achievement(ENEMIES_NAME, ENEMIES, achivementData.nbEnemyKilled));
+        achievements.Add(new Achievement(BOB_NAME, BOB, achivementData.beatBob));
+        achievements.Add(new Achievement(GONTRAND_NAME, GONTRAND, achivementData.beatGontrand));
+        achievements.Add(new Achievement(JEANGUY_NAME, JEANGUY, achivementData.beatJeanGuy));
+        achievements.Add(new Achievement(MICHAEL_NAME, MICHAEL, achivementData.beatMichael));
+        achievements.Add(new Achievement(DEATH_NAME, DEATH, achivementData.skillIssue));
+        achievements.Add(new Achievement(RAGEQUIT_NAME, RAGEQUIT, achivementData.rageQuit));
+        achievements.Add(new Achievement(GAMEDONE_NAME, GAMEDONE, achivementData.beatTheGame));
+        achievements.Add(new Achievement(WEAPON_MASTER_NAME, WEAPON_MASTER, achivementData.weaponMaster));
     }
 
     void Update()
@@ -140,7 +140,7 @@ public class AchivementManager : MonoBehaviour
     public void OpenedChest()
     {
         achivementData.nbChestOpened++;
-        if (achivementData.nbChestOpened >= 30)
+        if (achivementData.nbChestOpened >= 30 && !achivementData.lotsChestOpened)
         {
             achivementData.lotsChestOpened = true;
             StartCoroutine(ShowAchivementGot(CHEST_NAME, CHEST));
@@ -197,7 +197,6 @@ public class AchivementManager : MonoBehaviour
     {
         if (achivementData.beatTheGame) return;
         achivementData.beatTheGame = true;
-        //StartCoroutine(ShowAchivementGot(GAMEDONE));
         save.SaveData(achivementData);
     }
 
@@ -211,11 +210,6 @@ public class AchivementManager : MonoBehaviour
         if (!achivementData.wonWith.Contains(type))
         {
             achivementData.wonWith.Add(type);
-
-            if (achivementData.wonWith.Count == 6)
-            {
-                //StartCoroutine(ShowAchivementGot(WEAPON_MASTER));
-            }
 
             save.SaveData(achivementData);
         }

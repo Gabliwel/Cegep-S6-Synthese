@@ -99,8 +99,6 @@ public class GameManager : MonoBehaviour
             {
                 return;
             }
-            Debug.Log(playerInfo);
-            Debug.Log(playerInfo.Health.CurrentMax);
             playerLifeBar = GameObject.FindGameObjectWithTag("Life").GetComponent<LifeBar>();
             playerLifeBar.SetDefault(playerInfo.Health);
 
@@ -153,7 +151,6 @@ public class GameManager : MonoBehaviour
                 return;
             }
         }
-
         int randomChoice = UnityEngine.Random.Range(0, levelSceneList.Count);
         actualLevel = levelSceneList.ElementAt(randomChoice);
         RemoveSceneFromSceneList(actualLevel);
@@ -163,7 +160,6 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Early wood")]
     public void GoToEarlyBofrer()
     {
-        Debug.Log("leaving to early");
         int nbSceneAccessible = levelSceneList.Count;
         if (nbSceneAccessible > 0)
         {
@@ -201,7 +197,6 @@ public class GameManager : MonoBehaviour
     public void LoadEndScene()
     {
         AchivementManager.instance.AddWeaponWonWith(Player.instance.GetComponentInChildren<WeaponInformations>().GetWeaponType());
-        Debug.Log("AHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAH END");
         actualLevel = Scene.GabVictory;
         StartNextlevel(0, actualLevel);
     }
@@ -225,7 +220,6 @@ public class GameManager : MonoBehaviour
         scenesAreInTransition = true;
 
         StartCoroutine(RestartLevelDelay(delay, chosenLevel));
-        Debug.Log("After : " + levelSceneList.Count);
     }
 
     private IEnumerator RestartLevelDelay(float delay, Scene level)

@@ -106,9 +106,9 @@ MonoBehaviour:
   title: Upgraded weapon
   desc: Increase the damage of each weapon
   basePrice: 10
-  rareGain: 0.02
-  epicGain: 0.05
-  legendaryGain: 0.2
+  rareGain: 0.2
+  epicGain: 0.35
+  legendaryGain: 0.6
 --- !u!1 &6083498471401506268
 GameObject:
   m_ObjectHideFlags: 0

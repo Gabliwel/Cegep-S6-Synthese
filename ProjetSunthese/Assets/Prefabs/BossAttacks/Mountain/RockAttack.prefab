@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  damage: 15
-  speed: 5
+  damage: 10
+  speed: 15
   destination: {x: 0, y: 0}
   moving: 0
   breaking: 0

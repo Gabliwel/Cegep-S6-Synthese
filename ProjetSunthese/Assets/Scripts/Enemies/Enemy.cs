@@ -53,7 +53,6 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Harm(float ammount, float poison)
     {
-        Debug.Log(name + " ouched for " + ammount + " damage.");
         ReduceHp(ammount);
 
         if (poison > 0)

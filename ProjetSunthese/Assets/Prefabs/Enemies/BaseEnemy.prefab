@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6141571517999393378}
   m_Layer: 20
   m_Name: BaseEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806375a646ae4504ab59f973c2759090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteInFirstChild: 0
   baseHP: 15
   hp: 0
   particleColor: {r: 255, g: 0, b: 0, a: 1}
@@ -116,6 +117,7 @@ MonoBehaviour:
   speed: 3
   useNavMesh: 1
   attackSpeed: 1
+  knockBackForce: 7
 --- !u!114 &461317380311649370
 MonoBehaviour:
   m_ObjectHideFlags: 0

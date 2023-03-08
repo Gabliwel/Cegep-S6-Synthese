@@ -14,6 +14,7 @@ public class BossBofrerEarly : Enemy
     private ISensor<Player> playerSensor;
     private BossInfoController bossInfo;
     private const string bossName = "Bofrer";
+    private bool canBeHarmed = true;
 
     protected override void Awake()
     {
@@ -27,6 +28,7 @@ public class BossBofrerEarly : Enemy
         bossInfo = GameObject.FindGameObjectWithTag("BossInfo").GetComponent<BossInfoController>();
         bossInfo.SetName(bossName);
         bossInfo.gameObject.SetActive(false);
+        canBeHarmed = true;
     }
 
     protected override void OnEnable()
@@ -36,11 +38,12 @@ public class BossBofrerEarly : Enemy
         StartCoroutine(AttackPlayerInRange());
         bossInfo.gameObject.SetActive(true);
         bossInfo.Bar.SetDefault(hp, scaledHp);
+        canBeHarmed = true;
     }
 
     private void OnDisable()
     {
-        if(bossInfo != null) bossInfo.gameObject.SetActive(false);
+        if (bossInfo != null) bossInfo.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -62,16 +65,22 @@ public class BossBofrerEarly : Enemy
 
     public override void Harm(float ammount, float overtimeDamage)
     {
-        base.Harm(ammount, overtimeDamage);
-        bossInfo.Bar.UpdateHealth(hp, scaledHp);
-        CheckHPForTeleport();
+        if (canBeHarmed)
+        {
+            base.Harm(ammount, overtimeDamage);
+            bossInfo.Bar.UpdateHealth(hp, scaledHp);
+            CheckHPForTeleport();
+        }
     }
 
     protected override void WasPoisonHurt()
     {
-        base.WasPoisonHurt();
-        bossInfo.Bar.UpdateHealth(hp, scaledHp);
-        CheckHPForTeleport();
+        if (canBeHarmed)
+        {
+            base.WasPoisonHurt();
+            bossInfo.Bar.UpdateHealth(hp, scaledHp);
+            CheckHPForTeleport();
+        }
     }
 
     private void Update()
@@ -87,6 +96,7 @@ public class BossBofrerEarly : Enemy
         if (hp < hpThreshold)
         {
             GameManager.instance.SetNextLevel();
+            canBeHarmed = false;
         }
     }
 
@@ -110,7 +120,6 @@ public class BossBofrerEarly : Enemy
 
     private bool TouchingPlayer()
     {
-        Debug.Log(playerSensor.SensedObjects.Count > 0);
         return playerSensor.SensedObjects.Count > 0;
     }
 

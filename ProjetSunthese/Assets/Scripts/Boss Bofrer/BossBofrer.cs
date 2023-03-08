@@ -44,6 +44,7 @@ public class BossBofrer : Enemy
     private GameObject shield;
     private BossInfoController bossInfo;
     private const string bossName = "Bofrer";
+    [SerializeField] private bool canBeHarmed = true;
 
     protected override void Awake()
     {
@@ -69,7 +70,7 @@ public class BossBofrer : Enemy
         bossInfo = GameObject.FindGameObjectWithTag("BossInfo").GetComponent<BossInfoController>();
         bossInfo.SetName(bossName);
         bossInfo.gameObject.SetActive(false);
-
+        canBeHarmed = true;
 
     }
 
@@ -83,11 +84,11 @@ public class BossBofrer : Enemy
         bossInfo.gameObject.SetActive(true);
         bossInfo.Bar.SetDefault(hp, scaledHp);
         EnsureRoutinesStarted();
+        canBeHarmed = true;
     }
 
     private void OnDisable()
     {
-        bossInfo.gameObject.SetActive(false);
         routinesStarted = false;
     }
 
@@ -148,7 +149,7 @@ public class BossBofrer : Enemy
 
     public override void Harm(float ammount, float overtime)
     {
-        if (!shieldActive)
+        if (!shieldActive && canBeHarmed)
         {
             base.Harm(ammount, overtime);
             CheckHPForTeleport();
@@ -158,9 +159,9 @@ public class BossBofrer : Enemy
 
     protected override void WasPoisonHurt()
     {
-        base.WasPoisonHurt();
-        if (!shieldActive)
+        if (!shieldActive && canBeHarmed)
         {
+            base.WasPoisonHurt();
             CheckHPForTeleport();
             bossInfo.Bar.UpdateHealth(hp, scaledHp);
         }
@@ -170,6 +171,8 @@ public class BossBofrer : Enemy
     {
         if (hp < HPTreshold && !IsFinalFight())
         {
+            canBeHarmed = false;
+            SoundMaker.instance.StopFireAuraSound();
             GameManager.instance.SetNextLevel();
         }
     }
@@ -181,12 +184,13 @@ public class BossBofrer : Enemy
             if (hasRespawned)
             {
                 base.Die();
+                SoundMaker.instance.StopFireAuraSound();
                 GameManager.instance.SetNextLevel();
             }
             else
             {
                 hasRespawned = true;
-                hp = Scaling.instance.CalculateHealthOnScaling(baseHP);
+                hp = Scaling.instance.CalculateHealthOnScaling(baseHP) / 2;
                 scaledHp = hp;
                 GameObject.FindGameObjectWithTag("BofrerSceneManager").GetComponent<BofrerSceneManager>().SwitchToPhase2();
             }
@@ -204,6 +208,8 @@ public class BossBofrer : Enemy
 
     IEnumerator BFLTimerRoutine()
     {
+        yield return new WaitForSeconds(GetRandomTimer(bflminTimer / 2));
+        StartBFL();
         while (isActiveAndEnabled && bflActive)
         {
             float timer = GetRandomTimer(bflminTimer);
@@ -213,6 +219,8 @@ public class BossBofrer : Enemy
     }
     IEnumerator BallTimerRoutine()
     {
+        yield return new WaitForSeconds(GetRandomTimer(ballMinTimer / 2));
+        StartBallAttack();
         while (isActiveAndEnabled && ballActive)
         {
             float timer = GetRandomTimer(ballMinTimer);
@@ -223,6 +231,8 @@ public class BossBofrer : Enemy
 
     IEnumerator BoltTimerRoutine()
     {
+        yield return new WaitForSeconds(GetRandomTimer(boltMinTimer / 2));
+        StartBoltSpawn();
         while (isActiveAndEnabled && boltsActive)
         {
             float timer = GetRandomTimer(boltMinTimer);
@@ -233,6 +243,8 @@ public class BossBofrer : Enemy
 
     IEnumerator ShieldMinionTimerRoutine()
     {
+        yield return new WaitForSeconds(GetRandomTimer(shieldMinionsMinTimer / 2));
+        StartMinionSpawn();
         while (isActiveAndEnabled && shieldMinionsActive)
         {
             float timer = GetRandomTimer(shieldMinionsMinTimer);
@@ -243,6 +255,8 @@ public class BossBofrer : Enemy
 
     IEnumerator StolenAttackTimerRoutine()
     {
+        yield return new WaitForSeconds(GetRandomTimer(stolenMinTimer / 2));
+        StartRandomStolenAttack();
         while (isActiveAndEnabled && stolenActive)
         {
             float timer = GetRandomTimer(stolenMinTimer);
@@ -259,8 +273,6 @@ public class BossBofrer : Enemy
         return random;
     }
 
-
-
     void StartRandomStolenAttack()
     {
         int num = Random.Range(0, stolenAttacks.Count);
@@ -269,8 +281,8 @@ public class BossBofrer : Enemy
             stolenAttacks[num].transform.position = transform.position;
             stolenAttacks[num].gameObject.SetActive(true);
             stolenAttacks[num].Launch();
+            SoundMaker.instance.BofrerStolenAttackSound(transform.position);
         }
-        Debug.Log("firering " + stolenAttacks[num].name + " number " + num);
     }
 
     void StartBFL()
@@ -286,11 +298,13 @@ public class BossBofrer : Enemy
     void StartBoltSpawn()
     {
         boltSpawner.Launch();
+        
     }
 
     void StartBallAttack()
     {
         ball.Launch();
+        SoundMaker.instance.BofrerHomingBall(transform.position);
     }
 
     IEnumerator BFLRoutine()
@@ -299,5 +313,6 @@ public class BossBofrer : Enemy
         yield return new WaitForSeconds(bflChargeup);
         bfl.Launch();
         animator.SetBool("Charging", false);
+        SoundMaker.instance.BofrerBFLSound(transform.position);
     }
 }

@@ -200,8 +200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  speed: 3
+  speed: 5
   ttl: 10
   poisonDamage: 0
   destination: {x: 0, y: 0}
-  fuse: 3
+  fuse: 1.5

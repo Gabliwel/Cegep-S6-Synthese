@@ -104,7 +104,6 @@ public class RandomGenerationGameObject : MonoBehaviour
         ChestGameObject chestClone = Instantiate(chest).GetComponent<ChestGameObject>();
         
         chestClone.SetChest(chestDropManager, globalList[chosen].Layer);
-        Debug.Log(chestDropManager);
         if(usingNavmesh) chestClone.gameObject.AddComponent<NavMeshObstacle>();
         chestClone.transform.position = spawnChosen;
         chestClone.gameObject.SetActive(true);

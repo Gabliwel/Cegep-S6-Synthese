@@ -37,7 +37,10 @@ public class MichaelFight : Enemy
 
     private void OnDisable()
     {
-        bossInfo.gameObject.SetActive(false);
+        if (bossInfo.gameObject.activeSelf)
+        {
+            bossInfo.gameObject.SetActive(false);
+        }
     }
 
     void Start()
@@ -48,8 +51,9 @@ public class MichaelFight : Enemy
         Attacks[2] = "PROJECTILE";
         player = GameObject.FindGameObjectWithTag("Player");
 
-        hp = Scaling.instance.CalculateHealthOnScaling(scaledHp);
+        //hp = Scaling.instance.CalculateHealthOnScaling(scaledHp);
         damageDealt = Scaling.instance.CalculateDamageOnScaling(baseDamageDealt);
+        bossInfo.Bar.SetDefault(hp, scaledHp);
 
         for (int i = 0; i < michaelAttacks.Count; i++)
         {
@@ -192,7 +196,6 @@ public class MichaelFight : Enemy
 
     private bool TouchingPlayer()
     {
-        Debug.Log(playerDamageSensor.SensedObjects.Count > 0);
         return playerDamageSensor.SensedObjects.Count > 0;
     }
 

@@ -57,23 +57,25 @@ MonoBehaviour:
   playerDie: {fileID: 0}
   playerWalk: {fileID: 8300000, guid: d66ac31218dd04a4e8a254059e11eb62, type: 3}
   playerTakeDamage: {fileID: 8300000, guid: fcc43038d0f14e3488f6aa3d3868426b, type: 3}
-  gontrandShockWave: {fileID: 8300000, guid: 341ea3363c31ada4782b27cc1c971e5d, type: 3}
-  gontrandAura: {fileID: 0}
+  gontrandShockWave: {fileID: 8300000, guid: 51423d67d4a74a3419150edb15f484ff, type: 3}
+  gontrandAura: {fileID: 8300000, guid: 5ca88f2223f68e54e85f55bc5e24bb67, type: 3}
   gontrandDie: {fileID: 0}
   michealTP: {fileID: 8300000, guid: 8ff2a2d7e79f81c40ac447512f879374, type: 3}
   michealThrow: {fileID: 0}
   michealDie: {fileID: 0}
-  jgRockThrow: {fileID: 0}
-  jgSpawnStalagmites: {fileID: 0}
-  jgSpawnMobs: {fileID: 0}
+  jgRockThrow: {fileID: 8300000, guid: f86bb9042ce919f48a7e0c3f64d7b2e4, type: 3}
+  jgSpawnStalagmites: {fileID: 8300000, guid: b298688a588aaae42994334d7e269521, type: 3}
+  jgSpawnMobs: {fileID: 8300000, guid: 998481c1f5657444eb27756c5b802516, type: 3}
   jgDie: {fileID: 0}
   bobAura: {fileID: 8300000, guid: 549c62bd69d33ec47940fc6285f0d06e, type: 3}
   bobLaser: {fileID: 8300000, guid: a9e3fee688cf000499bded40dd54ff48, type: 3}
   bobFires: {fileID: 8300000, guid: 341ea3363c31ada4782b27cc1c971e5d, type: 3}
   bobInvincibility: {fileID: 8300000, guid: 1d74880bed4586644a16a79a2d9dc8af, type: 3}
   bobDie: {fileID: 0}
-  bofrerBFL: {fileID: 0}
-  bofrerRockets: {fileID: 0}
+  bofrerBFL: {fileID: 8300000, guid: 38b838bdd45b03a4db97967028fd2fc2, type: 3}
+  bofrerHomingBall: {fileID: 8300000, guid: 5938c4d967135bf4ca0e737d66389ac6, type: 3}
+  bofrerStolenAttack: {fileID: 8300000, guid: a5431670cb692ad4295d6f536789df78, type: 3}
+  bofrerRockets: {fileID: 8300000, guid: 094e5eca1eb976247b712d7ecba90ad4, type: 3}
   bofrerShieldHitSound: {fileID: 8300000, guid: 057849ce23ec2204f8bef04d3f6101d9, type: 3}
   heal: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   useItem: {fileID: 8300000, guid: 44321577163abee4ab67fa15be97792c, type: 3}

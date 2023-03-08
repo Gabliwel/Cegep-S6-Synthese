@@ -6,11 +6,11 @@ using Billy.Rarity;
 public class LootManager : MonoBehaviour
 {
     [Header("Rarety max rate (order: commun - rare - epic - legendary)")]
-    [SerializeField] private float maxCommun = 40;
-    [SerializeField] private float maxRare = 70;
-    [SerializeField] private float maxEpic = 90;
-    [SerializeField] private float maxLegendary = 100;
-    [SerializeField] private float maxUnique = 110;
+    [SerializeField] private float maxCommun;
+    [SerializeField] private float maxRare;
+    [SerializeField] private float maxEpic;
+    [SerializeField] private float maxLegendary;
+    [SerializeField] private float maxUnique;
 
     [Header("Items")]
     [SerializeField] private ItemWithBaseRarityForInspector[] possibleItems;
@@ -24,7 +24,7 @@ public class LootManager : MonoBehaviour
 
         for (int i = 0; i < possibleItems.Length; i++)
         {
-            for(int j = 0; j < numToInstantiate; j++)
+            for (int j = 0; j < numToInstantiate; j++)
             {
                 GameObject obj = Instantiate(possibleItems[i].item);
                 obj.SetActive(false);
@@ -38,7 +38,7 @@ public class LootManager : MonoBehaviour
     public void TestRarity()
     {
         float luck = Player.instance.Luck;
-        
+
         float prob = Random.Range(luck, maxLegendary);
 
         ItemRarity rarity = GetRarityByValue(prob);
@@ -58,8 +58,9 @@ public class LootManager : MonoBehaviour
 
     private ItemRarity GetRarityByValue(float value)
     {
-        if (value <= maxCommun) return ItemRarity.COMMUN;
-        else if (value <= maxRare) return ItemRarity.RARE;
+        // balancing; les joueurs obtenait les mêmes items en boucle dû au petit nombre d'items dans commun disponible.
+        //if (value <= maxCommun) return ItemRarity.COMMUN; 
+        if (value <= maxRare) return ItemRarity.RARE;
         else if (value <= maxEpic) return ItemRarity.EPIC;
         else if (value <= maxLegendary) return ItemRarity.LEGENDARY;
         else return ItemRarity.UNIQUE;
@@ -67,21 +68,20 @@ public class LootManager : MonoBehaviour
 
     private ItemWithRarity RandItemByRarity(ItemRarity baseRarity)
     {
-        Debug.Log(baseRarity);
         List<ItemWithRarity> temp = new List<ItemWithRarity>();
-        foreach(ItemWithRarity item in items)
+        foreach (ItemWithRarity item in items)
         {
-            if(baseRarity != ItemRarity.UNIQUE && item.baseRarity <= baseRarity)
+            if (baseRarity != ItemRarity.UNIQUE && item.baseRarity <= baseRarity)
             {
                 temp.Add(item);
             }
-            else if(baseRarity == ItemRarity.UNIQUE && item.baseRarity == ItemRarity.UNIQUE)
+            else if (baseRarity == ItemRarity.UNIQUE && item.baseRarity == ItemRarity.UNIQUE)
             {
                 temp.Add(item);
             }
         }
 
-        if(temp.Count != 0)
+        if (temp.Count != 0)
         {
             int rand = Random.Range(0, temp.Count);
             temp[rand].currentRarity = baseRarity;
@@ -110,7 +110,7 @@ public class LootManager : MonoBehaviour
 
     public ItemWithRarity RequestItem(bool acceptUnique)
     {
-        if(!acceptUnique) return RandItemByRarity(GetRandRarity(Player.instance.Luck));
+        if (!acceptUnique) return RandItemByRarity(GetRandRarity(Player.instance.Luck));
         return RandItemByRarity(GetRandRarityWithUnique(Player.instance.Luck));
     }
 

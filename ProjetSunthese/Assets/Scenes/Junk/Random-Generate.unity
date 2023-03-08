@@ -145,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3215879996671579153, guid: 38e39d89fec5f1f48b60ed6bab23d20f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3215879996671579158, guid: 38e39d89fec5f1f48b60ed6bab23d20f, type: 3}
       propertyPath: m_RootOrder
@@ -9073,6 +9073,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoomBlob
       objectReference: {fileID: 0}
+    - target: {fileID: 7453523520018262716, guid: f2a65b8fa14107c47b0122217268238b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10065,6 +10069,10 @@ PrefabInstance:
     - target: {fileID: 6184783802234751437, guid: 44d865aa63b1e884f94cd873c2bc1e19, type: 3}
       propertyPath: cooldown
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6184783802234751437, guid: 44d865aa63b1e884f94cd873c2bc1e19, type: 3}
+      propertyPath: baseDamage
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 6184783802234751437, guid: 44d865aa63b1e884f94cd873c2bc1e19, type: 3}
       propertyPath: cooldownTimer
@@ -11257,7 +11265,7 @@ MonoBehaviour:
   m_VoxelSize: 0.046666667
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 23800000, guid: 44b11450bcd23314794f67cf018cb807, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!4 &2029221651
 Transform:
   m_ObjectHideFlags: 0
@@ -11417,7 +11425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2667284385821027673, guid: f7276b69500935a4ba454bd55fe800a6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2667284385821027675, guid: f7276b69500935a4ba454bd55fe800a6, type: 3}
       propertyPath: m_RootOrder
@@ -11425,11 +11433,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2667284385821027675, guid: f7276b69500935a4ba454bd55fe800a6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.82
+      value: 5.52
       objectReference: {fileID: 0}
     - target: {fileID: 2667284385821027675, guid: f7276b69500935a4ba454bd55fe800a6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.69
+      value: -6.51
       objectReference: {fileID: 0}
     - target: {fileID: 2667284385821027675, guid: f7276b69500935a4ba454bd55fe800a6, type: 3}
       propertyPath: m_LocalPosition.z

@@ -109,7 +109,7 @@ MonoBehaviour:
   communGain: 0.05
   rareGain: 0.1
   epicGain: 0.2
-  legendaryGain: 0.4
+  legendaryGain: 0.35
 --- !u!1 &8863572853543057628
 GameObject:
   m_ObjectHideFlags: 0
