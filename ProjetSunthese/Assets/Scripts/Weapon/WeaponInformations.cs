@@ -111,6 +111,7 @@ public class WeaponInformations : MonoBehaviour
     public void ChangeLayer(string layer, string sortingLayer)
     {
         gameObject.layer = LayerMask.NameToLayer(layer);
+        if (sprite == null) sprite = GetComponent<SpriteRenderer>();
         sprite.sortingLayerName = sortingLayer;
         if (weaponSensor != null) weaponSensor.gameObject.layer = LayerMask.NameToLayer(layer);
         interactStimuli.gameObject.layer = LayerMask.NameToLayer(layer);

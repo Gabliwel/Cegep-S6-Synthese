@@ -19,6 +19,8 @@ public class ChestGameObject : Interactable
         genItem.DoDust();
         drop.SetActive(true);
 
+        AchivementManager.instance.OpenedChest();
+
         gameObject.SetActive(false);
     }
 

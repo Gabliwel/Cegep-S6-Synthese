@@ -103,6 +103,7 @@ public class MichaelProjectile : BossAttack
         colliders[0].enabled = false;
         colliders[1].enabled = false;
         fadeInProgress = false;
+        bossSprite.color = new Color(1f, 1f, 1f, fadeAmount);
         fadeAmount = 1f;
     }
 
