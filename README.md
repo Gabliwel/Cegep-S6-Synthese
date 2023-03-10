@@ -143,6 +143,7 @@ Veuillez lire [CONTRIBUTING.md](CONTRIBUTING.md) pour plus de détails sur notre
 * [ElvGames] - Assets varié utilisé (décors, ennemis...)
 * [RANTA GRAPHICS] - Assets du personnage armé de diverse arme
 * [h8man] - NavMesh Unity pour projet 2D
+* [TinyWonder] - Utilisé pour faire l'interface utilisateur
 
 [//]: # (Hyperliens)
 [Git]: https://git-scm.com/downloads
@@ -157,6 +158,7 @@ Veuillez lire [CONTRIBUTING.md](CONTRIBUTING.md) pour plus de détails sur notre
 [RANTA GRAPHICS]: https://assetstore.unity.com/publishers/24285
 [h8man]: https://github.com/h8man
 [NavMesh]: https://github.com/h8man/NavMeshPlus
+[TinyWonder]: https://butterymilk.itch.io/tiny-wonder-gui-pack
 
 
 [Submit Bug]: https://gitlab.com/Bodeje/projet-synthese-jv/-/issues/new?issuable_template=Bug

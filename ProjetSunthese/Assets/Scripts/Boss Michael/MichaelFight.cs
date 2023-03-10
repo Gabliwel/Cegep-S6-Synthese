@@ -196,6 +196,14 @@ public class MichaelFight : Enemy
 
     private bool TouchingPlayer()
     {
+        if(playerDamageSensor == null || damageSensor == null)
+        {
+            damageSensor = transform.Find("Sensor").GetComponent<Sensor>();
+            playerDamageSensor = damageSensor.For<Player>();
+
+            playerDamageSensor.OnSensedObject += OnPlayerDamageSense;
+            playerDamageSensor.OnUnsensedObject += OnPlayerDamageUnsense;
+        }
         return playerDamageSensor.SensedObjects.Count > 0;
     }
 
