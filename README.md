@@ -10,6 +10,7 @@
 Projet de jeu vidéo sur Unity pour l'épreuve synthèse de programme des Techniques de l'informatique
 du Cégep de Sainte-Foy. Ce projet de type "roguelike", en 2D "top-down", suit l'histoire de Billy, le protagoniste. À travers ses combats variés, il cherche à vaincre Bobby, son beau-frère. Cependant, des portails l'éloignant de ce dernier rendent sa quête d'autant plus difficile et dangereuse. Bref, êtes-vous prêt à mourir?
 
+Voici une courte [vidéo YouTube](https://www.youtube.com/watch?v=j6dSwOG2a9Y) montrant le projet brièvement.
 
 <div align="center">
 
@@ -19,7 +20,10 @@ du Cégep de Sainte-Foy. Ce projet de type "roguelike", en 2D "top-down", suit l
 
 ## Installation
 
+#### Nouvelle directive
+Télécharger directement le dernier build via un zip par ce [lien google drive](https://drive.google.com/drive/folders/1znIX4gDFvOmZUgyQ0_2M68NRKiMiqnoL?usp=sharing).
 
+#### Ancienne directive
 Téléchargez la dernière version [stable du jeu][Stable Download]. Décompressez l'archive dans un dossier et exécutez
 le programme `ProjetSynthese.exe`. Notez que vous aurez à naviguer au travers de quelques sous-dossiers. Sous Windows,
 vous aurez aussi un avertissement de sécurité que vous pouvez ignorer en cliquant sur le lien *Informations 
