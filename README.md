@@ -10,6 +10,8 @@
 Projet de jeu vidéo sur Unity pour l'épreuve synthèse de programme des Techniques de l'informatique
 du Cégep de Sainte-Foy. Ce projet de type "roguelike", en 2D "top-down", suit l'histoire de Billy, le protagoniste. À travers ses combats variés, il cherche à vaincre Bobby, son beau-frère. Cependant, des portails l'éloignant de ce dernier rendent sa quête d'autant plus difficile et dangereuse. Bref, êtes-vous prêt à mourir?
 
+La note final du projet en équipe fut de 91%.
+
 Voici une courte [vidéo YouTube](https://www.youtube.com/watch?v=j6dSwOG2a9Y) montrant des aspects du projet brièvement.
 
 <div align="center">
